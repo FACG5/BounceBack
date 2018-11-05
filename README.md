@@ -49,6 +49,7 @@ And also with the current system, it is very hard to draw data form easily and g
 
 ------
 ## Tech stack
+- Express.js
 - Reactjs
 - PostgreSQL
 - sequelize
