@@ -1,9 +1,5 @@
 language: node_js
 node_js:
   - node
-env:
-  - Direction=src/client
-  - Direction=src/server
 script:
-  - if [ "$Direction" = "src/client" ]; then cd $Direction && npm install && npm run build; fi
-  - if [ "$Direction" = "src/server" ]; then cd $Direction && npm install ; fi
+  -start:both
