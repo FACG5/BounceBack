@@ -1,0 +1,10 @@
+.statistics {
+    background: rgba(196, 196, 196, 0.54);
+    border-radius: 15px;
+    text-align: center;
+    padding: 18px;
+    display: inline-block;
+}
+.statistics h2 {
+    color: #FF4800;
+}
