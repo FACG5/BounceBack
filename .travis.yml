@@ -3,4 +3,18 @@
     "node"
   ],
   "language": "node_js"
+  directories: 
+ 
 }
+language: node_js
+node_js:
+  - node
+cache:
+  directories:
+    - /node_modules
+env:
+  - Direction=src\client
+  - Direction=src\server
+script:
+  - if [ "$Direction" = "client" ]; then cd $Direction && npm install && npm run build; fi
+  - if [ "$Direction" = "server" ]; then cd $Direction && npm install ; fi
