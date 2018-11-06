@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.statistics {
+    background: rgba(196, 196, 196, 0.54);
+    border-radius: 15px;
+    text-align: center;
+    padding: 18px;
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+}
+.statistics h2 {
+    color: #FF4800;
+}
