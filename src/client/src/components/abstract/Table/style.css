@@ -9,3 +9,6 @@
 .table > div:first-child {
     background: #DEDEDE;
 }
+.table-error {
+    text-align: center;
+}
