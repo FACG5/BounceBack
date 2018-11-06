@@ -1,17 +1,6 @@
-{
-  "node_js": [
-    "node"
-  ],
-  "language": "node_js"
-  directories: 
- 
-}
 language: node_js
 node_js:
   - node
-cache:
-  directories:
-    - /node_modules
 env:
   - Direction=src\client
   - Direction=src\server
