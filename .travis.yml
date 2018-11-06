@@ -7,3 +7,4 @@ env:
 script:
   - if [ "$Direction" = "client" ]; then cd $Direction && npm install && npm run build; fi
   - if [ "$Direction" = "server" ]; then cd $Direction && npm install ; fi
+  
