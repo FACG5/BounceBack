@@ -1,0 +1,11 @@
+.table > div {
+    background: #EEE;
+    display: flex; 
+    justify-content: space-between;
+    text-align: center;
+    margin: 5px 0;
+    padding: 1rem;
+}
+.table > div:first-child {
+    background: #DEDEDE;
+}
