@@ -7,12 +7,12 @@ export default class Dropdown extends Component {
       const { name, label, options, width } = this.props;
     return (
       <React.Fragment>
-          <label htmlFor={name} className='label-field'>{label}
+          <label htmlFor={name} className='label-field'>{label} 
             <select name={name} className='drop-field' style={ { width: width } }>
-                
-                { options ?( options.map((option,index) => (
-                <option value={option} key={index}>{option}</option>
-                ))) : ""
+                { 
+                  options ?( options.map((option,index) => (
+                    <option value={option} key={index}>{option}</option>
+                  ))) : ""
                 }
             </select>
           </label>
