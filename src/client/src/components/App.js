@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Sidebar from "../components/abstract/sidebar";
 import Container from "../components/abstract/layout/Container";
 import ViewParticipants from "../components/pages/viewParticipants";
+import Dashboard from "../components/pages/dashboard";
 import AddParticipant from '../components/pages/participants/addParticipant';
 import Login from './pages/login';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -24,8 +25,8 @@ class App extends Component {
               <Container>
                 <Switch>
                   <Route exact path="/participants/view" component={ViewParticipants}/>
+                  <Route exact path="/" component={Dashboard}/>
                   <Route exact path="/participants/add" component={AddParticipant}/>
-
                 </Switch>
               </Container>
               </div>
