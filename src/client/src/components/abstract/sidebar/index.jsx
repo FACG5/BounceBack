@@ -7,13 +7,11 @@ import SideLinks from './sidebarLinks'
 class Sidebar extends Component{
     render() {
       return(
-        <div className="side">
             <div className="side-bar">
                   <SideHeader />
                   <SideTitles />
                   <SideLinks />
             </div>
-          </div>
       )
     }
   }
