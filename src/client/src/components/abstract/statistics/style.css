@@ -2,9 +2,12 @@
     background: rgba(196, 196, 196, 0.54);
     border-radius: 15px;
     text-align: center;
-    padding: 18px;
+    width: 150px;
+    margin-right: 15px;
+    padding: 20px;
     display: inline-block;
 }
 .statistics h2 {
     color: #FF4800;
+    margin-bottom: 10px;
 }

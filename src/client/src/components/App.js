@@ -5,6 +5,7 @@ import ViewParticipants from "../components/pages/viewParticipants";
 import viewCourses from '../components/pages/viewCourses';
 import viewManagers from '../components/pages/viewManagers' ;
 import date from '../components/pages/dates';
+import Dashboard from "../components/pages/dashboard";
 import AddParticipant from '../components/pages/participants/addParticipant';
 import Login from './pages/login';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -30,6 +31,7 @@ class App extends Component {
                   <Route exact path="/courses/view" component={viewCourses}/>
                   <Route exact path="/managers/view" component={viewManagers}/>
                   <Route exact path="/participants/dates" component={date}/>
+                  <Route exact path="/" component={Dashboard}/>
                   <Route exact path="/participants/add" component={AddParticipant}/>
                 </Switch>
               </Container>
