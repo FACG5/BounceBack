@@ -21,7 +21,7 @@ class SideTitles extends Component{
           </div>
           <div className="dropdown">
           <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>courses</button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
              <Router>
                 <Link className="link" to="/courses/view">view courses</Link>
               </Router>
