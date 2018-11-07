@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import './index.css';
 
 export default function index(props) {
-  const { value, onChange, type, label, name, width } = props;
+  const { value, onChange, type, label, name, width,placeholder } = props;
   return (
     <React.Fragment>
         <label htmlFor={name} className="label-field">
@@ -12,7 +12,7 @@ export default function index(props) {
                 name={ name }
                 type={ type } 
                 style={ { width: width } }
-                placeholder = {`type ${label} ...`}
+                placeholder = {`type ${placeholder} ...`}
                 className="input-field"
                 value={ value }
                 onChange={onChange}
