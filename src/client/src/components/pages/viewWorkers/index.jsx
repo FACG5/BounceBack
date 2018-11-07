@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import Header from '../../abstract/header';
 import Table from '../../abstract/Table';
 import Input from '../../abstract/input';
@@ -6,7 +7,14 @@ import Footer from '../../abstract/footer';
 
 export default class ViewWorkers extends Component {
   state = {
-    search: ''
+    search: '',
+    rows: [
+      ["username", "Email", "Details"],
+      ["mohannadhanafi", "mohannad@gmail.com", <Link to='/worker/details'><i className="fas fa-info-circle"></i></Link>],
+      ["mohannadhanafi", "mohannad@gmail.com", <Link to='/worker/details'><i className="fas fa-info-circle"></i></Link>],
+      ["mohannadhanafi", "mohannad@gmail.com", <Link to='/worker/details'><i className="fas fa-info-circle"></i></Link>],
+      ["mohannadhanafi", "mohannad@gmail.com", <Link to='/worker/details'><i className="fas fa-info-circle"></i></Link>],
+    ]
   }
   onChange = event => {
     const { value, name } = event.target;
@@ -26,13 +34,7 @@ export default class ViewWorkers extends Component {
             onChange={this.onChange}
           />
           <Table
-          rows={[
-            ["username", "Email", "Details"],
-            ["mohannadhanafi", "mohannad@gmail.com", <i className="fas fa-info-circle"></i>],
-            ["mohannadhanafi", "mohannad@gmail.com", <i className="fas fa-info-circle"></i>],
-            ["mohannadhanafi", "mohannad@gmail.com", <i className="fas fa-info-circle"></i>],
-            ["mohannadhanafi", "mohannad@gmail.com", <i className="fas fa-info-circle"></i>],
-          ]}
+          rows={this.state.rows}
         />
         <Footer />
       </React.Fragment>

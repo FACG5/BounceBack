@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Header from "../../abstract/header";
 import Input from "../../abstract/input";
 import DropDown from "../../abstract/dropdown";
@@ -10,7 +11,14 @@ import "./style.css";
 export default class ViewParticpants extends Component {
   state = {
     search: "",
-    filter: ""
+    filter: "",
+    rows: [
+      ["first name", "last name", "Mobile No.", "BB Id", "Details"],
+      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
+      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
+      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
+      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>]
+    ]
   };
   onChange = event => {
     const { value, name } = event.target;
@@ -48,13 +56,7 @@ export default class ViewParticpants extends Component {
         </div>
         <Header value="Participants" align='left' margin='0'/>
         <Table
-          rows={[
-            ["first name", "last name", "Mobile No.", "BB Id", "Details"],
-            ["Mohannad", "Al-Hanafi", "0597116335", "0044", "ssswee"],
-            ["Mohannad", "Al-Hanafi", "0597116335", "0044", "ssswee"],
-            ["Mohannad", "Al-Hanafi", "0597116335", "0044", "ssswee"],
-            ["Mohannad", "Al-Hanafi", "0597116335", "0044", "ssswee"]
-          ]}
+          rows={this.state.rows}
         />
         <Footer />
       </React.Fragment>

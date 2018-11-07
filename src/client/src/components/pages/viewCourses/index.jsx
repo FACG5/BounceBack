@@ -12,12 +12,12 @@ export default class Courses extends Component {
       ],
       [
         'Painting', '4', '04/05/2017', '04/05/2017', 
-        <React.Fragment><i className="fas fa-trash-alt"></i><Link className="link" to="/courses/details">
+        <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>
       ],
       [
         'Painting', '4', '04/05/2017', '04/05/2017', 
-        <React.Fragment><i className="fas fa-trash-alt"></i><Link className="link" to="/courses/details">
+        <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>
       ]
     ]
