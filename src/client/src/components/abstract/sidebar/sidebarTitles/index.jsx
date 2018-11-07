@@ -51,6 +51,7 @@ class SideTitles extends Component{
               </Router>
             </div>
           </div>
+
       </React.Fragment>
       )
     }
