@@ -5,6 +5,9 @@ import Footer from '../../abstract/footer'
 import Button from '../../abstract/button'
 
 export default class Courses extends Component {
+  linking = () => {
+    this.props.history.push('/courses/add')
+  }
   render() {
     return (
       <React.Fragment>
@@ -28,6 +31,7 @@ export default class Courses extends Component {
         />
         <Button 
         value='Add Course'
+        onClick={this.linking }
         />
         <Footer />
       </React.Fragment>
