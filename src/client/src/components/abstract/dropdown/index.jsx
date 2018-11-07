@@ -4,11 +4,11 @@ import './style.css'
 
 export default class Dropdown extends Component {
   render() {
-      const { name, label, options, width } = this.props;
+      const { name, label, options, width, value, onChange } = this.props;
     return (
       <React.Fragment>
           <label htmlFor={name} className='label-field'>{label} 
-            <select name={name} className='drop-field' style={ { width: width } }>
+            <select name={name} className='drop-field' style={ { width: width } }value={value} onChange={onChange}>
                 { 
                   options ?( options.map((option,index) => (
                     <option value={option} key={index}>{option}</option>
