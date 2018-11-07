@@ -1,0 +1,14 @@
+.add-participant-fields{
+    display: flex;
+    margin: 3rem;
+    flex-wrap: wrap;
+}
+.add-participant-row {
+    width: 100%;
+    display: flex;
+}
+.add-participant {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-top: 2rem; 
+}
