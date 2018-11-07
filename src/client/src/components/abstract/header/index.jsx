@@ -3,9 +3,9 @@ import './style.css';
 
 export default class Header extends Component {
   render() {
-    const { value } = this.props;
+    const { value, align, margin } = this.props;
     return (
-      <div className='header'>
+      <div className='header' style={ { textAlign:align, marginBottom:margin } }>
         <h1>{value}</h1>
       </div>
     )
