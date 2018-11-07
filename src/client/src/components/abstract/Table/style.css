@@ -1,3 +1,6 @@
+.table {
+    margin: 20px 0;
+}
 .table > div {
     background: #EEE;
     display: flex; 

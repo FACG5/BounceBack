@@ -1,0 +1,5 @@
+.view-app {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-top: 25px;
+}
