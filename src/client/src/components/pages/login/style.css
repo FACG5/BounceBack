@@ -1,0 +1,27 @@
+.login-page{
+ text-align: center;
+ width: 80%;
+ height:100vh;
+ margin: 0 auto;
+ padding-top: 2%;
+}
+.login-title{
+    text-transform: capitalize;
+}
+.login-logo{
+    width: 200px;
+    margin-bottom: 5%;
+}
+.login-form{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0px 0px 10px;
+    box-shadow: 5px 5px 2px 1px rgba(0,0,0,0.1), -5px -5px 2px 1px rgba(0,0,0,0.1);
+    min-height: 400px;
+    max-height: 400px;
+}
+.inputs{
+    text-align: left;
+    margin-left: 50px;
+}
