@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import './index.css';
 
 export default function index(props) {
-  const { value, onChange, type, label, name, width,placeholder } = props;
+  const { value, onChange, type, label, name, width, placeholder } = props;
   return (
     <React.Fragment>
         <label htmlFor={name} className="label-field">
