@@ -6,13 +6,14 @@
     text-align: center;
     color:white;
     font-family: 'Lato', sans-serif;
-    font-size: 26px;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
     margin: 1rem;
-    padding: 1rem 2.5rem;
+    padding: 0.7rem;
     transition: all .1s;
+    min-width: 10rem;
 }
 
 .button:hover {
