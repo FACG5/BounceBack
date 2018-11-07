@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Container from "../layout/Container";
 import "./style.css";
 
 export default class Table extends Component {
@@ -15,7 +14,6 @@ export default class Table extends Component {
 
     return (
       <div>
-        <Container>
           <div className="table">
             {rows.map(row => (
               <div>
@@ -25,7 +23,6 @@ export default class Table extends Component {
               </div>
             ))}
           </div>
-        </Container>
       </div>
     );
   }
