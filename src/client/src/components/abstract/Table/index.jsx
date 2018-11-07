@@ -17,14 +17,14 @@ export default class Table extends Component {
       <div>
         <table>
           <tbody>
-        {rows.map((row, index) => (
-          <tr key={index}>
-          {row.map((value, index) => (
-            <td key={index}>{value}</td>
-          ))}
-          </tr>
-        ))}
-        </tbody>
+            {rows.map((row, index) => (
+              <tr key={index}>
+              {row.map((value, index) => (
+                <td key={index}>{value}</td>
+              ))}
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     );
