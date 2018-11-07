@@ -6,7 +6,6 @@ import './style.css';
 
 class SideTitles extends Component{
   render() {
-    console.log(this.props);
       return(
         <React.Fragment>
           <div className="dropdown">
