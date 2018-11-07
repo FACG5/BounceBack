@@ -26,8 +26,8 @@
     color: #c43e3e;
 }
 .table .fa-info-circle {
-    color: blue;
+    color: #505050;
 }
 .table .fa-info-circle:hover {
-    color: rgb(35, 35, 192);
+    color: #000;
 }
