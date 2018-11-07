@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 import {BrowserRouter as  Router} from 'react-router-dom';
 import './style.css';
 
-
 class SideTitles extends Component{
     render() {
       return(
         <React.Fragment>
           <div className="dropdown">
           <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>participant</button>
-            <div clclassNameass="dropdown-content">
+            <div className="dropdown-content">
               <Router>
                 <Link className="link active" to="/participants/view">view participants</Link>
               </Router>
@@ -31,7 +30,7 @@ class SideTitles extends Component{
               </Router>
             </div>
           </div>
-          <div claclassNamess="dropdown">
+          <div className="dropdown">
           <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>managers</button>
             <div className="dropdown-content">
              <Router>
