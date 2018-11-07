@@ -239,7 +239,6 @@ export const fields = [
 ];
 
 export const validationForm = (fields) => {
-    console.log('fields ', fields);
     for (const key in fields) {
         if (fields[key] === "")
             return `Please Check ${key}`;
