@@ -46,7 +46,7 @@ export default class ViewParticpants extends Component {
             <Button value="Clear" color="#D22F2F" onClick={this.clear} />
           </div>
         </div>
-        <Header value="Participants" />
+        <Header value="Participants" align='left' margin='0'/>
         <Table
           rows={[
             ["first name", "last name", "Mobile No.", "BB Id", "Details"],
