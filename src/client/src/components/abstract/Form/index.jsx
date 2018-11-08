@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import propTypes from "prop-types";
 import Container from "./../layout/Container/";
 import Header from "./../header";
@@ -19,7 +20,7 @@ export default function index(props) {
         {fields.map((row, index) => (
           <div className="add-participant-row" key={index}>
             {row.map((field, index) => {
-              const { tag } = field;
+              const { tag, staticField, path } = field;
               if (tag === "Input") {
                 return (
                   <Input
@@ -38,9 +39,15 @@ export default function index(props) {
                     onChange={onChange}
                   />
                 );
-              } else if (tag === "Button") {
+              } else if (tag === "Button" && staticField === true) {
                 return (
                   <Button {...field} key={index} onClick={btnEvents[index]} />
+                );
+              } else if (tag === "Button" && staticField === false && path){
+                return (
+                  <Link to={path}>
+                  <Button {...field} key={index} />
+                  </Link>
                 );
               } else if (tag === "Textarea") {
                 return <Textarea {...field} value={values[field.name]} key={index} onChange={onChange} />;
