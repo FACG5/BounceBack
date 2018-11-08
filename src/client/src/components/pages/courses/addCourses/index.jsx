@@ -6,7 +6,6 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
-import "./index.css";
 
 export default class index extends Component {
   state = initialState;
@@ -41,9 +40,9 @@ export default class index extends Component {
 
   render() {
     return (
-      <div className="add-participant">
+      <div>
         <Form
-          title="Add Participant"
+          title="Add Course"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}

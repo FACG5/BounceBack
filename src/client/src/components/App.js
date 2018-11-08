@@ -3,11 +3,13 @@ import Sidebar from "../components/abstract/sidebar";
 import Container from "../components/abstract/layout/Container";
 import ViewParticipants from "../components/pages/participants/viewParticipants";
 import viewCourses from '../components/pages/courses/viewCourses';
-import viewManagers from '../components/pages/managers/viewManagers' ;
+import viewManagers from '../components/pages/managers/viewManagers';
+import addManager from '../components/pages/managers/addManager';
 import date from '../components/pages/dates';
 import Dashboard from "../components/pages/dashboard";
 import AddParticipant from '../components/pages/participants/addParticipant';
 import ViewWorker from '../components/pages/workers/viewWorkers';
+import addCourse from '../components/pages/courses/addCourses';
 import Login from './pages/login';
 import ReportResult from './pages/reportResult'
 import Report from './pages/report'
@@ -41,6 +43,8 @@ class App extends Component {
                   <Route exact path="/report" component={Report}/>
                   <Route exact path="/workers/view" component={ViewWorker}/>
                   <Route exact path="/workers/add" component={addWorker}/>
+                  <Route exact path="/managers/add" component={addManager} />
+                  <Route exact path="/courses/add" component={addCourse} />
                 </Switch>
               </Container>
               </div>
