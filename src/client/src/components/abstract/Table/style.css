@@ -3,7 +3,7 @@ table {
     width: 100%;
 }
 
-table tbody>tr {
+table.view-table tbody>tr {
     background: #EEE;
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@ table tbody>tr {
     padding: 1rem;
 }
 
-table tbody>tr:first-child {
+table.view-table tbody>tr:first-child {
     background: #DEDEDE;
 }
 
@@ -20,23 +20,23 @@ table tbody>tr:first-child {
     text-align: center;
 }
 
-table tbody i {
+table.view-table tbody i {
     cursor: pointer;
     margin: 0 5px;
 }
 
-table tbody .fa-trash-alt {
+table.view-table tbody .fa-trash-alt {
     color: red;
 }
 
-table tbody .fa-trash-alt:hover {
+table.view-table tbody .fa-trash-alt:hover {
     color: #c43e3e;
 }
 
-table tbody .fa-info-circle {
+table.view-table tbody .fa-info-circle {
     color: #505050;
 }
 
-table .fa-info-circle:hover {
+table.view-table .fa-info-circle:hover {
     color: #000;
 }
