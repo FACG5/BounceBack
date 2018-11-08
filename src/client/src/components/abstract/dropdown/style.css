@@ -1,7 +1,7 @@
 .label-field {
     display: block;
     font-family: 'lato',sans-serif;
-    font-size:20px;
+    font-size:18px;
     font-weight: 500;
     color:#505050;
     margin: 1rem;
@@ -10,7 +10,7 @@
 .drop-field {
     margin: .5rem 0;
     display: block;
-    height: 50px;
+    height: 40px;
     padding: 0 1rem;
     border: 0;
     border-radius: 3px;
