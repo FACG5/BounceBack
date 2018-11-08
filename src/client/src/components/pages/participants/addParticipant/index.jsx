@@ -5,6 +5,7 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
+import Footer from '../../../abstract/footer'
 import "./index.css";
 
 export default class index extends Component {
@@ -48,6 +49,7 @@ export default class index extends Component {
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.clearFields]}
         />
+        <Footer />
       </div>
     );
   }
