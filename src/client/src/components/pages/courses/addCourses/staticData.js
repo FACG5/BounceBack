@@ -17,7 +17,7 @@ export const fields = [
             tag: "DropDown",
             label: "Course Category",
             name: "category",
-            width: "10rem",
+            width: "20rem",
             options: ['N/A', 'wawa']
         }
     ],
@@ -26,14 +26,14 @@ export const fields = [
             tag: "Input",
             label: "Course start",
             name: "startDate",
-            width: "15rem",
+            width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course end",
             name: "endDate",
-            width: "15rem",
+            width: "20rem",
             type: "date",
         }
     ],
@@ -42,22 +42,23 @@ export const fields = [
             tag: "Textarea",
             label: "Description",
             name: "description",
-            width: "15rem",
+            width: "45rem",
+            height: "10rem"
         }
     ],
     [
         {
         tag: 'Button',
         value: "Add Course",
+        color: "#272727",
     },
     {
         tag: 'Button',
         value: "Clear Fields",
-        color: "red",
+        color: "#FF4800",
     }
     ]
 ];
-
 export const validationForm = (fields) => {
     for (const key in fields) {
         if (fields[key] === "")
