@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../../abstract/header';
 import Table from '../../../abstract/Table';
 import Footer from '../../../abstract/footer';
+import Input from "../../../abstract/input";
 
 export default class Courses extends Component {
   state = {
@@ -25,11 +26,23 @@ export default class Courses extends Component {
   render() {
     return (
       <React.Fragment>
+        <section className="section-view">
         <Header
         value='Courses'
         />
+        <div className="search-bar">
+          <Input
+            label="Search"
+            name="search"
+            type="text"
+            placeholder="Type Username"
+            width="300px"
+            value={this.state.search}
+            onChange={this.onChange}
+          />
+        </div>
         <Header
-        value='Courses List :'
+        value='Courses'
         align='left'
         margin = '0'
         />
@@ -37,6 +50,7 @@ export default class Courses extends Component {
           rows = {this.state.rows}
         />
         <Footer />
+        </section>
       </React.Fragment>
     )
   }
