@@ -30,35 +30,37 @@ export default class ViewParticpants extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header value="View Participants" />
-        <div className="search-bar">
-          <Input
-            label="Search"
-            name="search"
-            type="text"
-            placeholder="Type Username"
-            width="300px"
-            value={this.state.search}
-            onChange={this.onChange}
-          />
-          <DropDown
-            label="Filter By:"
-            name="filter"
-            options={["name", "mobile", "date of birth"]}
-            width="150px"
-            value={this.state.filter}
-            onChange={this.onChange}
-          />
-          <div className="buttons">
-            <Button value="Search" />
-            <Button value="Clear" color="#D22F2F" onClick={this.clear} />
+        <section className="section-view">
+          <Header value="View Participants" />
+          <div className="search-bar">
+            <Input
+              label="Search"
+              name="search"
+              type="text"
+              placeholder="Type Username"
+              width="300px"
+              value={this.state.search}
+              onChange={this.onChange}
+            />
+            <DropDown
+              label="Filter By:"
+              name="filter"
+              options={["name", "mobile", "date of birth"]}
+              width="150px"
+              value={this.state.filter}
+              onChange={this.onChange}
+            />
+            <div className="buttons">
+              <Button value="Search" color="#272727" />
+              <Button value="Clear" color="#FF4800" onClick={this.clear} />
+            </div>
           </div>
-        </div>
-        <Header value="Participants" align='left' margin='0'/>
-        <Table
-          rows={this.state.rows}
-        />
-        <Footer />
+          <Header value="Participants" align='left' margin='0'/>
+          <Table
+            rows={this.state.rows}
+          />
+          <Footer />
+        </section>
       </React.Fragment>
     );
   }

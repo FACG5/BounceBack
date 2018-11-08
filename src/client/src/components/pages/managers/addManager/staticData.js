@@ -18,21 +18,21 @@ export const fields = [
             tag: "Input",
             label: "Surname",
             name: "surname",
-            width: "150px",
+            width: "15rem",
             placeholder: "surname"
         },
         {
             tag: "Input",
             label: "Forename",
             name: "forename",
-            width: "150px",
+            width: "15rem",
             placeholder: "forename"
         },
         {
             tag: "Input",
             label: "Username",
             name: "username",
-            width: "150px",
+            width: "15rem",
             placeholder: "type username"
         }
     ],
@@ -41,21 +41,21 @@ export const fields = [
             tag: "Input",
             label: "Day Of Birth",
             name: "date",
-            width: "150px",
+            width: "15rem",
             type: "date",
         },
         {
             tag: "DropDown",
             label: "Gender",
             name: "gender",
-            width: "150px",
+            width: "15rem",
             options: ["Male", "Female"]
         },
         {
             tag: "DropDown",
             label: "Martial Status",
             name: "status",
-            width: "150px",
+            width: "15rem",
             options: ["single", "married"]
         }
     ],
@@ -64,7 +64,7 @@ export const fields = [
             tag: "Input",
             label: "Email Adress",
             name: "email",
-            width: "400px",
+            width: "35rem",
             placeholder: "type email adress"
         }
     ],
@@ -73,14 +73,14 @@ export const fields = [
             tag: "Input",
             label: "Full Address",
             name: "address",
-            width: "400px",
+            width: "35rem",
             placeholder: "type full adress"
         },
         {
             tag: "Input",
             label: "postcode",
             name: "postcode",
-            width: "100px",
+            width: "15rem",
             placeholder: "postcode"
         }
     ],
@@ -89,14 +89,14 @@ export const fields = [
             tag: "Input",
             label: "Mobile Number",
             name: "Mobile",
-            width: "100px",
+            width: "20rem",
             placeholder: "Mobile Number"
         },
         {
             tag: "Input",
             label: "Land line",
             name: "landline",
-            width: "100px",
+            width: "20rem",
             placeholder: "Land Line"
         }
     ],
@@ -106,7 +106,7 @@ export const fields = [
             label: "Password",
             placeholder:'password',
             name: "password",
-            width: "300px",
+            width: "20rem",
             type: "password",
         },
         {
@@ -114,19 +114,20 @@ export const fields = [
             label: "Confirm Password",
             placeholder: "password",
             name: "confirmPassword",
-            width: "300px",
+            width: "20rem",
             type: "password",
         }
     ],
     [
         {
             tag: "Button",
-            value: "Add manager"
+            value: "Add manager",
+            color: "#272727",
         },
         {
             tag: 'Button',
             value: "Clear Fields",
-            color: "red"
+            color: "#FF4800",
         }
     ]
 ];

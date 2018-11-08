@@ -21,20 +21,27 @@ export default class ViewManagers extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header value='View Managers' />
-        <Input
-            label="Search"
-            name="search"
-            type="text"
-            placeholder="Type Name of manager"
-            width="300px"
-            value={this.state.search}
-            onChange={this.onChange}
+        <section className="section-view">
+          <Header value='View Managers' />
+          <Input
+              label="Search"
+              name="search"
+              type="text"
+              placeholder="Type Name of manager"
+              width="300px"
+              value={this.state.search}
+              onChange={this.onChange}
+            />
+            <Header
+                value='Managers'
+                align='left'
+                margin = '0'
+                />
+            <Table
+            rows={this.state.rows}
           />
-          <Table
-          rows={this.state.rows}
-        />
-        <Footer />
+          <Footer />
+        </section>
       </React.Fragment>
     )
   }
