@@ -1,3 +1,7 @@
+.report-view{
+padding-left: 5%;
+margin-top: 50px;
+}
 .selected-period, .selected-worker{
     display: flex;
     justify-content: space-between;
@@ -10,9 +14,7 @@
 }
 p{
     color:#000;
-}
-.period-section{
-    margin-top:20px;
+    font-size: 18px;
 }
 input[type='checkbox']{
     min-width:20px;

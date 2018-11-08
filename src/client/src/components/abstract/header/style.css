@@ -6,6 +6,7 @@
     border-bottom: 1.5px solid #D5D5D5;
     display: inline-block;
     padding: 3px 9px;
+    font-size: 30px !important;
     font-weight: 100;
     margin-bottom: 10px;
 }

@@ -36,7 +36,7 @@ export const fields = [
             tag: "Input",
             label: "Day Of Birth",
             name: "date",
-            width: "15rem",
+            width: "20rem",
             type: "date",
         }
     ],
@@ -45,14 +45,14 @@ export const fields = [
             tag: "DropDown",
             label: "Gender",
             name: "gender",
-            width: "10rem",
+            width: "22rem",
             options: ["Male", "Female"]
         },
         {
             tag: "DropDown",
             label: "Matrial Status ",
             name: "matrialStatus",
-            width: "10rem",
+            width: "22rem",
             options: ["Single", "Married"]
         }
     ],
@@ -60,13 +60,15 @@ export const fields = [
         {
             tag: 'Button',
             value: "Add Worker",
-            staticField: true
+            staticField: true,
+            color: "#272727",
         },
         {
             tag: 'Button',
             value: "Clear Fields",
             color: "red",
-            staticField: true
+            staticField: true,
+            color: "#FF4800",
         }
     ]
 ];
