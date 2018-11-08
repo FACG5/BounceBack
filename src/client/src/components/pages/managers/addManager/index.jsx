@@ -40,9 +40,9 @@ export default class index extends Component {
 
   render() {
     return (
-      <div className="add-participant">
+      <div>
         <Form
-          title="Add Participant"
+          title="Add Manager"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
