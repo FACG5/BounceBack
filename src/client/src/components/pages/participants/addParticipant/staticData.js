@@ -232,10 +232,12 @@ export const fields = [
         tag: 'Button',
         value: "Add Participant",
         color: "#272727",
+        staticField: true
     }, {
         tag: 'Button',
         value: "Clear Fields",
         color: "#FF4800",
+        staticField: true
     }, ]
 ];
 
