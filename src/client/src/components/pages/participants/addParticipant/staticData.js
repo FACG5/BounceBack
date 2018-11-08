@@ -55,7 +55,7 @@ export const fields = [
             tag: "Input",
             label: "Day Of Birth",
             name: "date",
-            width: "15rem",
+            width: "12rem",
             type: "date",
 
         },
@@ -63,21 +63,21 @@ export const fields = [
             tag: "DropDown",
             label: "Gender",
             name: "gender",
-            width: "10rem",
+            width: "12rem",
             options: ["Male", "Female"]
         },
         {
             tag: "DropDown",
             label: "Matrial Status ",
             name: "matrialStatus",
-            width: "10rem",
+            width: "12rem",
             options: ["Single", "Married"]
         },
         {
             tag: "DropDown",
             label: "Sexual Orientation ",
             name: "sexualOrientation",
-            width: "10rem",
+            width: "12rem",
             options: ["Normal", "Gay"]
         }
     ],
@@ -85,7 +85,7 @@ export const fields = [
             tag: "Input",
             label: "Ethnicity ",
             name: "ethnicity",
-            width: "15rem",
+            width: "20rem",
             placeholder: "ethnicity"
 
         },
@@ -101,7 +101,7 @@ export const fields = [
         tag: "Input",
         label: "Full Address ",
         name: "address",
-        width: "25rem",
+        width: "35rem",
         placeholder: "full address"
 
     }],
@@ -109,7 +109,7 @@ export const fields = [
             tag: "Input",
             label: "Nationality ",
             name: "nationality",
-            width: "20rem",
+            width: "15rem",
             placeholder: "nationality"
 
         },
@@ -117,7 +117,7 @@ export const fields = [
             tag: "Input",
             label: "Borough ",
             name: "borough",
-            width: "20rem",
+            width: "15rem",
             placeholder: "borough"
 
         },
@@ -125,7 +125,7 @@ export const fields = [
             tag: "Input",
             label: "Postcode ",
             name: "postcode",
-            width: "5rem",
+            width: "15rem",
             placeholder: "postcode"
 
         }
@@ -159,13 +159,13 @@ export const fields = [
         tag: "Input",
         label: "Email Address",
         name: "email",
-        width: "30rem"
+        width: "35rem"
     }, ],
     [{
             tag: "Input",
             label: "NI No",
             name: "ni",
-            width: "10rem",
+            width: "12rem",
             placeholder: "ni no"
 
         },
@@ -198,7 +198,7 @@ export const fields = [
             tag: "Input",
             label: "Case Worker",
             name: "caseWroker",
-            width: "20rem",
+            width: "15rem",
             placeholder: "case worker"
 
         },
@@ -224,17 +224,18 @@ export const fields = [
         tag: "Input",
         label: "Disability & Medical",
         name: "disability",
-        width: "30rem",
+        width: "35rem",
         placeholder: "disability"
 
     }, ],
     [{
         tag: 'Button',
         value: "Add Participant",
+        color: "#272727",
     }, {
         tag: 'Button',
         value: "Clear Fields",
-        color: "red",
+        color: "#FF4800",
     }, ]
 ];
 
