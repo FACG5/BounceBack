@@ -1,30 +1,30 @@
 export const state = {
-    surname: "",
-    forename: "",
-    fullname: "",
-    date: "",
-    gender: "Male",
-    matrialStatus: "Single",
-    sexualOrientation: "Normal",
-    dependents: "",
-    ethnicity: "",
-    address: "",
-    nationality: "",
-    borough: "",
-    postcode: "",
-    mobile: "",
-    landline: "",
-    nextMobile: "",
-    email: "",
-    ni: "",
-    als: "",
-    cscsNo: "",
-    cscsSupport: "",
-    caseWroker: "",
-    literacy: "",
-    numeracy: "",
-    disability: "",
-    error: ""
+  surname: "",
+  forename: "",
+  fullname: "",
+  date: "",
+  gender: "Male",
+  matrialStatus: "Single",
+  sexualOrientation: "Normal",
+  dependents: "",
+  ethnicity: "",
+  address: "",
+  nationality: "",
+  borough: "",
+  postcode: "",
+  mobile: "",
+  landline: "",
+  nextMobile: "",
+  email: "",
+  ni: "",
+  als: "",
+  cscsNo: "",
+  cscsSupport: "",
+  caseWroker: "",
+  literacy: "",
+  numeracy: "",
+  disability: "",
+  error: ""
 };
 export const fields = [
     [{
@@ -239,9 +239,8 @@ export const fields = [
     }, ]
 ];
 
-export const validationForm = (fields) => {
-    for (const key in fields) {
-        if (fields[key] === "")
-            return `Please Check ${key}`;
-    }
-}
+export const validationForm = fields => {
+  for (const key in fields) {
+    if (fields[key] === "") return `Please Check ${key}`;
+  }
+};
