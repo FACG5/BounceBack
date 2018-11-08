@@ -11,6 +11,7 @@ import ViewWorker from '../components/pages/workers/viewWorkers';
 import Login from './pages/login';
 import ReportResult from './pages/reportResult'
 import Report from './pages/report'
+import addWorker from './pages/workers/addWorkers';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -39,6 +40,7 @@ class App extends Component {
                   <Route exact path="/report/result" component={ReportResult}/>
                   <Route exact path="/report" component={Report}/>
                   <Route exact path="/workers/view" component={ViewWorker}/>
+                  <Route exact path="/workers/add" component={addWorker}/>
                 </Switch>
               </Container>
               </div>
