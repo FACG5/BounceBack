@@ -15,7 +15,7 @@ export default class Table extends Component {
 
     return (
       <div>
-        <table>
+        <table className="view-table">
           <tbody>
             {rows.map((row, index) => (
               <tr key={index}>
