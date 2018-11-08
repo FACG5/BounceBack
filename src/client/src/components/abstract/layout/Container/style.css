@@ -1,4 +1,9 @@
 .container {
-    margin: 0 auto;
-    width: 90%;
+    width:100%;
+    overflow: hidden;
+    min-height: 100vh;
+}
+.content-section{
+ width: 90%;
+ margin-left: 1%;
 }
