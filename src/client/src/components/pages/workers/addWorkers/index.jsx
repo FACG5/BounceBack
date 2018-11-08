@@ -5,7 +5,7 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import "./index.css";
+import Footer from '../../../abstract/footer';
 
 export default class index extends Component {
   state = initialState;
@@ -27,7 +27,6 @@ export default class index extends Component {
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
-    console.log(event.target);
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
@@ -40,7 +39,7 @@ export default class index extends Component {
 
   render() {
     return (
-      <div className="add-participant">
+      <div>
         <Form
           title="Add Worker"
           fields={fieldSet}
@@ -48,6 +47,7 @@ export default class index extends Component {
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.clearFields]}
         />
+        <Footer />
       </div>
     );
   }

@@ -27,7 +27,6 @@ export default class index extends Component {
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
-    console.log(event.target);
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
