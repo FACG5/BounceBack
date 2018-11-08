@@ -9,6 +9,7 @@ import date from '../components/pages/dates';
 import Dashboard from "../components/pages/dashboard";
 import AddParticipant from '../components/pages/participants/addParticipant';
 import ViewWorker from '../components/pages/workers/viewWorkers';
+import addCourse from '../components/pages/courses/addCourses';
 import Login from './pages/login';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -37,6 +38,7 @@ class App extends Component {
                   <Route exact path="/participants/add" component={AddParticipant}/>
                   <Route exact path="/workers/view" component={ViewWorker}/>
                   <Route exact path="/managers/add" component={addManager} />
+                  <Route exact path="/courses/add" component={addCourse} />
                 </Switch>
               </Container>
               </div>
