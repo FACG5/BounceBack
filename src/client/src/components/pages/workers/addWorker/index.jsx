@@ -5,7 +5,7 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import "./index.css";
 
 export default class index extends Component {
   state = initialState;
@@ -40,15 +40,14 @@ export default class index extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-participant">
         <Form
-          title="Add Course"
+          title="Add Worker"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.clearFields]}
         />
-        <Footer />
       </div>
     );
   }

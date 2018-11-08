@@ -48,7 +48,7 @@ export const fields = [
     [
         {
         tag: 'Button',
-        value: "Add Participant",
+        value: "Add Course",
     },
     {
         tag: 'Button',
