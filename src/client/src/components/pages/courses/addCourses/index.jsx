@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from '../../../abstract/header';
 import {
   state as initialState,
   fields as fieldSet,
