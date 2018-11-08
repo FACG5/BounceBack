@@ -1,33 +1,42 @@
-.table {
+table {
     margin: 20px 0;
+    width: 100%;
 }
-.table > div {
+
+table tbody>tr {
     background: #EEE;
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     text-align: center;
     margin: 5px 0;
     padding: 1rem;
 }
-.table > div:first-child {
+
+table tbody>tr:first-child {
     background: #DEDEDE;
 }
+
 .table-error {
     text-align: center;
 }
-.table i {
+
+table tbody i {
     cursor: pointer;
     margin: 0 5px;
 }
-.table .fa-trash-alt {
+
+table tbody .fa-trash-alt {
     color: red;
 }
-.table .fa-trash-alt:hover {
+
+table tbody .fa-trash-alt:hover {
     color: #c43e3e;
 }
-.table .fa-info-circle {
+
+table tbody .fa-info-circle {
     color: #505050;
 }
-.table .fa-info-circle:hover {
+
+table .fa-info-circle:hover {
     color: #000;
 }
