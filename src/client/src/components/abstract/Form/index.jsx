@@ -43,7 +43,7 @@ export default function index(props) {
                   <Button {...field} key={index} onClick={btnEvents[index]} />
                 );
               } else if (tag === "Textarea") {
-                return <Textarea {...field} key={index} onChange={onChange} />;
+                return <Textarea {...field} value={values[field.name]} key={index} onChange={onChange} />;
               }
             })}
           </div>
