@@ -14,6 +14,9 @@ import Login from './pages/login';
 import ReportResult from './pages/reportResult'
 import Report from './pages/report'
 import addWorker from './pages/workers/addWorkers';
+import ParticipantCourseDetails from '../components/pages/participants/participantCourseDetails';
+import AddParticipantDate from '../components/pages/participants/addParticipantDate';
+import ParticipantDateDetails from '../components/pages/participants/participantDateDetails';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -45,6 +48,9 @@ class App extends Component {
                   <Route exact path="/workers/add" component={addWorker}/>
                   <Route exact path="/managers/add" component={addManager} />
                   <Route exact path="/courses/add" component={addCourse} />
+                  <Route exact path="/participants/course/details" component={ParticipantCourseDetails}/>
+                  <Route exact path="/participants/date/add" component={AddParticipantDate}/>
+                  <Route exact path="/participants/date/details" component={ParticipantDateDetails}/>
                 </Switch>
               </Container>
               </div>
