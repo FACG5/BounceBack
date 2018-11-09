@@ -16,7 +16,9 @@ export default class index extends Component {
   };
 
   goBack = event => {
+    this.props.history.push('/participants/dates')
   };
+
 
   // the implemention waiting  back end api
   onSubmit = event => {

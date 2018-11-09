@@ -16,7 +16,7 @@ export default class index extends Component {
   };
 
   cancleAction = event => {
-
+    this.props.history.push('/participants/dates')
   };
 
   // the implemention waiting  back end api

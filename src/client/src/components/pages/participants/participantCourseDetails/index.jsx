@@ -10,7 +10,7 @@ export default class index extends Component {
   state = initialState;
 
   goBack = event => {
-      
+    this.props.history.push('/participants/courses')
   };
 
   render() {
