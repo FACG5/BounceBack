@@ -10,13 +10,13 @@ export default class Date extends Component {
         search: "",
         rows: [
           ["Date name", "Date Id", "Start", "End", "Action"],
-          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
+          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/participants/date/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>],
-          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
+          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/participants/date/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>],
-          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
+          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/participants/date/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>],
-          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/courses/details">
+          ["Date Title", "9868686", "15/5/2017", "15/12/2017", <React.Fragment><i className="fas fa-trash-alt"></i><Link to="/participants/date/details">
         <i className="fas fa-info-circle"></i></Link></React.Fragment>]
         ]
       };
