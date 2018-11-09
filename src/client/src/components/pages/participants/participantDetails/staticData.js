@@ -33,14 +33,15 @@ export const state = {
               name: "surname",
               width: "20rem",
               placeholder: "surname",
+              value: "Mohannad"
           },
           {
               tag: "Input",
               label: "Forename",
               name: "forename",
               width: "20rem",
-              placeholder: "forename"
-  
+              placeholder: "forename",
+              value: "Al-Hanafi"
           }
       ],
       [{
@@ -48,8 +49,8 @@ export const state = {
           label: "fullname",
           name: "fullname",
           width: "35rem",
-          placeholder: "fullname"
-  
+          placeholder: "fullname",
+          value: "Mohannad Al-Hanafi"
       }],
       [{
               tag: "Input",
@@ -57,7 +58,7 @@ export const state = {
               name: "date",
               width: "12rem",
               type: "date",
-  
+              value: ''
           },
           {
               tag: "DropDown",
@@ -65,20 +66,23 @@ export const state = {
               name: "gender",
               width: "12rem",
               options: ["Male", "Female"],
+              value: ''
           },
           {
               tag: "DropDown",
               label: "Matrial Status ",
               name: "matrialStatus",
               width: "12rem",
-              options: ["Single", "Married"]
+              options: ["Single", "Married"],
+              value: ''
           },
           {
               tag: "DropDown",
               label: "Sexual Orientation ",
               name: "sexualOrientation",
               width: "12rem",
-              options: ["Normal", "Gay"]
+              options: ["Normal", "Gay"],
+              value: ''
           }
       ],
       [{
@@ -86,15 +90,16 @@ export const state = {
               label: "Ethnicity ",
               name: "ethnicity",
               width: "20rem",
-              placeholder: "ethnicity"
-  
+              placeholder: "ethnicity",
+              value: "White"
           },
           {
               tag: "Input",
               label: "Dependents ",
               name: "dependents",
               width: "20rem",
-              placeholder: "dependents"
+              placeholder: "dependents",
+              value: "Y"
           }
       ],
       [{
@@ -102,32 +107,32 @@ export const state = {
           label: "Full Address ",
           name: "address",
           width: "35rem",
-          placeholder: "full address"
-  
+          placeholder: "full address",
+          value: "NewYork"
       }],
       [{
               tag: "Input",
               label: "Nationality ",
               name: "nationality",
               width: "15rem",
-              placeholder: "nationality"
-  
+              placeholder: "nationality",
+              value: "Palestinian"
           },
           {
               tag: "Input",
               label: "Borough ",
               name: "borough",
               width: "15rem",
-              placeholder: "borough"
-  
+              placeholder: "borough",
+              value: "EASTHAM"
           },
           {
               tag: "Input",
               label: "Postcode ",
               name: "postcode",
               width: "15rem",
-              placeholder: "postcode"
-  
+              placeholder: "postcode",
+              value: "E6 6FY"
           }
       ],
       [{
@@ -135,63 +140,64 @@ export const state = {
               label: "Mobile No ",
               name: "mobile",
               width: "15rem",
-              placeholder: "mobile no"
-  
+              placeholder: "mobile no",
+              value: "0055054840"
           },
           {
               tag: "Input",
               label: "Landline ",
               name: "landline",
               width: "15rem",
-              placeholder: "landline"
-  
+              placeholder: "landline",
+              value: "21212121"
           },
           {
               tag: "Input",
               label: "Next Of Kin Contact",
               name: "nextMobile",
               width: "15rem",
-              placeholder: "next of kin contact"
-  
+              placeholder: "next of kin contact",
+              value: "202020"
           }
       ],
       [{
           tag: "Input",
           label: "Email Address",
           name: "email",
-          width: "35rem"
+          width: "35rem",
+          value: "aaa@gmail.com"
       }, ],
       [{
               tag: "Input",
               label: "NI No",
               name: "ni",
               width: "12rem",
-              placeholder: "ni no"
-
+              placeholder: "ni no",
+              value: "54545"
           },
           {
               tag: "Input",
               label: "ALS",
               name: "als",
               width: "10rem",
-              placeholder: "als"
-  
+              placeholder: "als",
+              value: '1'
           },
           {
               tag: "Input",
               label: "CSCS No",
               name: "cscsNo",
               width: "10rem",
-              placeholder: "cscs no"
-  
+              placeholder: "cscs no",
+              value: "2121"
           },
           {
               tag: "Input",
               label: "CSCS Support ",
               name: "cscsSupport",
               width: "10rem",
-              placeholder: "cscs support"
-  
+              placeholder: "cscs support",
+              value: '1'
           }
       ],
       [{
@@ -199,24 +205,24 @@ export const state = {
               label: "Case Worker",
               name: "caseWroker",
               width: "15rem",
-              placeholder: "case worker"
-  
+              placeholder: "case worker",
+              value: 'JP'
           },
           {
-              tag: "Input",
+              tag: "DropDown",
               label: "Literacy Level ",
               name: "literacy",
               width: "15rem",
-              placeholder: "literacy"
-  
+              options: ['JP', 'SR'],
+              value: ''
           },
           {
               tag: "Input",
               label: "Numeracy Level",
               name: "numeracy",
               width: "15rem",
-              placeholder: "numeracy level"
-  
+              placeholder: "numeracy level",
+              value: '1'
           },
   
       ],
@@ -225,8 +231,8 @@ export const state = {
           label: "Disability & Medical",
           name: "disability",
           width: "35rem",
-          placeholder: "disability"
-  
+          placeholder: "disability",
+          value: "Heart Attack"
       }, ],
       [
         {
@@ -246,7 +252,7 @@ export const state = {
       ],
       [{
           tag: 'Button',
-          value: "Add Participant",
+          value: "edit & save",
           color: "#272727",
           staticField: true,
       }, {
