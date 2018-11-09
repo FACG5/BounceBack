@@ -6,13 +6,9 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
-import Button from '../../../abstract/button';
 
 export default class index extends Component {
   state = initialState;
-componentDidMount() {
-    console.log(initialState)
-}
   onChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
