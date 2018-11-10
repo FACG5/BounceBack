@@ -50,11 +50,13 @@ export const fields = [
         {
         tag: 'Button',
         value: "Add Course",
+        staticField: true,
         color: "#272727",
     },
     {
         tag: 'Button',
         value: "Clear Fields",
+        staticField: true,
         color: "#FF4800",
     }
     ]
