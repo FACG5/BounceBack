@@ -31,6 +31,7 @@ export default class Course extends Component {
         <Table rows = {this.state.rows} />
         <Button value= 'Edit & save' />
         <Button value= 'Back' color='red' />
+        <Button value= 'Add Course' />
         <Footer />
       </React.Fragment>
     )
