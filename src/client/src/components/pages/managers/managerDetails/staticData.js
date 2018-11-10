@@ -1,17 +1,17 @@
 export const state = {
-    surname: "mohanned",
-    forename: "al-hanafi",
-    username: "mohannadhanafi",
-    date: "23/2/1995",
-    gender: "Male",
-    matrialStatus: "Single",
-    email: "mohannad@gmail.com",
-    address: "khan-younis",
-    postcode: "00970",
-    mobile: "0591234567",
-    landline: "082134569",
-    password: "123123",
-    confirmPassword: "123123"
+    surname: "",
+    forename: "",
+    username: "",
+    date: "",
+    gender: "",
+    matrialStatus: "",
+    email: "",
+    address: "",
+    postcode: "",
+    mobile: "",
+    landline: "",
+    password: "",
+    confirmPassword: ""
 };
 export const fields = [
     [{
@@ -19,21 +19,24 @@ export const fields = [
             label: "Surname",
             name: "surname",
             width: "15rem",
-            placeholder: "surname"
+            placeholder: "surname",
+            value: "mohanned"
         },
         {
             tag: "Input",
             label: "Forename",
             name: "forename",
             width: "15rem",
-            placeholder: "forename"
+            placeholder: "forename",
+            value: "al-hanafi"
         },
         {
             tag: "Input",
             label: "Username",
             name: "username",
             width: "15rem",
-            placeholder: "type username"
+            placeholder: "type username",
+            value: "mohannadhanafi"
         }
     ],
     [
@@ -43,20 +46,23 @@ export const fields = [
             name: "date",
             width: "15rem",
             type: "date",
+            value: "23/2/1995"
         },
         {
             tag: "DropDown",
             label: "Gender",
             name: "gender",
             width: "15rem",
-            options: ["Male", "Female"]
+            options: ["Male", "Female"],
+            value: "Male"
         },
         {
             tag: "DropDown",
             label: "Martial Status",
             name: "status",
             width: "15rem",
-            options: ["single", "married"]
+            options: ["single", "married"],
+            value: "Single"
         }
     ],
     [
@@ -65,7 +71,8 @@ export const fields = [
             label: "Email Adress",
             name: "email",
             width: "35rem",
-            placeholder: "type email adress"
+            placeholder: "type email adress",
+            value: "mohannad@gmail.com"
         }
     ],
     [
@@ -74,14 +81,16 @@ export const fields = [
             label: "Full Address",
             name: "address",
             width: "35rem",
-            placeholder: "type full adress"
+            placeholder: "type full adress",
+            value: "khan-younis"
         },
         {
             tag: "Input",
             label: "postcode",
             name: "postcode",
             width: "15rem",
-            placeholder: "postcode"
+            placeholder: "postcode",
+            value: "00970"
         }
     ],
     [
@@ -90,14 +99,16 @@ export const fields = [
             label: "Mobile Number",
             name: "Mobile",
             width: "20rem",
-            placeholder: "Mobile Number"
+            placeholder: "Mobile Number",
+            value: "0591234567"
         },
         {
             tag: "Input",
             label: "Land line",
             name: "landline",
             width: "20rem",
-            placeholder: "Land Line"
+            placeholder: "Land Line",
+            value: "082134569"
         }
     ],
     [
@@ -108,6 +119,7 @@ export const fields = [
             name: "password",
             width: "20rem",
             type: "password",
+            value: "123123"
         },
         {
             tag: "Input",
@@ -116,6 +128,7 @@ export const fields = [
             name: "confirmPassword",
             width: "20rem",
             type: "password",
+            value: "123123"
         }
     ],
     [
@@ -123,11 +136,13 @@ export const fields = [
             tag: "Button",
             value: "Edit & Save",
             color: "#272727",
+            staticField: true
         },
         {
             tag: 'Button',
             value: "Back",
             color: "#FF4800",
+            staticField: true
         }
     ]
 ];
