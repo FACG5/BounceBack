@@ -5,7 +5,8 @@ import ViewParticipants from "../components/pages/participants/viewParticipants"
 import viewCourses from '../components/pages/courses/viewCourses';
 import viewManagers from '../components/pages/managers/viewManagers';
 import addManager from '../components/pages/managers/addManager';
-import date from '../components/pages/dates';
+import participantDate from '../components/pages/participants/participantDates';
+import participantCourse from './pages/participants/participantCourses';
 import Dashboard from "../components/pages/dashboard";
 import AddParticipant from '../components/pages/participants/addParticipant';
 import ViewWorker from '../components/pages/workers/viewWorkers';
@@ -18,6 +19,7 @@ import ParticipantCourseDetails from '../components/pages/participants/participa
 import ParticipantCourseAdd from '../components/pages/participants/addParticipantCourse';
 import AddParticipantDate from '../components/pages/participants/addParticipantDate';
 import ParticipantDateDetails from '../components/pages/participants/participantDateDetails';
+import participantDetails from './pages/participants/participantDetails';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -40,7 +42,7 @@ class App extends Component {
                   <Route exact path="/participants/view" component={ViewParticipants}/>
                   <Route exact path="/courses/view" component={viewCourses}/>
                   <Route exact path="/managers/view" component={viewManagers}/>
-                  <Route exact path="/participants/dates" component={date}/>
+                  <Route exact path="/participants/dates" component={participantDate}/>
                   <Route exact path="/" component={Dashboard}/>
                   <Route exact path="/participants/add" component={AddParticipant}/>
                   <Route exact path="/report/result" component={ReportResult}/>
@@ -53,6 +55,8 @@ class App extends Component {
                   <Route exact path="/participants/course/add" component={ParticipantCourseAdd}/>
                   <Route exact path="/participants/date/add" component={AddParticipantDate}/>
                   <Route exact path="/participants/date/details" component={ParticipantDateDetails}/>
+                  <Route exact path="/participant/details" component={participantDetails} />
+                  <Route exact path="/participants/courses" component={participantCourse} />
                 </Switch>
               </Container>
               </div>
