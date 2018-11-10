@@ -24,6 +24,10 @@ export default class Course extends Component {
         const { value, name } = event.target;
         this.setState({ [name]: value });
       };
+
+      goBack = event => {
+        this.props.history.push('/participants/course/add')
+      };
   render() {
     return (
       <React.Fragment>
@@ -31,7 +35,7 @@ export default class Course extends Component {
         <Table rows = {this.state.rows} />
         <Button value= 'Edit & save' />
         <Button value= 'Back' color='red' />
-        <Button value= 'Add Course' />
+        <Button value= 'Add Course' onClick={this.goBack} />
         <Footer />
       </React.Fragment>
     )
