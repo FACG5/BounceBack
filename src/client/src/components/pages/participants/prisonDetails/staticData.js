@@ -86,16 +86,13 @@ export const state = {
           tag: 'Button',
           value: "Add Prison Details",
           color: "#272727",
+          staticField: true
       }, {
           tag: 'Button',
-          value: "Clear Fields",
+          value: "Cancle",
           color: "#FF4800",
-      },
-      {
-        tag: 'Button',
-        value: "Cancle",
-        color: "#272727ab",
-    }, ]
+          staticField: true
+      }, ]
   ];
   
   export const validationForm = fields => {

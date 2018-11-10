@@ -14,7 +14,9 @@ export default class index extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
-
+  goBack = event => {
+    this.props.history.push('/participants/add')
+  };
   clearFields = event => {
     event.preventDefault();
     const fields = this.state;
@@ -45,7 +47,7 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.clearFields]}
+          btnEvents={[this.onSubmit, this.goBack]}
         />
         <Footer />
       </div>
