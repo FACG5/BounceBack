@@ -122,12 +122,14 @@ export const fields = [
         {
             tag: "Button",
             value: "Add manager",
+            staticField: true,
             color: "#272727",
         },
         {
             tag: 'Button',
             value: "Clear Fields",
             color: "#FF4800",
+            staticField: true
         }
     ]
 ];
