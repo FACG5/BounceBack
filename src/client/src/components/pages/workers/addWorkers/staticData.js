@@ -60,11 +60,14 @@ export const fields = [
         {
             tag: 'Button',
             value: "Add Worker",
+            staticField: true,
             color: "#272727",
         },
         {
             tag: 'Button',
             value: "Clear Fields",
+            color: "red",
+            staticField: true,
             color: "#FF4800",
         }
     ]
