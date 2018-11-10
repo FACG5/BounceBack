@@ -11,14 +11,16 @@ export const fields = [
             label: "Date Name",
             name: "dateName",
             width: "20rem",
-            placeholder: "date name"
+            placeholder: "date name",
+            value: "special date"
         },
         {
             tag: "Input",
             label: "Date ID",
             name: "dateId",
             width: "20rem",
-            placeholder: "date Id"
+            placeholder: "date Id",
+            value: "112"
         }
     ],
     [
@@ -51,11 +53,13 @@ export const fields = [
             tag: 'Button',
             value: "Edit & Save",
             color: "#272727",
+            staticField: true
         },
     {
         tag: 'Button',
         value: "Back",
         color: "#FF4800",
+        staticField: true
     }
     ]
 ];
