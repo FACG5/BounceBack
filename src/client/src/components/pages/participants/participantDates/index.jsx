@@ -9,10 +9,10 @@ export default class Date extends Component {
   state = {
     search: "",
     rows: [
-      ["Date name", "Date Id", "Start", "End", "Action"],
+      ["Participant Name", "Worker Name", "Start", "End", "Action"],
       [
-        "Date Title",
-        "9868686",
+        "Mohanned",
+        "mohannadhanafi",
         "15/5/2017",
         "15/12/2017",
         <React.Fragment>
@@ -23,8 +23,8 @@ export default class Date extends Component {
         </React.Fragment>
       ],
       [
-        "Date Title",
-        "9868686",
+        "Mohannad",
+        "mohannadhanafi",
         "15/5/2017",
         "15/12/2017",
         <React.Fragment>
@@ -35,8 +35,8 @@ export default class Date extends Component {
         </React.Fragment>
       ],
       [
-        "Date Title",
-        "9868686",
+        "Mohannad",
+        "mohannadhanafi",
         "15/5/2017",
         "15/12/2017",
         <React.Fragment>
@@ -47,8 +47,8 @@ export default class Date extends Component {
         </React.Fragment>
       ],
       [
-        "Date Title",
-        "9868686",
+        "Mohannad",
+        "mohannadhanafi",
         "15/5/2017",
         "15/12/2017",
         <React.Fragment>
