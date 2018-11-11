@@ -41,8 +41,6 @@ export default class Courses extends Component {
     this.setState({[name]:value});
   }
   render() {
-    console.log(this.state.search);
-
     return (
       <React.Fragment>
         <section className="section-view">
