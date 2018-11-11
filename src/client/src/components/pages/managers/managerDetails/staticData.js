@@ -1,17 +1,17 @@
 export const state = {
-    surname: "",
-    forename: "",
-    username: "",
-    date: "",
-    gender: "",
-    matrialStatus: "",
-    email: "",
-    address: "",
-    postcode: "",
-    mobile: "",
-    landline: "",
-    password: "",
-    confirmPassword: ""
+    surname: "mohanned",
+    forename: "al-hanafi",
+    username: "mohannadhanafi",
+    date: "23/2",
+    gender: "Male",
+    matrialStatus: "Single",
+    email: "mohannad",
+    address: "khan-younis",
+    postcode: "00970",
+    mobile: "0591234567",
+    landline: "082134569",
+    password: "123123",
+    confirmPassword: "123123"
 };
 export const fields = [
     [{
@@ -20,7 +20,6 @@ export const fields = [
             name: "surname",
             width: "15rem",
             placeholder: "surname",
-            value: "mohanned"
         },
         {
             tag: "Input",
@@ -28,7 +27,6 @@ export const fields = [
             name: "forename",
             width: "15rem",
             placeholder: "forename",
-            value: "al-hanafi"
         },
         {
             tag: "Input",
@@ -36,7 +34,6 @@ export const fields = [
             name: "username",
             width: "15rem",
             placeholder: "type username",
-            value: "mohannadhanafi"
         }
     ],
     [
@@ -46,7 +43,6 @@ export const fields = [
             name: "date",
             width: "15rem",
             type: "date",
-            value: "23/2/1995"
         },
         {
             tag: "DropDown",
@@ -54,7 +50,6 @@ export const fields = [
             name: "gender",
             width: "15rem",
             options: ["Male", "Female"],
-            value: "Male"
         },
         {
             tag: "DropDown",
@@ -62,7 +57,6 @@ export const fields = [
             name: "status",
             width: "15rem",
             options: ["single", "married"],
-            value: "Single"
         }
     ],
     [
@@ -72,7 +66,6 @@ export const fields = [
             name: "email",
             width: "35rem",
             placeholder: "type email adress",
-            value: "mohannad@gmail.com"
         }
     ],
     [
@@ -82,7 +75,6 @@ export const fields = [
             name: "address",
             width: "35rem",
             placeholder: "type full adress",
-            value: "khan-younis"
         },
         {
             tag: "Input",
@@ -90,7 +82,6 @@ export const fields = [
             name: "postcode",
             width: "15rem",
             placeholder: "postcode",
-            value: "00970"
         }
     ],
     [
@@ -100,7 +91,6 @@ export const fields = [
             name: "Mobile",
             width: "20rem",
             placeholder: "Mobile Number",
-            value: "0591234567"
         },
         {
             tag: "Input",
@@ -108,7 +98,6 @@ export const fields = [
             name: "landline",
             width: "20rem",
             placeholder: "Land Line",
-            value: "082134569"
         }
     ],
     [
@@ -119,7 +108,6 @@ export const fields = [
             name: "password",
             width: "20rem",
             type: "password",
-            value: "123123"
         },
         {
             tag: "Input",
@@ -128,7 +116,6 @@ export const fields = [
             name: "confirmPassword",
             width: "20rem",
             type: "password",
-            value: "123123"
         }
     ],
     [
