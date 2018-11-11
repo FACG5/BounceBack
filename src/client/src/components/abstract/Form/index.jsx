@@ -26,7 +26,7 @@ export default function index(props) {
                   <Input
                     key={index}
                     {...field}
-                    value={field.value}
+                    value={values[field.name]}
                     onChange={onChange}
                   />
                 );
@@ -43,7 +43,7 @@ export default function index(props) {
                 return (
                   <Button {...field} key={index} onClick={btnEvents[index]} />
                 );
-              } else if (tag === "Button" && staticField === false){
+              } else if (tag === "Button"){
                 return (
                   <Link to={path}>
                   <Button {...field} key={index} />
