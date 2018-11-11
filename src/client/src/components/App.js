@@ -12,8 +12,9 @@ import AddParticipant from '../components/pages/participants/addParticipant';
 import ViewWorker from '../components/pages/workers/viewWorkers';
 import addCourse from '../components/pages/courses/addCourses';
 import Login from './pages/login';
-import ReportResult from './pages/reportResult'
-import Report from './pages/report'
+import ReportResult from './pages/reportResult';
+import Report from './pages/report';
+import prisonDetails from './pages/participants/prisonDetails';
 import addWorker from './pages/workers/addWorkers';
 import courseDetails from '../components/pages/courses/courseDetails';
 import ParticipantCourseDetails from '../components/pages/participants/participantCourseDetails';
@@ -53,6 +54,7 @@ class App extends Component {
                   <Route exact path="/managers/add" component={addManager} />
                   <Route exact path="/courses/add" component={addCourse} />
                   <Route exact path="/courses/details" component={courseDetails} />
+                  <Route exact path="/participants/prison" component={prisonDetails} />
                   <Route exact path="/participants/course/details" component={ParticipantCourseDetails}/>
                   <Route exact path="/participants/course/add" component={ParticipantCourseAdd}/>
                   <Route exact path="/participants/date/add" component={AddParticipantDate}/>
