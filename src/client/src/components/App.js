@@ -16,6 +16,7 @@ import ReportResult from './pages/reportResult';
 import Report from './pages/report';
 import prisonDetails from './pages/participants/prisonDetails';
 import addWorker from './pages/workers/addWorkers';
+import managerDetails from '../components/pages/managers/managerDetails';
 import ParticipantCourseDetails from '../components/pages/participants/participantCourseDetails';
 import ParticipantCourseAdd from '../components/pages/participants/addParticipantCourse';
 import AddParticipantDate from '../components/pages/participants/addParticipantDate';
@@ -52,6 +53,7 @@ class App extends Component {
                   <Route exact path="/workers/add" component={addWorker}/>
                   <Route exact path="/managers/add" component={addManager} />
                   <Route exact path="/courses/add" component={addCourse} />
+                  <Route exact path="/manager/details" component={managerDetails} />
                   <Route exact path="/participants/prison" component={prisonDetails} />
                   <Route exact path="/participants/course/details" component={ParticipantCourseDetails}/>
                   <Route exact path="/participants/course/add" component={ParticipantCourseAdd}/>
