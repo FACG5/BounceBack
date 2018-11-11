@@ -11,7 +11,8 @@ export const state = {
     mobile: "",
     landline: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    error: ""
 };
 export const fields = [
     [{
@@ -54,7 +55,7 @@ export const fields = [
         {
             tag: "DropDown",
             label: "Martial Status",
-            name: "status",
+            name: "matrialStatus",
             width: "15rem",
             options: ["single", "married"]
         }
@@ -88,7 +89,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Mobile Number",
-            name: "Mobile",
+            name: "mobile",
             width: "20rem",
             placeholder: "Mobile Number"
         },
