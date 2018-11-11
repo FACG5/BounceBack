@@ -1,11 +1,10 @@
 export const state = {
-    surname: "",
-    forename: "",
-    username: "",
-    date: "",
-    gender: "",
-    matrialStatus: "",
-    email: "",
+    surname: "mohanned",
+    forename: "al-hanafi",
+    username: "mohannadhanafi",
+    date: "12/2",
+    gender: "Male",
+    matrialStatus: "Single"
 };
 export const fields = [
     [
@@ -15,7 +14,6 @@ export const fields = [
             name: "surname",
             width: "20rem",
             placeholder: "surname",
-            value: "mohanned"
         },
         {
             tag: "Input",
@@ -23,7 +21,6 @@ export const fields = [
             name: "forename",
             width: "20rem",
             placeholder: "forename",
-            value: "al-hanafi",
         }
     ],
     [
@@ -33,7 +30,6 @@ export const fields = [
             name: "username",
             width: "20rem",
             placeholder: "username",
-            value: "mohannadhanafi",
         },
         {
             tag: "Input",
@@ -41,7 +37,6 @@ export const fields = [
             name: "date",
             width: "20rem",
             type: "date",
-            value: "12/2/1995",
         }
     ],
     [
@@ -51,7 +46,6 @@ export const fields = [
             name: "gender",
             width: "22rem",
             options: ["Male", "Female"],
-            value: "Male"
         },
         {
             tag: "DropDown",
@@ -59,7 +53,6 @@ export const fields = [
             name: "matrialStatus",
             width: "22rem",
             options: ["Single", "Married"],
-            value: "Single"
         }
     ],
     [
