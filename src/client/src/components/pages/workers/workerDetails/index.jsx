@@ -30,7 +30,6 @@ export default class index extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <Form
