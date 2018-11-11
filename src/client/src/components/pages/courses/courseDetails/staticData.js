@@ -1,6 +1,6 @@
 export const state = {
-    courseName: "",
-    category: "",
+    courseName: "The Scaffolding Course",
+    category: "vocational",
     startDate: "",
     endDate: "",
     description: "With thanks to Alandale who have provided the equipment, and Land Securities who have worked with us to facilitate the course, we are able to offer a further valuable, much sought after construction industry skill."
@@ -12,7 +12,6 @@ export const fields = [
             name: "courseName",
             width: "20rem",
             placeholder: "course name",
-            value: "The Scaffolding Course"
         },
         {
             tag: "DropDown",
@@ -20,7 +19,6 @@ export const fields = [
             name: "category",
             width: "20rem",
             options: ['vocational', 'other'],
-            value: "vocational"
         }
     ],
     [
