@@ -35,7 +35,7 @@ import './style.css'
             <table className="case-report">
                 <thead>
                     <tr>
-                    <th colspan="3">
+                    <th colSpan="3">
                         <p>Case No:<span>1</span></p>
                     </th>
                     </tr>
@@ -45,7 +45,7 @@ import './style.css'
                         <td>
                         <p>Action</p>
                         </td>
-                        <td className="foot-link" colspan="3">
+                        <td className="foot-link" colSpan="3">
                             <span className="link">Print as pdf/xlsx <i className="fas fa-file-export"></i></span>
                         </td>
                     </tr>
