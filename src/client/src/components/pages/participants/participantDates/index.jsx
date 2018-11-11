@@ -75,7 +75,6 @@ export default class Date extends Component {
       <React.Fragment>
         <Header value="View Dates" />
         <Table rows={this.state.rows} />
-        <Button value="Edit & save" color="#272727" />
         <Button value="Add Date" color="#272727" onClick={this.goAdd} />
         <Button value="Back" color="#FF4800"  onClick={this.goBack} />
         <Footer />
