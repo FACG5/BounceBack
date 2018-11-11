@@ -1,23 +1,23 @@
 export const state = {
-    dateName: "",
-    dateId: "",
+    participantName: "",
+    workerName: "",
     startDate: "",
     endDate: ""
 };
 export const fields = [
     [{
             tag: "Input",
-            label: "Date Name",
-            name: "dateName",
+            label: "Participant Name",
+            name: "participantName",
             width: "20rem",
-            placeholder: "date name"
+            placeholder: "Participant Name"
         },
         {
             tag: "Input",
-            label: "Date ID",
-            name: "dateId",
+            label: "Worker Name",
+            name: "workerName",
             width: "20rem",
-            placeholder: "date ID"
+            placeholder: "Worker Name"
         }
     ],
     [
