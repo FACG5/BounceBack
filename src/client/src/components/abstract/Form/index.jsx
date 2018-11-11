@@ -45,8 +45,8 @@ export default function index(props) {
                 );
               } else if (tag === "Button"){
                 return (
-                  <Link to={path}>
-                  <Button {...field} key={index} />
+                  <Link to={path} key={index}>
+                  <Button {...field} />
                   </Link>
                 );
               } else if (tag === "Textarea") {
