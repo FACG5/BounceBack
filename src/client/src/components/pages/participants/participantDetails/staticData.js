@@ -248,7 +248,7 @@ export const fields = [
     },
     {
       tag: "Button",
-      value: "Clear Fields",
+      value: "Back",
       color: "#FF4800",
       staticField: true
     }
