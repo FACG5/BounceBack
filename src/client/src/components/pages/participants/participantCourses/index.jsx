@@ -64,17 +64,20 @@ export default class Course extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
-  goBack = event => {
+  goAdd = event => {
     this.props.history.push("/participants/course/add");
+  };
+  goBack = event => {
+    this.props.history.push("/participant/details");
   };
   render() {
     return (
       <React.Fragment>
         <Header value="View Courses" />
         <Table rows={this.state.rows} />
-        <Button value="Edit & save" />
-        <Button value="Back" color="red" />
-        <Button value="Add Course" onClick={this.goBack} />
+        <Button value="Edit & save" color="#272727" />
+        <Button value="Add Course" onClick={this.goAdd} color="#272727" />
+        <Button value="Back" color="#FF4800" onClick={this.goBack}/>
         <Footer />
       </React.Fragment>
     );
