@@ -12,7 +12,6 @@ export const fields = [
             name: "dateName",
             width: "20rem",
             placeholder: "date name",
-            value: "special date"
         },
         {
             tag: "Input",
@@ -20,7 +19,6 @@ export const fields = [
             name: "dateId",
             width: "20rem",
             placeholder: "date Id",
-            value: "112"
         }
     ],
     [
