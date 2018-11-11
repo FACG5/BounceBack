@@ -75,7 +75,6 @@ export default class Course extends Component {
       <React.Fragment>
         <Header value="View Courses" />
         <Table rows={this.state.rows} />
-        <Button value="Edit & save" color="#272727" />
         <Button value="Add Course" onClick={this.goAdd} color="#272727" />
         <Button value="Back" color="#FF4800" onClick={this.goBack}/>
         <Footer />
