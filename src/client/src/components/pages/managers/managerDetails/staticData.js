@@ -1,18 +1,17 @@
 export const state = {
-    surname: "",
-    forename: "",
-    username: "",
-    date: "",
+    surname: "mohanned",
+    forename: "al-hanafi",
+    username: "mohannadhanafi",
+    date: "23/2",
     gender: "Male",
     matrialStatus: "Single",
-    email: "",
-    address: "",
-    postcode: "",
-    mobile: "",
-    landline: "",
-    password: "",
-    confirmPassword: "",
-    error: ""
+    email: "mohannad",
+    address: "khan-younis",
+    postcode: "00970",
+    mobile: "0591234567",
+    landline: "082134569",
+    password: "123123",
+    confirmPassword: "123123"
 };
 export const fields = [
     [{
@@ -20,21 +19,21 @@ export const fields = [
             label: "Surname",
             name: "surname",
             width: "15rem",
-            placeholder: "surname"
+            placeholder: "surname",
         },
         {
             tag: "Input",
             label: "Forename",
             name: "forename",
             width: "15rem",
-            placeholder: "forename"
+            placeholder: "forename",
         },
         {
             tag: "Input",
             label: "Username",
             name: "username",
             width: "15rem",
-            placeholder: "type username"
+            placeholder: "type username",
         }
     ],
     [
@@ -50,14 +49,14 @@ export const fields = [
             label: "Gender",
             name: "gender",
             width: "15rem",
-            options: ["Male", "Female"]
+            options: ["Male", "Female"],
         },
         {
             tag: "DropDown",
             label: "Martial Status",
-            name: "matrialStatus",
+            name: "status",
             width: "15rem",
-            options: ["single", "married"]
+            options: ["single", "married"],
         }
     ],
     [
@@ -66,7 +65,7 @@ export const fields = [
             label: "Email Adress",
             name: "email",
             width: "35rem",
-            placeholder: "type email adress"
+            placeholder: "type email adress",
         }
     ],
     [
@@ -75,30 +74,30 @@ export const fields = [
             label: "Full Address",
             name: "address",
             width: "35rem",
-            placeholder: "type full adress"
+            placeholder: "type full adress",
         },
         {
             tag: "Input",
             label: "postcode",
             name: "postcode",
             width: "15rem",
-            placeholder: "postcode"
+            placeholder: "postcode",
         }
     ],
     [
         {
             tag: "Input",
             label: "Mobile Number",
-            name: "mobile",
+            name: "Mobile",
             width: "20rem",
-            placeholder: "Mobile Number"
+            placeholder: "Mobile Number",
         },
         {
             tag: "Input",
             label: "Land line",
             name: "landline",
             width: "20rem",
-            placeholder: "Land Line"
+            placeholder: "Land Line",
         }
     ],
     [
@@ -122,13 +121,13 @@ export const fields = [
     [
         {
             tag: "Button",
-            value: "Add manager",
-            staticField: true,
+            value: "Edit & Save",
             color: "#272727",
+            staticField: true
         },
         {
             tag: 'Button',
-            value: "Clear Fields",
+            value: "Back",
             color: "#FF4800",
             staticField: true
         }
