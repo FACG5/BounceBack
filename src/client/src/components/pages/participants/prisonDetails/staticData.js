@@ -2,7 +2,7 @@ export const state = {
     utrNo: "",
     prison: "",
     prisonNo: "",
-    username: "",
+    officerName: "",
     prisonIn: "",
     prisonRelease: "",
     rotlHdc: "",
@@ -36,10 +36,10 @@ export const state = {
       ],
       [{
           tag: "Input",
-          label: "User Name",
-          name: "username",
+          label: "Probation officer name",
+          name: "officerName",
           width: "35rem",
-          placeholder: "username"
+          placeholder: "Probation officer name"
   
       }],
       
@@ -89,7 +89,7 @@ export const state = {
           staticField: true
       }, {
           tag: 'Button',
-          value: "Cancle",
+          value: "Cancel",
           color: "#FF4800",
           staticField: true
       }, ]
