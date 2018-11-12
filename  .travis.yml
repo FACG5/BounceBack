@@ -2,7 +2,8 @@ language: node_js
 node_js:
 - "node"
 env:
-  - BUILD_DIR=src/client # here we define the subdirectory for travis as a global environment variable.
+  - SRC_DIR=src # here we define the subdirectory for travis as a global environment variable.
+  - CLIENT_DIR=client # here we define the subdirectory for travis as a global environment variable.
 
 script:
-  - if [ "$BUILD_DIR" = "src/client" ]; then cd $BUILD_DIR && npm install && npm run build; fi  # this script lets travis go into it and run any scripts we tell it to in the subdirectory we just declared above.
+  - if [ "$CLIENT_DIR" = "client" ]; then cd $BUILD_DIR && cd CLIENT_DIR && npm install && npm run build; fi  # this script lets travis go into it and run any scripts we tell it to in the subdirectory we just declared above.
