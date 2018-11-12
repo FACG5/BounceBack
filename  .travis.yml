@@ -6,4 +6,4 @@ env:
   - CLIENT_DIR=client # here we define the subdirectory for travis as a global environment variable.
 
 script:
-  - if [ "$CLIENT_DIR" = "client" ]; then cd $BUILD_DIR && cd CLIENT_DIR && npm install && npm run build; fi  # this script lets travis go into it and run any scripts we tell it to in the subdirectory we just declared above.
+  - if [ "$SRC_DIR" = "src" ]; then cd $SRC_DIR && cd CLIENT_DIR && npm install && npm run build; fi  # this script lets travis go into it and run any scripts we tell it to in the subdirectory we just declared above.
