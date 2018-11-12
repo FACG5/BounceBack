@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/FACG5/BounceBack.png)](https://travis-ci.com/FACG5/BounceBack)
 # BounceBack
 Bounce Back is a Charity and a Social Enterprise focused on training and employment of ex offenders.
 
