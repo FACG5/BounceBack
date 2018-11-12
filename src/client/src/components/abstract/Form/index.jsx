@@ -52,6 +52,7 @@ export default function index(props) {
               } else if (tag === "Textarea") {
                 return <Textarea {...field} value={values[field.name]} key={index} onChange={onChange} />;
               }
+              return null;
             })}
           </div>
         ))}
