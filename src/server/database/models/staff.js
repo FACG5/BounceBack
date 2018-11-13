@@ -33,10 +33,10 @@ const staff = sequelize.define('staff', {
       type: Sequelize.TEXT
     },
     mobile: {
-      type: Sequelize.NUMBER
+      type: Sequelize.STRING
     },
     landline: {
-      type: Sequelize.NUMBER
+      type: Sequelize.STRING
     },
     password: {
       type: Sequelize.TEXT

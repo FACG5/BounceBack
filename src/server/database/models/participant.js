@@ -45,28 +45,28 @@ const participant = sequelize.define("participant", {
     type: Sequelize.TEXT
   },
   mobile: {
-    type: Sequelize.NUMBER
+    type: Sequelize.STRING
   },
   landline: {
-    type: Sequelize.NUMBER
+    type: Sequelize.STRING
   },
   kin_contact: {
-    type: Sequelize.NUMBER
+    type: Sequelize.STRING
   },
   email: {
     type: Sequelize.STRING
   },
   ni_number: {
-    type: Sequelize.NUMBER
+    type: Sequelize.INTEGER
   },
   als: {
-    type: Sequelize.NUMBER
+    type: Sequelize.INTEGER
   },
   cscs_number: {
-    type: Sequelize.NUMBER
+    type: Sequelize.INTEGER
   },
   cscs_support: {
-    type: Sequelize.NUMBER
+    type: Sequelize.INTEGER
   },
   case_worker: {
   type: Sequelize.STRING
