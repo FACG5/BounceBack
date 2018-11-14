@@ -3,11 +3,11 @@ const sequelize = require('../config/connection');
 
 const dates = sequelize.define('dates', {
     date_start: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false
     },
     date_end: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false
     },
     note: {
