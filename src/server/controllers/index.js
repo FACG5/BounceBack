@@ -8,5 +8,6 @@ const Router = express.Router();
 Router.get('/overview', getCount.get);
 Router.get('/courses', courses.get);
 Router.get('/workers', workers.get);
+Router.delete('/workers', workers.delete);
 
 module.exports = Router;
