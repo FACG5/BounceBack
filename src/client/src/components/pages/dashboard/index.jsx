@@ -8,16 +8,20 @@ import './style.css';
 
 export default class index extends Component {
   state={
-     participant: 55,
-     course: 70,
-     worker: 44 
+     participant: '',
+     course: '',
+     worker: ''
   }
   componentDidMount = async () => {
-    const data = await axios('/overview');
-    const countParticipant = data.data.countParticipant.count;
-    const countCourse = data.data.countCourse.count;
-    const countWorker = data.data.countWorker.count;
-    this.setState({participant: countParticipant, course: countCourse, worker: countWorker})
+    try {
+      const data = await axios('/overview');
+      const countParticipant = data.data.countParticipant.count;
+      const countCourse = data.data.countCourse.count;
+      const countWorker = data.data.countWorker.count;
+      this.setState({participant: countParticipant, course: countCourse, worker: countWorker})
+    } catch (err) {
+      console.log(err);
+    }
   }
   render() {
     return (
