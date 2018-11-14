@@ -17,6 +17,21 @@ export default class Courses extends Component {
     this.setState({ [name]: value });
   };
 
+  deleteCourse = id => {
+    if (window.confirm("Are you sure that you want to delete it ?")) {
+      axios("/courses", {
+        method: "DELETE",
+        data: {
+          courseId: id
+        }
+      }).then(result => {
+        this.getData().then(() => {
+          alert(result.data.message);
+        });
+      });
+    }
+  };
+
   getData = async () => {
     try {
       const data = await axios("/courses");
@@ -31,6 +46,7 @@ export default class Courses extends Component {
           <>
             <i
               className="fas fa-trash-alt"
+              onClick={() => this.deleteCourse(row.id)}
             />
             <Link to="/courses/details">
               <i className="fas fa-info-circle" />
