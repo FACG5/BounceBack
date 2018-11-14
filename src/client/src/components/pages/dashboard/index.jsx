@@ -3,13 +3,18 @@ import Statistics from '../../abstract/statistics'
 import { Link } from 'react-router-dom';
 import Header from "../../abstract/header";
 import Footer from "../../abstract/footer";
+import axios from 'axios';
 import './style.css';
 
 export default class index extends Component {
   state={
-     participant:"100",
-     course:"7",
-     worker:"1" 
+     participant: 0,
+     course: 0,
+     worker: 0 
+  }
+  componentDidMount = async () => {
+    const data = axios('/overview');
+    console.log(data);
   }
   render() {
     return (
