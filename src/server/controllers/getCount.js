@@ -5,7 +5,7 @@ const worker = require("../database/models/worker");
 exports.get = async (req, res) => {
   try {
     const countParticipant = await participant.findAndCountAll();
-    const countCourse = await cousrse.findAndCountAll();
+    const countCourse = await course.findAndCountAll();
     const countWorker = await worker.findAndCountAll();
     res.send({ countParticipant, countCourse, countWorker });
   } catch (err) {
