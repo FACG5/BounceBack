@@ -19,7 +19,6 @@ export default class ViewWorkers extends Component {
     try {
       const data = await axios("/workers");
       const finalData = data.data.workersData;
-      console.log(finalData);
       const array = [["username", "date of birth", "action"]];
       finalData.map(row =>
         array.push([
