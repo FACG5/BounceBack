@@ -90,4 +90,3 @@ class SideTitles extends Component {
 }
 
 export default SideTitles;
-
