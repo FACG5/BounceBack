@@ -27,7 +27,7 @@ export default class ViewParticpants extends Component {
   componentDidMount = async () => {
     try {
       const data = await axios("/participants");
-      const finalData = data.data.participants;
+      const finalData = data.data.getParticipants;
       const array = [["Full Name", "Date Of Birth", "Email", "Action"]];
       finalData.map(row =>
         array.push([
