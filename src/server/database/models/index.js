@@ -5,6 +5,7 @@ const workers = require('./worker');
 const courses = require('./course');
 const prison = require('./prison');
 const participantCourses = require('./participantCourses');
+const staff = require('./staff');
 
 prison.belongsTo(participants, {
   onDelete: 'CASCADE', foreignKey: 'participant_id', targetKey: 'id',
@@ -37,5 +38,6 @@ module.exports = {
     workers,
     courses,
     prison,
+    staff,
     connection
 };
