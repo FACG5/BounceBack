@@ -13,42 +13,33 @@
 }
 .item{
     overflow: hidden;
-    border-top:solid gray 1px;
 }
 .btn{
     display: block;
-    color:#fff;
-    padding: 16px 20px;
-    position: relative;
-    font-weight: bold;
-}
-.btn:before{
-    content:"";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    left:20px;
-    bottom: -7px;
-    transform: rotate(45deg);
-
+    margin-top: 10px;
+    color: #f9f9f9;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding: 8px 15px;
+    text-decoration: none;
 }
 .smenu{
     overflow: hidden;
     transition: max-height 0.3s;
-    /* max-height: 0; */
 }
 .smenu .link{
     display: block;
-    padding: 15px 26px;
-    color: #fff;
-    font-size: 14px;
+    padding: 10px 26px;
+    color: #7A7575 !important;
+    font-size: 16px;
     margin: 4px 0;
     position:relative;
+    text-indent: 20px;
 }
 .smenu .link:before{
     content:"";
     position: absolute;
-    width: 6px;
+    width: 5px;
     height: 100%;
     background: #FF4800;
     left:0;
@@ -59,8 +50,13 @@
 .smenu .link:hover:before{
     opacity: 1;
 }
-.item:target .smenu{
-    max-height: 10em !important;
+.link:hover{
+    color: #f9f9f9 !important;
+    cursor: pointer;
+} 
+.icon{
+    color:#FF4800;
+    margin-right:10px;
 }
 /* .dropdown {
     position: relative;
