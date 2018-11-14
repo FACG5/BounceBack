@@ -24,7 +24,7 @@ export default class ViewWorkers extends Component {
       finalData.map(row =>
         array.push([
           row.username,
-          row.date_of_birth,
+          row.date_of_birth.split('T')[0],
           <Link to="/worker/details">
             <i className="fas fa-info-circle" />
           </Link>
