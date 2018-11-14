@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
@@ -6,19 +6,14 @@ import DropDown from "../../../abstract/dropdown";
 import Button from "../../../abstract/button";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
+import axios from 'axios';
 import "./style.css";
 
 export default class ViewParticpants extends Component {
   state = {
     search: "",
+    rows: [],
     filter: "",
-    rows: [
-      ["first name", "last name", "Mobile No.", "BB Id", "Details"],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>]
-    ]
   };
   onChange = event => {
     const { value, name } = event.target;
@@ -27,6 +22,32 @@ export default class ViewParticpants extends Component {
   clear = () => {
     this.setState({ search: "" });
   };
+  
+// axios to make requests from backend.. 
+  componentDidMount = async () => {
+    try {
+      const data = await axios("/participants");
+      const finalData = data.data.participants;
+      const array = [["Full Name", "Date Of Birth", "Email", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <Fragment>
+            <i className="fas fa-trash-alt" />
+            <Link to="/participant/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </Fragment>
+        ])
+      );
+      this.setState({ rows: array });
+    } catch (err) {
+      console.log(err); // waiting for boundery error handling
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
