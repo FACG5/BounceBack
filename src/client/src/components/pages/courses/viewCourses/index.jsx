@@ -11,11 +11,13 @@ export default class Courses extends Component {
     search: "",
     rows: []
   };
+
   onChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-  componentDidMount = async () => {
+
+  getData = async () => {
     try {
       const data = await axios("/courses");
       const finalData = data.data.coursesData;
@@ -24,10 +26,12 @@ export default class Courses extends Component {
         array.push([
           row.course_name,
           row.id,
-          row.course_start.split('T')[0],
-          row.course_end.split('T')[0],
+          row.course_start.split("T")[0],
+          row.course_end.split("T")[0],
           <>
-            <i className="fas fa-trash-alt" />
+            <i
+              className="fas fa-trash-alt"
+            />
             <Link to="/courses/details">
               <i className="fas fa-info-circle" />
             </Link>
@@ -38,6 +42,10 @@ export default class Courses extends Component {
     } catch (err) {
       console.log(err); // waiting for boundery error handling
     }
+  };
+
+  componentDidMount = async () => {
+    this.getData();
   };
   render() {
     return (
