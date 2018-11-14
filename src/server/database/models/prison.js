@@ -3,13 +3,16 @@ const sequelize = require('../config/connection');
 
 const prison = sequelize.define('prison', {
   utr_number: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   prison_name: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    allowNull: false
   },
   prison_number: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   officer_name: {
     type: Sequelize.TEXT
