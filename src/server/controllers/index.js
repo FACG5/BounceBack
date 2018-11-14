@@ -1,8 +1,8 @@
 const express = require('express');
+const getCount = require('./getCount');
+
 const Router = express.Router();
 
-Router.get('/test', (req, res) => {
-  res.send({ test: 'try if server running properly' });
-});
+Router.get('/overview', getCount.get);
 
 module.exports = Router;
