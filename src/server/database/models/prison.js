@@ -18,10 +18,10 @@ const prison = sequelize.define('prison', {
     type: Sequelize.TEXT
   },
   prison_in: {
-    type: Sequelize.STRING
+    type: Sequelize.DATE
   },
   prison_release: {
-    type: Sequelize.STRING
+    type: Sequelize.DATE
   },
   rotl_hdc: {
     type: Sequelize.TEXT

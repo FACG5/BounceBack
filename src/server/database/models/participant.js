@@ -77,7 +77,7 @@ const participant = sequelize.define("participant", {
     type: Sequelize.INTEGER
   },
   case_worker: {
-  type: Sequelize.STRING
+  type: Sequelize.DATE
   },
   leteracy_level: {
     type: Sequelize.INTEGER
