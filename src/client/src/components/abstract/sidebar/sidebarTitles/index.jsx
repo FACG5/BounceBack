@@ -38,7 +38,7 @@ class SideTitles extends Component {
         <div className="sidemenu">
           <div className="menu">
             <li className="item" id="participants">
-              <Link className="btn" onClick={this.onClick} id="participants" to="#participants">participants</Link>
+              <Link className="btn" onClick={this.onClick} id="participants" to="#participants"><i className="icon fa fa-caret-down"></i>participants</Link>
               {
                 toggleParticipant &&
                 (<div className="smenu">
@@ -50,7 +50,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item" id="courses">
-              <Link className="btn" onClick={this.onClick} id="courses" to="#courses">courses</Link>
+              <Link className="btn" onClick={this.onClick} id="courses" to="#courses"> <i className="icon fa fa-caret-down"></i>courses</Link>
               {
                 toggleCourse &&
                 (<div className="smenu">
@@ -61,7 +61,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item" id="managers">
-              <Link className="btn" onClick={this.onClick} id="managers" to="#managers">managers</Link>
+              <Link className="btn" onClick={this.onClick} id="managers" to="#managers"> <i className="icon fa fa-caret-down"></i> managers</Link>
               {
                 toggleManager &&
                 (<div className="smenu">
@@ -72,7 +72,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item" id="workers">
-              <Link className="btn" onClick={this.onClick} id="workers" to="#workers">workers</Link>                
+              <Link className="btn" onClick={this.onClick} id="workers" to="#workers">  <i className="icon fa fa-caret-down"></i>workers</Link>                
               {
                 toggleWorker &&
                 (<div className="smenu">
@@ -84,34 +84,6 @@ class SideTitles extends Component {
             </li>
           </div>
         </div>
-        {/* <div className="dropdown">
-          <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>participant</button>
-            <div className="dropdown-content">
-                <Link className="link active" to="/participants/view">view participants</Link>
-                <Link className="link" to="/participants/add">add participant</Link>
-            </div>
-          </div>
-          <div className="dropdown">
-          <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>courses</button>
-            <div className="dropdown-content">
-                <Link className="link" to={`/courses/view`}>view courses</Link>
-                <Link className="link" to="/courses/add">add course</Link>
-            </div>
-          </div>
-          <div className="dropdown">
-          <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>managers</button>
-            <div className="dropdown-content">
-                <Link className="link" to="/managers/view">view managers</Link>
-                <Link className="link" to="/managers/add">add manager</Link>
-            </div>
-          </div>
-          <div className="dropdown">
-          <button className="drop-btn"> <i className="icon fa fa-caret-down"></i>workers</button>
-            <div className="dropdown-content">
-                <Link className="link" to="/workers/view">view workers</Link>
-                <Link className="link" to="/workers/add">add worker</Link>
-            </div>
-          </div> */}
       </React.Fragment>
     )
   }
