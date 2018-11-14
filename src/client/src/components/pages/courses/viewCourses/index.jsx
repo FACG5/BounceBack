@@ -24,8 +24,8 @@ export default class Courses extends Component {
         array.push([
           row.course_name,
           row.id,
-          row.course_start,
-          row.course_end,
+          row.course_start.split('T')[0],
+          row.course_end.split('T')[0],
           <>
             <i className="fas fa-trash-alt" />
             <Link to="/courses/details">
