@@ -4,42 +4,41 @@ import Header from "../../../abstract/header";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
 import Input from "../../../abstract/input";
+import axios from "axios";
 
 export default class Courses extends Component {
   state = {
-    search: '',
-    rows: [
-      ["Course Name", "Course Id", "start", "end", "Action"],
-      [
-        "Painting",
-        "4",
-        "04/05/2017",
-        "04/05/2017",
-        <React.Fragment>
-          <i className="fas fa-trash-alt" />
-          <Link to="/courses/details">
-            <i className="fas fa-info-circle" />
-          </Link>
-        </React.Fragment>
-      ],
-      [
-        "Painting",
-        "4",
-        "04/05/2017",
-        "04/05/2017",
-        <React.Fragment>
-          <i className="fas fa-trash-alt" />
-          <Link to="/courses/details">
-            <i className="fas fa-info-circle" />
-          </Link>
-        </React.Fragment>
-      ]
-    ]
+    search: "",
+    rows: []
   };
-  onChange = (event) => {
-    const { name, value} = event.target;
-    this.setState({[name]:value});
-  }
+  onChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+  componentDidMount = async () => {
+    try {
+      const data = await axios("/courses");
+      const finalData = data.data.coursesData;
+      const array = [["Course Name", "Course Id", "start", "end", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.course_name,
+          row.id,
+          row.course_start,
+          row.course_end,
+          <>
+            <i className="fas fa-trash-alt" />
+            <Link to="/courses/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } catch (err) {
+      console.log(err); // waiting for boundery error handling
+    }
+  };
   render() {
     return (
       <React.Fragment>
