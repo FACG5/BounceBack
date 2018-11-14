@@ -20,7 +20,7 @@ export default class index extends Component {
       const countWorker = data.data.countWorker.count;
       this.setState({participant: countParticipant, course: countCourse, worker: countWorker})
     } catch (err) {
-      console.log(err);
+      console.log(err); // waiting for boundery error handling
     }
   }
   render() {
