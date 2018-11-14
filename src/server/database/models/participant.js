@@ -15,7 +15,7 @@ const participant = sequelize.define("participant", {
     allowNull: false
   },
   date_of_birth: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
     allowNull: false
   },
   age: {

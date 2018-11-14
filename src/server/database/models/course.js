@@ -11,10 +11,10 @@ const course = sequelize.define('course', {
         allowNull: false
     },
     course_start: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATE,
     },
     course_end: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE
     },
     description: {
       type: Sequelize.TEXT,

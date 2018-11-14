@@ -15,7 +15,7 @@ const worker = sequelize.define('worker', {
     allowNull: false
   },
   date_of_birth: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
     allowNull: false
   },
   gender: {

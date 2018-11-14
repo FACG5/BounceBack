@@ -3,10 +3,10 @@ const sequelize = require('../config/connection');
 
 const participantCourses = sequelize.define('participantCourses', {
     course_start: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE
     },
     course_end: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE
     },
     description: {
       type: Sequelize.TEXT,
