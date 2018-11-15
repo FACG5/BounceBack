@@ -50,7 +50,7 @@ export default class ViewManagers extends Component {
     const finalData = data.data.managersData;
     let array = [["username", "email", "action"]];
     if (finalData.length === 0){
-      const msg = ' There is no manager yet !!';
+      const msg = ' There is no managers yet !!';
       array =[];          
       this.setState({ message: msg,rows:array});
     }
