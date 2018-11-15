@@ -17,9 +17,9 @@ class SideLinks extends Component {
             <Link className="links" to="/report">
               report
             </Link>
-            <span className="links" onClick={() => this.logout(value.dispatch)}>
+            <p className="links" onClick={() => this.logout(value.dispatch)}>
               logout
-            </span>
+            </p>
           </React.Fragment>
         )}
       </Consumer>
