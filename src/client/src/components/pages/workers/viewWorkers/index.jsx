@@ -5,6 +5,7 @@ import Table from "../../../abstract/Table";
 import Input from "../../../abstract/input";
 import Footer from "../../../abstract/footer";
 import axios from "axios";
+import swal from 'sweetalert2'
 
 export default class ViewWorkers extends Component {
   state = {
@@ -17,18 +18,31 @@ export default class ViewWorkers extends Component {
   };
 
   deleteWorker = id => {
-    if (window.confirm("Are you sure that you want to delete this worker ?")) {
-      axios("/workers", {
-        method: "DELETE",
-        data: {
-          workerId: id
-        }
-      }).then(result => {
-        this.getData().then(() => {
-          alert(result.data.message);
+    swal({
+      title: '',
+      text: 'Are you ready that you want to delete this worker',
+      type: 'warning',
+      showCancelButton: true,
+    }).then((confirm) => {
+      if (confirm.value) {
+
+        axios("/workers", {
+          method: "DELETE",
+          data: {
+            workerId: id
+          }
+        }).then(result => {
+          this.getData().then(() => {
+            swal({
+              title: 'success',
+              text: result.data.message,
+              type: 'success',
+              confirmButtonText: 'Cool'
+            })
+          });
         });
-      });
-    }
+      }
+    })
   };
 
   getData = async () => {
