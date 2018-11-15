@@ -61,7 +61,7 @@ getAllParticipants = async () => {
       const finalData = data.data.getParticipants;
       let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
       if (finalData.length === 0){
-        const msg = ' There is no participant yet !!';
+        const msg = ' There is no participants yet !!';
         array =[];          
         this.setState({ message: msg,rows:array});
       }
