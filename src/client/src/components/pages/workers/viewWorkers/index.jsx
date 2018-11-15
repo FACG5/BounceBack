@@ -10,6 +10,7 @@ import swal from 'sweetalert2'
 export default class ViewWorkers extends Component {
   state = {
     search: "",
+    message: "",
     rows: []
   };
   onChange = event => {
@@ -49,20 +50,26 @@ export default class ViewWorkers extends Component {
     try {
       const data = await axios("/workers");
       const finalData = data.data.workersData;
-      const array = [["username", "date of birth", "action"]];
-      finalData.map(row =>
-        array.push([
-          row.username,
-          row.date_of_birth.split("T")[0],
-          <>
-          <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
-          <Link to="/worker/details">
-            <i className="fas fa-info-circle" />
-          </Link>
-          </>
-        ])
-      );
-      this.setState({ rows: array });
+      let array = [["username", "date of birth", "action"]];
+      if (finalData.length === 0){
+        const msg = ' There is no worker yet !!';
+        array =[];          
+        this.setState({ message: msg,rows:array});
+      } else{
+        finalData.map(row =>
+          array.push([
+            row.username,
+            row.date_of_birth.split("T")[0],
+            <>
+            <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
+            <Link to="/worker/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+            </>
+          ])
+        );
+        this.setState({ rows: array });
+      }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
     }
@@ -87,6 +94,9 @@ export default class ViewWorkers extends Component {
           />
           <Header value="Workers" align="left" margin="0" />
           <Table rows={this.state.rows} />
+          { this.state.rows.length === 0 &&
+            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+          }
           <Footer />
         </section>
       </>
