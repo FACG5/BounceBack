@@ -28,7 +28,7 @@ export default class ViewParticpants extends Component {
   onDelete = id =>{
     swal({
       title: "Warning",
-      text: "Are you ready that you want to delete this participant ?",
+      text: "Are you sure that you want to delete this participant ?",
       type: "warning",
       showCancelButton: true
     }).then(confirm => {
