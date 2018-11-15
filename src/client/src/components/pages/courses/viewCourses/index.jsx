@@ -10,6 +10,7 @@ import swal from "sweetalert2";
 export default class Courses extends Component {
   state = {
     search: "",
+    message:"",
     rows: []
   };
 
@@ -49,7 +50,12 @@ export default class Courses extends Component {
     try {
       const data = await axios("/courses");
       const finalData = data.data.coursesData;
-      const array = [["Course Name", "Course Id", "start", "end", "Action"]];
+      let array = [["Course Name", "Course Id", "start", "end", "Action"]];
+      if (finalData.length === 0){
+        const msg = ' There is no course yet !!';
+        array =[];          
+        this.setState({ message: msg,rows:array});
+      }else {
       finalData.map(row =>
         array.push([
           row.course_name,
@@ -68,6 +74,7 @@ export default class Courses extends Component {
         ])
       );
       this.setState({ rows: array });
+      }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
     }
@@ -94,6 +101,9 @@ export default class Courses extends Component {
           </div>
           <Header value="Courses" align="left" margin="0" />
           <Table rows={this.state.rows} />
+          { this.state.rows.length === 0 &&
+            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+          }
           <Footer />
         </section>
       </>
