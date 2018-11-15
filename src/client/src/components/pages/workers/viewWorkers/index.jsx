@@ -73,7 +73,7 @@ export default class ViewWorkers extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <>
         <section className="section-view">
           <Header value="View Worker" />
           <Input
@@ -89,7 +89,7 @@ export default class ViewWorkers extends Component {
           <Table rows={this.state.rows} />
           <Footer />
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
