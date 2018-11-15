@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
@@ -6,19 +6,16 @@ import DropDown from "../../../abstract/dropdown";
 import Button from "../../../abstract/button";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
+import axios from 'axios';
+import swal from "sweetalert2";
 import "./style.css";
 
 export default class ViewParticpants extends Component {
   state = {
     search: "",
+    rows: [],
+    message: "",
     filter: "",
-    rows: [
-      ["first name", "last name", "Mobile No.", "BB Id", "Details"],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>]
-    ]
   };
   onChange = event => {
     const { value, name } = event.target;
@@ -27,9 +24,77 @@ export default class ViewParticpants extends Component {
   clear = () => {
     this.setState({ search: "" });
   };
+
+  onDelete = id =>{
+    swal({
+      title: "Warning",
+      text: "Are you sure that you want to delete this participant ?",
+      type: "warning",
+      showCancelButton: true
+    }).then(confirm => {
+      if (confirm.value) {
+        axios("/participant", {
+          method: "DELETE",
+          data: {
+            participantId: id
+          }
+        }).then(result => {
+          this.getAllParticipants().then(() => {
+            swal({
+              title: "success",
+              text: result.data.message,
+              type: "success",
+              confirmButtonText: "Cool"
+            }).then(() => {
+              this.getAllParticipants();
+            })
+          });
+        });
+      }
+    });
+};
+  
+// axios to make requests from backend.. 
+getAllParticipants = async () => {
+    try {
+      const data = await axios("/participants");
+      const finalData = data.data.getParticipants;
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      if (finalData.length === 0){
+        const msg = ' There is no data yet !!';
+        array =[];          
+        this.setState({ message: msg,rows:array});
+      }
+      else{
+      
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <Fragment>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <Link to="/participant/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </Fragment>
+        ])
+      );
+      this.setState({ rows: array });
+      }
+    } catch (err) {
+      console.log(err); // waiting for boundery error handling
+    }
+  };
+
+  componentDidMount = async () => {
+  this.getAllParticipants();
+  };
+
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <section className="section-view">
           <Header value="View Participants" />
           <div className="search-bar">
@@ -59,9 +124,10 @@ export default class ViewParticpants extends Component {
           <Table
             rows={this.state.rows}
           />
+          <p> {this.state.message}</p>
           <Footer />
         </section>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
