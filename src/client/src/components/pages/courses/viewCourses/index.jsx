@@ -21,7 +21,7 @@ export default class Courses extends Component {
   deleteCourse = id => {
     swal({
       title: "",
-      text: "Are you ready that you want to delete this couese",
+      text: "Are you ready that you want to delete this couese ?",
       type: "warning",
       showCancelButton: true
     }).then(confirm => {
@@ -78,7 +78,7 @@ export default class Courses extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <>
         <section className="section-view">
           <Header value="Courses" />
           <div className="search-bar">
@@ -96,7 +96,7 @@ export default class Courses extends Component {
           <Table rows={this.state.rows} />
           <Footer />
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
