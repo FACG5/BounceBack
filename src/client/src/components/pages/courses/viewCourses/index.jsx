@@ -21,7 +21,7 @@ export default class Courses extends Component {
   deleteCourse = id => {
     swal({
       title: "",
-      text: "Are you sure that you want to delete this couese ?",
+      text: "Are you sure that you want to delete this course ?",
       type: "warning",
       showCancelButton: true
     }).then(confirm => {

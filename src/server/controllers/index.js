@@ -3,6 +3,7 @@ const getCount = require('./getCount');
 const courses = require('./courses');
 const workers = require('./workers');
 const managers = require('./managers');
+const Login = require("./login");
 
 const Router = express.Router();
 
@@ -13,5 +14,6 @@ Router.delete('/workers', workers.delete);
 Router.delete('/courses', courses.delete);
 Router.get('/managers', managers.get);
 Router.delete('/managers', managers.delete);
+Router.post("/login", Login.get);
 
 module.exports = Router;
