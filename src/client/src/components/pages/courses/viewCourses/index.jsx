@@ -52,7 +52,7 @@ export default class Courses extends Component {
       const finalData = data.data.coursesData;
       let array = [["Course Name", "Course Id", "start", "end", "Action"]];
       if (finalData.length === 0){
-        const msg = ' There is no course yet !!';
+        const msg = ' There is no courses yet !!';
         array =[];          
         this.setState({ message: msg,rows:array});
       }else {
