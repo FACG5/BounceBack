@@ -12,4 +12,5 @@
 }
 .links:hover{
   color:#7A7575;
+  cursor: pointer;
 }
