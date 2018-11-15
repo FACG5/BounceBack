@@ -61,12 +61,11 @@ getAllParticipants = async () => {
       const finalData = data.data.getParticipants;
       let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
       if (finalData.length === 0){
-        const msg = ' There is no data yet !!';
+        const msg = ' There is no participant yet !!';
         array =[];          
         this.setState({ message: msg,rows:array});
       }
-      else{
-      
+      else{    
       finalData.map(row =>
         array.push([
           row.id,
@@ -124,7 +123,10 @@ getAllParticipants = async () => {
           <Table
             rows={this.state.rows}
           />
-          <p> {this.state.message}</p>
+          { this.state.rows.length === 0 &&
+
+          <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+          }
           <Footer />
         </section>
       </Fragment>
