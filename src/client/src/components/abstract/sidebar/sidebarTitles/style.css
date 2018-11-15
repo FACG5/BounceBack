@@ -8,7 +8,7 @@
 .sidemenu{
     text-transform: capitalize;
 }
-.menu{
+.sub-menu{
     overflow: hidden;
 }
 .item{
@@ -23,11 +23,11 @@
     padding: 8px 15px;
     text-decoration: none;
 }
-.smenu{
+.sub-menu{
     overflow: hidden;
     transition: max-height 0.3s;
 }
-.smenu .link{
+.sub-menu .link{
     display: block;
     padding: 10px 26px;
     color: #7A7575 !important;
@@ -36,7 +36,7 @@
     position:relative;
     text-indent: 20px;
 }
-.smenu .link:before{
+.sub-menu .link:before{
     content:"";
     position: absolute;
     width: 5px;
@@ -47,7 +47,7 @@
     transition: 0.3s;
     opacity: 0;
 }
-.smenu .link:hover:before{
+.sub-menu .link:hover:before{
     opacity: 1;
 }
 .link:hover{
