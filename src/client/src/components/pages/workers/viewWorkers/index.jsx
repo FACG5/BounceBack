@@ -20,7 +20,7 @@ export default class ViewWorkers extends Component {
   deleteWorker = id => {
     swal({
       title: '',
-      text: 'Are you ready that you want to delete this worker',
+      text: 'Are you sure that you want to delete this worker',
       type: 'warning',
       showCancelButton: true,
     }).then((confirm) => {
