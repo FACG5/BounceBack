@@ -21,7 +21,7 @@ export default class Courses extends Component {
   deleteCourse = id => {
     swal({
       title: "",
-      text: "Are you ready that you want to delete this couese ?",
+      text: "Are you sure that you want to delete this couese ?",
       type: "warning",
       showCancelButton: true
     }).then(confirm => {
@@ -73,7 +73,7 @@ export default class Courses extends Component {
     }
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     this.getData();
   };
   render() {
