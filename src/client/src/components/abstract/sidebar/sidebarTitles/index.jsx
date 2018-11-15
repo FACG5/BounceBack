@@ -41,7 +41,7 @@ class SideTitles extends Component {
               <Link className="btn" onClick={this.onClick} id="participants" to="#participants"><i className="icon fa fa-caret-down"></i>participants</Link>
               {
                 toggleParticipant &&
-                (<div className="smenu">
+                (<div className="sub-menu">
                   <Link className="link" to="/participants/view">view participants</Link>
                   <Link className="link" to="/participants/add">add participant</Link>
                 </div>)
@@ -53,7 +53,7 @@ class SideTitles extends Component {
               <Link className="btn" onClick={this.onClick} id="courses" to="#courses"> <i className="icon fa fa-caret-down"></i>courses</Link>
               {
                 toggleCourse &&
-                (<div className="smenu">
+                (<div className="sub-menu">
                   <Link className="link" to="/courses/view">view courses</Link>
                   <Link className="link" to="/courses/add">add course</Link>
                 </div>)
@@ -64,7 +64,7 @@ class SideTitles extends Component {
               <Link className="btn" onClick={this.onClick} id="managers" to="#managers"> <i className="icon fa fa-caret-down"></i> managers</Link>
               {
                 toggleManager &&
-                (<div className="smenu">
+                (<div className="sub-menu">
                   <Link className="link" to="/managers/view">view managers</Link>
                   <Link className="link" to="/managers/add">add manager</Link>
                 </div>)
@@ -75,7 +75,7 @@ class SideTitles extends Component {
               <Link className="btn" onClick={this.onClick} id="workers" to="#workers">  <i className="icon fa fa-caret-down"></i>workers</Link>                
               {
                 toggleWorker &&
-                (<div className="smenu">
+                (<div className="sub-menu">
                   <Link className="link" to="/workers/view">view workers</Link>
                   <Link className="link" to="/workers/add">add worker</Link>
                 </div>
