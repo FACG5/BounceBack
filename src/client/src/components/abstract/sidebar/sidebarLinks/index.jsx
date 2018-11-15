@@ -1,17 +1,30 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import './style.css';
+import { Link } from "react-router-dom";
+import { Consumer } from "./../../../context";
+import removeCookies from "./removeCookies";
+import "./style.css";
 
-class SideLinks extends Component{
-    render() {
-      return(
-            <React.Fragment>
-                <Link className="links" to="/report">report</Link>
-                <Link className="links" to="/login">logout</Link>
-            </React.Fragment>
-      )
-    }
+class SideLinks extends Component {
+  logout = dispatch => {
+    removeCookies();
+    dispatch({ type: "LOGIN_USER", payload: { logging: false } });
+  };
+  render() {
+    return (
+      <Consumer>
+        {value => (
+          <React.Fragment>
+            <Link className="links" to="/report">
+              report
+            </Link>
+            <span className="links" onClick={() => this.logout(value.dispatch)}>
+              logout
+            </span>
+          </React.Fragment>
+        )}
+      </Consumer>
+    );
   }
-  
-  export default SideLinks;
-  
+}
+
+export default SideLinks;
