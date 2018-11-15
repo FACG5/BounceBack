@@ -5,17 +5,47 @@ import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
 import Input from "../../../abstract/input";
 import axios from "axios";
+import swal from "sweetalert2";
 
 export default class Courses extends Component {
   state = {
     search: "",
     rows: []
   };
+
   onChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-  componentDidMount = async () => {
+
+  deleteCourse = id => {
+    swal({
+      title: "",
+      text: "Are you ready that you want to delete this couese ?",
+      type: "warning",
+      showCancelButton: true
+    }).then(confirm => {
+      if (confirm.value) {
+        axios("/courses", {
+          method: "DELETE",
+          data: {
+            courseId: id
+          }
+        }).then(result => {
+          this.getData().then(() => {
+            swal({
+              title: "success",
+              text: result.data.message,
+              type: "success",
+              confirmButtonText: "Cool"
+            });
+          });
+        });
+      }
+    });
+  };
+
+  getData = async () => {
     try {
       const data = await axios("/courses");
       const finalData = data.data.coursesData;
@@ -24,10 +54,13 @@ export default class Courses extends Component {
         array.push([
           row.course_name,
           row.id,
-          row.course_start,
-          row.course_end,
+          row.course_start.split("T")[0],
+          row.course_end.split("T")[0],
           <>
-            <i className="fas fa-trash-alt" />
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.deleteCourse(row.id)}
+            />
             <Link to="/courses/details">
               <i className="fas fa-info-circle" />
             </Link>
@@ -39,9 +72,13 @@ export default class Courses extends Component {
       console.log(err); // waiting for boundery error handling
     }
   };
+
+  componentDidMount = async () => {
+    this.getData();
+  };
   render() {
     return (
-      <React.Fragment>
+      <>
         <section className="section-view">
           <Header value="Courses" />
           <div className="search-bar">
@@ -59,7 +96,7 @@ export default class Courses extends Component {
           <Table rows={this.state.rows} />
           <Footer />
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
