@@ -20,10 +20,14 @@ export default class ViewWorkers extends Component {
 
   deleteWorker = id => {
     swal({
-      title: '',
-      text: 'Are you sure that you want to delete this worker',
       type: 'warning',
+      html:'Are you sure that you want to delete this worker ?',
       showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: 'Thumbs up',
+      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: 'Thumbs down',
     }).then((confirm) => {
       if (confirm.value) {
 
@@ -35,10 +39,11 @@ export default class ViewWorkers extends Component {
         }).then(result => {
           this.getData().then(() => {
             swal({
-              title: 'success',
-              text: result.data.message,
+              title: 'Success',
               type: 'success',
-              confirmButtonText: 'Cool'
+              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              showConfirmButton: false,
+              timer: 3000
             })
           });
         });
