@@ -12,7 +12,6 @@ class SideTitles extends Component {
   }
   onClick = (e) => {
     const itemId = e.target.id;
-    console.log(itemId)
     if (itemId === "participants"){
       this.setState({toggleParticipant: !this.state.toggleParticipant})
     } else if (itemId === "courses"){
