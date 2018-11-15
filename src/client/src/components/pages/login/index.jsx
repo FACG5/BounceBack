@@ -25,10 +25,12 @@ export default class LoginForm extends Component {
     if (response.data.username) {
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
       this.props.history.push("/");
+    } else {
+      this.setState({ error: response.data.Error });
     }
   };
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <Consumer>
         {value => (
@@ -65,6 +67,7 @@ export default class LoginForm extends Component {
                 color="#ff4800"
                 onClick={() => this.onClick(value.dispatch)}
               />
+              <span>{error}</span>
             </div>
           </div>
         )}
