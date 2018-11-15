@@ -19,6 +19,10 @@ const staff = sequelize.define('staff', {
       type: Sequelize.TEXT,
       allowNull: false
     },
+    username: {
+      type: Sequelize.TEXT,
+      allowNull: false
+    },
     date_of_birth: {
       type: Sequelize.DATE,
       allowNull: false
