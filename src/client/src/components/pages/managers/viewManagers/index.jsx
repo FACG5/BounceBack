@@ -20,10 +20,14 @@ export default class ViewManagers extends Component {
 
   deleteManager = id => {
     swal({
-      title: "",
-      text: "Are you sure that you want to delete this manager ?",
-      type: "warning",
-      showCancelButton: true
+      type: 'warning',
+      html:'Are you sure that you want to delete this manager ?',
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: 'Thumbs up',
+      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
         axios("/managers", {
@@ -34,10 +38,11 @@ export default class ViewManagers extends Component {
         }).then(result => {
           this.getData().then(() => {
             swal({
-              title: "success",
-              text: result.data.message,
-              type: "success",
-              confirmButtonText: "Cool"
+              title: 'Success',
+              type: 'success',
+              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              showConfirmButton: false,
+              timer: 3000
             });
           });
         });
