@@ -7,7 +7,7 @@ const staff = sequelize.define('staff', {
       allowNull: false,
       defaultValue: 'manager'
     },
-    surename: {
+    surname: {
       type: Sequelize.TEXT,
       allowNull: false
     },
