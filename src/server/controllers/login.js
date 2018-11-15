@@ -9,7 +9,7 @@ exports.get = async (req, res) => {
     const isAuth = await checkPassword(password, hasedPassword);
     const token = await makeToken({ role, username });
     if (isAuth) {
-      res.cookie("jwt", token, { maxAge: 900000, httpOnly: true });
+      res.cookie("jwt", token, { maxAge: 900000 });
       res.send({ username, role });
     } else {
       res.send({ Error: "Check Username Or Password" });
