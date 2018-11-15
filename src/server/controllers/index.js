@@ -1,12 +1,12 @@
 const express = require('express');
-const Router = express.Router();
-
 const getCount = require('./getCount');
 const participants = require('./participants');
 const courses = require('./courses');
-const Router = express.Router();
 const Login = require("./login");
 const workers = require("./workers");
+
+const Router = express.Router();
+
 
 Router.get('/overview', getCount.get);
 Router.get('/participants', participants.get);
