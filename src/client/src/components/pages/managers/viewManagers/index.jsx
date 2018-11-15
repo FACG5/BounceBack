@@ -10,6 +10,7 @@ import swal from 'sweetalert2';
 export default class ViewManagers extends Component {
   state = {
     search: "",
+    message:"",
     rows: []
   };
   onChange = event => {
@@ -47,23 +48,30 @@ export default class ViewManagers extends Component {
   getData = async () => {
     const data = await axios("/managers");
     const finalData = data.data.managersData;
-    const array = [["username", "email", "action"]];
-    finalData.map(row =>
-      array.push([
-        row.fullname,
-        row.email,
-        <>
-          <i
-            className="fas fa-trash-alt"
-            onClick={() => this.deleteManager(row.id)}
-          />
-          <Link to="/courses/details">
-            <i className="fas fa-info-circle" />
-          </Link>
-        </>
-      ])
-    );
-    this.setState({ rows: array });
+    let array = [["username", "email", "action"]];
+    if (finalData.length === 0){
+      const msg = ' There is no manager yet !!';
+      array =[];          
+      this.setState({ message: msg,rows:array});
+    }
+    else{
+      finalData.map(row =>
+        array.push([
+          row.fullname,
+          row.email,
+          <>
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.deleteManager(row.id)}
+            />
+            <Link to="/courses/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    }
   };
   componentDidMount = () => {
     this.getData();
@@ -84,6 +92,9 @@ export default class ViewManagers extends Component {
           />
           <Header value="Managers" align="left" margin="0" />
           <Table rows={this.state.rows} />
+          { this.state.rows.length === 0 &&
+            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+          }
           <Footer />
         </section>
       </React.Fragment>
