@@ -15,6 +15,6 @@ exports.get = async (req, res) => {
       res.send({ Error: "Check Username Or Password" });
     }
   } catch (error) {
-    res.send({ Error: "There Is Error In Our Neytwork" });
+    res.send({ Error: "There Is Error In Our Network" });
   }
 };
