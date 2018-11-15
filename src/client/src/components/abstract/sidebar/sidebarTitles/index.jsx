@@ -49,7 +49,7 @@ class SideTitles extends Component {
               }
             </li>
 
-            <li className="item" id="courses">
+            <li className="item">
               <Link className="btn" onClick={this.onClick} id="courses" to="#courses"> <i className="icon fa fa-caret-down"></i>courses</Link>
               {
                 toggleCourse &&
@@ -60,7 +60,7 @@ class SideTitles extends Component {
               }
             </li>
 
-            <li className="item" id="managers">
+            <li className="item">
               <Link className="btn" onClick={this.onClick} id="managers" to="#managers"> <i className="icon fa fa-caret-down"></i> managers</Link>
               {
                 toggleManager &&
@@ -71,7 +71,7 @@ class SideTitles extends Component {
               }
             </li>
 
-            <li className="item" id="workers">
+            <li className="item">
               <Link className="btn" onClick={this.onClick} id="workers" to="#workers">  <i className="icon fa fa-caret-down"></i>workers</Link>                
               {
                 toggleWorker &&
