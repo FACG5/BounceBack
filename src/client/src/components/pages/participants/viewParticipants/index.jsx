@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
-import DropDown from "../../../abstract/dropdown";
-import Button from "../../../abstract/button";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
 import axios from 'axios';
@@ -18,7 +16,7 @@ export default class ViewParticpants extends Component {
     message: "",
     filter: "",
   };
-  
+
   nameSearcher = async () => {
     const { nameSearch } = this.state;
     const data = await axios("/participants/search/name", {
