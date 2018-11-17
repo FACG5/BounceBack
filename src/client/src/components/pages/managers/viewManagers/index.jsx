@@ -4,30 +4,31 @@ import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
+import Button from "../../../abstract/button";
 import axios from "axios";
-import swal from 'sweetalert2';
+import swal from "sweetalert2";
 
 export default class ViewManagers extends Component {
   state = {
     search: "",
-    message:"",
+    message: "",
     rows: []
   };
   onChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+    const search = event.target.value;
+    this.setState({ search });
   };
 
   deleteManager = id => {
     swal({
-      type: 'warning',
-      html:'Are you sure that you want to delete this manager ?',
+      type: "warning",
+      html: "Are you sure that you want to delete this manager ?",
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: 'Thumbs down',
+      confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
     }).then(confirm => {
       if (confirm.value) {
         axios("/managers", {
@@ -38,9 +39,11 @@ export default class ViewManagers extends Component {
         }).then(result => {
           this.getData().then(() => {
             swal({
-              title: 'Success',
-              type: 'success',
-              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              title: "Success",
+              type: "success",
+              html:
+                " <strong>Your work has been saved</strong> <br/>" +
+                result.data.message,
               showConfirmButton: false,
               timer: 3000
             });
@@ -50,16 +53,49 @@ export default class ViewManagers extends Component {
     });
   };
 
+  search = async () => {
+    const { search } = this.state;
+    const data = await axios("/managers/search", {
+      method: "POST",
+      data: {
+        managerName: search
+      }
+    });
+    const finalData = data.data.managersData;
+    if (finalData) {
+      let array = [["username", "email", "action"]];
+      finalData.map(row =>
+        array.push([
+          row.fullname,
+          row.email,
+          <>
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.deleteManager(row.id)}
+            />
+            <Link to="/courses/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
+  };
+
   getData = async () => {
     const data = await axios("/managers");
     const finalData = data.data.managersData;
     let array = [["username", "email", "action"]];
-    if (finalData.length === 0){
-      const msg = ' There is no managers yet !!';
-      array =[];          
-      this.setState({ message: msg,rows:array});
-    }
-    else{
+    if (finalData.length === 0) {
+      const msg = " There is no managers yet !!";
+      array = [];
+      this.setState({ message: msg, rows: array });
+    } else {
       finalData.map(row =>
         array.push([
           row.fullname,
@@ -78,9 +114,11 @@ export default class ViewManagers extends Component {
       this.setState({ rows: array });
     }
   };
+
   componentDidMount = () => {
     this.getData();
   };
+
   render() {
     return (
       <React.Fragment>
@@ -95,11 +133,16 @@ export default class ViewManagers extends Component {
             value={this.state.search}
             onChange={this.onChange}
           />
+          <Button value="Search" onClick={this.search} />
           <Header value="Managers" align="left" margin="0" />
           <Table rows={this.state.rows} />
-          { this.state.rows.length === 0 &&
-            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
-          }
+          {this.state.rows.length === 0 && (
+            <p className="error-msg">
+              {" "}
+              <i className="far fa-surprise" />
+              {this.state.message}
+            </p>
+          )}
           <Footer />
         </section>
       </React.Fragment>
