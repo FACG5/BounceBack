@@ -90,7 +90,6 @@ export default class ViewParticpants extends Component {
 
   onChangeDate = event => {
     const dateSearch = event.target.value;
-    console.log(dateSearch);
     this.setState({ dateSearch }, () => this.dateSearcher());
   };
 
