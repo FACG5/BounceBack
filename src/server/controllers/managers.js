@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const { Op } = require('sequelize');
 const managers = require("../database/models/staff");
 
 exports.get = async (req, res) => {
@@ -24,7 +24,9 @@ exports.search = async (req, res) => {
   try {
     const { managerName } = req.body;
     const managersData = await managers.findAll({
-      where: { surname: managerName }
+      where: { fullname: {
+        [Op.like]: `%${managerName}%`
+      } }
     });
     if (managersData[0]) {
       res.send({ managersData });
