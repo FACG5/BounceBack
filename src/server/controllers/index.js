@@ -19,6 +19,7 @@ Router.delete("/courses", courses.delete);
 
 Router.get("/workers", workers.get);
 Router.delete("/workers", workers.delete);
+Router.post("/workers/search", workers.search);
 
 
 Router.get("/managers", managers.get);
