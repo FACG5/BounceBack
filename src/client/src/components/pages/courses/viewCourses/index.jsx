@@ -14,9 +14,41 @@ export default class Courses extends Component {
     rows: []
   };
 
+  getSearch = async () => {
+    const { search } = this.state;
+    const data = await axios("/courses/search", {
+      method: "POST",
+      data: {
+        courseName: search
+      }
+    });
+    const finalData = data.data.result;
+    if (finalData) {
+      let array = [["Course Name", "start", "end", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.course_name,
+          row.course_start.split("T")[0],
+          row.course_end.split("T")[0],
+          <>
+           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <Link to="/participant/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const arr = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: arr });
+    }
+  };      
+
   onChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const search = event.target.value;
+    this.setState({ search }, () => this.getSearch());
   };
 
   deleteCourse = id => {
@@ -55,7 +87,7 @@ export default class Courses extends Component {
     try {
       const data = await axios("/courses");
       const finalData = data.data.coursesData;
-      let array = [["Course Name", "Course Id", "start", "end", "Action"]];
+      let array = [["Course Name", "start", "end", "Action"]];
       if (finalData.length === 0){
         const msg = ' There is no courses yet !!';
         array =[];          
@@ -64,7 +96,6 @@ export default class Courses extends Component {
       finalData.map(row =>
         array.push([
           row.course_name,
-          row.id,
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
           <>
@@ -95,7 +126,7 @@ export default class Courses extends Component {
           <Header value="Courses" />
           <div className="search-bar">
             <Input
-              label="Search"
+              label="Search by course name"
               name="search"
               type="text"
               placeholder="Type Username"
