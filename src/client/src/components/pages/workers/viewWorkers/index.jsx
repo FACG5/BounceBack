@@ -24,9 +24,9 @@ export default class ViewWorkers extends Component {
       html:'Are you sure that you want to delete this worker ?',
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText:'<i className="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonText:'<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: 'Thumbs down',
     }).then((confirm) => {
       if (confirm.value) {
@@ -100,7 +100,7 @@ export default class ViewWorkers extends Component {
           <Header value="Workers" align="left" margin="0" />
           <Table rows={this.state.rows} />
           { this.state.rows.length === 0 &&
-            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+            <p className="error-msg"> <i className="far fa-surprise"></i>{this.state.message}</p>
           }
           <Footer />
         </section>
