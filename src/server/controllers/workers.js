@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const workers = require("../database/models/worker");
 
 exports.get = async (req, res) => {
@@ -18,3 +19,23 @@ exports.delete = (req, res) => {
     res.status(500).send({ err });
   }
 };
+
+exports.search= async (req, res) => {
+  try {
+    const { workerName } = req.body;
+    const resultSearch = await workers.findAll({
+      where: {
+        username: {
+          [Op.like]: `%${workerName}%`
+        }
+      }
+    });
+    if (resultSearch[0]) {
+      res.send({ resultSearch });
+    } else {
+      res.send({ message: "Can't find worker with this name" });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+}; 
