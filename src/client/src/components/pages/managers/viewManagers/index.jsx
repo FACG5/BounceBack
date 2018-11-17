@@ -4,7 +4,6 @@ import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
-import Button from "../../../abstract/button";
 import axios from "axios";
 import swal from "sweetalert2";
 
@@ -13,10 +12,6 @@ export default class ViewManagers extends Component {
     search: "",
     message: "",
     rows: []
-  };
-  onChange = event => {
-    const search = event.target.value;
-    this.setState({ search });
   };
 
   deleteManager = id => {
@@ -87,6 +82,11 @@ export default class ViewManagers extends Component {
     }
   };
 
+  onChange = event => {
+    const search = event.target.value;
+    this.setState({ search }, () => this.search());
+  };
+
   getData = async () => {
     const data = await axios("/managers");
     const finalData = data.data.managersData;
@@ -133,7 +133,7 @@ export default class ViewManagers extends Component {
             value={this.state.search}
             onChange={this.onChange}
           />
-          <Button value="Search" onClick={this.search} />
+          {/* <Button value="Search" onClick={this.search} /> */}
           <Header value="Managers" align="left" margin="0" />
           <Table rows={this.state.rows} />
           {this.state.rows.length === 0 && (
