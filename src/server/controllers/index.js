@@ -23,7 +23,7 @@ Router.delete("/workers", workers.delete);
 
 Router.get("/managers", managers.get);
 Router.delete("/managers", managers.delete);
-Router.post('/managers/search', managers.getSearch);
+Router.post('/managers/search', managers.search);
 
 Router.post("/login", Login.get);
 

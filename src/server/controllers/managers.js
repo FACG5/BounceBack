@@ -20,7 +20,7 @@ exports.delete = (req, res) => {
   }
 };
 
-exports.getSearch = async (req, res) => {
+exports.search = async (req, res) => {
   try {
     const { managerName } = req.body;
     const managersData = await managers.findAll({
