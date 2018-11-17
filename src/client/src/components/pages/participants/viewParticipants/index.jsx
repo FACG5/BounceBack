@@ -18,9 +18,7 @@ export default class ViewParticpants extends Component {
     message: "",
     filter: "",
   };
-
-
-
+  
   nameSearcher = async () => {
     const { nameSearch } = this.state;
     const data = await axios("/participants/search/name", {
@@ -58,7 +56,6 @@ export default class ViewParticpants extends Component {
     const nameSearch = event.target.value;
     this.setState({ nameSearch }, () => this.nameSearcher());
   };
-
 
   dateSearcher = async () => {
     const { dateSearch } = this.state;
