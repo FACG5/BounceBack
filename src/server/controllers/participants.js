@@ -1,5 +1,6 @@
 
 const participant = require("../database/models/participant");
+const { Op } = require("sequelize");
 
 exports.get = async (req, res) => {
     try {
@@ -27,3 +28,46 @@ exports.delete = (req, res) => {
         });
     }
 };
+
+
+
+exports.searchByName = async (req, res) => {
+    try {
+      const { participantName } = req.body;
+      const searchResult = await participant.findAll({
+        where: {
+          fullname: {
+            [Op.like]: `%${participantName}%`
+          }
+        }
+      });
+      if (searchResult[0]) {
+        res.send({ searchResult });
+      } else {
+        res.send({ message: " Can't find participant with this name" });
+      }
+    } catch (error) {
+      res.send({ error });
+    }
+  };
+
+
+  exports.searchBydate = async (req, res) => {
+    try {
+      const { participantDate } = req.body;
+      const searchResult = await participant.findAll({
+        where: {
+          date_of_birth:{
+          [Op.gte]: `%${participantDate}%`
+          }
+        }
+      });
+      if (searchResult[0]) {
+        res.send({ searchResult });
+      } else {
+        res.send({ message: "Can't find participant with this birth of date" });
+      }
+    } catch (error) {
+      res.send({ error });
+    }
+  };
