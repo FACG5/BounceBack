@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 const managers = require("../database/models/staff");
 
 exports.get = async (req, res) => {
@@ -24,14 +24,16 @@ exports.search = async (req, res) => {
   try {
     const { managerName } = req.body;
     const managersData = await managers.findAll({
-      where: { fullname: {
-        [Op.like]: `%${managerName}%`
-      } }
+      where: {
+        fullname: {
+          [Op.like]: `%${managerName}%`
+        }
+      }
     });
     if (managersData[0]) {
       res.send({ managersData });
     } else {
-      res.send({message: "There is no managers in this name"});
+      res.send({ message: "There is no managers in this name" });
     }
   } catch (err) {
     res.send({ err });
