@@ -17,6 +17,7 @@ export default class index extends Component {
   };
 
   getData = async () => {
+    // eslint-disable-next-line no-unused-vars
     const { courseName, category, startDate, endDate, desc } = this.state;
     const id = this.props.match.params.id;
     const data = await axios(`/course/${id}`);
