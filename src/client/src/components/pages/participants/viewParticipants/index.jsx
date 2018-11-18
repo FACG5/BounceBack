@@ -19,7 +19,7 @@ export default class ViewParticpants extends Component {
 
   nameSearcher = async () => {
     const { nameSearch } = this.state;
-    const data = await axios("/participants/search/name", {
+    const data = await axios("/api/v2/participants/search/name", {
       method: "POST",
       data: {
         participantName: nameSearch
@@ -57,7 +57,7 @@ export default class ViewParticpants extends Component {
 
   dateSearcher = async () => {
     const { dateSearch } = this.state;
-    const data = await axios("/participants/search/date", {
+    const data = await axios("/api/v2/participants/search/date", {
       method: "POST",
       data: {
         participantDate: dateSearch
@@ -105,7 +105,7 @@ export default class ViewParticpants extends Component {
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
-        axios("/participant", {
+        axios("/api/v2/participant", {
           method: "DELETE",
           data: {
             participantId: id
@@ -130,7 +130,7 @@ export default class ViewParticpants extends Component {
 // axios to make requests from backend.. 
 getAllParticipants = async () => {
     try {
-      const data = await axios("/participants");
+      const data = await axios("/api/v2/participants");
       const finalData = data.data.getParticipants;
       let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
       if (finalData.length === 0){

@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
       method: "post",
       headers: { "Content-Type": "application/json" },
       data: { username, password },
-      url: "/login"
+      url: "/api/v2/login"
     });
     if (response.data.username) {
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
