@@ -6,6 +6,7 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from "axios";
 
 export default class index extends Component {
   state = initialState;
@@ -14,6 +15,25 @@ export default class index extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+
+  getData = async () => {
+    const { courseName, category, startDate, endDate, desc } = this.state;
+    const id = this.props.match.params.id;
+    const data = await axios(`/course/${id}`);
+    const details = data.data.details;
+    const { course_name, course_category, course_start, course_end, description } = details;
+
+    this.setState({ courseName: course_name,
+                    category: course_category,
+                    startDate: course_start.split("T")[0],
+                    endDate: course_end.split("T")[0],
+                    desc: description
+                  });
+  };
+
+  componentDidMount = () => {
+    this.getData();
+  }
 
   goBack = event => {
     this.props.history.push('/courses/view')
