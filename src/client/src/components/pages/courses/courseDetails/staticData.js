@@ -1,9 +1,9 @@
 export const state = {
-    courseName: "The Scaffolding Course",
-    category: "vocational",
+    courseName: "",
+    category: "",
     startDate: "",
     endDate: "",
-    description: "With thanks to Alandale who have provided the equipment, and Land Securities who have worked with us to facilitate the course, we are able to offer a further valuable, much sought after construction industry skill."
+    desc: "",
 };
 export const fields = [
     [{
@@ -18,7 +18,7 @@ export const fields = [
             label: "Course Category",
             name: "category",
             width: "20rem",
-            options: ['vocational', 'other'],
+            options: ['level 1', 'level 2', 'cscs'],
         }
     ],
     [
@@ -41,7 +41,7 @@ export const fields = [
         {
             tag: "Textarea",
             label: "Description",
-            name: "description",
+            name: "desc",
             width: "45rem",
             height: "10rem",
       }
