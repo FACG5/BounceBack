@@ -3,6 +3,8 @@ const checkPassword = require("./../helpers/checkPassword");
 const makeToken = require("./../helpers/makeToken");
 
 exports.get = async (req, res) => {
+  console.log(req.body);
+  
   try {
     const { username, password } = req.body;
     const { role, password: hasedPassword } = await getStaff(username);
@@ -15,6 +17,8 @@ exports.get = async (req, res) => {
       res.send({ Error: "Check Username Or Password" });
     }
   } catch (error) {
+    console.log(error);
+    
     res.send({ Error: "There Is Error In Our Network" });
   }
 };
