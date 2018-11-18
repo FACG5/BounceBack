@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 require('env2')('./config.env');
 const { DB_CONFIG } = require('../../../../config.js')
+console.log(DB_CONFIG);
 
 
 const {
