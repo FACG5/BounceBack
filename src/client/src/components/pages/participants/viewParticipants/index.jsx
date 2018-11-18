@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
-import DropDown from "../../../abstract/dropdown";
-import Button from "../../../abstract/button";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
 import axios from 'axios';
@@ -12,17 +10,87 @@ import "./style.css";
 
 export default class ViewParticpants extends Component {
   state = {
-    search: "",
+    nameSearch: "",
+    dateSearch: "",
     rows: [],
     message: "",
     filter: "",
   };
-  onChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+
+  nameSearcher = async () => {
+    const { nameSearch } = this.state;
+    const data = await axios("/participants/search/name", {
+      method: "POST",
+      data: {
+        participantName: nameSearch
+      }
+    });
+    const finalData = data.data.searchResult;
+    if (finalData) {
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <>
+           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <Link to="/participant/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
   };
-  clear = () => {
-    this.setState({ search: "" });
+
+  onChangeName = event => {
+    const nameSearch = event.target.value;
+    this.setState({ nameSearch }, () => this.nameSearcher());
+  };
+
+  dateSearcher = async () => {
+    const { dateSearch } = this.state;
+    const data = await axios("/participants/search/date", {
+      method: "POST",
+      data: {
+        participantDate: dateSearch
+      }
+    });
+    const finalData = data.data.searchResult;
+    if (finalData) {
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <>
+           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <Link to="/participant/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
+  };
+
+  onChangeDate = event => {
+    const dateSearch = event.target.value;
+    this.setState({ dateSearch }, () => this.dateSearcher());
   };
 
   onDelete = id =>{
@@ -66,9 +134,9 @@ getAllParticipants = async () => {
       const finalData = data.data.getParticipants;
       let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
       if (finalData.length === 0){
-        const msg = ' There is no participants yet !!';
+        const msg = 'There is no participants yet !!';
         array =[];          
-        this.setState({ message: msg,rows:array});
+        this.setState({ message: msg, rows:array});
       }
       else{    
       finalData.map(row =>
@@ -103,35 +171,34 @@ getAllParticipants = async () => {
           <Header value="View Participants" />
           <div className="search-bar">
             <Input
-              label="Search"
-              name="search"
+              label="Search by name"
+              name="searchByName"
               type="text"
-              placeholder="Type Username"
-              width="300px"
-              value={this.state.search}
-              onChange={this.onChange}
+              placeholder="Type Fullname"
+              width="350px"
+              value={this.state.nameSearch}
+              onChange={this.onChangeName}
             />
-            <DropDown
-              label="Filter By:"
-              name="filter"
-              options={["name", "mobile", "date of birth"]}
-              width="150px"
-              value={this.state.filter}
-              onChange={this.onChange}
+            <Input
+              label="Search By Birth of date"
+              name="searchByDate"
+              type="date"
+              placeholder="Type birth of date"
+              width="350px"
+              value={this.state.dateSearch}
+              onChange={this.onChangeDate}
             />
-            <div className="buttons">
-              <Button value="Search" color="#272727" />
-              <Button value="Clear" color="#FF4800" onClick={this.clear} />
-            </div>
           </div>
           <Header value="Participants" align='left' margin='0'/>
           <Table
             rows={this.state.rows}
           />
-          { this.state.rows.length === 0 &&
-
-          <p className="error-msg"> <i className="far fa-surprise"></i>{this.state.message}</p>
-          }
+          {this.state.rows.length === 0 && (
+            <p className="error-msg">
+              <i className="far fa-surprise" />
+              {this.state.message}
+            </p>
+          )}
           <Footer />
         </section>
       </Fragment>

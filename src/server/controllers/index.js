@@ -13,6 +13,8 @@ Router.get('/overview', getCount.get);
 
 Router.get('/participants', participants.get);
 Router.delete('/participant', participants.delete);
+Router.post('/participants/search/name', participants.searchByName);
+Router.post('/participants/search/date', participants.searchBydate);
 
 Router.get('/courses', courses.get);
 Router.delete("/courses", courses.delete);
