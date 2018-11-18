@@ -14,9 +14,43 @@ export default class Courses extends Component {
     rows: []
   };
 
+  getSearch = async () => {
+    const { search } = this.state;
+    const data = await axios("/courses/search", {
+      method: "POST",
+      data: {
+        courseName: search
+      }
+    });
+    const finalData = data.data.result;
+    if (finalData) {
+      let array = [["Course Name", "start", "end", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.course_name,
+          row.course_start.split("T")[0],
+          row.course_end.split("T")[0],
+          <>
+           <i
+              className="fas fa-trash-alt" onClick={() => this.deleteCourse(row.id)}
+            />
+            <Link to="/courses/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const arr = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: arr });
+    }
+  };      
+
   onChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const search = event.target.value;
+    this.setState({ search }, () => this.getSearch());
   };
 
   deleteCourse = id => {
@@ -25,9 +59,9 @@ export default class Courses extends Component {
       html:'Are you sure that you want to delete this course ?',
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText:'<i className="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonText:'<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
@@ -55,7 +89,7 @@ export default class Courses extends Component {
     try {
       const data = await axios("/courses");
       const finalData = data.data.coursesData;
-      let array = [["Course Name", "Course Id", "start", "end", "Action"]];
+      let array = [["Course Name", "start", "end", "Action"]];
       if (finalData.length === 0){
         const msg = ' There is no courses yet !!';
         array =[];          
@@ -64,7 +98,6 @@ export default class Courses extends Component {
       finalData.map(row =>
         array.push([
           row.course_name,
-          row.id,
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
           <>
@@ -95,7 +128,7 @@ export default class Courses extends Component {
           <Header value="Courses" />
           <div className="search-bar">
             <Input
-              label="Search"
+              label="Search by course name"
               name="search"
               type="text"
               placeholder="Type Username"
@@ -107,7 +140,7 @@ export default class Courses extends Component {
           <Header value="Courses" align="left" margin="0" />
           <Table rows={this.state.rows} />
           { this.state.rows.length === 0 &&
-            <p className="error-msg"> <i class="far fa-surprise"></i>{this.state.message}</p>
+            <p className="error-msg"> <i className="far fa-surprise"></i>{this.state.message}</p>
           }
           <Footer />
         </section>
