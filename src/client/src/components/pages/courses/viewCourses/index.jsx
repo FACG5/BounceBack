@@ -34,7 +34,7 @@ export default class Courses extends Component {
            <i
               className="fas fa-trash-alt" onClick={() => this.deleteCourse(row.id)}
             />
-            <Link to="/courses/details">
+            <Link to={`/courses/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -105,7 +105,7 @@ export default class Courses extends Component {
               className="fas fa-trash-alt"
               onClick={() => this.deleteCourse(row.id)}
             />
-            <Link to="/courses/details">
+            <Link to ={`/courses/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
