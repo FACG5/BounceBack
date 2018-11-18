@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const courses = require("../database/models/course");
 
 exports.get = async (req, res) => {
@@ -16,5 +17,25 @@ exports.delete = (req, res) => {
     });
   } catch (err) {
     res.status(500).send({ err });
+  }
+};
+
+exports.search= async (req, res) => {
+  try {
+    const { courseName } = req.body;
+    const result = await courses.findAll({
+      where: {
+        course_name: {
+          [Op.like]: `%${courseName}%`
+        }
+      }
+    });
+    if (result[0]) {
+      res.send({ result });
+    } else {
+      res.send({ message: "Can't find course with this name" });
+    }
+  } catch (error) {
+    res.send({ error });
   }
 };
