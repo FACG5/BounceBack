@@ -39,3 +39,22 @@ exports.search= async (req, res) => {
     res.send({ error });
   }
 };
+
+exports.details= async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const result = await courses.findAll({
+      where: {
+        id: courseId 
+      }
+    });
+    const details= (result[0].dataValues)
+    if (result[0]) {
+      res.send({ details });
+    } else {
+      res.send({ message: "Error in finding result" });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+};
