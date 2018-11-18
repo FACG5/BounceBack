@@ -13,10 +13,6 @@ export default class ViewWorkers extends Component {
     message: "",
     rows: []
   };
-  onChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  };
 
   deleteWorker = id => {
     swal({
@@ -36,12 +32,12 @@ export default class ViewWorkers extends Component {
           data: {
             workerId: id
           }
-        }).then(result => {
+        }).then(resultSearch => {
           this.getData().then(() => {
             swal({
               title: 'Success',
               type: 'success',
-              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              html: ' <strong>Your work has been saved</strong> <br/>' +resultSearch.data.message,
               showConfirmButton: false,
               timer: 3000
             })
@@ -49,6 +45,41 @@ export default class ViewWorkers extends Component {
         });
       }
     })
+  };
+
+  getSearch = async () => {
+    const { search } = this.state;
+    const data = await axios("/workers/search", {
+      method: "POST",
+      data: {
+        workerName: search
+      }
+    });
+    const finalData = data.data.resultSearch;
+    if (finalData) {
+      let array = [["username", "date of birth", "action"]];
+      finalData.map(row =>
+        array.push([
+          row.username,
+          row.date_of_birth.split("T")[0],
+          <>
+           <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
+            <Link to="/worker/details">
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const arr = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: arr });
+    }
+  };      
+   onChange = event => {
+    const search = event.target.value;
+    this.setState({ search }, () => this.getSearch());
   };
 
   getData = async () => {
@@ -83,6 +114,7 @@ export default class ViewWorkers extends Component {
   componentDidMount = () => {
     this.getData();
   };
+
   render() {
     return (
       <>
