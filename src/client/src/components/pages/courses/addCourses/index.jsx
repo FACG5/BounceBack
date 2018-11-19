@@ -38,7 +38,7 @@ export default class index extends Component {
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
     }).then(confirm => {
-      if (confirm.value) {
+      // if (confirm.value) {
         axios('/api/v2/courses', {
           method: 'POST',
           data: {
@@ -52,9 +52,7 @@ export default class index extends Component {
               html: result.data.error,
               confirmButtonText: "Ok"
             }).then(confirm => {
-              if (confirm.value) {
                 this.props.history.push("/courses/view");
-              }
             });
           } else {
             swal({
@@ -69,7 +67,7 @@ export default class index extends Component {
             });
           }
         });
-      }
+      // }
     });
   }
 
