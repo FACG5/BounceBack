@@ -12,6 +12,11 @@ export default class index extends Component {
      course: '',
      worker: ''
   }
+
+  componentWillMount() {
+    this.props.history.push("/");
+  }
+
   componentDidMount = async () => {
     try {
       const data = await axios('/api/v2/overview');
