@@ -1,22 +1,22 @@
 export const state = {
-    courseName: "",
-    category: "",
-    startDate: "",
-    endDate: "",
-    desc: "",
+    course_name: "",
+    course_category: "",
+    course_start: "",
+    course_end: "",
+    description: "",
 };
 export const fields = [
     [{
             tag: "Input",
             label: "course name",
-            name: "courseName",
+            name: "course_name",
             width: "20rem",
             placeholder: "course name",
         },
         {
             tag: "DropDown",
             label: "Course Category",
-            name: "category",
+            name: "course_category",
             width: "20rem",
             options: ['level 1', 'level 2', 'cscs'],
         }
@@ -25,14 +25,14 @@ export const fields = [
         {
             tag: "Input",
             label: "Course start",
-            name: "startDate",
+            name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course end",
-            name: "endDate",
+            name: "course_end",
             width: "20rem",
             type: "date",
         }
@@ -41,7 +41,7 @@ export const fields = [
         {
             tag: "Textarea",
             label: "Description",
-            name: "desc",
+            name: "description",
             width: "45rem",
             height: "10rem",
       }

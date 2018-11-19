@@ -14,7 +14,7 @@ export default class index extends Component {
   }
   componentDidMount = async () => {
     try {
-      const data = await axios('/overview');
+      const data = await axios('/api/v2/overview');
       const countParticipant = data.data.countParticipant.count;
       const countCourse = data.data.countCourse.count;
       const countWorker = data.data.countWorker.count;

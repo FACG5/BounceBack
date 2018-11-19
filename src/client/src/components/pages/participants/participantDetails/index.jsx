@@ -6,17 +6,31 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from "axios";
 
 export default class index extends Component {
   state = initialState;
+
   onChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+
   goBack = event => {
     this.props.history.push("/participants/view");
   };
   
+  getDetails = async () => {
+      const id = this.props.match.params.id;
+      const data = await axios(`/api/v2/participant/${id}`);
+      const details = data.data.details;
+      const date = details.date_of_birth.split("T")[0];
+      this.setState({...details, date_of_birth:date});
+  };
+
+   componentDidMount = () => {
+    this.getDetails();
+  }
 
   // the implemention waiting  back end api
   onSubmit = event => {
@@ -34,7 +48,7 @@ export default class index extends Component {
   render() {
 
     return (
-      <div className="add-participant">
+      <div className="detail-participant">
         <Form
           title="Participant Details"
           fields={fieldSet}

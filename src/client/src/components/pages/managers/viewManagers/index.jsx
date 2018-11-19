@@ -26,7 +26,7 @@ export default class ViewManagers extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     }).then(confirm => {
       if (confirm.value) {
-        axios("/managers", {
+        axios("/api/v2/managers", {
           method: "DELETE",
           data: {
             managerId: id
@@ -50,7 +50,7 @@ export default class ViewManagers extends Component {
 
   search = async () => {
     const { search } = this.state;
-    const data = await axios("/managers/search", {
+    const data = await axios("/api/v2/managers/search", {
       method: "POST",
       data: {
         managerName: search
@@ -88,7 +88,7 @@ export default class ViewManagers extends Component {
   };
 
   getData = async () => {
-    const data = await axios("/managers");
+    const data = await axios("/api/v2/managers");
     const finalData = data.data.managersData;
     let array = [["username", "email", "action"]];
     if (finalData.length === 0) {

@@ -19,7 +19,7 @@ export default class ViewParticpants extends Component {
 
   nameSearcher = async () => {
     const { nameSearch } = this.state;
-    const data = await axios("/participants/search/name", {
+    const data = await axios("/api/v2/participants/search/name", {
       method: "POST",
       data: {
         participantName: nameSearch
@@ -36,7 +36,7 @@ export default class ViewParticpants extends Component {
           row.email,
           <>
            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -57,7 +57,7 @@ export default class ViewParticpants extends Component {
 
   dateSearcher = async () => {
     const { dateSearch } = this.state;
-    const data = await axios("/participants/search/date", {
+    const data = await axios("/api/v2/participants/search/date", {
       method: "POST",
       data: {
         participantDate: dateSearch
@@ -74,7 +74,7 @@ export default class ViewParticpants extends Component {
           row.email,
           <>
            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -99,13 +99,13 @@ export default class ViewParticpants extends Component {
       html:'Are you sure that you want to delete this participant ?',
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
-        axios("/participant", {
+        axios("/api/v2/participant", {
           method: "DELETE",
           data: {
             participantId: id
@@ -130,7 +130,7 @@ export default class ViewParticpants extends Component {
 // axios to make requests from backend.. 
 getAllParticipants = async () => {
     try {
-      const data = await axios("/participants");
+      const data = await axios("/api/v2/participants");
       const finalData = data.data.getParticipants;
       let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
       if (finalData.length === 0){
@@ -147,7 +147,7 @@ getAllParticipants = async () => {
           row.email,
           <Fragment>
             <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </Fragment>

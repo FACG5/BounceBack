@@ -23,7 +23,7 @@ class LoginForm extends Component {
       method: "post",
       headers: { "Content-Type": "application/json" },
       data: { username, password },
-      url: "/login"
+      url: "/api/v2/login"
     });
     if (response.data.username) {
       const user = { logging: true };
