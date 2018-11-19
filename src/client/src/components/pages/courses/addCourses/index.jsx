@@ -45,14 +45,13 @@ export default class index extends Component {
       }
     });
     if (result.data.error) {
-      swal({
+      await swal({
         title: "",
         type: "warning",
         html: result.data.error,
         confirmButtonText: "Ok"
-      }).then(confirm => {
-        this.props.history.push("/courses/view");
       });
+      this.props.history.push("/courses/view");
     } else {
       await swal({
         title: "Success",
