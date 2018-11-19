@@ -33,11 +33,9 @@ class Date extends Component {
   getDates = async () => {
     const { dispatch } = this.props.context;
     const id = this.props.match.params.id;
-    console.log('id is',id)
     try {
       const result = await axios(`/api/v2/participant/${id}/dates`);
       const dates = result.data.participantDates;
-      console.log(dates)
       let array = [["Participant Name/BB-No", "Worker Name/ID", "Start", "End", "Action"]];
       if (dates.length === 0){
         const msg = 'There is no dates yet !!';
@@ -69,7 +67,7 @@ class Date extends Component {
   componentDidMount = async () => {
     this.getDates();
   };
-  
+
 //Delete an exist date
   onDelete = id =>{
     swal({
