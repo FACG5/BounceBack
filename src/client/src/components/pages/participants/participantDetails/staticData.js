@@ -191,7 +191,7 @@ export const fields = [
     {
       tag: "Input",
       label: "CSCS No",
-      name: "cscs_no",
+      name: "cscs_number",
       width: "10rem",
       placeholder: "cscs no",
     },
@@ -207,7 +207,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Literacy Level ",
-      name: "literacy",
+      name: "leteracy_level",
       width: "15rem",
       placeholder: "literacy level",
     },
