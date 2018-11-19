@@ -130,8 +130,6 @@ class App extends Component {
                     />
                     <Route
                       exactLogout
-
-
                       path="/participant/details/:id"
                       component={participantDetails}
                     />
