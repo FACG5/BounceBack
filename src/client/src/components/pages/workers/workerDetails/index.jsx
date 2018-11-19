@@ -7,8 +7,9 @@ import {
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
+import contextHoc from './../../../abstract/HOC/contextHoc';
 
-export default class index extends Component {
+class index extends Component {
   state = initialState;
 
   onChange = event => {
@@ -21,17 +22,16 @@ export default class index extends Component {
   };
 
   getDetails = async () => {
+    const { dispatch } = this.props.context;
     const id = this.props.match.params.id;
-    axios(`/api/v2/participant/${id}`).then(result => {
+    axios(`/api/v2/worker/${id}`).then(result => {
       
       const { data } = result;
       const date = data.date_of_birth.split("T")[0];
       this.setState({...data, date_of_birth:date});
 
     }).catch(error => {
-      this.props.history.push("/");
-      console.log(error.response)
-
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
     }) 
   
 };
@@ -65,3 +65,5 @@ export default class index extends Component {
     );
   }
 }
+
+export default contextHoc(index);
