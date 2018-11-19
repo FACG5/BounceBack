@@ -7,33 +7,30 @@ import {
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
+import contextHoc from './../../../abstract/HOC/contextHoc';
 
-export default class index extends Component {
+class index extends Component {
   state = initialState;
-
- 
-
+  
   goBack = event => {
     this.props.history.push("/participants/view");
   };
-  
+
   getDetails = async () => {
-      const id = this.props.match.params.id;
-      axios(`/api/v2/participant/${id}`).then(result => {
-        
-        const { data } = result;
-        const date = data.date_of_birth.split("T")[0];
-        this.setState({...data, date_of_birth:date});
+    const { dispatch } = this.props.context;
+    const id = this.props.match.params.id;
+    axios(`/api/v2/participant/${id}`).then(result => {
 
-      }).catch(error => {
+      const { data } = result;
+      const date = data.date_of_birth.split("T")[0];
+      this.setState({ ...data, date_of_birth: date });
+    }).catch(error => {
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
+    })
 
-        console.log(error.response)
-
-      }) 
-    
   };
 
-   componentDidMount = () => {
+  componentDidMount = () => {
     this.getDetails();
   }
 
@@ -54,7 +51,7 @@ export default class index extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
-  
+
   render() {
 
     return (
@@ -71,3 +68,5 @@ export default class index extends Component {
     );
   }
 }
+
+export default contextHoc(index);

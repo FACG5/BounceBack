@@ -85,7 +85,6 @@ exports.getDetails= async (req, res) => {
       res.status(404).send("Error in finding result");
     }
   } catch (error) {
-    console.log(error)
     res.status(500).send('Server Error');
   }
 }; 

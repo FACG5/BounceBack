@@ -48,13 +48,16 @@ exports.getDetails= async (req, res) => {
         id: managerId 
       }
     });
-    const details= (result[0].dataValues)
     if (result[0]) {
-      res.send({ details });
+      const details= (result[0].dataValues);
+      console.log(details);
+      
+      res.status(200).send(details);
     } else {
-      res.send({ message: "Error in finding result" });
+      res.status(404).send("Error in finding result");
     }
   } catch (error) {
-    res.send({ error });
+    console.log(error)
+    res.status(500).send('Server Error');
   }
-};
+}; 
