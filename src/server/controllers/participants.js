@@ -77,7 +77,6 @@ exports.getDetails= async (req, res) => {
       }
     });
     const details= (result[0].dataValues); 
-    console.log(details)
     if (result[0]) {
       res.send({ details });
     } else {
