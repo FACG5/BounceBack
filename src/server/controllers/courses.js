@@ -50,7 +50,7 @@ exports.details= async (req, res) => {
     });
     const details= (result[0].dataValues)
     if (result[0]) {
-      res.send({ details });
+      res.send(details);
     } else {
       res.send({ message: "Error in finding result" });
     }

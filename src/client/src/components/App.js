@@ -90,7 +90,7 @@ class App extends Component {
                     <Route exact path="/courses/add" component={addCourse} />
                     <Route
                       exact
-                      path="/worker/details"
+                      path="/worker/details/:id"
                       component={workerDetails}
                     />
                     <Route
@@ -100,7 +100,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/manager/details"
+                      path="/manager/details/:id"
                       component={managerDetails}
                     />
                     <Route
