@@ -51,6 +51,10 @@ export default class index extends Component {
               type: "warning",
               html: result.data.error,
               confirmButtonText: "Ok"
+            }).then(confirm => {
+              if (confirm.value) {
+                this.props.history.push("/participants/view");
+              }
             });
           } else {
             swal({
