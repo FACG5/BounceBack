@@ -1,5 +1,5 @@
 export const state = {
-    surname: "",
+    surename: "",
     forename: "",
     username: "",
     date_of_birth: "",
@@ -11,7 +11,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Surname",
-            name: "surname",
+            name: "surename",
             width: "20rem",
             placeholder: "surname"
         },
