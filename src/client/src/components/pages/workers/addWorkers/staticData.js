@@ -2,10 +2,9 @@ export const state = {
     surname: "",
     forename: "",
     username: "",
-    date: "",
+    date_of_birth: "",
     gender: "Male",
-    matrialStatus: "Single",
-    email: "",
+    martial_status: "Single"
 };
 export const fields = [
     [
@@ -35,7 +34,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Day Of Birth",
-            name: "date",
+            name: "date_of_birth",
             width: "20rem",
             type: "date",
         }
@@ -51,7 +50,7 @@ export const fields = [
         {
             tag: "DropDown",
             label: "Matrial Status ",
-            name: "matrialStatus",
+            name: "martial_status",
             width: "22rem",
             options: ["Single", "Married"]
         }
