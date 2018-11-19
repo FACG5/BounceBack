@@ -26,6 +26,7 @@ import ParticipantDateDetails from "../components/pages/participants/participant
 import participantDetails from "./pages/participants/participantDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import contextHoc from "./abstract/HOC/contextHoc";
+import Error from './pages/errors/';
 
 import "./App.css";
 
@@ -39,16 +40,20 @@ class App extends Component {
     dispatch({ type: "LOGIN_USER", payload });
   };
   render() {
-    const { context } = this.props;
+    const { logging,ErrorPage } = this.props.context;
+      if(ErrorPage) {
+       return  <Error  status={ErrorPage}/>
+      }
     return (
       <Router>
         <div className="App">
-          {!context.logging ? (
+          {!logging ? (
             <Route component={Login} />
           ) : (
+            
             <React.Fragment>
               <div className="view-app">
-                <Sidebar />
+              <Sidebar/>
                 <Container>
                   <Switch>
                     <Route
@@ -124,7 +129,7 @@ class App extends Component {
                       component={ParticipantDateDetails}
                     />
                     <Route
-                      exact
+                      exactLogout
                       path="/participant/details/:id"
                       component={participantDetails}
                     />
@@ -133,6 +138,7 @@ class App extends Component {
                       path="/participants/courses"
                       component={participantCourse}
                     />
+                    <Route component={Dashboard}/>
                   </Switch>
                 </Container>
               </div>
