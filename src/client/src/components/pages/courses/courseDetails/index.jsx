@@ -20,7 +20,7 @@ export default class index extends Component {
     // eslint-disable-next-line no-unused-vars
     const { courseName, category, startDate, endDate, desc } = this.state;
     const id = this.props.match.params.id;
-    const data = await axios(`/course/${id}`);
+    const data = await axios(`/api/v2/course/${id}`);
     const details = data.data.details;
     const { course_name, course_category, course_start, course_end, description } = details;
 

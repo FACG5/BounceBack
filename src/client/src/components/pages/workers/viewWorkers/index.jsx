@@ -27,7 +27,7 @@ export default class ViewWorkers extends Component {
     }).then((confirm) => {
       if (confirm.value) {
 
-        axios("/workers", {
+        axios("/api/v2/workers", {
           method: "DELETE",
           data: {
             workerId: id
@@ -49,7 +49,7 @@ export default class ViewWorkers extends Component {
 
   getSearch = async () => {
     const { search } = this.state;
-    const data = await axios("/workers/search", {
+    const data = await axios("/api/v2/workers/search", {
       method: "POST",
       data: {
         workerName: search
@@ -84,7 +84,7 @@ export default class ViewWorkers extends Component {
 
   getData = async () => {
     try {
-      const data = await axios("/workers");
+      const data = await axios("/api/v2/workers");
       const finalData = data.data.workersData;
       let array = [["username", "date of birth", "action"]];
       if (finalData.length === 0){

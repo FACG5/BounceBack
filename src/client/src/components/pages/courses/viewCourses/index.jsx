@@ -16,7 +16,7 @@ export default class Courses extends Component {
 
   getSearch = async () => {
     const { search } = this.state;
-    const data = await axios("/courses/search", {
+    const data = await axios("/api/v2/courses/search", {
       method: "POST",
       data: {
         courseName: search
@@ -65,7 +65,7 @@ export default class Courses extends Component {
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
-        axios("/courses", {
+        axios("/api/v2/courses", {
           method: "DELETE",
           data: {
             courseId: id
@@ -87,7 +87,7 @@ export default class Courses extends Component {
 
   getData = async () => {
     try {
-      const data = await axios("/courses");
+      const data = await axios("/api/v2/courses");
       const finalData = data.data.coursesData;
       let array = [["Course Name", "start", "end", "Action"]];
       if (finalData.length === 0){
