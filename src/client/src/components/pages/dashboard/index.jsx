@@ -5,14 +5,16 @@ import Header from "../../abstract/header";
 import Footer from "../../abstract/footer";
 import axios from 'axios';
 import './style.css';
+import contextHoc from './../../abstract/HOC/contextHoc';
 
-export default class index extends Component {
+class index extends Component {
   state={
      participant: '',
      course: '',
      worker: ''
   }
   componentDidMount = async () => {
+    const { dispatch } = this.props.context;
     try {
       const data = await axios('/api/v2/overview');
       const countParticipant = data.data.countParticipant.count;
@@ -20,7 +22,7 @@ export default class index extends Component {
       const countWorker = data.data.countWorker.count;
       this.setState({participant: countParticipant, course: countCourse, worker: countWorker})
     } catch (err) {
-      console.log(err); // waiting for boundery error handling
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
     }
   }
   render() {
@@ -51,3 +53,5 @@ export default class index extends Component {
     )
   }
 }
+
+export default contextHoc(index);
