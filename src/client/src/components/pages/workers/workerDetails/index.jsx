@@ -22,11 +22,20 @@ export default class index extends Component {
 
   getDetails = async () => {
     const id = this.props.match.params.id;
-    const data = await axios(`/api/v2/worker/${id}`);
-    const details = data.data.details;
-    const date = details.date_of_birth.split("T")[0];
-    this.setState({...details, date_of_birth:date});
+    axios(`/api/v2/participant/${id}`).then(result => {
+      
+      const { data } = result;
+      const date = data.date_of_birth.split("T")[0];
+      this.setState({...data, date_of_birth:date});
+
+    }).catch(error => {
+      this.props.history.push("/");
+      console.log(error.response)
+
+    }) 
+  
 };
+
   componentDidMount = () => {
   this.getDetails();
 }
