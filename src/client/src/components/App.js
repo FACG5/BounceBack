@@ -41,131 +41,6 @@ class App extends Component {
   render() {
     const { context } = this.props;
     return (
-<<<<<<< HEAD
-      <Consumer>
-        {value => (
-          <Router>
-            <div className="App">
-              {!value.logging ? (
-                <Route component={Login} />
-              ) : (
-                <React.Fragment>
-                  <div className="view-app">
-                    <Sidebar />
-                    <Container>
-                      <Switch>
-                        <Route
-                          exact
-                          path="/participants/view"
-                          component={ViewParticipants}
-                        />
-                        <Route
-                          exact
-                          path="/courses/view"
-                          component={viewCourses}
-                        />
-                        <Route
-                          exact
-                          path="/managers/view"
-                          component={viewManagers}
-                        />
-                        <Route
-                          exact
-                          path="/participants/dates"
-                          component={participantDate}
-                        />
-                        <Route exact path="/" component={Dashboard} />
-                        <Route
-                          exact
-                          path="/participants/add"
-                          component={AddParticipant}
-                        />
-                        <Route
-                          exact
-                          path="/report/result"
-                          component={ReportResult}
-                        />
-                        <Route exact path="/report" component={Report} />
-                        <Route
-                          exact
-                          path="/workers/view"
-                          component={ViewWorker}
-                        />
-                        <Route
-                          exact
-                          path="/workers/add"
-                          component={addWorker}
-                        />
-                        <Route
-                          exact
-                          path="/managers/add"
-                          component={addManager}
-                        />
-                        <Route
-                          exact
-                          path="/courses/add"
-                          component={addCourse}
-                        />
-                        <Route
-                          exact
-                          path="/worker/details"
-                          component={workerDetails}
-                        />
-                        <Route
-                          exact
-                          path="/courses/details/:id"
-                          component={courseDetails}
-                        />
-                        <Route
-                          exact
-                          path="/manager/details/:id"
-                          component={managerDetails}
-                        />
-                        <Route
-                          exact
-                          path="/participants/prison"
-                          component={prisonDetails}
-                        />
-                        <Route
-                          exact
-                          path="/participants/course/details"
-                          component={ParticipantCourseDetails}
-                        />
-                        <Route
-                          exact
-                          path="/participants/course/add"
-                          component={ParticipantCourseAdd}
-                        />
-                        <Route
-                          exact
-                          path="/participants/date/add"
-                          component={AddParticipantDate}
-                        />
-                        <Route
-                          exact
-                          path="/participants/date/details"
-                          component={ParticipantDateDetails}
-                        />
-                        <Route
-                          exact
-                          path="/participant/details/:id"
-                          component={participantDetails}
-                        />
-                        <Route
-                          exact
-                          path="/participants/courses"
-                          component={participantCourse}
-                        />
-                      </Switch>
-                    </Container>
-                  </div>
-                </React.Fragment>
-              )}
-            </div>
-          </Router>
-        )}
-      </Consumer>
-=======
       <Router>
         <div className="App">
           {!context.logging ? (
@@ -265,7 +140,6 @@ class App extends Component {
           )}
         </div>
       </Router>
->>>>>>> 1e5ea4fbd76a932d71a6ec14d6c5a6d51264435c
     );
   }
 }
