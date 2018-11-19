@@ -16,6 +16,7 @@ Router.delete('/participant', participants.delete);
 Router.post('/participants/search/name', participants.searchByName);
 Router.post('/participants/search/date', participants.searchBydate);
 Router.get('/participant/:id', participants.getDetails);
+Router.post('/participants', participants.post);
 
 Router.get('/courses', courses.get);
 Router.delete("/courses", courses.delete);

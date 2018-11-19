@@ -46,7 +46,7 @@ export default class Courses extends Component {
       const msg = data.data.message;
       this.setState({ message: msg, rows: arr });
     }
-  };      
+  };
 
   onChange = event => {
     const search = event.target.value;
