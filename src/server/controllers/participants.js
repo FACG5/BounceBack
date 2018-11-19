@@ -76,7 +76,8 @@ exports.getDetails= async (req, res) => {
         id: participantId 
       }
     });
-    const details= (result[0].dataValues)
+    const details= (result[0].dataValues); 
+    console.log(details)
     if (result[0]) {
       res.send({ details });
     } else {

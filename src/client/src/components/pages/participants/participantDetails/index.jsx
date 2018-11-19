@@ -6,17 +6,34 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from "axios";
 
 export default class index extends Component {
   state = initialState;
+
   onChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+
   goBack = event => {
     this.props.history.push("/participants/view");
   };
   
+  getDetails = async () => {
+     // eslint-disable-next-line no-unused-vars
+      const { surName } = this.state;
+      const id = this.props.match.params.id;
+      const data = await axios(`participant/${id}`);
+      console.log(data);
+      const details = data.data;
+      const { surename } = details;
+      this.setState({ surName: surename});
+  };
+
+   componentDidMount = () => {
+    this.getDetails();
+  }
 
   // the implemention waiting  back end api
   onSubmit = event => {
@@ -34,7 +51,7 @@ export default class index extends Component {
   render() {
 
     return (
-      <div className="add-participant">
+      <div className="detail-participant">
         <Form
           title="Participant Details"
           fields={fieldSet}
