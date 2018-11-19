@@ -7,6 +7,7 @@ import "./style.css";
 class SideLinks extends Component {
   logout = dispatch => {
     removeCookies();
+    localStorage.clear();
     dispatch({ type: "LOGIN_USER", payload: { logging: false } });
   };
   render() {
