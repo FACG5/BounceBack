@@ -5,7 +5,9 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import Footer from "../../../abstract/footer";
+import swal from "sweetalert2";
+import axios from "axios";
 
 export default class index extends Component {
   state = initialState;
@@ -24,6 +26,42 @@ export default class index extends Component {
     this.setState(fields);
   };
 
+  addManager = async obj => {
+    await swal({
+      type: "warning",
+      html: "Are you sure that you want to add this manager ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    const result = await axios("/api/v2/managers", {
+      method: "POST",
+      data: {
+        managerData: obj
+      }
+    });
+    if (result.data.error) {
+      await swal({
+        title: "",
+        type: "warning",
+        html: result.data.error,
+        confirmButtonText: "Ok"
+      });
+      this.props.history.push("/courses/view");
+    } else {
+      await swal({
+        title: "Success",
+        type: "success",
+        html: result.data.message
+      });
+      this.setState({ ...obj });
+      this.props.history.push("/managers/view");
+    }
+  };
+
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
@@ -31,10 +69,7 @@ export default class index extends Component {
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.addManager(fields);
   };
 
   render() {
