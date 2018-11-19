@@ -64,7 +64,7 @@ export default class ViewWorkers extends Component {
           row.date_of_birth.split("T")[0],
           <>
            <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
-            <Link to="/worker/details">
+            <Link to ={`/worker/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -98,7 +98,7 @@ export default class ViewWorkers extends Component {
             row.date_of_birth.split("T")[0],
             <>
             <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
-            <Link to="/worker/details">
+            <Link to={`/worker/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
             </>

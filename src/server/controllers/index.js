@@ -26,11 +26,13 @@ Router.get("/course/:id", courses.details);
 Router.get("/workers", workers.get);
 Router.delete("/workers", workers.delete);
 Router.post("/workers/search", workers.search);
+Router.get("/worker/:id", workers.getDetails);
 
 
 Router.get("/managers", managers.get);
 Router.delete("/managers", managers.delete);
 Router.post('/managers/search', managers.search);
+Router.get('/manager/:id', managers.getDetails);
 
 Router.post("/login", Login.get);
 

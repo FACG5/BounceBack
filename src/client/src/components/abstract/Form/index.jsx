@@ -26,7 +26,7 @@ export default function index(props) {
                   <Input
                     key={index}
                     {...field}
-                    value={values[field.name]}
+                    value={values[field.name].toString()}
                     onChange={onChange}
                   />
                 );

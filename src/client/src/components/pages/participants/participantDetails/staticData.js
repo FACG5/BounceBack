@@ -191,7 +191,7 @@ export const fields = [
     {
       tag: "Input",
       label: "CSCS No",
-      name: "cscs_numbers",
+      name: "cscs_number",
       width: "10rem",
       placeholder: "cscs no",
     },
@@ -223,6 +223,7 @@ export const fields = [
       label: "Numeracy Level",
       name: "numeracy_level",
       width: "15rem",
+      type: "number",
       placeholder: "numeracy level",
     }
   ],
@@ -266,6 +267,7 @@ export const fields = [
     }
   ]
 ];
+
 
 export const validationForm = fields => {
   for (const key in fields) {

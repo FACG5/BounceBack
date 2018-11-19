@@ -6,6 +6,7 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from "axios";
 
 export default class index extends Component {
   state = initialState;
@@ -18,6 +19,18 @@ export default class index extends Component {
   goBack = event => {
     this.props.history.push('/managers/view')
   };
+
+  getData = async () => {
+    const id = this.props.match.params.id;
+    const data = await axios(`/api/v2/manager/${id}`);
+    const details = data.data.details;
+    const date = details.date_of_birth.split("T")[0];
+    this.setState({...details, date_of_birth:date});
+  };
+
+  componentDidMount = () => {
+    this.getData();
+  }
 
   // the implemention waiting  back end api
   onSubmit = event => {
