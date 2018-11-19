@@ -11,10 +11,7 @@ import axios from "axios";
 export default class index extends Component {
   state = initialState;
 
-  onChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  };
+ 
 
   goBack = event => {
     this.props.history.push("/participants/view");
@@ -22,10 +19,18 @@ export default class index extends Component {
   
   getDetails = async () => {
       const id = this.props.match.params.id;
-      const data = await axios(`/api/v2/participant/${id}`);
-      const details = data.data.details;
-      const date = details.date_of_birth.split("T")[0];
-      this.setState({...details, date_of_birth:date});
+      axios(`/api/v2/participant/${id}`).then(result => {
+        
+        const { data } = result;
+        const date = data.date_of_birth.split("T")[0];
+        this.setState({...data, date_of_birth:date});
+
+      }).catch(error => {
+
+        console.log(error.response)
+
+      }) 
+    
   };
 
    componentDidMount = () => {
@@ -45,6 +50,11 @@ export default class index extends Component {
     this.setState(fields);
   };
 
+  onChange = event => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  };
+  
   render() {
 
     return (
