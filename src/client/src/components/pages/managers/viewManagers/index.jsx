@@ -68,7 +68,7 @@ export default class ViewManagers extends Component {
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-            <Link to="/courses/details">
+            <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -105,7 +105,7 @@ export default class ViewManagers extends Component {
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-            <Link to="/courses/details">
+            <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
