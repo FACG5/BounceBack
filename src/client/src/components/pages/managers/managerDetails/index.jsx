@@ -8,7 +8,6 @@ import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
 
-
 export default class index extends Component {
   state = initialState;
 
