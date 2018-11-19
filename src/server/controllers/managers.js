@@ -25,7 +25,7 @@ exports.search = async (req, res) => {
     const { managerName } = req.body;
     const managersData = await managers.findAll({
       where: {
-        fullname: {
+        username: {
           [Op.like]: `%${managerName}%`
         }
       }
@@ -63,12 +63,18 @@ exports.getDetails = async (req, res) => {
 exports.post = async (req, res) => {
   try {
     const { managerData } = req.body;
-    const { count } = await managers.findAndCountAll({
+    const usernameCount = await managers.findAndCountAll({
       where: {
         username: managerData.username
       }
     });
-    if (count !== 0) throw new TypeError("The name is used before");
+    if (usernameCount.count !== 0) throw new TypeError("The name is used before");
+    const emailCount = await managers.findAndCountAll({
+      where: {
+        email: managerData.email
+      }
+    });
+    if (emailCount.count !== 0) throw new TypeError("The email is used before");
     await managers.create(managerData);
     res.send({ message: "Adding manager done" });
   } catch (error) {
