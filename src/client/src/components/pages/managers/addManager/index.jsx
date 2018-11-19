@@ -27,7 +27,7 @@ export default class index extends Component {
   };
 
   addManager = async obj => {
-    await swal({
+    const confirm = await swal({
       type: "warning",
       html: "Are you sure that you want to add this manager ?",
       showCancelButton: true,
@@ -37,6 +37,7 @@ export default class index extends Component {
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
     });
+    if (confirm.value){
     const result = await axios("/api/v2/managers", {
       method: "POST",
       data: {
@@ -60,6 +61,7 @@ export default class index extends Component {
       this.setState({ ...obj });
       this.props.history.push("/managers/view");
     }
+  }
   };
 
   // the implemention waiting  back end api
