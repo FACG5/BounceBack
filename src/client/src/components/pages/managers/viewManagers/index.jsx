@@ -61,7 +61,7 @@ export default class ViewManagers extends Component {
       let array = [["username", "email", "action"]];
       finalData.map(row =>
         array.push([
-          row.fullname,
+          row.username,
           row.email,
           <>
             <i
