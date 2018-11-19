@@ -39,3 +39,22 @@ exports.search = async (req, res) => {
     res.send({ err });
   }
 };
+
+exports.getDetails= async (req, res) => {
+  try {
+    const managerId = req.params.id;
+    const result = await managers.findAll({
+      where: {
+        id: managerId 
+      }
+    });
+    const details= (result[0].dataValues)
+    if (result[0]) {
+      res.send({ details });
+    } else {
+      res.send({ message: "Error in finding result" });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+};
