@@ -98,7 +98,7 @@ export default class ViewManagers extends Component {
     } else {
       finalData.map(row =>
         array.push([
-          row.fullname,
+          row.username,
           row.email,
           <>
             <i
