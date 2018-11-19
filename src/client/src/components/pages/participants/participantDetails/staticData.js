@@ -1,29 +1,30 @@
 export const state = {
-  surName: "",
+  surename: "",
   forename: "",
   fullname: "",
-  date: "",
+  age: "",
+  date_of_birth: "",
+  address:"",
   gender: "",
-  maritalStatus: "",
-  sexualOrientation: "",
+  martial_status: "",
+  sexual_orientatuin: "",
   dependents: "",
-  ethnicity: "",
-  address: "",
+  ethincity: "",
   nationality: "",
   borough: "",
   postcode: "",
   mobile: "",
   landline: "",
-  nextMobile: "",
+  kin_contact:"",
   email: "",
-  ni: "",
+  ni_number: "",
   als: "",
-  cscsNo: "",
-  cscsSupport: "",
-  literacy: "",
-  caseWroker: "",
-  numeracy: "",
-  disability: "",
+  cscs_number: "",
+  cscs_support: "",
+  leteracy_level: "",
+  case_worker: "",
+  numeracy_level: "",
+  disability_and_medical: "",
   error: ""
 };
 export const fields = [
@@ -31,7 +32,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Surname",
-      name: "surName",
+      name: "surename",
       width: "20rem",
       placeholder: "surname",
     },
@@ -55,11 +56,22 @@ export const fields = [
   [
     {
       tag: "Input",
-      label: "Day Of Birth",
-      name: "date",
-      width: "12rem",
+      label: "Date Of Birth",
+      name: "date_of_birth",
+      width: "20rem",
       type: "date",
+      placeholder: "date of birth",
     },
+    {
+      tag: "Input",
+      label: "Age",
+      name: "age",
+      width: "20rem",
+      type: "number",
+      placeholder: "age",
+    }
+  ],
+  [
     {
       tag: "DropDown",
       label: "Gender",
@@ -70,14 +82,14 @@ export const fields = [
     {
       tag: "DropDown",
       label: "Marital Status",
-      name: "maritalStatus",
+      name: "martial_status",
       width: "12rem",
       options: ["Single", "Married", "Widowed", "Separated", "Divorced", "CFF"],
     },
     {
       tag: "DropDown",
       label: "Sexual Orientation ",
-      name: "sexualOrientation",
+      name: "sexual_orientatuin",
       width: "12rem",
       options: ["Normal", "Hetero", "Lesbian / Bisexual", "Lesbian","Other", "CFF"],
     }
@@ -86,7 +98,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Ethnicity ",
-      name: "ethnicity",
+      name: "ethincity",
       width: "20rem",
       placeholder: "ethnicity",
     },
@@ -148,7 +160,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Next Of Kin Contact",
-      name: "nextMobile",
+      name: "kin_contact",
       width: "15rem",
       placeholder: "next of kin contact",
     }
@@ -165,7 +177,7 @@ export const fields = [
     {
       tag: "Input",
       label: "NI No",
-      name: "ni",
+      name: "ni_number",
       width: "12rem",
       placeholder: "ni no",
     },
@@ -179,14 +191,14 @@ export const fields = [
     {
       tag: "Input",
       label: "CSCS No",
-      name: "cscsNo",
+      name: "cscs_no",
       width: "10rem",
       placeholder: "cscs no",
     },
     {
       tag: "Input",
       label: "CSCS Support ",
-      name: "cscsSupport",
+      name: "cscs_support",
       width: "10rem",
       placeholder: "cscs support",
     }
@@ -202,14 +214,14 @@ export const fields = [
     {
       tag: "DropDown",
       label: "Case Worker",
-      name: "caseWroker",
+      name: "case_wroker",
       width: "15rem",
       options: ["JP", "SR", "TIM", "CFF"],
     },
     {
       tag: "Input",
       label: "Numeracy Level",
-      name: "numeracy",
+      name: "numeracy_level",
       width: "15rem",
       placeholder: "numeracy level",
     }
@@ -218,7 +230,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Disability & Medical",
-      name: "disability",
+      name: "disability_and_medical",
       width: "35rem",
       placeholder: "disability",
     }
