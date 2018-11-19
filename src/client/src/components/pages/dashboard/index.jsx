@@ -25,6 +25,10 @@ class index extends Component {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
     }
   }
+  componentWillMount() {
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <React.Fragment>
