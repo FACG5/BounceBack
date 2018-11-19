@@ -21,14 +21,11 @@ export default class index extends Component {
   };
   
   getDetails = async () => {
-     // eslint-disable-next-line no-unused-vars
-      const { surName } = this.state;
       const id = this.props.match.params.id;
-      const data = await axios(`participant/${id}`);
-      console.log(data);
-      const details = data.data;
-      const { surename } = details;
-      this.setState({ surName: surename});
+      const data = await axios(`/api/v2/participant/${id}`);
+      const details = data.data.details;
+      const date = details.date_of_birth.split("T")[0];
+      this.setState({...details, date_of_birth:date});
   };
 
    componentDidMount = () => {
