@@ -36,7 +36,7 @@ export default class ViewParticpants extends Component {
           row.email,
           <>
            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -74,7 +74,7 @@ export default class ViewParticpants extends Component {
           row.email,
           <>
            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -99,9 +99,9 @@ export default class ViewParticpants extends Component {
       html:'Are you sure that you want to delete this participant ?',
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
@@ -147,7 +147,7 @@ getAllParticipants = async () => {
           row.email,
           <Fragment>
             <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to="/participant/details">
+            <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </Fragment>
