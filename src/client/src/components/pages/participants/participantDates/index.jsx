@@ -47,8 +47,8 @@ class Date extends Component {
         array.push([
           row.participant_id,
           row.worker_id,
-          row.id,
-          row.participant_id,
+          row.date_start.split("T")[0],
+          row.date_end.split("T")[0],
           <>
              <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
              <Link to= {`/participant/${id}/date/details/${row.id}`}>
