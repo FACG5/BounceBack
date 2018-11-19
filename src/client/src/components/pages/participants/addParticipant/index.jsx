@@ -46,25 +46,21 @@ export default class index extends Component {
         }
       });
       if (result.data.error) {
-        const warning = await swal({
+        await swal({
           title: "",
           type: "warning",
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-        if (warning.value) {
           this.props.history.push("/participants/view");
-        }
       } else {
-        const success = await swal({
+        await swal({
           title: "Success",
           type: "success",
           html: result.data.message
         });
-        if (success.value) {
           this.setState({ ...obj });
           this.props.history.push("/participants/view");
-        }
       }
     }
   };
