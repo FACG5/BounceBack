@@ -22,7 +22,7 @@ export default class index extends Component {
     const details = data.data.details;
     const startDate = details.course_start.split("T")[0];
     const endDate = details.course_end.split("T")[0];
-    this.setState({...details, course_start:startDate, course_end:endDate},()=> console.log(this.state));
+    this.setState({...details, course_start:startDate, course_end:endDate});
   };
 
   componentDidMount = () => {
