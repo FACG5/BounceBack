@@ -17,19 +17,12 @@ export default class index extends Component {
   };
 
   getData = async () => {
-    // eslint-disable-next-line no-unused-vars
-    const { courseName, category, startDate, endDate, desc } = this.state;
     const id = this.props.match.params.id;
     const data = await axios(`/api/v2/course/${id}`);
     const details = data.data.details;
-    const { course_name, course_category, course_start, course_end, description } = details;
-
-    this.setState({ courseName: course_name,
-                    category: course_category,
-                    startDate: course_start.split("T")[0],
-                    endDate: course_end.split("T")[0],
-                    desc: description
-                  });
+    const startDate = details.course_start.split("T")[0];
+    const endDate = details.course_end.split("T")[0];
+    this.setState({...details, course_start:startDate, course_end:endDate});
   };
 
   componentDidMount = () => {

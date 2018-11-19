@@ -67,3 +67,22 @@ exports.searchBydate = async (req, res) => {
     res.send({ error });
   }
 };
+
+exports.getDetails= async (req, res) => {
+  try {
+    const participantId = req.params.id;
+    const result = await participant.findAll({
+      where: {
+        id: participantId 
+      }
+    });
+    const details= (result[0].dataValues); 
+    if (result[0]) {
+      res.send({ details });
+    } else {
+      res.send({ message: "Error in finding result" });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+}; 
