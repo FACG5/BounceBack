@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import swal from 'sweetalert2';
-import axios from 'axios';
+import swal from "sweetalert2";
+import axios from "axios";
 
 import {
   state as initialState,
@@ -8,7 +8,7 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import Footer from "../../../abstract/footer";
 
 export default class index extends Component {
   state = initialState;
@@ -27,8 +27,8 @@ export default class index extends Component {
     this.setState(fields);
   };
 
-  addCourse = obj => {
-    swal({
+  addCourse = async obj => {
+    await swal({
       type: "warning",
       html: "Are you sure that you want to add this course ?",
       showCancelButton: true,
@@ -37,39 +37,32 @@ export default class index extends Component {
       confirmButtonAriaLabel: "Thumbs up",
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
-    }).then(confirm => {
-      // if (confirm.value) {
-        axios('/api/v2/courses', {
-          method: 'POST',
-          data: {
-            courseData: obj
-          }
-        }).then(result => {
-          if (result.data.error) {
-            swal({
-              title: "",
-              type: "warning",
-              html: result.data.error,
-              confirmButtonText: "Ok"
-            }).then(confirm => {
-                this.props.history.push("/courses/view");
-            });
-          } else {
-            swal({
-              title: "Success",
-              type: "success",
-              html: result.data.message
-            }).then(confirm => {
-              if (confirm.value) {
-                this.setState({ ...obj });
-                this.props.history.push("/courses/view");
-              }
-            });
-          }
-        });
-      // }
     });
-  }
+    const result = await axios("/api/v2/courses", {
+      method: "POST",
+      data: {
+        courseData: obj
+      }
+    });
+    if (result.data.error) {
+      swal({
+        title: "",
+        type: "warning",
+        html: result.data.error,
+        confirmButtonText: "Ok"
+      }).then(confirm => {
+        this.props.history.push("/courses/view");
+      });
+    } else {
+      await swal({
+        title: "Success",
+        type: "success",
+        html: result.data.message
+      });
+      this.setState({ ...obj });
+      this.props.history.push("/courses/view");
+    }
+  };
 
   // the implemention waiting  back end api
   onSubmit = event => {
