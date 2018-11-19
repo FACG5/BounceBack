@@ -50,7 +50,7 @@ export default class index extends Component {
         html: result.data.error,
         confirmButtonText: "Ok"
       });
-      this.props.history.push("/courses/view");
+      this.props.history.push("/managers/view");
     } else {
       await swal({
         title: "Success",
