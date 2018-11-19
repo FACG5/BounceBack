@@ -39,3 +39,22 @@ exports.search= async (req, res) => {
     res.send({ error });
   }
 }; 
+
+exports.getDetails= async (req, res) => {
+  try {
+    const workerId = req.params.id;
+    const result = await workers.findAll({
+      where: {
+        id: workerId 
+      }
+    });
+    const details= (result[0].dataValues)
+    if (result[0]) {
+      res.send({ details });
+    } else {
+      res.send({ message: "Error in finding result" });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+};
