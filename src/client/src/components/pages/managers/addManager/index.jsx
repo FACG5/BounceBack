@@ -66,10 +66,15 @@ export default class index extends Component {
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
-    const error = validationForm(fields);
-    if (error) return this.setState({ error });
+    const { password, confirmPassword } = fields;
+    if (password !== confirmPassword)
+      this.setState({ error: "The two passwords do not pass" });
+    else {
+      const error = validationForm(fields);
+      if (error) return this.setState({ error });
 
-    this.addManager(fields);
+      this.addManager(fields);
+    }
   };
 
   render() {
