@@ -23,6 +23,10 @@ export default class index extends Component {
       console.log(err); // waiting for boundery error handling
     }
   }
+  componentWillMount() {
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <React.Fragment>
