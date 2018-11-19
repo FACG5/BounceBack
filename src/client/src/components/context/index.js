@@ -6,6 +6,8 @@ const reducer = (state, action) => {
   switch (type) {
     case "LOGIN_USER":
       return { ...state, ...payload };
+    case "ERROR_PAGE":
+      return { ...state, ...payload };
     default:
       return { ...state };
   }
@@ -14,7 +16,8 @@ const reducer = (state, action) => {
 export class Provider extends Component {
   state = {
     logging: false,
-    dispatch: action => this.setState(reducer(this.state, action))
+    dispatch: action => this.setState(reducer(this.state, action)),
+    ErrorPage: null
   };
   render() {
     return (
