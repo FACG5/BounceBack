@@ -69,7 +69,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/dates"
+                      path="/participant/:id/dates"
                       component={participantDate}
                     />
                     <Route exact path="/" component={Dashboard} />
@@ -110,12 +110,12 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/course/details"
+                      path="/participant/:id/course/details/:id"
                       component={ParticipantCourseDetails}
                     />
                     <Route
                       exact
-                      path="/participants/course/add"
+                      path="/participants/:id/course/add"
                       component={ParticipantCourseAdd}
                     />
                     <Route
@@ -125,7 +125,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/date/details"
+                      path="/participant/:id/date/details/:id"
                       component={ParticipantDateDetails}
                     />
                     <Route
@@ -135,7 +135,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/courses"
+                      path="/participant/:id/courses"
                       component={participantCourse}
                     />
                     <Route component={Dashboard}/>
