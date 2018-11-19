@@ -1,17 +1,17 @@
 export const state = {
-    surname: "mohanned",
-    forename: "al-hanafi",
-    username: "mohannadhanafi",
-    date: "12/2",
-    gender: "Male",
-    matrialStatus: "Single"
+    surename: "",
+    forename: "",
+    username: "",
+    date_of_birth: "",
+    gender: "",
+    martial_status: "",
 };
 export const fields = [
     [
         {
             tag: "Input",
             label: "Surname",
-            name: "surname",
+            name: "surename",
             width: "20rem",
             placeholder: "surname",
         },
@@ -33,8 +33,8 @@ export const fields = [
         },
         {
             tag: "Input",
-            label: "Day Of Birth",
-            name: "date",
+            label: "Date of Birth",
+            name: "date_of_birth",
             width: "20rem",
             type: "date",
         }
@@ -44,15 +44,15 @@ export const fields = [
             tag: "DropDown",
             label: "Gender",
             name: "gender",
-            width: "22rem",
-            options: ["Male", "Female"],
+            width: "20rem",
+            options: ["male", "female"],
         },
         {
             tag: "DropDown",
             label: "Matrial Status ",
-            name: "matrialStatus",
-            width: "22rem",
-            options: ["Single", "Married"],
+            name: "martial_status",
+            width: "20rem",
+            options: ["single", "married", "widowed", "separated", "divorced", "cff"],
         }
     ],
     [
