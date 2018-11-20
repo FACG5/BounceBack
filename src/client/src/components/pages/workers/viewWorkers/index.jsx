@@ -124,7 +124,7 @@ export default class ViewWorkers extends Component {
             label="Search"
             name="search"
             type="text"
-            placeholder="Type Name of manager"
+            placeholder="worker username"
             width="300px"
             value={this.state.search}
             onChange={this.onChange}
