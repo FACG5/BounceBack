@@ -87,17 +87,14 @@ class Date extends Component {
             dateId: id
           }
         }).then(result => {
-          this.getDates().then(() => {
+          this.getDates();
             swal({
               title: 'Success',
               type: 'success',
               html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
               showConfirmButton: false,
               timer: 3000
-            }).then(() => {
-              this.getDates();
             })
-          });
         });
       }
     });

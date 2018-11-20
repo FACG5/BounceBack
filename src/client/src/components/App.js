@@ -27,7 +27,6 @@ import participantDetails from "./pages/participants/participantDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import contextHoc from "./abstract/HOC/contextHoc";
 import Error from './pages/errors/';
-
 import "./App.css";
 
 class App extends Component {
@@ -110,7 +109,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participant/:id/course/details/:id"
+                      path="/participant/:id/course/details/:course_id"
                       component={ParticipantCourseDetails}
                     />
                     <Route
@@ -125,7 +124,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participant/:id/date/details/:id"
+                      path="/participant/:id/date/details/:date_id"
                       component={ParticipantDateDetails}
                     />
                     <Route
