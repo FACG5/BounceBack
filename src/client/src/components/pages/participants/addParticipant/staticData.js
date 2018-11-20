@@ -19,7 +19,7 @@ export const state = {
   email: "",
   ni_number: "",
   als: "",
-  cscs_no: "",
+  cscs_number: "",
   cscs_support: "",
   leteracy_level: "",
   case_worker: "JP",
@@ -200,7 +200,7 @@ export const fields = [
     {
       tag: "Input",
       label: "CSCS No",
-      name: "cscs_no",
+      name: "cscs_number",
       width: "10rem",
       placeholder: "cscs no",
       type: "number"
