@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   state as initialState,
   fields as fieldSet
-  // validationForm
 } from "./staticData";
 import Button from "./../../../abstract/button";
 import Form from "./../../../abstract/Form";
@@ -93,8 +92,6 @@ class index extends Component {
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
-    // const error = validationForm(fields);
-    // if (error) return this.setState({ error });
     this.updateParticipant(fields);
   };
 
