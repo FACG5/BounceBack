@@ -4,10 +4,12 @@ import {
   fields as fieldSet,
   validationForm
 } from "./staticData";
+import Button from "./../../../abstract/button";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
+import './style.css';
 
 class index extends Component {
   state = initialState;
@@ -16,11 +18,20 @@ class index extends Component {
     this.props.history.push("/participants/view");
   };
 
-  getDetails = async () => {
-    const { dispatch } = this.props.context;
+  goDates = event => {
     const id = this.props.match.params.id;
-    axios(`/api/v2/participant/${id}`).then(result => {
+    this.props.history.push(`/participant/${id}/dates`);
+  };
 
+  goTrainings = event => {
+    const id = this.props.match.params.id;
+    this.props.history.push(`/participant/${id}/courses`);
+  };
+
+  getDetails = async () => {
+    const id = this.props.match.params.id;
+    const { dispatch } = this.props.context;
+    axios(`/api/v2/participant/${id}`).then(result => {
       const { data } = result;
       const date = data.date_of_birth.split("T")[0];
       this.setState({ ...data, date_of_birth: date });
@@ -55,7 +66,7 @@ class index extends Component {
   render() {
 
     return (
-      <div className="detail-participant">
+      <>
         <Form
           title="Participant Details"
           fields={fieldSet}
@@ -63,8 +74,12 @@ class index extends Component {
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.goBack]}
         />
+        <div className="button-taps">
+          <Button value="Dates" onClick={this.goDates} color="#272727"/>
+          <Button value="Trainings" onClick={this.goTrainings} color="#272727"/>
+        </div>
         <Footer />
-      </div>
+      </>
     );
   }
 }

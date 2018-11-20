@@ -77,21 +77,21 @@ export const fields = [
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["Male", "Female"],
+      options: ["male", "female"],
     },
     {
       tag: "DropDown",
       label: "Marital Status",
       name: "martial_status",
       width: "12rem",
-      options: ["Single", "Married", "Widowed", "Separated", "Divorced", "CFF"],
+      options: ["single", "married", "widowed", "separated", "divorced", "cff"],
     },
     {
       tag: "DropDown",
       label: "Sexual Orientation ",
       name: "sexual_orientatuin",
       width: "12rem",
-      options: ["Normal", "Hetero", "Lesbian / Bisexual", "Lesbian","Other", "CFF"],
+      options: ["normal", "hetero", "lesbian / bisexual", "lesbian","other", "cff"],
     }
   ],
   [
@@ -216,7 +216,7 @@ export const fields = [
       label: "Case Worker",
       name: "case_wroker",
       width: "15rem",
-      options: ["JP", "SR", "TIM", "CFF"],
+      options: ["jp", "sr", "tim", "cff"],
     },
     {
       tag: "Input",
@@ -234,22 +234,6 @@ export const fields = [
       name: "disability_and_medical",
       width: "35rem",
       placeholder: "disability",
-    }
-  ],
-  [
-    {
-      tag: "Button",
-      value: "Dates",
-      color: "#272727",
-      staticField: false,
-      path: "/participants/dates"
-    },
-    {
-      tag: "Button",
-      value: "Trainings",
-      color: "#272727",
-      staticField: false,
-      path: "/participants/courses"
     }
   ],
   [

@@ -1,6 +1,8 @@
 const { Op } = require("sequelize");
 const participant = require("../database/models/participant");
+const dates = require("../database/models/dates");
 
+// Get all participants
 exports.get = async (req, res) => {
   try {
     const getParticipants = await participant.findAll();
@@ -10,6 +12,7 @@ exports.get = async (req, res) => {
   }
 };
 
+// delete an exist participant
 exports.delete = (req, res) => {
   try {
     participant
@@ -30,6 +33,7 @@ exports.delete = (req, res) => {
   }
 };
 
+// Search for an individual participant by name
 exports.searchByName = async (req, res) => {
   try {
     const { participantName } = req.body;
@@ -50,6 +54,7 @@ exports.searchByName = async (req, res) => {
   }
 };
 
+// Search for an individual participant by birth of date
 exports.searchBydate = async (req, res) => {
   try {
     const { participantDate } = req.body;
@@ -70,6 +75,7 @@ exports.searchBydate = async (req, res) => {
   }
 };
 
+// Get the details for an individual participant
 exports.getDetails= async (req, res) => {
   try {
     const participantId = req.params.id;
@@ -88,6 +94,8 @@ exports.getDetails= async (req, res) => {
     res.status(500).send('Server Error');
   }
 }; 
+
+// Add new participant
 exports.post = async (req, res) => {
   try {
     const { participantdata } = req.body;
@@ -102,5 +110,41 @@ exports.post = async (req, res) => {
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
+  }
+};
+
+// Get dates for an individual participant
+exports.getDates = async (req, res) => {
+  try {
+    const participantId = req.params.id;
+    const participantDates = await dates.findAll({
+      where: {
+        participant_id: participantId
+      }
+    });
+    res.send({ participantDates });
+  } catch (err) {
+    res.status(500).send({ err });
+  }
+};
+
+// delete an exist date for an individual participant
+exports.deleteDate = (req, res) => {
+  try {
+    dates
+      .destroy({
+        where: {
+          id: req.body.dateId
+        }
+      })
+      .then(() => {
+        res.status(200).send({
+          message: "date deleted successfully"
+        });
+      });
+  } catch (err) {
+    res.status(500).send({
+      err
+    });
   }
 };
