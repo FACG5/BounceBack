@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import swal from "sweetalert2";
+import axios from "axios";
 
 import {
   state as initialState,
@@ -6,7 +8,7 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import Footer from "../../../abstract/footer";
 
 export default class index extends Component {
   state = initialState;
@@ -25,6 +27,44 @@ export default class index extends Component {
     this.setState(fields);
   };
 
+  addCourse = async obj => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure that you want to add this course ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+    const result = await axios("/api/v2/courses", {
+      method: "POST",
+      data: {
+        courseData: obj
+      }
+    });
+    if (result.data.error) {
+      await swal({
+        title: "",
+        type: "warning",
+        html: result.data.error,
+        confirmButtonText: "Ok"
+      });
+      this.props.history.push("/courses/view");
+    } else {
+      await swal({
+        title: "Success",
+        type: "success",
+        html: result.data.message
+      });
+      this.setState({ ...obj });
+      this.props.history.push("/courses/view");
+    }
+  }
+  };
+
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
@@ -32,10 +72,7 @@ export default class index extends Component {
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.addCourse(fields);
   };
 
   render() {

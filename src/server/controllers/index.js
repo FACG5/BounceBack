@@ -18,10 +18,14 @@ Router.post('/participants/search/date', participants.searchBydate);
 Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants', participants.post);
 
+Router.get('/participant/:id/dates', participants.getDates);
+Router.delete('/date', participants.deleteDate);
+
 Router.get('/courses', courses.get);
 Router.delete("/courses", courses.delete);
 Router.post("/courses/search", courses.search);
 Router.get("/course/:id", courses.details);
+Router.post('/courses', courses.post);
 
 Router.get("/workers", workers.get);
 Router.delete("/workers", workers.delete);
