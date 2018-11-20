@@ -1,6 +1,6 @@
-const getStaff = require("./../helpers/getStaff");
-const checkPassword = require("./../helpers/checkPassword");
-const makeToken = require("./../helpers/makeToken");
+const getStaff = require('./../helpers/getStaff');
+const checkPassword = require('./../helpers/checkPassword');
+const makeToken = require('./../helpers/makeToken');
 
 exports.get = async (req, res) => {
   try {
@@ -9,12 +9,12 @@ exports.get = async (req, res) => {
     const isAuth = await checkPassword(password, hasedPassword);
     const token = await makeToken({ role, username });
     if (isAuth) {
-      res.cookie("jwt", token, { maxAge: 900000 });
+      res.cookie('jwt', token, { maxAge: 900000 });
       res.send({ username, role });
     } else {
-      res.send({ Error: "Check Username Or Password" });
+      res.send({ Error: 'Check Username Or Password' });
     }
   } catch (error) {
-    res.send({ Error: "There Is Error In Our Network" });
+    res.send({ Error: 'There Is Error In Our Network' });
   }
 };
