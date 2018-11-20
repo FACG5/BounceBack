@@ -171,14 +171,12 @@ exports.update = async (req, res) => {
 exports.getCourses = async (req, res) => {
   try {
     const participantId = req.params.id;
-    console.log(participantId);
     
     const participantCourses = await courses.findAll({
       where: {
         participant_id: participantId
       }
-    });
-    console.log(participantCourses);
+    }); 
     res.send({ participantCourses });
   } catch (err) {
     res.status(500).send({ err });
