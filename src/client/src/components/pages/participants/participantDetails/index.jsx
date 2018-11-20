@@ -8,7 +8,6 @@ import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
-import './style.css';
 
 class index extends Component {
   state = initialState;
@@ -18,7 +17,6 @@ class index extends Component {
   };
 
   goDates = event => {
-    console.log('hello world')
     const id = this.props.match.params.id;
     this.props.history.push(`/participant/${id}/dates`);
   };
