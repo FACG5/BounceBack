@@ -174,7 +174,7 @@ getAllParticipants = async () => {
               label="Search by name"
               name="searchByName"
               type="text"
-              placeholder="Type Fullname"
+              placeholder="Fullname"
               width="350px"
               value={this.state.nameSearch}
               onChange={this.onChangeName}
@@ -183,7 +183,7 @@ getAllParticipants = async () => {
               label="Search By Birth of date"
               name="searchByDate"
               type="date"
-              placeholder="Type birth of date"
+              placeholder="birth of date"
               width="350px"
               value={this.state.dateSearch}
               onChange={this.onChangeDate}
