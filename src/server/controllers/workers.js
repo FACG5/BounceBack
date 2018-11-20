@@ -83,10 +83,10 @@ exports.update = async (req, res) => {
     const workerId = req.params.id;
     await workers.update(workerData, {
       where: {
-        id: workerId
-      }
+        id: workerId,
+      },
     });
-    res.send({message: 'updating data is done'});
+    res.send({ message: 'updating data is done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });

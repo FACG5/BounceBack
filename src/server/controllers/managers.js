@@ -89,10 +89,10 @@ exports.update = async (req, res) => {
     const managerId = req.params.id;
     await managers.update(managerData, {
       where: {
-        id: managerId
-      }
+        id: managerId,
+      },
     });
-    res.send({message: 'updating data is done'});
+    res.send({ message: 'updating data is done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
