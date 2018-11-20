@@ -13,6 +13,11 @@ class index extends Component {
      course: '',
      worker: ''
   }
+
+  componentWillMount() {
+    this.props.history.push("/");
+  }
+
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
     try {
@@ -24,9 +29,6 @@ class index extends Component {
     } catch (err) {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
     }
-  }
-  componentWillMount() {
-    this.props.history.push("/");
   }
 
   render() {

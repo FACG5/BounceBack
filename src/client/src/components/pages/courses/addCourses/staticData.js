@@ -1,22 +1,22 @@
 export const state = {
-    courseName: "",
-    category: "",
-    startDate: "",
-    endDate: "",
+    course_name: "",
+    course_category: "wawa",
+    course_start: "",
+    course_end: "",
     description: ""
 };
 export const fields = [
     [{
             tag: "Input",
             label: "Course Name",
-            name: "courseName",
+            name: "course_name",
             width: "20rem",
             placeholder: "course name"
         },
         {
             tag: "DropDown",
             label: "Course Category",
-            name: "category",
+            name: "course_category",
             width: "20rem",
             options: ['N/A', 'wawa']
         }
@@ -25,14 +25,14 @@ export const fields = [
         {
             tag: "Input",
             label: "Course Start",
-            name: "startDate",
+            name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course End",
-            name: "endDate",
+            name: "course_end",
             width: "20rem",
             type: "date",
         }
