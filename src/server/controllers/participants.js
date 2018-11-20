@@ -167,6 +167,26 @@ exports.update = async (req, res) => {
   }
 };
 
+// Get the details for an individual date
+exports.getDateDetails = async (req, res) => {
+  try {
+    const dateId = req.params.dateId;
+    const result = await dates.findAll({
+      where: {
+        id: dateId 
+      }
+    });
+    if (result[0]) {
+      const details= (result[0].dataValues);
+      res.status(200).send(details);     
+    } else {
+      res.status(404).send("Error in finding result");
+    }
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
+};
+ 
 // Get courses for an individual participant
 exports.getCourses = async (req, res) => {
   try {

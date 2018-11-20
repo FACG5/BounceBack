@@ -1,22 +1,22 @@
 export const state = {
-    dateName: "special date",
-    dateId: "112",
-    startDate: "",
-    endDate: "",
-    note: "GOING TO THE CLINK TO SEE GG - WENT TO THE CLINK, AS GG WAS THERE. DISCUSSED MY SUPPORT AND HE WAS HAPPY TO SEE ME."
+    participant_id: "",
+    worker_id: "",
+    date_start: "",
+    date_end: "",
+    note: ""
 };
 export const fields = [
     [{
             tag: "Input",
-            label: "Date Name",
-            name: "dateName",
+            label: "Participant_id/name",
+            name: "participant_id",
             width: "20rem",
             placeholder: "date name",
         },
         {
             tag: "Input",
-            label: "Date ID",
-            name: "dateId",
+            label: "worker_id/name",
+            name: "worker_id",
             width: "20rem",
             placeholder: "date Id",
         }
@@ -25,14 +25,14 @@ export const fields = [
         {
             tag: "Input",
             label: "Date start",
-            name: "startDate",
+            name: "date_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Date end",
-            name: "endDate",
+            name: "date_end",
             width: "20rem",
             type: "date",
         }
