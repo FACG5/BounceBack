@@ -27,7 +27,6 @@ import participantDetails from "./pages/participants/participantDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import contextHoc from "./abstract/HOC/contextHoc";
 import Error from './pages/errors/';
-
 import "./App.css";
 
 class App extends Component {
@@ -69,7 +68,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/dates"
+                      path="/participant/:id/dates"
                       component={participantDate}
                     />
                     <Route exact path="/" component={Dashboard} />
@@ -110,12 +109,12 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/course/details"
+                      path="/participant/:id/course/details/:course_id"
                       component={ParticipantCourseDetails}
                     />
                     <Route
                       exact
-                      path="/participants/course/add"
+                      path="/participants/:id/course/add"
                       component={ParticipantCourseAdd}
                     />
                     <Route
@@ -125,7 +124,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/date/details"
+                      path="/participant/:id/date/details/:date_id"
                       component={ParticipantDateDetails}
                     />
                     <Route
@@ -135,7 +134,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/courses"
+                      path="/participant/:id/courses"
                       component={participantCourse}
                     />
                     <Route component={Dashboard}/>
