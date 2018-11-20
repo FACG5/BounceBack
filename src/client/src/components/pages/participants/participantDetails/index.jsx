@@ -3,13 +3,11 @@ import {
   state as initialState,
   fields as fieldSet
 } from "./staticData";
-import Button from "./../../../abstract/button";
 import Form from "./../../../abstract/Form";
 import Footer from "../../../abstract/footer";
 import axios from "axios";
-import contextHoc from "./../../../abstract/HOC/contextHoc";
-import "./style.css";
 import swal from "sweetalert2";
+import contextHoc from './../../../abstract/HOC/contextHoc';
 
 class index extends Component {
   state = initialState;
@@ -108,16 +106,8 @@ class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack]}
+          btnEvents={[this.onSubmit, this.goBack, this.goDates, this.goTrainings]}
         />
-        <div className="button-taps">
-          <Button value="Dates" onClick={this.goDates} color="#272727" />
-          <Button
-            value="Trainings"
-            onClick={this.goTrainings}
-            color="#272727"
-          />
-        </div>
         <Footer />
       </>
     );
