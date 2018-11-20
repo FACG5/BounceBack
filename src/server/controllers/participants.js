@@ -1,7 +1,7 @@
-const { Op } = require("sequelize");
-const participant = require("../database/models/participant");
-const dates = require("../database/models/dates");
-const courses = require("../database/models/participantCourses");
+const { Op } = require('sequelize');
+const participant = require('../database/models/participant');
+const dates = require('../database/models/dates');
+const courses = require('../database/models/participantCourses');
 
 // Get all participants
 exports.get = async (req, res) => {
@@ -19,17 +19,17 @@ exports.delete = (req, res) => {
     participant
       .destroy({
         where: {
-          id: req.body.participantId
-        }
+          id: req.body.participantId,
+        },
       })
       .then(() => {
         res.status(200).send({
-          message: "participant deleted successfully"
+          message: 'participant deleted successfully',
         });
       });
   } catch (err) {
     res.status(500).send({
-      err
+      err,
     });
   }
 };
@@ -41,9 +41,9 @@ exports.searchByName = async (req, res) => {
     const searchResult = await participant.findAll({
       where: {
         fullname: {
-          [Op.like]: `%${participantName}%`
-        }
-      }
+          [Op.like]: `%${participantName}%`,
+        },
+      },
     });
     if (searchResult[0]) {
       res.send({ searchResult });
@@ -62,9 +62,9 @@ exports.searchBydate = async (req, res) => {
     const searchResult = await participant.findAll({
       where: {
         date_of_birth: {
-          [Op.gte]: `%${participantDate}%`
-        }
-      }
+          [Op.gte]: `%${participantDate}%`,
+        },
+      },
     });
     if (searchResult[0]) {
       res.send({ searchResult });
@@ -82,17 +82,17 @@ exports.getDetails = async (req, res) => {
     const participantId = req.params.id;
     const result = await participant.findAll({
       where: {
-        id: participantId
-      }
+        id: participantId,
+      },
     });
     if (result[0]) {
       const details = result[0].dataValues;
       res.status(200).send(details);
     } else {
-      res.status(404).send("Error in finding result");
+      res.status(404).send('Error in finding result');
     }
   } catch (error) {
-    res.status(500).send("Server Error");
+    res.status(500).send('Server Error');
   }
 };
 
@@ -102,12 +102,12 @@ exports.post = async (req, res) => {
     const { participantdata } = req.body;
     const { count } = await participant.findAndCountAll({
       where: {
-        email: participantdata.email
-      }
+        email: participantdata.email,
+      },
     });
-    if (count !== 0) throw new TypeError("The email is used");
+    if (count !== 0) throw new TypeError('The email is used');
     await participant.create(participantdata);
-    res.send({ message: "Adding participant done" });
+    res.send({ message: 'Adding participant done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
@@ -120,8 +120,8 @@ exports.getDates = async (req, res) => {
     const participantId = req.params.id;
     const participantDates = await dates.findAll({
       where: {
-        participant_id: participantId
-      }
+        participant_id: participantId,
+      },
     });
     res.send({ participantDates });
   } catch (err) {
@@ -135,17 +135,17 @@ exports.deleteDate = (req, res) => {
     dates
       .destroy({
         where: {
-          id: req.body.dateId
-        }
+          id: req.body.dateId,
+        },
       })
       .then(() => {
         res.status(200).send({
-          message: "date deleted successfully"
+          message: ',date deleted successfully',
         });
       });
   } catch (err) {
     res.status(500).send({
-      err
+      err,
     });
   }
 };
@@ -157,10 +157,10 @@ exports.update = async (req, res) => {
     const participantId = req.params.id;
     await participant.update(participantData, {
       where: {
-        id: participantId
-      }
+        id: participantId,
+      },
     });
-    res.send({message: 'updating data is done'});
+    res.send({ message: 'updating data is done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
@@ -170,33 +170,32 @@ exports.update = async (req, res) => {
 // Get the details for an individual date
 exports.getDateDetails = async (req, res) => {
   try {
-    const dateId = req.params.dateId;
+    const { dateId } = req.params;
     const result = await dates.findAll({
       where: {
-        id: dateId 
-      }
+        id: dateId,
+      },
     });
     if (result[0]) {
-      const details= (result[0].dataValues);
-      res.status(200).send(details);     
+      const details = (result[0].dataValues);
+      res.status(200).send(details);
     } else {
-      res.status(404).send("Error in finding result");
+      res.status(404).send('Error in finding result');
     }
   } catch (error) {
     res.status(500).send('Server Error');
   }
 };
- 
+
 // Get courses for an individual participant
 exports.getCourses = async (req, res) => {
   try {
     const participantId = req.params.id;
-    
     const participantCourses = await courses.findAll({
       where: {
-        participant_id: participantId
-      }
-    }); 
+        participant_id: participantId,
+      },
+    });
     res.send({ participantCourses });
   } catch (err) {
     res.status(500).send({ err });
@@ -209,17 +208,17 @@ exports.deleteCourse = (req, res) => {
     courses
       .destroy({
         where: {
-          id: req.body.courseId
-        }
+          id: req.body.courseId,
+        },
       })
       .then(() => {
         res.status(200).send({
-          message: "course deleted successfully"
+          message: 'course deleted successfully',
         });
       });
   } catch (err) {
     res.status(500).send({
-      err
+      err,
     });
   }
 };
