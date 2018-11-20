@@ -131,7 +131,7 @@ export default class Courses extends Component {
               label="Search by course name"
               name="search"
               type="text"
-              placeholder="Type Username"
+              placeholder="Username"
               width="300px"
               value={this.state.search}
               onChange={this.onChange}
