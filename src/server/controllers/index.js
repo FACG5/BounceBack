@@ -2,9 +2,9 @@ const express = require('express');
 const getCount = require('./getCount');
 const participants = require('./participants');
 const courses = require('./courses');
-const Login = require("./login");
-const workers = require("./workers");
-const managers = require("./managers");
+const Login = require('./login');
+const workers = require('./workers');
+const managers = require('./managers');
 
 const Router = express.Router();
 
@@ -27,29 +27,29 @@ Router.delete('/course', participants.deleteCourse);
 
 // Courses Routes
 Router.get('/courses', courses.get);
-Router.delete("/courses", courses.delete);
-Router.post("/courses/search", courses.search);
-Router.get("/course/:id", courses.details);
+Router.delete('/courses', courses.delete);
+Router.post('/courses/search', courses.search);
+Router.get('/course/:id', courses.details);
 Router.post('/courses', courses.post);
 Router.put('/course/:id', courses.update);
 
 // Workers Routes
-Router.get("/workers", workers.get);
-Router.delete("/workers", workers.delete);
-Router.post("/workers/search", workers.search);
-Router.get("/worker/:id", workers.getDetails);
+Router.get('/workers', workers.get);
+Router.delete('/workers', workers.delete);
+Router.post('/workers/search', workers.search);
+Router.get('/worker/:id', workers.getDetails);
 Router.post('/workers', workers.post);
 Router.put('/worker/:id', workers.update);
 
 // Managers Routes
-Router.get("/managers", managers.get);
-Router.delete("/managers", managers.delete);
+Router.get('/managers', managers.get);
+Router.delete('/managers', managers.delete);
 Router.post('/managers/search', managers.search);
 Router.get('/manager/:id', managers.getDetails);
 Router.post('/managers', managers.post);
 Router.put('/manager/:id', managers.update);
 
-// login route
-Router.post("/login", Login.get);
+// LoginRoute
+Router.post('/login', Login.get);
 
 module.exports = Router;
