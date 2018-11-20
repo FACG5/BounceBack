@@ -21,6 +21,7 @@ Router.put('/participant/:id', participants.update);
 
 Router.get('/participant/:id/dates', participants.getDates);
 Router.delete('/date', participants.deleteDate);
+Router.get('/participant/:id/date/details/:dateId', participants.getDateDetails);
 
 Router.get('/courses', courses.get);
 Router.delete("/courses", courses.delete);
