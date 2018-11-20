@@ -174,7 +174,7 @@ getAllParticipants = async () => {
               label="Search by name"
               name="searchByName"
               type="text"
-              placeholder="Fullname"
+              placeholder="fullname"
               width="350px"
               value={this.state.nameSearch}
               onChange={this.onChangeName}
