@@ -1,11 +1,12 @@
-const express = require("express");
-const path = require("path");
-const Router = require("./controllers");
-const cookieParser = require("cookie-parser");
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const Router = require('./controllers');
+
 const app = express();
 
-app.disable("x-powered-by");
-app.set("port", process.env.PORT || 5000);
+app.disable('x-powered-by');
+app.set('port', process.env.PORT || 5000);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -16,4 +17,3 @@ app.get('*', (req, res) => {
 });
 
 module.exports = app;
-
