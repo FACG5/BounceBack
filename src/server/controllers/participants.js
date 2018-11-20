@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const participant = require("../database/models/participant");
 const dates = require("../database/models/dates");
+const courses = require("../database/models/participantCourses");
 
 // Get all participants
 exports.get = async (req, res) => {
@@ -186,3 +187,39 @@ exports.getDateDetails = async (req, res) => {
   }
 };
  
+// Get courses for an individual participant
+exports.getCourses = async (req, res) => {
+  try {
+    const participantId = req.params.id;
+    
+    const participantCourses = await courses.findAll({
+      where: {
+        participant_id: participantId
+      }
+    }); 
+    res.send({ participantCourses });
+  } catch (err) {
+    res.status(500).send({ err });
+  }
+};
+
+// delete an exist course for an individual participant
+exports.deleteCourse = (req, res) => {
+  try {
+    courses
+      .destroy({
+        where: {
+          id: req.body.courseId
+        }
+      })
+      .then(() => {
+        res.status(200).send({
+          message: "course deleted successfully"
+        });
+      });
+  } catch (err) {
+    res.status(500).send({
+      err
+    });
+  }
+};
