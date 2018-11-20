@@ -27,8 +27,8 @@ export default class index extends Component {
     this.setState(fields);
   };
 
-  addParticipant = obj => {
-    swal({
+  addParticipant = async obj => {
+    const confirm = await swal({
       type: "warning",
       html: "Are you sure that you want to add this participant ?",
       showCancelButton: true,
@@ -37,36 +37,32 @@ export default class index extends Component {
       confirmButtonAriaLabel: "Thumbs up",
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
-    }).then(confirm => {
-      if (confirm.value) {
-        axios("/api/v2/participants", {
-          method: "POST",
-          data: {
-            participantdata: obj
-          }
-        }).then(result => {
-          if (result.data.error) {
-            swal({
-              title: "",
-              type: "warning",
-              html: result.data.error,
-              confirmButtonText: "Ok"
-            });
-          } else {
-            swal({
-              title: "Success",
-              type: "success",
-              html: result.data.message
-            }).then(confirm => {
-              if (confirm.value) {
-                this.setState({ ...obj });
-                this.props.history.push("/participants/view");
-              }
-            });
-          }
-        });
-      }
     });
+    if (confirm.value) {
+      const result = await axios("/api/v2/participants", {
+        method: "POST",
+        data: {
+          participantdata: obj
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+          this.props.history.push("/participants/view");
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+          this.setState({ ...obj });
+          this.props.history.push("/participants/view");
+      }
+    }
   };
 
   // the implemention waiting  back end api

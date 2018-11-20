@@ -58,3 +58,20 @@ exports.details= async (req, res) => {
     res.send({ error });
   }
 };
+
+exports.post = async (req, res) => {
+  try {
+    const { courseData } = req.body;
+    const { count } = await courses.findAndCountAll({
+      where: {
+        course_name: courseData.course_name
+      }
+    });
+    if (count !== 0) throw new TypeError("The name is used before");
+    await courses.create(courseData);
+    res.send({ message: "Adding course done" });
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
+  }
+};
