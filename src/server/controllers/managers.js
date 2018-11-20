@@ -25,7 +25,7 @@ exports.search = async (req, res) => {
     const { managerName } = req.body;
     const managersData = await managers.findAll({
       where: {
-        fullname: {
+        username: {
           [Op.like]: `%${managerName}%`
         }
       }
@@ -40,24 +40,44 @@ exports.search = async (req, res) => {
   }
 };
 
-exports.getDetails= async (req, res) => {
+exports.getDetails = async (req, res) => {
   try {
     const managerId = req.params.id;
     const result = await managers.findAll({
       where: {
-        id: managerId 
+        id: managerId
       }
     });
     if (result[0]) {
-      const details= (result[0].dataValues);
-      console.log(details);
-      
+      const details = result[0].dataValues;
       res.status(200).send(details);
     } else {
       res.status(404).send("Error in finding result");
     }
   } catch (error) {
-    console.log(error)
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
-}; 
+};
+
+exports.post = async (req, res) => {
+  try {
+    const { managerData } = req.body;
+    const usernameCount = await managers.findAndCountAll({
+      where: {
+        username: managerData.username
+      }
+    });
+    if (usernameCount.count !== 0) throw new TypeError("The name is used before");
+    const emailCount = await managers.findAndCountAll({
+      where: {
+        email: managerData.email
+      }
+    });
+    if (emailCount.count !== 0) throw new TypeError("The email is used before");
+    await managers.create(managerData);
+    res.send({ message: "Adding manager done" });
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
+  }
+};
