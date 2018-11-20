@@ -1,93 +1,93 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connection");
+const Sequelize = require('sequelize');
+const sequelize = require('../config/connection');
 
-const participant = sequelize.define("participant", {
+const participant = sequelize.define('participant', {
   surename: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   forename: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   fullname: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   date_of_birth: {
     type: Sequelize.DATE,
-    allowNull: false
+    allowNull: false,
   },
   age: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   address: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   gender: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   martial_status: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   sexual_orientatuin: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   ethincity: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   dependents: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   nationality: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   borough: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   postcode: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
   },
   mobile: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   landline: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   kin_contact: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   ni_number: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   als: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   cscs_number: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   cscs_support: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   case_worker: {
-  type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   leteracy_level: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   numeracy_level: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
   disability_and_medical: {
-    type: Sequelize.TEXT
-  }
+    type: Sequelize.TEXT,
+  },
 });
 
 module.exports = participant;
