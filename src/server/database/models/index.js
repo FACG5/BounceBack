@@ -33,11 +33,11 @@ participantCourses.belongsTo(courses, {
 courses.hasMany(participantCourses, { foreignKey: 'course_id' });
 
 module.exports = {
-    participants,
-    dates,
-    workers,
-    courses,
-    prison,
-    staff,
-    connection
+  participants,
+  dates,
+  workers,
+  courses,
+  prison,
+  staff,
+  connection,
 };
