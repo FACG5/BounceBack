@@ -81,3 +81,20 @@ exports.post = async (req, res) => {
     res.send({ error: message });
   }
 };
+
+// Update information of manager
+exports.update = async (req, res) => {
+  try {
+    const { managerData } = req.body;
+    const managerId = req.params.id;
+    await managers.update(managerData, {
+      where: {
+        id: managerId
+      }
+    });
+    res.send({message: 'updating data is done'});
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
+  }
+};
