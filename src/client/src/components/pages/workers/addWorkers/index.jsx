@@ -38,7 +38,6 @@ export default class index extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
-      console.log('SSS')
       const result = await axios("/api/v2/workers", {
         method: "POST",
         data: {
