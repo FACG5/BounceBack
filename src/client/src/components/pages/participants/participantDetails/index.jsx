@@ -4,7 +4,6 @@ import {
   fields as fieldSet,
   validationForm
 } from "./staticData";
-import Button from "./../../../abstract/button";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from "axios";
@@ -19,6 +18,7 @@ class index extends Component {
   };
 
   goDates = event => {
+    console.log('hello world')
     const id = this.props.match.params.id;
     this.props.history.push(`/participant/${id}/dates`);
   };
@@ -72,12 +72,8 @@ class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack]}
+          btnEvents={[this.onSubmit, this.goBack, this.goDates, this.goTrainings]}
         />
-        <div className="button-taps">
-          <Button value="Dates" onClick={this.goDates} color="#272727"/>
-          <Button value="Trainings" onClick={this.goTrainings} color="#272727"/>
-        </div>
         <Footer />
       </>
     );
