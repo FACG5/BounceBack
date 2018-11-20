@@ -17,6 +17,7 @@ Router.post('/participants/search/name', participants.searchByName);
 Router.post('/participants/search/date', participants.searchBydate);
 Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants', participants.post);
+Router.put('/participant/:id', participants.update);
 
 Router.get('/participant/:id/dates', participants.getDates);
 Router.delete('/date', participants.deleteDate);
