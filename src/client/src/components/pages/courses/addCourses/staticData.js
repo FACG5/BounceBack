@@ -8,7 +8,7 @@ export const state = {
 export const fields = [
     [{
             tag: "Input",
-            label: "course name",
+            label: "Course Name",
             name: "courseName",
             width: "20rem",
             placeholder: "course name"
@@ -24,14 +24,14 @@ export const fields = [
     [
         {
             tag: "Input",
-            label: "Course start",
+            label: "Course Start",
             name: "startDate",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
-            label: "Course end",
+            label: "Course End",
             name: "endDate",
             width: "20rem",
             type: "date",
