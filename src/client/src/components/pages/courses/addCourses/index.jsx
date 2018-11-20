@@ -33,9 +33,9 @@ export default class index extends Component {
       html: "Are you sure that you want to add this course ?",
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: "Thumbs up",
-      cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
