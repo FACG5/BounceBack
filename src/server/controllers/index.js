@@ -31,6 +31,7 @@ Router.get("/workers", workers.get);
 Router.delete("/workers", workers.delete);
 Router.post("/workers/search", workers.search);
 Router.get("/worker/:id", workers.getDetails);
+Router.post('/workers', workers.post);
 
 
 Router.get("/managers", managers.get);
