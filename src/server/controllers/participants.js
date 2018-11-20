@@ -76,24 +76,24 @@ exports.searchBydate = async (req, res) => {
 };
 
 // Get the details for an individual participant
-exports.getDetails= async (req, res) => {
+exports.getDetails = async (req, res) => {
   try {
     const participantId = req.params.id;
     const result = await participant.findAll({
       where: {
-        id: participantId 
+        id: participantId
       }
     });
     if (result[0]) {
-      const details= (result[0].dataValues);
+      const details = result[0].dataValues;
       res.status(200).send(details);
     } else {
       res.status(404).send("Error in finding result");
     }
   } catch (error) {
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
-}; 
+};
 
 // Add new participant
 exports.post = async (req, res) => {
@@ -146,5 +146,22 @@ exports.deleteDate = (req, res) => {
     res.status(500).send({
       err
     });
+  }
+};
+
+// Update information of participant
+exports.update = async (req, res) => {
+  try {
+    const { participantData } = req.body;
+    const participantId = req.params.id;
+    await participant.update(participantData, {
+      where: {
+        id: participantId
+      }
+    });
+    res.send({message: 'updating data is done'});
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
   }
 };
