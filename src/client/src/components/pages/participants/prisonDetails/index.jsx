@@ -64,7 +64,6 @@ class PresionDetails extends Component {
           type: "success",
           html: result.data.message
         });
-        this.setState({ ...newPrisonDetails });
         this.props.history.push("/participants/view");
       }
     }
