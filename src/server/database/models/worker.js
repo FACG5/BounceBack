@@ -13,6 +13,7 @@ const worker = sequelize.define('worker', {
   username: {
     type: Sequelize.TEXT,
     allowNull: false,
+    unique: true,
   },
   date_of_birth: {
     type: Sequelize.DATE,

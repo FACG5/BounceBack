@@ -36,7 +36,7 @@ class Date extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/dates`);
       const dates = result.data.participantDates;
-      let array = [["Participant Name/BB-No", "Worker Name/ID", "Start", "End", "Action"]];
+      let array = [["Worker Name", "date","Action"]];
       if (dates.length === 0){
         const msg = 'There is no dates yet !!';
         array =[];          
@@ -45,10 +45,8 @@ class Date extends Component {
       else{    
       dates.map(row =>
         array.push([
-          row.participant_id,
-          row.worker_id,
-          row.date_start.split("T")[0],
-          row.date_end.split("T")[0],
+          row.worker_name,
+          row.date.split("T")[0],
           <>
              <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
              <Link to= {`/participant/${id}/date/details/${row.id}`}>

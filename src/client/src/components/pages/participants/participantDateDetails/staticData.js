@@ -1,41 +1,23 @@
 export const state = {
-    participant_id: "",
-    worker_id: "",
-    date_start: "",
-    date_end: "",
+    worker_name: "",
+    date: "",
     note: ""
 };
 export const fields = [
     [{
-            tag: "Input",
-            label: "Participant_id/name",
-            name: "participant_id",
-            width: "20rem",
-            placeholder: "date name",
-        },
-        {
-            tag: "Input",
-            label: "worker_id/name",
-            name: "worker_id",
-            width: "20rem",
-            placeholder: "date Id",
-        }
-    ],
-    [
-        {
-            tag: "Input",
-            label: "Date start",
-            name: "date_start",
-            width: "20rem",
-            type: "date",
-        },
-        {
-            tag: "Input",
-            label: "Date end",
-            name: "date_end",
-            width: "20rem",
-            type: "date",
-        }
+        tag: "Input",
+        label: "worker Name",
+        name: "worker_name",
+        width: "20rem",
+        placeholder: "date Id",
+    },
+    {
+        tag: "Input",
+        label: "Date:",
+        name: "date",
+        width: "20rem",
+        type: "date",
+    },
     ],
     [
         {
