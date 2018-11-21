@@ -8,11 +8,11 @@ export const state = {
 };
 export const fields = [
     [{
-        tag: "Input",
+        tag: "DropDown",
         label: "Course Name",
         name: "course_name",
         width: "40rem",
-        placeholder: "course name",
+        options: [],
     }
     ],
     [
