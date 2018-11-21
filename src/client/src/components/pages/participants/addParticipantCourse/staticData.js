@@ -1,55 +1,78 @@
 export const state = {
-    courseName: "",
-    startDate: "",
-    endDate: ""
+    course_start: "",
+    course_end: "",
+    details: "",
+    enrollment_status: "",
+    employment_outcomes: "",
+    course_name: "",  
 };
 export const fields = [
     [{
-        tag: "DropDown",
+        tag: "Input",
         label: "Course Name",
-        name: "courseName",
+        name: "course_name",
         width: "40rem",
-        options: [  'Level 2 Diploma in Scaffolding', 
-                    'Level 1 Certificate in Construction Skills (Painting & Decorating)',
-                    'Level 2 Certificate in Preparation and Application of Paint Systems',
-                    'Level 2 Diploma in Dry Lining',
-                    'Level 1 Award in Construction Skills (Painting and Decorating)',
-                    'Level 1 Award in  Employability',
-                    'CSCS Card',
-                ]
+        placeholder: "course name",
     }
     ],
     [
         {
             tag: "Input",
             label: "Course start",
-            name: "startDate",
+            name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course end",
-            name: "endDate",
+            name: "course_end",
             width: "20rem",
             type: "date",
         }
     ],
     [
+       {
+        tag: "DropDown",
+        label: "Enrollment Status",
+        name: "enrollment_status",
+        width: "20rem",
+        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'faild', 'reset' ]
+       },
+       {
+        tag: "DropDown",
+        label: "Employment Outcomes",
+        name: "employment_outcomes",
+        width: "20rem",
+        options: [ 'employed' , 'not employed yet']
+       },
+    ],
+
+    [
         {
+            tag: "Textarea",
+            label: "Details/ Notes",
+            name: "details",
+            width: "45rem",
+            height: "10rem",
+        }
+    ],
+    [
+    {
         tag: 'Button',
-        value: "Add Course",
+        value: "Add Intervention",
         color: "#272727",
         staticField: true
     },
     {
         tag: 'Button',
-        value: "Cancel",
+        value: "Back",
         color: "#FF4800",
         staticField: true
     }
     ]
 ];
+
 export const validationForm = (fields) => {
     for (const key in fields) {
         if (fields[key] === "")
