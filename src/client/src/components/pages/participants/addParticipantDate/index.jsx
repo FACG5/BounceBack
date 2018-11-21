@@ -26,10 +26,7 @@ export default class index extends Component {
     const data = await axios("/api/v2/workers");
     const final = data.data.workersData;
 
-    let workersName = fieldSet[0][0].options;
-    final.map(value => {
-      return workersName.push(value.username);
-    });
+    fieldSet[0][0].options = final.map(value => value.username )
 
     this.setState({ worker_name: final[0].username });
   };
@@ -47,7 +44,6 @@ export default class index extends Component {
     });
     if (confirm.value) {
       const { id } = this.props.match.params;
-      const { worker_name, date, note } = obj;
       const result = await axios(`/api/v2/participant/${id}/date`, {
         method: "POST",
         data: {
