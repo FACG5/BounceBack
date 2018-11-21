@@ -6,8 +6,11 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from "axios";
+import swal from "sweetalert2";
+import contextHoc from './../../../abstract/HOC/contextHoc';
 
-export default class index extends Component {
+class PresionDetails extends Component {
   state = initialState;
 
   onChange = event => {
@@ -26,6 +29,47 @@ export default class index extends Component {
     this.setState(fields);
   };
 
+
+
+  addPrisonDetails = async newPrisonDetails => {
+    const { id } = this.props.match.params;
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure for adding this prison details ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const result = await axios(`/api/v2/participants/${id}/prison`, {
+        method: "POST",
+        data: {
+          prisonDetails: newPrisonDetails,
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+        this.props.history.push("/participants/view");
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+        this.setState({ ...newPrisonDetails });
+        this.props.history.push("/participants/view");
+      }
+    }
+  };
+
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
@@ -33,10 +77,7 @@ export default class index extends Component {
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.addPrisonDetails(fields);
   };
 
   render() {
@@ -54,3 +95,5 @@ export default class index extends Component {
     );
   }
 }
+
+export default contextHoc(PresionDetails);
