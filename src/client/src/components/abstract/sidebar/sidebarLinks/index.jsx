@@ -9,6 +9,7 @@ class SideLinks extends Component {
     removeCookies();
     localStorage.clear();
     dispatch({ type: "LOGIN_USER", payload: { logging: false } });
+    document.location.href = "/login";
   };
   render() {
     return (
