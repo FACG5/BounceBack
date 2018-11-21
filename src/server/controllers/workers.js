@@ -75,3 +75,20 @@ exports.post = async (req, res) => {
     res.send({ error: message });
   }
 };
+
+// Update information of worker
+exports.update = async (req, res) => {
+  try {
+    const { workerData } = req.body;
+    const workerId = req.params.id;
+    await workers.update(workerData, {
+      where: {
+        id: workerId,
+      },
+    });
+    res.send({ message: 'updating data is done' });
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
+  }
+};

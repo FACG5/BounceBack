@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const courses = require('../database/models/course');
 
+// get the courses
 exports.get = async (req, res) => {
   try {
     const coursesData = await courses.findAll();
@@ -10,6 +11,7 @@ exports.get = async (req, res) => {
   }
 };
 
+// Delete course
 exports.delete = (req, res) => {
   try {
     courses.destroy({ where: { id: req.body.courseId } }).then(() => {
@@ -59,6 +61,7 @@ exports.details = async (req, res) => {
   }
 };
 
+// add new course
 exports.post = async (req, res) => {
   try {
     const { courseData } = req.body;
@@ -70,6 +73,23 @@ exports.post = async (req, res) => {
     if (count !== 0) throw new TypeError('The name is used before');
     await courses.create(courseData);
     res.send({ message: 'Adding course done' });
+  } catch (error) {
+    const { message } = error;
+    res.send({ error: message });
+  }
+};
+
+// Update information of course
+exports.update = async (req, res) => {
+  try {
+    const { courseData } = req.body;
+    const courseId = req.params.id;
+    await courses.update(courseData, {
+      where: {
+        id: courseId
+      }
+    });
+    res.send({message: 'updating data is done'});
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
