@@ -5,21 +5,22 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
-import axios from 'axios';
+import Footer from "../../../abstract/footer";
+import axios from "axios";
+import swal from 'sweetalert2';
 
 export default class index extends Component {
   state = initialState;
 
-  onChange = async event => {
+  onChange =async event => {
     const { value, name } = event.target;
     await this.setState({ [name]: value });
-    // console.log(this.state.workerName);
+    console.log(value)
   };
 
   cancleAction = event => {
     const { id } = this.props.match.params;
-    this.props.history.push(`/participant/${id}/dates`)
+    this.props.history.push(`/participant/${id}/dates`);
   };
 
   getWorkersNames = async () => {
@@ -27,16 +28,56 @@ export default class index extends Component {
     const final = data.data.workersData;
     let workersName = fieldSet[0][0].options;
     final.map(value => {
-      
       return workersName.push(value.username);
+    });
+    this.setState({ workerName: workersName });
+  };
+
+  addDate = async (obj) => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure that you want to add this date ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const { id } = this.props.match.params;
+      const { worker_name, date, note } = obj;
+      const result = await axios(`/api/v2/participant/${id}/date`, {
+        method: 'POST',
+        data: {
+          selectedName: worker_name,
+          date: date,
+          note: note
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+        this.setState({ ...obj });
+        // console.log(id);
+        this.props.history.push(`/participant/${id}/dates`)
+      }
     }
-    )
-    this.setState({workerName: workersName})
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.getWorkersNames();
-  }
+  };
 
   // the implemention waiting  back end api
   onSubmit = event => {
@@ -44,11 +85,8 @@ export default class index extends Component {
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
-
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    // console.log(fields.worker_name)
+    this.addDate(fields);
   };
 
   render() {
