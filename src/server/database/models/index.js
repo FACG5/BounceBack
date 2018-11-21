@@ -28,9 +28,9 @@ dates.belongsTo(workers, {
 workers.hasMany(dates, { foreignKey: 'worker_name' });
 
 participantCourses.belongsTo(courses, {
-  onDelete: 'CASCADE', foreignKey: 'course_id', targetKey: 'id',
+  onDelete: 'CASCADE', foreignKey: 'course_name', targetKey: 'course_name',
 });
-courses.hasMany(participantCourses, { foreignKey: 'course_id' });
+courses.hasMany(participantCourses, { foreignKey: 'course_name' });
 
 module.exports = {
   participants,
