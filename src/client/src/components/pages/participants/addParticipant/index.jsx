@@ -11,12 +11,23 @@ import axios from "axios";
 import swal from "sweetalert2";
 
 export default class index extends Component {
-  state = initialState;
+  state = initialState
+  
 
   onChange = event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value });
+      this.setState({ [name]: value });
   };
+
+  // check the participant in prison or not
+  onChecked = event => {
+    if (this.state.checked) {
+      event.target.style.background = '#ccc'
+    } else {
+      event.target.style.background = '#FF4800'
+    }
+    this.setState({ checked: !this.state.checked });
+  }
 
   clearFields = event => {
     event.preventDefault();
@@ -52,7 +63,6 @@ export default class index extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-          this.props.history.push("/participants/view");
       } else {
         await swal({
           title: "Success",
@@ -60,7 +70,12 @@ export default class index extends Component {
           html: result.data.message
         });
           this.setState({ ...obj });
-          this.props.history.push("/participants/view");
+          if (this.state.checked) {
+            this.props.history.push("/participants/view");
+          } else {
+            const id = result.data.id;
+            this.props.history.push(`/participants/${id}/prison`)
+          }
       }
     }
   };
@@ -83,7 +98,7 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.clearFields]}
+          btnEvents={[this.onChecked, this.onSubmit, this.clearFields]}
         />
         <Footer />
       </div>

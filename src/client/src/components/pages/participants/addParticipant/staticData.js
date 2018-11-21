@@ -24,7 +24,9 @@ export const state = {
   leteracy_level: "",
   case_worker: "JP",
   numeracy_level: "",
-  disability_and_medical: ""
+  disability_and_medical: "",
+  checked: true
+
 };
 export const fields = [
   [
@@ -246,9 +248,15 @@ export const fields = [
       name: "disability_and_medical",
       width: "35rem",
       placeholder: "disability"
-    }
+    },
   ],
   [
+    {
+      tag: "Button",
+      value: "In prison",
+      color: "#FF4800",
+      staticField: true
+    },
     {
       tag: "Button",
       value: "Add participant",
@@ -260,7 +268,7 @@ export const fields = [
       value: "Clear",
       color: "#FF4800",
       staticField: true
-    }
+    },
   ]
 ];
 
