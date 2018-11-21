@@ -6,18 +6,37 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from 'axios';
 
 export default class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = async event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value });
+    await this.setState({ [name]: value });
+    // console.log(this.state.workerName);
   };
 
   cancleAction = event => {
-    this.props.history.push('/participants/dates')
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/${id}/dates`)
   };
+
+  getWorkersNames = async () => {
+    const data = await axios("/api/v2/workers");
+    const final = data.data.workersData;
+    let workersName = fieldSet[0][0].options;
+    final.map(value => {
+      
+      return workersName.push(value.username);
+    }
+    )
+    this.setState({workerName: workersName})
+  }
+
+  componentDidMount = () => {
+    this.getWorkersNames();
+  }
 
   // the implemention waiting  back end api
   onSubmit = event => {

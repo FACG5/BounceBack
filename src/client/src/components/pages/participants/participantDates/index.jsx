@@ -21,7 +21,8 @@ class Date extends Component {
   };
 
   goAdd = event => {
-    this.props.history.push("/participants/date/add");
+    const id = this.props.match.params.id;
+    this.props.history.push(`/participants/${id}/date/add`);
   };
 
   goBack = event => {

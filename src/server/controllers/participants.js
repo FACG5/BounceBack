@@ -222,3 +222,10 @@ exports.deleteCourse = (req, res) => {
     });
   }
 };
+
+// Add participant Date
+exports.addDate = (req, res) => {
+  const participantId = req.params.id;
+  const { dateData } = req.body;
+  // dates.create(dateData);
+};
