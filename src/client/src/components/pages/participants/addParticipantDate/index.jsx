@@ -83,6 +83,8 @@ export default class index extends Component {
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
+    const error = validationForm(fields);
+    if (error) return this.setState({ error });
     this.addDate(fields);
   };
 
