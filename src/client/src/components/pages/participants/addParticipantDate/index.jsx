@@ -7,15 +7,14 @@ import {
 import Form from "./../../../abstract/Form";
 import Footer from "../../../abstract/footer";
 import axios from "axios";
-import swal from 'sweetalert2';
+import swal from "sweetalert2";
 
 export default class index extends Component {
   state = initialState;
 
-  onChange =async event => {
+  onChange = async event => {
     const { value, name } = event.target;
     await this.setState({ [name]: value });
-    console.log(value)
   };
 
   cancleAction = event => {
@@ -26,14 +25,16 @@ export default class index extends Component {
   getWorkersNames = async () => {
     const data = await axios("/api/v2/workers");
     const final = data.data.workersData;
+
     let workersName = fieldSet[0][0].options;
     final.map(value => {
       return workersName.push(value.username);
     });
-    this.setState({ workerName: workersName });
+
+    this.setState({ worker_name: final[0].username });
   };
 
-  addDate = async (obj) => {
+  addDate = async obj => {
     const confirm = await swal({
       type: "warning",
       html: "Are you sure that you want to add this date ?",
@@ -48,7 +49,7 @@ export default class index extends Component {
       const { id } = this.props.match.params;
       const { worker_name, date, note } = obj;
       const result = await axios(`/api/v2/participant/${id}/date`, {
-        method: 'POST',
+        method: "POST",
         data: {
           selectedName: worker_name,
           date: date,
@@ -69,11 +70,10 @@ export default class index extends Component {
           html: result.data.message
         });
         this.setState({ ...obj });
-        // console.log(id);
-        this.props.history.push(`/participant/${id}/dates`)
+        this.props.history.push(`/participant/${id}/dates`);
       }
     }
-  }
+  };
 
   componentWillMount = () => {
     this.getWorkersNames();
@@ -83,9 +83,6 @@ export default class index extends Component {
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
-    const error = validationForm(fields);
-    if (error) return this.setState({ error });
-    // console.log(fields.worker_name)
     this.addDate(fields);
   };
 
