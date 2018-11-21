@@ -10,6 +10,12 @@ class LoginForm extends Component {
     username: "",
     password: ""
   };
+  componentWillMount = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.logging) {
+      this.props.history.push("/login");
+    }
+  };
   onChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
