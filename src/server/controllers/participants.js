@@ -106,8 +106,8 @@ exports.post = async (req, res) => {
       },
     });
     if (count !== 0) throw new TypeError('The email is used');
-    await participant.create(participantdata);
-    res.send({ message: 'Adding participant done' });
+    const participantData = await participant.create(participantdata);
+    res.send({ message: 'Adding participant done', id: participantData.dataValues.id });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
