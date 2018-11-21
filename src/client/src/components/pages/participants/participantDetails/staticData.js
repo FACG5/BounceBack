@@ -270,7 +270,7 @@ export const fields = [
     },
     {
       tag: "Button",
-      value: "Training",
+      value: "Interventions",
       color: "#FF4800",
       staticField: true
     }
