@@ -21,7 +21,8 @@ class Course extends Component {
   };
 
   goAdd = event => {
-    this.props.history.push("/participants/course/add");
+    const id = this.props.match.params.id;
+    this.props.history.push(`/participants/${id}/course/add`);
   };
 
   goBack = event => {
@@ -36,7 +37,7 @@ class Course extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/courses`);
       const courses = result.data.participantCourses;
-      let array = [["Participan Id/ name", "Course Id/ name", "Start", "End", "Action"]];
+      let array = [["course name","course start", "course end", "enrollment status", "Action"]];
       if (courses.length === 0){
         const msg = 'There is no courses yet !!';
         array =[];          
@@ -45,10 +46,10 @@ class Course extends Component {
       else{    
       courses.map(row =>
         array.push([
-          row.participant_id,
-          row.course_id,
+          row.course_name,
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
+          row.enrollment_status,
           <>
              <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
              <Link to= {`/participant/${id}/course/details/${row.id}`}>
@@ -103,7 +104,7 @@ class Course extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header value="View Courses" />
+        <Header value="Participant Interventions" />
         <Table rows={this.state.rows} />
         {this.state.rows.length === 0 && (
             <p className="error-msg">

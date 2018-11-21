@@ -8,9 +8,15 @@ const participantCourses = sequelize.define('participantCourses', {
   course_end: {
     type: Sequelize.DATE,
   },
-  description: {
+  details: {
     type: Sequelize.TEXT,
-    allowNull: false,
+    allowNull: true,
+  },
+  enrollment_status: {
+    type: Sequelize.TEXT,
+  },
+  employment_outcomes: {
+    type: Sequelize.TEXT,
   },
 });
 

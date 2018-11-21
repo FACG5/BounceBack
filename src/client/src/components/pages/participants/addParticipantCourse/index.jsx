@@ -16,7 +16,8 @@ export default class index extends Component {
   };
 
   cancleAction = event => {
-    this.props.history.push('/participants/courses')
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participants/${id}/courses`);
   };
 
   // the implemention waiting  back end api
@@ -36,7 +37,7 @@ export default class index extends Component {
     return (
       <div>
         <Form
-          title="Add Course For Participant"
+          title="Add New Intervention For Participant"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
