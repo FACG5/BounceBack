@@ -12,3 +12,7 @@
     grid-template-columns: 1fr 4fr;
     padding-top: 2rem; 
 }
+
+.checked {
+    background: #ccc;
+}
