@@ -5,6 +5,7 @@ const course = sequelize.define('course', {
   course_name: {
     type: Sequelize.TEXT,
     allowNull: false,
+    unique: true,
   },
   course_category: {
     type: Sequelize.TEXT,

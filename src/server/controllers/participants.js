@@ -238,3 +238,23 @@ exports.addDate = async (req, res) => {
     });
   }
 };
+
+// Get the details for an individual course
+exports.getCourseDetails = async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const result = await courses.findAll({
+      where: {
+        id: courseId,
+      },
+    });
+    if (result[0]) {
+      const details = (result[0].dataValues);
+      res.status(200).send(details);
+    } else {
+      res.status(404).send('Error in finding result');
+    }
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
+};

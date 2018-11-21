@@ -19,12 +19,17 @@ Router.post('/participants/search/date', participants.searchBydate);
 Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants', participants.post);
 Router.put('/participant/:id', participants.update);
+
+// Participants Dates Routes
 Router.get('/participant/:id/dates', participants.getDates);
 Router.delete('/date', participants.deleteDate);
 Router.get('/participant/:id/date/details/:dateId', participants.getDateDetails);
+Router.post('/participant/:id/date', participants.addDate);
+
+// Participants Courses Routes
 Router.get('/participant/:id/courses', participants.getCourses);
 Router.delete('/course', participants.deleteCourse);
-Router.post('/participant/:id/date', participants.addDate);
+Router.get('/participant/:id/course/details/:courseId', participants.getCourseDetails);
 
 // Courses Routes
 Router.get('/courses', courses.get);
