@@ -28,9 +28,8 @@ class index extends Component {
     axios(`/api/v2/participant/${id}/date/details/${date_id}`)
       .then(result => {
         const { data } = result;
-        const dateStart = data.date_start.split("T")[0];
-        const dateEnd = data.date_end.split("T")[0];
-        this.setState({ ...data, date_end: dateEnd, date_start:dateStart });
+        const currentDate = data.date.split("T")[0];
+        this.setState({ ...data, date: currentDate });
       })
       .catch(error => {
         dispatch({
