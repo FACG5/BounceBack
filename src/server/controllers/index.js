@@ -5,6 +5,7 @@ const courses = require('./courses');
 const Login = require('./login');
 const workers = require('./workers');
 const managers = require('./managers');
+const prison = require('./prison');
 
 const Router = express.Router();
 
@@ -19,6 +20,9 @@ Router.post('/participants/search/date', participants.searchBydate);
 Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants', participants.post);
 Router.put('/participant/:id', participants.update);
+
+// Participants Prison Details Routes
+Router.post('/participants/:id/prison', prison.post);
 
 // Participants Dates Routes
 Router.get('/participant/:id/dates', participants.getDates);
