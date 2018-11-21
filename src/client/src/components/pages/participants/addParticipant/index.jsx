@@ -70,7 +70,6 @@ export default class index extends Component {
           html: result.data.message
         });
           this.setState({ ...obj });
-          // this.props.history.push("/participants/view");
           if (this.state.checked) {
             this.props.history.push("/participants/view");
           } else {
