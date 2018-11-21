@@ -5,7 +5,7 @@ import Footer from "../../../abstract/footer";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 
-class index extends Component {
+class ParticipantCourseDetails extends Component {
   state = initialState;
 
   goBack = event => {
@@ -59,4 +59,4 @@ class index extends Component {
   }
 }
 
-export default contextHoc(index);
+export default contextHoc(ParticipantCourseDetails);
