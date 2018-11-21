@@ -25,10 +25,7 @@ export default class index extends Component {
   getCoursesNames = async () => {
     const data = await axios("/api/v2/courses");
     const final = data.data.coursesData;
-    let coursesName = fieldSet[0][0].options;
-    final.map(value => {
-      return coursesName.push(value.course_name);
-    });
+    fieldSet[0][0].options = final.map(value => value.course_name)
 
     this.setState({ course_name: final[0].course_name });
   };
