@@ -51,9 +51,7 @@ export default class index extends Component {
       const result = await axios(`/api/v2/participant/${id}/date`, {
         method: "POST",
         data: {
-          selectedName: worker_name,
-          date: date,
-          note: note
+          dateData: obj,
         }
       });
       if (result.data.error) {
