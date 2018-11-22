@@ -18,10 +18,6 @@ const participant = sequelize.define('participant', {
     type: Sequelize.DATE,
     allowNull: false,
   },
-  age: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   address: {
     type: Sequelize.TEXT,
   },
@@ -87,6 +83,12 @@ const participant = sequelize.define('participant', {
   },
   disability_and_medical: {
     type: Sequelize.TEXT,
+  },
+  employment_outcomes: {
+    type: Sequelize.STRING,
+  },
+  reoffending: {
+    type: Sequelize.STRING,
   },
 });
 
