@@ -51,7 +51,7 @@ export const fields = [
     [
         {
             tag: "Textarea",
-            label: "Details/ Notes",
+            label: "Details/ Notes (optional)",
             name: "details",
             width: "45rem",
             height: "10rem",

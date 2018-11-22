@@ -51,10 +51,10 @@ class Course extends Component {
           row.course_end.split("T")[0],
           row.enrollment_status,
           <>
-             <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-             <Link to= {`/participant/${id}/course/details/${row.id}`}>
-               <i className="fas fa-info-circle" />
-             </Link>
+            <Link to= {`/participant/${id}/course/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
            </>
          ])
        );

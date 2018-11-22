@@ -31,12 +31,12 @@ export default class Courses extends Component {
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
           <>
-           <i
-              className="fas fa-trash-alt" onClick={() => this.deleteCourse(row.id)}
-            />
             <Link to={`/courses/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
+            <i
+              className="fas fa-trash-alt" onClick={() => this.deleteCourse(row.id)}
+            />
           </>
         ])
       );
@@ -101,13 +101,13 @@ export default class Courses extends Component {
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
           <>
+            <Link to ={`/courses/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
             <i
               className="fas fa-trash-alt"
               onClick={() => this.deleteCourse(row.id)}
             />
-            <Link to ={`/courses/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
           </>
         ])
       );
