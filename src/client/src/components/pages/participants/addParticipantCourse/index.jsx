@@ -17,9 +17,9 @@ export default class index extends Component {
     this.setState({ [name]: value });
   };
 
-  cancleAction = event => {
+  cancleAction = () => {
     const { id } = this.props.match.params;
-    this.props.history.push(`/participants/${id}/courses`);
+    this.props.history.push(`/participant/${id}/courses`);
   };
 
   getCoursesNames = async () => {
