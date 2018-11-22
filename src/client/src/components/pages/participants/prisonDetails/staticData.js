@@ -1,26 +1,26 @@
 export const state = {
-    utrNo: "",
-    prison: "",
-    prisonNo: "",
-    officerName: "",
-    prisonIn: "",
-    prisonRelease: "",
-    rotlHdc: "",
+    utr_number: "",
+    prison_name: "",
+    prison_number: "",
+    officer_name: "",
+    prison_in: "",
+    prison_release: "",
+    rotl_hdc: "",
     offence: "",
-    prisonPointOfContact: ""
+    point_of_contact: ""
   };
   export const fields = [
       [{
               tag: "Input",
-              label: "UTR. No",
-              name: "utrNo",
+              label: "UTR. No.",
+              name: "utr_number",
               width: "15rem",
               placeholder: "UTR. No"
           },
           {
               tag: "Input",
               label: "Prison",
-              name: "prison",
+              name: "prison_name",
               width: "15rem",
               placeholder: "prison"
   
@@ -28,25 +28,25 @@ export const state = {
           {
             tag: "Input",
             label: "Prison No",
-            name: "prisonNo",
+            name: "prison_number",
             width: "15rem",
-            placeholder: "prison No"
+            placeholder: "prison number"
     
         }
       ],
       [{
           tag: "Input",
           label: "Probation officer name",
-          name: "officerName",
+          name: "officer_name",
           width: "35rem",
-          placeholder: "Probation officer name"
+          placeholder: "probation officer name"
   
       }],
       
       [{
               tag: "Input",
               label: "Prison In",
-              name: "prisonIn",
+              name: "prison_in",
               width: "15rem",
               type: "date",
   
@@ -54,16 +54,16 @@ export const state = {
           {
               tag: "Input",
               label: "Prison Release",
-              name: "prisonRelease",
+              name: "prison_release",
               width: "15rem",
               type: "date",
           },
           {
               tag: "Input",
               label: "ROTL/HDC",
-              name: "rotlHdc",
+              name: "rotl_hdc",
               width: "15rem",
-              placeholder: "ROTL/HDC"
+              placeholder: "ROTL / HDC"
           }
       ],
       [{
@@ -77,7 +77,7 @@ export const state = {
       {
         tag: "Input",
         label: "Prison Point Of Contact",
-        name: "prisonPointOfContact",
+        name: "point_of_contact",
         width: "20rem",
         placeholder: "prison point of contact"
 
