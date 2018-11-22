@@ -223,6 +223,21 @@ exports.deleteCourse = (req, res) => {
   }
 };
 
+// Add participant Date
+exports.addDate = async (req, res) => {
+  try {
+    const participantId = req.params.id;
+    const { dateData } = req.body;
+    dateData.participant_id = participantId;
+    await dates.create(dateData);
+    res.status(200).send({ message: 'Adding date is done' });
+  } catch (err) {
+    res.status(500).send({
+      err,
+    });
+  }
+};
+
 // Get the details for an individual course
 exports.getCourseDetails = async (req, res) => {
   try {
