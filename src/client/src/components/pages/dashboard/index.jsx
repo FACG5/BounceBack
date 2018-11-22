@@ -41,7 +41,7 @@ class index extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header value="Dashbourd" />
+        <Header value="Dashboard" />
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={this.state.participant} value="Participant" />

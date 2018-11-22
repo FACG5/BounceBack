@@ -128,7 +128,7 @@ export default class ViewManagers extends Component {
             label="Search"
             name="search"
             type="text"
-            placeholder="Type Name of manager"
+            placeholder="manager username"
             width="300px"
             value={this.state.search}
             onChange={this.onChange}
