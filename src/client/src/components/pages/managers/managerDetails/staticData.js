@@ -39,15 +39,6 @@ export const fields = [
     ],
     [
         {
-          tag: "Input",
-          label: "fullname",
-          name: "fullname",
-          width: "35rem",
-          placeholder: "fullname",
-        }
-      ],
-    [
-        {
             tag: "Input",
             label: "Day Of Birth",
             name: "date_of_birth",

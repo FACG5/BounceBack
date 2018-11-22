@@ -6,8 +6,10 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from 'axios';
+import contextHoc from './../../../abstract/HOC/contextHoc';
 
-export default class index extends Component {
+class index extends Component {
   state = initialState;
 
   onChange = event => {
@@ -16,9 +18,30 @@ export default class index extends Component {
   };
 
   goBack = event => {
-    this.props.history.push('/participants/dates')
+    const id = this.props.match.params.id;
+    this.props.history.push(`/participant/${id}/dates`);
   };
 
+  getDetails = async () => {
+    const { id, date_id } = this.props.match.params;
+    const { dispatch } = this.props.context;
+    axios(`/api/v2/participant/${id}/date/details/${date_id}`)
+      .then(result => {
+        const { data } = result;
+        const currentDate = data.date.split("T")[0];
+        this.setState({ ...data, date: currentDate });
+      })
+      .catch(error => {
+        dispatch({
+          type: "ERROR_PAGE",
+          payload: { ErrorPage: error.response.status }
+        });
+      });
+  };
+
+  componentDidMount = async () => {
+    this.getDetails();
+  };
 
   // the implemention waiting  back end api
   onSubmit = event => {
@@ -48,3 +71,6 @@ export default class index extends Component {
     );
   }
 }
+
+
+export default contextHoc(index);

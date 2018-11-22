@@ -23,21 +23,21 @@ participantCourses.belongsTo(participants, {
 participants.hasMany(participantCourses, { foreignKey: 'participant_id' });
 
 dates.belongsTo(workers, {
-  onDelete: 'CASCADE', foreignKey: 'worker_id', targetKey: 'id',
+  onDelete: 'CASCADE', foreignKey: 'worker_name', targetKey: 'username',
 });
-workers.hasMany(dates, { foreignKey: 'worker_id' });
+workers.hasMany(dates, { foreignKey: 'worker_name' });
 
 participantCourses.belongsTo(courses, {
-  onDelete: 'CASCADE', foreignKey: 'course_id', targetKey: 'id',
+  onDelete: 'CASCADE', foreignKey: 'course_name', targetKey: 'course_name',
 });
-courses.hasMany(participantCourses, { foreignKey: 'course_id' });
+courses.hasMany(participantCourses, { foreignKey: 'course_name' });
 
 module.exports = {
-    participants,
-    dates,
-    workers,
-    courses,
-    prison,
-    staff,
-    connection
+  participants,
+  dates,
+  workers,
+  courses,
+  prison,
+  staff,
+  connection,
 };

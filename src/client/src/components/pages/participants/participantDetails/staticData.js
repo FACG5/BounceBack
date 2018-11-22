@@ -239,13 +239,38 @@ export const fields = [
   [
     {
       tag: "Button",
-      value: "edit & save",
+      value: "Edit & Save",
       color: "#272727",
       staticField: true
     },
     {
       tag: "Button",
       value: "Back",
+      color: "#FF4800",
+      staticField: true
+    },
+  
+  ],[
+    {
+      tag: "",
+      value: "empty",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "",
+      value: "empty",
+      color: "#FF4800",
+      staticField: true
+    },  {
+      tag: "Button",
+      value: "Dates",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "Button",
+      value: "Interventions",
       color: "#FF4800",
       staticField: true
     }

@@ -104,7 +104,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/prison"
+                      path="/participants/:id/prison"
                       component={prisonDetails}
                     />
                     <Route
@@ -119,7 +119,7 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/participants/date/add"
+                      path="/participants/:id/date/add"
                       component={AddParticipantDate}
                     />
                     <Route

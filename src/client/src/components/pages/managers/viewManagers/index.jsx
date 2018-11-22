@@ -64,13 +64,13 @@ export default class ViewManagers extends Component {
           row.username,
           row.email,
           <>
+            <Link to={`/manager/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
             <i
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-            <Link to={`/manager/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
           </>
         ])
       );
@@ -101,13 +101,13 @@ export default class ViewManagers extends Component {
           row.username,
           row.email,
           <>
+            <Link to={`/manager/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
             <i
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-            <Link to={`/manager/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
           </>
         ])
       );

@@ -1,41 +1,23 @@
 export const state = {
-    dateName: "special date",
-    dateId: "112",
-    startDate: "",
-    endDate: "",
-    note: "GOING TO THE CLINK TO SEE GG - WENT TO THE CLINK, AS GG WAS THERE. DISCUSSED MY SUPPORT AND HE WAS HAPPY TO SEE ME."
+    worker_name: "",
+    date: "",
+    note: ""
 };
 export const fields = [
     [{
-            tag: "Input",
-            label: "Date Name",
-            name: "dateName",
-            width: "20rem",
-            placeholder: "date name",
-        },
-        {
-            tag: "Input",
-            label: "Date ID",
-            name: "dateId",
-            width: "20rem",
-            placeholder: "date Id",
-        }
-    ],
-    [
-        {
-            tag: "Input",
-            label: "Date start",
-            name: "startDate",
-            width: "20rem",
-            type: "date",
-        },
-        {
-            tag: "Input",
-            label: "Date end",
-            name: "endDate",
-            width: "20rem",
-            type: "date",
-        }
+        tag: "Input",
+        label: "worker Name",
+        name: "worker_name",
+        width: "20rem",
+        placeholder: "date Id",
+    },
+    {
+        tag: "Input",
+        label: "Date:",
+        name: "date",
+        width: "20rem",
+        type: "date",
+    },
     ],
     [
         {

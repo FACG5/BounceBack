@@ -1,52 +1,69 @@
 export const state = {
-    courseName: "Painting",
-    category: "vocational",
-    startDate: "",
-    endDate: "",
-    description: "With thanks to Alandale who have provided the equipment, and Land Securities who have worked with us to facilitate the course, we are able to offer a further valuable, much sought after construction industry skill."
+    course_start: "",
+    course_end: "",
+    details: "",
+    enrollment_status: "",
+    employment_outcomes: "",
+    course_name: "",  
 };
 export const fields = [
     [{
-            tag: "Input",
-            label: "Course Name",
-            name: "courseName",
-            width: "20rem",
-            placeholder: "course name",
-        },
-        {
-            tag: "Input",
-            label: "Course Category",
-            name: "category",
-            width: "20rem",
-            placeholder: "course",
-        }
+        tag: "Input",
+        label: "Course Name",
+        name: "course_name",
+        width: "40rem",
+        placeholder: "course name",
+    }
     ],
     [
         {
             tag: "Input",
             label: "Course start",
-            name: "startDate",
+            name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course end",
-            name: "endDate",
+            name: "course_end",
             width: "20rem",
             type: "date",
         }
     ],
     [
+       {
+        tag: "DropDown",
+        label: "Enrollment Status",
+        name: "enrollment_status",
+        width: "20rem",
+        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'faild', 'reset' ]
+       },
+       {
+        tag: "DropDown",
+        label: "Employment Outcomes",
+        name: "employment_outcomes",
+        width: "20rem",
+        options: [ 'employed' , 'not employed yet']
+       },
+    ],
+
+    [
         {
             tag: "Textarea",
-            label: "Description",
-            name: "description",
+            label: "Details/ Notes (optional)",
+            name: "details",
             width: "45rem",
             height: "10rem",
         }
     ],
     [
+    {
+        tag: 'Button',
+        value: "Edit & Save",
+        color: "#272727",
+        staticField: true
+    },
     {
         tag: 'Button',
         value: "Back",
