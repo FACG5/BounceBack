@@ -1,17 +1,18 @@
 export const state = {
-    surname: "mohanned",
-    forename: "al-hanafi",
-    username: "mohannadhanafi",
-    date: "23/2",
-    gender: "Male",
-    matrialStatus: "Single",
-    email: "mohannad",
-    address: "khan-younis",
-    postcode: "00970",
-    mobile: "0591234567",
-    landline: "082134569",
-    password: "123123",
-    confirmPassword: "123123"
+    surname: "",
+    forename: "",
+    fullname: "",
+    username: "",
+    date_of_birth: "",
+    gender: "",
+    martial_status: "",
+    email: "",
+    full_address: "",
+    postcode: "",
+    mobile: "",
+    landline: "",
+    password: "",
+    confirmPassword: ""
 };
 export const fields = [
     [{
@@ -40,7 +41,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Day Of Birth",
-            name: "date",
+            name: "date_of_birth",
             width: "15rem",
             type: "date",
         },
@@ -49,12 +50,12 @@ export const fields = [
             label: "Gender",
             name: "gender",
             width: "15rem",
-            options: ["Male", "Female"],
+            options: ["male", "female"],
         },
         {
             tag: "DropDown",
             label: "Martial Status",
-            name: "status",
+            name: "martial_status",
             width: "15rem",
             options: ["single", "married"],
         }
@@ -72,7 +73,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Full Address",
-            name: "address",
+            name: "full_address",
             width: "35rem",
             placeholder: "type full adress",
         },
@@ -88,7 +89,7 @@ export const fields = [
         {
             tag: "Input",
             label: "Mobile Number",
-            name: "Mobile",
+            name: "mobile",
             width: "20rem",
             placeholder: "Mobile Number",
         },

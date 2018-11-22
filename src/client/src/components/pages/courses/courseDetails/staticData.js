@@ -1,38 +1,38 @@
 export const state = {
-    courseName: "The Scaffolding Course",
-    category: "vocational",
-    startDate: "",
-    endDate: "",
-    description: "With thanks to Alandale who have provided the equipment, and Land Securities who have worked with us to facilitate the course, we are able to offer a further valuable, much sought after construction industry skill."
+    course_name: "",
+    course_category: "",
+    course_start: "",
+    course_end: "",
+    description: "",
 };
 export const fields = [
     [{
             tag: "Input",
             label: "course name",
-            name: "courseName",
+            name: "course_name",
             width: "20rem",
             placeholder: "course name",
         },
         {
             tag: "DropDown",
             label: "Course Category",
-            name: "category",
+            name: "course_category",
             width: "20rem",
-            options: ['vocational', 'other'],
+            options: ['level 1', 'level 2', 'cscs'],
         }
     ],
     [
         {
             tag: "Input",
             label: "Course start",
-            name: "startDate",
+            name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
             label: "Course end",
-            name: "endDate",
+            name: "course_end",
             width: "20rem",
             type: "date",
         }

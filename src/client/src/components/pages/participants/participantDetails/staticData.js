@@ -1,29 +1,30 @@
 export const state = {
-  surname: "Mohannad",
-  forename: "Nazeeh",
-  fullname: "Al-Hanafi",
-  date: "16/01/1996",
-  gender: "Male",
-  matrialStatus: "Single",
-  sexualOrientation: "Normal",
-  dependents: "sfsdf",
-  ethnicity: "N/A",
-  address: "aaaa",
-  nationality: "Palestinian",
-  borough: "sss",
-  postcode: "00970",
-  mobile: "0597116335",
-  landline: "2051545",
-  nextMobile: "08558",
-  email: "mohannad@hotmail.com",
-  ni: "331",
-  als: "asdasd",
-  cscsNo: "a5454",
-  cscsSupport: "asdasd",
-  caseWroker: "ww",
-  literacy: "aa",
-  numeracy: "ww",
-  disability: "No",
+  surename: "",
+  forename: "",
+  fullname: "",
+  age: "",
+  date_of_birth: "",
+  address:"",
+  gender: "",
+  martial_status: "",
+  sexual_orientatuin: "",
+  dependents: "",
+  ethincity: "",
+  nationality: "",
+  borough: "",
+  postcode: "",
+  mobile: "",
+  landline: "",
+  kin_contact:"",
+  email: "",
+  ni_number: "",
+  als: "",
+  cscs_number: "",
+  cscs_support: "",
+  leteracy_level: "",
+  case_worker: "",
+  numeracy_level: "",
+  disability_and_medical: "",
   error: ""
 };
 export const fields = [
@@ -31,7 +32,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Surname",
-      name: "surname",
+      name: "surename",
       width: "20rem",
       placeholder: "surname",
     },
@@ -55,38 +56,49 @@ export const fields = [
   [
     {
       tag: "Input",
-      label: "Day Of Birth",
-      name: "date",
-      width: "12rem",
+      label: "Date Of Birth",
+      name: "date_of_birth",
+      width: "20rem",
       type: "date",
+      placeholder: "date of birth",
     },
+    {
+      tag: "Input",
+      label: "Age",
+      name: "age",
+      width: "20rem",
+      type: "number",
+      placeholder: "age",
+    }
+  ],
+  [
     {
       tag: "DropDown",
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["Male", "Female"],
+      options: ["male", "female"],
     },
     {
       tag: "DropDown",
-      label: "Matrial Status ",
-      name: "matrialStatus",
+      label: "Marital Status",
+      name: "martial_status",
       width: "12rem",
-      options: ["Single", "Married"],
+      options: ["single", "married", "widowed", "separated", "divorced", "cff"],
     },
     {
       tag: "DropDown",
       label: "Sexual Orientation ",
-      name: "sexualOrientation",
+      name: "sexual_orientatuin",
       width: "12rem",
-      options: ["Normal", "Gay"],
+      options: ["normal", "hetero", "lesbian / bisexual", "lesbian","other", "cff"],
     }
   ],
   [
     {
       tag: "Input",
       label: "Ethnicity ",
-      name: "ethnicity",
+      name: "ethincity",
       width: "20rem",
       placeholder: "ethnicity",
     },
@@ -148,7 +160,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Next Of Kin Contact",
-      name: "nextMobile",
+      name: "kin_contact",
       width: "15rem",
       placeholder: "next of kin contact",
     }
@@ -165,7 +177,7 @@ export const fields = [
     {
       tag: "Input",
       label: "NI No",
-      name: "ni",
+      name: "ni_number",
       width: "12rem",
       placeholder: "ni no",
     },
@@ -179,14 +191,14 @@ export const fields = [
     {
       tag: "Input",
       label: "CSCS No",
-      name: "cscsNo",
+      name: "cscs_number",
       width: "10rem",
       placeholder: "cscs no",
     },
     {
       tag: "Input",
       label: "CSCS Support ",
-      name: "cscsSupport",
+      name: "cscs_support",
       width: "10rem",
       placeholder: "cscs support",
     }
@@ -194,23 +206,24 @@ export const fields = [
   [
     {
       tag: "Input",
-      label: "Case Worker",
-      name: "caseWroker",
+      label: "Literacy Level ",
+      name: "leteracy_level",
       width: "15rem",
-      placeholder: "case worker",
+      placeholder: "literacy level",
     },
     {
       tag: "DropDown",
-      label: "Literacy Level ",
-      name: "literacy",
+      label: "Case Worker",
+      name: "case_wroker",
       width: "15rem",
-      options: ["JP", "SR"],
+      options: ["jp", "sr", "tim", "cff"],
     },
     {
       tag: "Input",
       label: "Numeracy Level",
-      name: "numeracy",
+      name: "numeracy_level",
       width: "15rem",
+      type: "number",
       placeholder: "numeracy level",
     }
   ],
@@ -218,7 +231,7 @@ export const fields = [
     {
       tag: "Input",
       label: "Disability & Medical",
-      name: "disability",
+      name: "disability_and_medical",
       width: "35rem",
       placeholder: "disability",
     }
@@ -226,23 +239,7 @@ export const fields = [
   [
     {
       tag: "Button",
-      value: "Dates",
-      color: "#272727",
-      staticField: false,
-      path: "/participants/dates"
-    },
-    {
-      tag: "Button",
-      value: "Trainings",
-      color: "#272727",
-      staticField: false,
-      path: "/participants/courses"
-    }
-  ],
-  [
-    {
-      tag: "Button",
-      value: "edit & save",
+      value: "Edit & Save",
       color: "#272727",
       staticField: true
     },
@@ -251,9 +248,35 @@ export const fields = [
       value: "Back",
       color: "#FF4800",
       staticField: true
+    },
+  
+  ],[
+    {
+      tag: "",
+      value: "empty",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "",
+      value: "empty",
+      color: "#FF4800",
+      staticField: true
+    },  {
+      tag: "Button",
+      value: "Dates",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "Button",
+      value: "Interventions",
+      color: "#FF4800",
+      staticField: true
     }
   ]
 ];
+
 
 export const validationForm = fields => {
   for (const key in fields) {

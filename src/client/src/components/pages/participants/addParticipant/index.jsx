@@ -5,16 +5,29 @@ import {
   validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import Footer from "../../../abstract/footer";
 import "./index.css";
+import axios from "axios";
+import swal from "sweetalert2";
 
 export default class index extends Component {
-  state = initialState;
+  state = initialState
+  
 
   onChange = event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value });
+      this.setState({ [name]: value });
   };
+
+  // check the participant in prison or not
+  onChecked = event => {
+    if (this.state.checked) {
+      event.target.style.background = '#ccc'
+    } else {
+      event.target.style.background = '#FF4800'
+    }
+    this.setState({ checked: !this.state.checked });
+  }
 
   clearFields = event => {
     event.preventDefault();
@@ -25,6 +38,48 @@ export default class index extends Component {
     this.setState(fields);
   };
 
+  addParticipant = async obj => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure that you want to add this participant ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const result = await axios("/api/v2/participants", {
+        method: "POST",
+        data: {
+          participantdata: obj
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+          this.setState({ ...obj });
+          if (this.state.checked) {
+            this.props.history.push("/participants/view");
+          } else {
+            const id = result.data.id;
+            this.props.history.push(`/participants/${id}/prison`)
+          }
+      }
+    }
+  };
+
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
@@ -32,10 +87,7 @@ export default class index extends Component {
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.addParticipant(fields);
   };
 
   render() {
@@ -46,7 +98,7 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.clearFields]}
+          btnEvents={[this.onChecked, this.onSubmit, this.clearFields]}
         />
         <Footer />
       </div>

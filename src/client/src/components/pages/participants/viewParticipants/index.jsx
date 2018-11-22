@@ -1,67 +1,207 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
-import DropDown from "../../../abstract/dropdown";
-import Button from "../../../abstract/button";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
+import axios from 'axios';
+import swal from "sweetalert2";
 import "./style.css";
 
 export default class ViewParticpants extends Component {
   state = {
-    search: "",
+    nameSearch: "",
+    dateSearch: "",
+    rows: [],
+    message: "",
     filter: "",
-    rows: [
-      ["first name", "last name", "Mobile No.", "BB Id", "Details"],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>],
-      ["Mohannad", "Al-Hanafi", "0597116335", "0044", <Link to='/participant/details'><i className="fas fa-info-circle"></i></Link>]
-    ]
   };
-  onChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+
+  nameSearcher = async () => {
+    const { nameSearch } = this.state;
+    const data = await axios("/api/v2/participants/search/name", {
+      method: "POST",
+      data: {
+        participantName: nameSearch
+      }
+    });
+    const finalData = data.data.searchResult;
+    if (finalData) {
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <>
+           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <Link to= {`/participant/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
   };
-  clear = () => {
-    this.setState({ search: "" });
+
+  onChangeName = event => {
+    const nameSearch = event.target.value;
+    this.setState({ nameSearch }, () => this.nameSearcher());
   };
+
+  dateSearcher = async () => {
+    const { dateSearch } = this.state;
+    const data = await axios("/api/v2/participants/search/date", {
+      method: "POST",
+      data: {
+        participantDate: dateSearch
+      }
+    });
+    const finalData = data.data.searchResult;
+    if (finalData) {
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <>
+            <Link to= {`/participant/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+          </>
+        ])
+      );
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
+  };
+
+  onChangeDate = event => {
+    const dateSearch = event.target.value;
+    this.setState({ dateSearch }, () => this.dateSearcher());
+  };
+
+  onDelete = id =>{
+    swal({
+      type: 'warning',
+      html:'Are you sure that you want to delete this participant ?',
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: 'Thumbs up',
+      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: 'Thumbs down',
+    }).then(confirm => {
+      if (confirm.value) {
+        axios("/api/v2/participant", {
+          method: "DELETE",
+          data: {
+            participantId: id
+          }
+        }).then(result => {
+          this.getAllParticipants().then(() => {
+            swal({
+              title: 'Success',
+              type: 'success',
+              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              showConfirmButton: false,
+              timer: 3000
+            }).then(() => {
+              this.getAllParticipants();
+            })
+          });
+        });
+      }
+    });
+};
+  
+// axios to make requests from backend.. 
+getAllParticipants = async () => {
+    try {
+      const data = await axios("/api/v2/participants");
+      const finalData = data.data.getParticipants;
+      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      if (finalData.length === 0){
+        const msg = 'There is no participants yet !!';
+        array =[];          
+        this.setState({ message: msg, rows:array});
+      }
+      else{    
+      finalData.map(row =>
+        array.push([
+          row.id,
+          row.fullname,
+          row.date_of_birth.split('T')[0],
+          row.email,
+          <Fragment>
+            <Link to= {`/participant/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+          </Fragment>
+        ])
+      );
+      this.setState({ rows: array });
+      }
+    } catch (err) {
+      console.log(err); // waiting for boundery error handling
+    }
+  };
+
+  componentDidMount = async () => {
+  this.getAllParticipants();
+  };
+
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <section className="section-view">
           <Header value="View Participants" />
           <div className="search-bar">
             <Input
-              label="Search"
-              name="search"
+              label="Search by name"
+              name="searchByName"
               type="text"
-              placeholder="Type Username"
-              width="300px"
-              value={this.state.search}
-              onChange={this.onChange}
+              placeholder="fullname"
+              width="350px"
+              value={this.state.nameSearch}
+              onChange={this.onChangeName}
             />
-            <DropDown
-              label="Filter By:"
-              name="filter"
-              options={["name", "mobile", "date of birth"]}
-              width="150px"
-              value={this.state.filter}
-              onChange={this.onChange}
+            <Input
+              label="Search By Birth of date"
+              name="searchByDate"
+              type="date"
+              placeholder="birth of date"
+              width="350px"
+              value={this.state.dateSearch}
+              onChange={this.onChangeDate}
             />
-            <div className="buttons">
-              <Button value="Search" color="#272727" />
-              <Button value="Clear" color="#FF4800" onClick={this.clear} />
-            </div>
           </div>
           <Header value="Participants" align='left' margin='0'/>
           <Table
             rows={this.state.rows}
           />
+          {this.state.rows.length === 0 && (
+            <p className="error-msg">
+              <i className="far fa-surprise" />
+              {this.state.message}
+            </p>
+          )}
           <Footer />
         </section>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
