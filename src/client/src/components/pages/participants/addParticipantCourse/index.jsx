@@ -6,6 +6,8 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import axios from 'axios';
+import swal from 'sweetalert2';
 
 export default class index extends Component {
   state = initialState;
@@ -20,6 +22,56 @@ export default class index extends Component {
     this.props.history.push(`/participants/${id}/courses`);
   };
 
+  getCoursesNames = async () => {
+    const data = await axios("/api/v2/courses");
+    const final = data.data.coursesData;
+    fieldSet[0][0].options = final.map(value => value.course_name)
+
+    this.setState({ course_name: final[0].course_name });
+  };
+
+  componentWillMount = () => {
+    this.getCoursesNames();
+  }
+
+  addCourse = async obj => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure that you want to add this date ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const { id } = this.props.match.params;
+      const result = await axios(`/api/v2/participant/${id}/course`, {
+        method: "POST",
+        data: {
+          courseData: obj,
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+      }
+      this.setState({ ...obj });
+      this.props.history.push(`/participant/${id}/courses`);
+    }
+  }
+
   // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
@@ -27,10 +79,7 @@ export default class index extends Component {
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.addCourse(fields);
   };
 
   render() {

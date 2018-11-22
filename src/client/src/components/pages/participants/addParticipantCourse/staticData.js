@@ -2,17 +2,17 @@ export const state = {
     course_start: "",
     course_end: "",
     details: "",
-    enrollment_status: "",
-    employment_outcomes: "",
+    enrollment_status: "not stated yet",
+    employment_outcomes: "employed",
     course_name: "",  
 };
 export const fields = [
     [{
-        tag: "Input",
+        tag: "DropDown",
         label: "Course Name",
         name: "course_name",
         width: "40rem",
-        placeholder: "course name",
+        options: [],
     }
     ],
     [

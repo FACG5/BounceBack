@@ -242,3 +242,18 @@ exports.getCourseDetails = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+// Add new course for special participant
+exports.addCourse = async (req, res) => {
+  try {
+    const participantId = req.params.id;
+    const { courseData } = req.body;
+    courseData.participant_id = participantId;
+    await courses.create(courseData);
+    res.status(200).send({ message: 'Adding date is done' });
+  } catch (err) {
+    res.status(500).send({
+      err,
+    });
+  }
+};
