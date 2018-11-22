@@ -37,7 +37,7 @@ export default class index extends Component {
   addCourse = async obj => {
     const confirm = await swal({
       type: "warning",
-      html: "Are you sure that you want to add this date ?",
+      html: "Are you sure that you want to add this intervintions ?",
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
