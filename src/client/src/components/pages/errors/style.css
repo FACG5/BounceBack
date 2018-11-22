@@ -18,12 +18,10 @@
   position: relative;
   transition: all .3s linear;
 }
-
 .error .button:hover {
   color: #fff;
   background: #272727;
 }
-
 .error p {
   font-size: 2em;
   text-align: center;
@@ -31,7 +29,6 @@
   letter-spacing: 1px;
   color: #efefef;
 }
-
 .error h1 {
   text-align: center;
   font-size: 15em;
