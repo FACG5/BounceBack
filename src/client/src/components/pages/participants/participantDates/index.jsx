@@ -49,10 +49,10 @@ class Date extends Component {
           row.worker_name,
           row.date.split("T")[0],
           <>
-             <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-             <Link to= {`/participant/${id}/date/details/${row.id}`}>
-               <i className="fas fa-info-circle" />
-             </Link>
+            <Link to= {`/participant/${id}/date/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
            </>
          ])
        );

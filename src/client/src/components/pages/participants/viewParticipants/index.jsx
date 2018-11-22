@@ -73,10 +73,10 @@ export default class ViewParticpants extends Component {
           row.date_of_birth.split('T')[0],
           row.email,
           <>
-           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
             <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
           </>
         ])
       );
@@ -146,10 +146,10 @@ getAllParticipants = async () => {
           row.date_of_birth.split('T')[0],
           row.email,
           <Fragment>
-            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
             <Link to= {`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
+            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
           </Fragment>
         ])
       );
