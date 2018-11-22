@@ -81,7 +81,7 @@ const participant = sequelize.define('participant', {
   numeracy_level: {
     type: Sequelize.INTEGER,
   },
-  disay_and_medical: {
+  disability_and_medical: {
     type: Sequelize.TEXT,
   },
   employment_outcomes: {
