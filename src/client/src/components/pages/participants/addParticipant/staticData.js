@@ -2,7 +2,6 @@ export const state = {
   surename: "",
   forename: "",
   fullname: "",
-  age: "",
   date_of_birth: "",
   address: "",
   gender: "male",
@@ -25,6 +24,8 @@ export const state = {
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
+  employment_outcomes: "",
+  reoffending: "",
   checked: true
 
 };
@@ -63,14 +64,6 @@ export const fields = [
       type: "date",
       placeholder: "date of birth"
     },
-    {
-      tag: "Input",
-      label: "Age",
-      name: "age",
-      width: "20rem",
-      type: "number",
-      placeholder: "age"
-    }
   ],
   [
     {
@@ -249,6 +242,22 @@ export const fields = [
       width: "35rem",
       placeholder: "disability"
     },
+  ],
+  [
+    {
+      tag: "DropDown",
+      label: "Employment Outcomes",
+      name: "employment_outcomes",
+      width: "15rem",
+      options: ["not employed yet", "employed"],
+    },
+    {
+      tag: "DropDown",
+      label: "Reoffending",
+      name: "reoffending",
+      width: "15rem",
+      options: ["no", "yes"],
+    }
   ],
   [
     {
