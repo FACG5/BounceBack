@@ -15,9 +15,6 @@ const participantCourses = sequelize.define('participantCourses', {
   enrollment_status: {
     type: Sequelize.TEXT,
   },
-  employment_outcomes: {
-    type: Sequelize.TEXT,
-  },
 });
 
 module.exports = participantCourses;

@@ -3,7 +3,6 @@ export const state = {
     course_end: "",
     details: "",
     enrollment_status: "not stated yet",
-    employment_outcomes: "employed",
     course_name: "",  
 };
 export const fields = [
@@ -36,15 +35,8 @@ export const fields = [
         tag: "DropDown",
         label: "Enrollment Status",
         name: "enrollment_status",
-        width: "20rem",
+        width: "40rem",
         options: [ 'not stated yet', 'started', 'dropped', 'passed', 'faild', 'reset' ]
-       },
-       {
-        tag: "DropDown",
-        label: "Employment Outcomes",
-        name: "employment_outcomes",
-        width: "20rem",
-        options: [ 'employed' , 'not employed yet']
        },
     ],
 
