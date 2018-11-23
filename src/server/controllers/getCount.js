@@ -14,11 +14,18 @@ exports.get = async (req, res) => {
         employment_outcomes: employed,
       },
     });
+    const offending = 'yes';
+    const countOffending = await participant.findAndCountAll({
+      where: {
+        reoffending: offending,
+      },
+    });
     res.send({
       countParticipant,
       countCourse,
       countWorker,
       countEmployedParticipant,
+      countOffending,
     });
   } catch (err) {
     res.status(500).send({ err });
