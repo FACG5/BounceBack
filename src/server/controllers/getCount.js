@@ -8,7 +8,6 @@ exports.get = async (req, res) => {
     const countParticipant = await participant.findAndCountAll();
     const countCourse = await course.findAndCountAll();
     const countWorker = await worker.findAndCountAll();
-    const notEmployed = 'not employed yet';
     const employed = 'employed';
     const countEmployedParticipant = await participant.findAndCountAll({
       where: {
@@ -17,19 +16,11 @@ exports.get = async (req, res) => {
         },
       },
     });
-    const countNotEmployedParticipant = await participant.findAndCountAll({
-      where: {
-        employment_outcomes: {
-          [Op.like]: `${notEmployed}`,
-        },
-      },
-    });
     res.send({
       countParticipant,
       countCourse,
       countWorker,
       countEmployedParticipant,
-      countNotEmployedParticipant,
     });
   } catch (err) {
     res.status(500).send({ err });
