@@ -1,0 +1,56 @@
+.pie {
+  width: 600px;
+  position: relative;
+}
+.platforms {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+svg {
+  margin-top: 3rem;
+  animation: down 1s ease-in;
+}
+.paltform-titles {
+  animation: up 1s ease-in;
+  font-size: 13px;
+}
+.paltform-titles > div {
+  margin: 1rem auto;
+}
+
+.bar-chart {
+  display: block;
+  width: 400px;
+  margin: 0 auto;
+}
+
+@keyframes down {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  80% {
+    transform: translateY(0.1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes up {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  80% {
+    transform: translateY(-0.1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
