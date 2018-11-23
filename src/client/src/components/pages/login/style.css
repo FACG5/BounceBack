@@ -1,9 +1,10 @@
 .login-page{
- text-align: center;
- width: 80%;
- height:100vh;
- margin: 0 auto;
- padding-top: 2%;
+    text-align: center;
+    /* width: 80%; */
+    height: 100vh;
+    /* margin: 0 auto; */
+    background: rgb(228, 228, 228);
+    padding-top: 2%;
 }
 .login-title{
     text-transform: capitalize;
@@ -13,13 +14,14 @@
     margin-bottom: 5%;
 }
 .login-form{
-    text-align: center;
-    width: 50%;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
+    width: 439px;
+    font-family: Lato, sans-serif;
+    padding: 68px 0px 90px;
+    background: #FFF;
+    /* text-align: center; */
     margin: 0 auto;
-    padding: 15px 0px 0px 10px;
-    box-shadow: 5px 5px 2px 1px rgba(0,0,0,0.1), -5px -5px 2px 1px rgba(0,0,0,0.1);
-    min-height: 400px;
-    max-height: 400px;
+    /* height: 542px; */
 }
 .inputs{
     text-align: left;
