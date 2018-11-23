@@ -13,8 +13,7 @@ class index extends Component {
     participant: "",
     course: "",
     worker: "",
-    employed: "",
-    notEmployed: ""
+    sections: []
   };
 
   componentWillMount() {
@@ -24,25 +23,28 @@ class index extends Component {
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
     try {
-      const data = await axios("/api/v2/overview");
-      const countParticipant = data.data.countParticipant.count;
-      const countCourse = data.data.countCourse.count;
-      const countWorker = data.data.countWorker.count;
 
-      // count & average for emloyed participant
-      const countEmployedParticipant = data.data.countEmployedParticipant.count;
+      // axios to get the data;
+      const { 
+        countParticipant: { count :countParticipant },
+        countCourse: { count: countCourse } ,
+        countWorker: { count: countWorker },
+        countEmployedParticipant: { count: countEmployedParticipant },
+        countNotEmployedParticipant: { count: countNotEmployedParticipant }
+       } =  (await axios("/api/v2/overview")).data;
+
+      // average for emloyed participant
       const employedAvg = (countEmployedParticipant*100/countParticipant).toFixed(2);
-
-      // count  & average for not emloyed participant
-      const countNotEmployedParticipant = data.data.countNotEmployedParticipant.count;
-      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);
-      
+      // average for not emloyed participant
+      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);     
       this.setState({
         participant: countParticipant,
         course: countCourse,
         worker: countWorker,
-        employed: employedAvg,
-        notEmployed: notEmployedAvg
+        sections: [
+          { title: 'Employed', percentage: employedAvg},
+          { title: 'Un_employed', percentage: notEmployedAvg}
+          ]
       });
     } catch (err) {
       dispatch({
@@ -53,30 +55,25 @@ class index extends Component {
   };
   
   render() {
-    const { employed, notEmployed} = this.state;
+    const { participant, course, worker, sections } = this.state;
     return (
       <>
         <Header value="Dashboard" />
-        {
-            employed && notEmployed &&
-          <PieChart
-          sections={[
-            { title: "employed", percentage: employed},
-            { title: "not employed", percentage: notEmployed},
-          ]}
-        /> 
-        }
         <div className="cards">
           <Link className="static-count" to="/participants/view">
-            <Statistics number={this.state.participant} value="Participant" />
+            <Statistics number={participant} value="Participant" />
           </Link>
           <Link className="static-count" to="/courses/view">
-            <Statistics number={this.state.course} value="Courses" />
+            <Statistics number={course} value="Courses" />
           </Link>
           <Link className="static-count" to="/workers/view">
-            <Statistics number={this.state.worker} value="Worker" />
+            <Statistics number={worker} value="Worker" />
           </Link>
         </div>
+        {
+          sections[0] && 
+          <PieChart sections= {sections} /> 
+        }
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
         <Footer />
