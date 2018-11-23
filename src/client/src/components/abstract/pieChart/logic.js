@@ -7,13 +7,13 @@ export const colors = [
   "#743C6A",
   "#A95752"
 ];
-export const makePie = sections => {
+export const makePie = (sections, id) => {
   const svgWidth = 600,
     svgHeight = 400,
     radius = Math.min(svgWidth, svgHeight) / 2;
 
   const svg = d3
-    .select("svg")
+    .select(`.bar-chart-${id}`)
     .attr("width", svgWidth)
     .attr("height", svgHeight);
 
