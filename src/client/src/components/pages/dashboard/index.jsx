@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Header from "../../abstract/header";
 import Footer from "../../abstract/footer";
 import PieChart from "../../abstract/pieChart";
-// import Chart from "../../abstract/charts";
 import axios from "axios";
 import "./style.css";
 import contextHoc from "./../../abstract/HOC/contextHoc";
@@ -58,8 +57,7 @@ class index extends Component {
             { title: "employed", percentage: employed},
             { title: "not employed", percentage: notEmployed},
         ]}
-      />  
-      {/* <Chart />   */}
+      /> 
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={this.state.participant} value="Participant" />
