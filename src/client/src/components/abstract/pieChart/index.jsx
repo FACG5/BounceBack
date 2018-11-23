@@ -3,17 +3,17 @@ import { makePie, colors } from "./logic";
 import "./index.css";
 export default class index extends Component {
   componentDidMount = () => {
-    const { sections } = this.props;
-    makePie(sections);
+    const { sections, id } = this.props;
+    makePie(sections, id);
   };
   render() {
-    const { sections } = this.props;
+    const { sections, id } = this.props;
     return (
-      <div class="pie">
-        <svg class="bar-chart" />
-        <div class="platforms">
+      <div className="pie">
+        <svg className={`bar-chart-${id} bar-chart`} />
+        <div className="platforms">
           {sections.map((section, i) => (
-            <div class="paltform-titles">
+            <div className="paltform-titles" key={i}>
               <div
                 style={{
                   background: colors[i],
