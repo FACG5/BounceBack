@@ -33,7 +33,7 @@ export const fields = [
             label: "Username",
             name: "username",
             width: "15rem",
-            placeholder: "type username"
+            placeholder: "username"
         }
     ],
     [
@@ -65,7 +65,7 @@ export const fields = [
             label: "Email Adress",
             name: "email",
             width: "35rem",
-            placeholder: "type email adress"
+            placeholder: "email adress"
         }
     ],
     [
@@ -74,7 +74,7 @@ export const fields = [
             label: "Full Address",
             name: "full_address",
             width: "35rem",
-            placeholder: "type full adress"
+            placeholder: "full adress"
         },
         {
             tag: "Input",
