@@ -1,8 +1,6 @@
 .login-page{
     text-align: center;
-    /* width: 80%; */
     height: 100vh;
-    /* margin: 0 auto; */
     background: rgb(228, 228, 228);
     padding-top: 2%;
 }
@@ -19,9 +17,7 @@
     font-family: Lato, sans-serif;
     padding: 68px 0px 90px;
     background: #FFF;
-    /* text-align: center; */
     margin: 0 auto;
-    /* height: 542px; */
 }
 .inputs{
     text-align: left;
