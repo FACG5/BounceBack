@@ -50,7 +50,6 @@ class LoginForm extends Component {
           src="https://files.gitter.im/MAK-asdadsada/Lobby/5kcm/Logo.png"
           alt="logo"
         />
-          {/* <h1 className="login-title">manager login</h1> */}
           <div className="inputs">
             <Input
               label="Username"
