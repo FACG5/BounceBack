@@ -13,7 +13,8 @@ class index extends Component {
     participant: "",
     course: "",
     worker: "",
-    sections: []
+    employment: [],
+    offending: [],
   };
 
   componentWillMount() {
@@ -30,20 +31,31 @@ class index extends Component {
         countCourse: { count: countCourse } ,
         countWorker: { count: countWorker },
         countEmployedParticipant: { count: countEmployedParticipant },
+        countOffending: { count : countOffending},
        } =  (await axios("/api/v2/overview")).data;
 
-      // average for emloyed participant
+      // get average for emloyed participants
       const employedAvg = (countEmployedParticipant*100/countParticipant).toFixed(2);
-      // git count and average for not emloyed participant
+      // get count and average for not emloyed participants
       const countNotEmployedParticipant = (countParticipant-countEmployedParticipant)
       const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);     
+      // get average for re-offending participants
+      const offendingAvg = (countOffending*100/countParticipant).toFixed(2);
+       // get count and average for not re-offending participants
+       const countNotOffending = (countParticipant-countOffending)
+       const notOffendingAvg = (countNotOffending*100/countParticipant).toFixed(2);
+
       this.setState({
         participant: countParticipant,
         course: countCourse,
         worker: countWorker,
-        sections: [
+        employment: [
           { title: 'Employed', percentage: employedAvg},
           { title: 'Un_employed', percentage: notEmployedAvg}
+          ],
+        offending: [
+          { title: 'Bounce Back', percentage: notOffendingAvg},
+          { title: 'Othder', percentage: offendingAvg}
           ]
       });
     } catch (err) {
@@ -55,7 +67,7 @@ class index extends Component {
   };
   
   render() {
-    const { participant, course, worker, sections } = this.state;
+    const { participant, course, worker, employment, offending } = this.state;
     return (
       <>
         <Header value="Dashboard" />
@@ -71,8 +83,13 @@ class index extends Component {
           </Link>
         </div>
         {
-          sections[0] && 
-          <PieChart sections= {sections} /> 
+          employment[0] && 
+          <PieChart sections= {employment} /> 
+        }
+
+        {
+          offending[0] && 
+          <PieChart sections= {offending} /> 
         }
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
