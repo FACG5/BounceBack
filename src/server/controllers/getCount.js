@@ -11,9 +11,7 @@ exports.get = async (req, res) => {
     const employed = 'employed';
     const countEmployedParticipant = await participant.findAndCountAll({
       where: {
-        employment_outcomes: {
-          [Op.like]: `${employed}`,
-        },
+        employment_outcomes: employed,
       },
     });
     res.send({
