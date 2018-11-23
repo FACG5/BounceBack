@@ -11,10 +11,11 @@
 
 svg {
   margin-top: 3rem;
-  animation: down 1s ease-in;
+  animation: down 0.5s ease-in;
 }
 .paltform-titles {
-  animation: up 1s ease-in;
+  animation: up 0.5s ease-in 0.5s;
+  animation-fill-mode: both;
   font-size: 13px;
 }
 .paltform-titles > div {
@@ -40,9 +41,9 @@ svg {
     transform: translate(0);
   }
 }
-
 @keyframes up {
   0% {
+    visibility: visible;
     opacity: 0;
     transform: translateY(1rem);
   }
