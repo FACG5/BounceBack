@@ -28,10 +28,15 @@ class index extends Component {
       const countParticipant = data.data.countParticipant.count;
       const countCourse = data.data.countCourse.count;
       const countWorker = data.data.countWorker.count;
+
+      // count & average for emloyed participant
       const countEmployedParticipant = data.data.countEmployedParticipant.count;
-      const employedAvg = (countEmployedParticipant*100/countParticipant);
+      const employedAvg = (countEmployedParticipant*100/countParticipant).toFixed(2);
+
+      // count  & average for not emloyed participant
       const countNotEmployedParticipant = data.data.countNotEmployedParticipant.count;
-      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant);
+      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);
+      
       this.setState({
         participant: countParticipant,
         course: countCourse,
@@ -50,14 +55,17 @@ class index extends Component {
   render() {
     const { employed, notEmployed} = this.state;
     return (
-      <React.Fragment>
+      <>
         <Header value="Dashboard" />
-        <PieChart
+        {
+            employed && notEmployed &&
+          <PieChart
           sections={[
             { title: "employed", percentage: employed},
             { title: "not employed", percentage: notEmployed},
-        ]}
-      /> 
+          ]}
+        /> 
+        }
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={this.state.participant} value="Participant" />
@@ -72,7 +80,7 @@ class index extends Component {
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
         <Footer />
-      </React.Fragment>
+      </>
     );
   }
 }
