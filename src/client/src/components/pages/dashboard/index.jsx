@@ -30,12 +30,12 @@ class index extends Component {
         countCourse: { count: countCourse } ,
         countWorker: { count: countWorker },
         countEmployedParticipant: { count: countEmployedParticipant },
-        countNotEmployedParticipant: { count: countNotEmployedParticipant }
        } =  (await axios("/api/v2/overview")).data;
 
       // average for emloyed participant
       const employedAvg = (countEmployedParticipant*100/countParticipant).toFixed(2);
-      // average for not emloyed participant
+      // git count and average for not emloyed participant
+      const countNotEmployedParticipant = (countParticipant-countEmployedParticipant)
       const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);     
       this.setState({
         participant: countParticipant,
