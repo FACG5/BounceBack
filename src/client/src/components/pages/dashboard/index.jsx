@@ -3,6 +3,8 @@ import Statistics from "../../abstract/statistics";
 import { Link } from "react-router-dom";
 import Header from "../../abstract/header";
 import Footer from "../../abstract/footer";
+import PieChart from "../../abstract/pieChart";
+// import Chart from "../../abstract/charts";
 import axios from "axios";
 import "./style.css";
 import contextHoc from "./../../abstract/HOC/contextHoc";
@@ -11,7 +13,9 @@ class index extends Component {
   state = {
     participant: "",
     course: "",
-    worker: ""
+    worker: "",
+    employed: "",
+    notEmployed: ""
   };
 
   componentWillMount() {
@@ -25,10 +29,16 @@ class index extends Component {
       const countParticipant = data.data.countParticipant.count;
       const countCourse = data.data.countCourse.count;
       const countWorker = data.data.countWorker.count;
+      const countEmployedParticipant = data.data.countEmployedParticipant.count;
+      const employedAvg = (countEmployedParticipant*100/countParticipant);
+      const countNotEmployedParticipant = data.data.countNotEmployedParticipant.count;
+      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant);
       this.setState({
         participant: countParticipant,
         course: countCourse,
-        worker: countWorker
+        worker: countWorker,
+        employed: employedAvg,
+        notEmployed: notEmployedAvg
       });
     } catch (err) {
       dispatch({
@@ -39,9 +49,17 @@ class index extends Component {
   };
   
   render() {
+    const { employed, notEmployed} = this.state;
     return (
       <React.Fragment>
         <Header value="Dashboard" />
+        <PieChart
+          sections={[
+            { title: "employed", percentage: employed},
+            { title: "not employed", percentage: notEmployed},
+        ]}
+      />  
+      {/* <Chart />   */}
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={this.state.participant} value="Participant" />
