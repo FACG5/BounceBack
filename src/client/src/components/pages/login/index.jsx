@@ -4,6 +4,7 @@ import Button from "../../abstract/button";
 import contextHoc from "./../../abstract/HOC/contextHoc";
 import "./style.css";
 import axios from "axios";
+import swal from 'sweetalert2';
 
 class LoginForm extends Component {
   state = {
@@ -34,6 +35,14 @@ class LoginForm extends Component {
       const user = { logging: true };
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
+      swal({
+        title: "Success",
+        type: "success",
+        html:
+          " <strong>Logged in</strong> <br/>",
+        showConfirmButton: false,
+        timer: 2000
+      });
       this.props.history.push("/");
     } else {
       this.setState({ error: response.data.Error });
