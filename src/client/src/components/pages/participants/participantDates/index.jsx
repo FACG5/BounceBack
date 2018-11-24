@@ -7,12 +7,14 @@ import Button from "../../../abstract/button";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from "sweetalert2";
+import Loading from '../../loading';
 
 class Date extends Component {
   state = {
     search: "",
     rows: [],
-    message: ""
+    message: "",
+    loading: true
   };
 
   onChange = event => {
@@ -41,7 +43,7 @@ class Date extends Component {
       if (dates.length === 0){
         const msg = 'There is no dates yet !!';
         array =[];          
-        this.setState({ message: msg, rows:array});
+        this.setState({ message: msg, rows:array, loading: false});
       }
       else{    
       dates.map(row =>
@@ -56,14 +58,14 @@ class Date extends Component {
            </>
          ])
        );
-       this.setState({ rows: array });
+       this.setState({ rows: array, loading: false });
        }
     } catch (err) {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
     }
 };
 
-componentWillMount = async () => {
+componentDidMount = async () => {
     this.getDates();
   };
 
@@ -99,6 +101,10 @@ componentWillMount = async () => {
     });
 };
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <React.Fragment>
         <Header value="View Dates" />

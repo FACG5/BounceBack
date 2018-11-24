@@ -1,7 +1,8 @@
 export const state = {
     worker_name: "",
     date: "",
-    note: ""
+    note: "",
+    loading: true
 };
 export const fields = [
     [{

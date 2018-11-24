@@ -26,7 +26,8 @@ export const state = {
   disability_and_medical: "",
   employment_outcomes: "",
   reoffending: "",
-  error: ""
+  error: "",
+  loading: true
 };
 export const fields = [
   [

@@ -7,6 +7,7 @@ import Footer from "../../../abstract/footer";
 import axios from 'axios';
 import swal from "sweetalert2";
 import "./style.css";
+import Loading from '../../loading';
 
 export default class ViewParticpants extends Component {
   state = {
@@ -15,6 +16,7 @@ export default class ViewParticpants extends Component {
     rows: [],
     message: "",
     filter: "",
+    loading: true
   };
 
   nameSearcher = async () => {
@@ -136,7 +138,7 @@ getAllParticipants = async () => {
       if (finalData.length === 0){
         const msg = 'There is no participants yet !!';
         array =[];          
-        this.setState({ message: msg, rows:array});
+        this.setState({ message: msg, rows:array, loading: false});
       }
       else{    
       finalData.map(row =>
@@ -153,18 +155,22 @@ getAllParticipants = async () => {
           </Fragment>
         ])
       );
-      this.setState({ rows: array });
+      this.setState({ rows: array, loading: false });
       }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
     }
   };
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
   this.getAllParticipants();
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <Fragment>
         <section className="section-view">
