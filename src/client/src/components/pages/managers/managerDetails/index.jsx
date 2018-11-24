@@ -75,7 +75,7 @@ updateManager = async obj => {
   }
 };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.getData();
   }
 
