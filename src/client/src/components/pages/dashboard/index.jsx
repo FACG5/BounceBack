@@ -17,11 +17,7 @@ class index extends Component {
     offending: [],
   };
 
-  componentWillMount() {
-    this.props.history.push("/");
-  }
-
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     const { dispatch } = this.props.context;
     try {
 
