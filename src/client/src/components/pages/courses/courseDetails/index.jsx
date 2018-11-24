@@ -71,7 +71,7 @@ class index extends Component {
 
   };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.getDetails();
   }
 
