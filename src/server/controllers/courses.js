@@ -86,10 +86,10 @@ exports.update = async (req, res) => {
     const courseId = req.params.id;
     await courses.update(courseData, {
       where: {
-        id: courseId
-      }
+        id: courseId,
+      },
     });
-    res.send({message: 'updating data is done'});
+    res.send({ message: 'updating data is done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });

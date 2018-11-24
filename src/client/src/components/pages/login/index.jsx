@@ -4,6 +4,7 @@ import Button from "../../abstract/button";
 import contextHoc from "./../../abstract/HOC/contextHoc";
 import "./style.css";
 import axios from "axios";
+import swal from 'sweetalert2';
 
 class LoginForm extends Component {
   state = {
@@ -34,6 +35,14 @@ class LoginForm extends Component {
       const user = { logging: true };
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
+      swal({
+        title: "Success",
+        type: "success",
+        html:
+          " <strong>Logged in</strong> <br/>",
+        showConfirmButton: false,
+        timer: 2000
+      });
       this.props.history.push("/");
     } else {
       this.setState({ error: response.data.Error });
@@ -44,13 +53,12 @@ class LoginForm extends Component {
     const { username, password, error } = this.state;
     return (
       <div className="login-page">
+        <div className="login-form">
         <img
           className="login-logo"
           src="https://files.gitter.im/MAK-asdadsada/Lobby/5kcm/Logo.png"
           alt="logo"
         />
-        <div className="login-form">
-          <h1 className="login-title">manager login</h1>
           <div className="inputs">
             <Input
               label="Username"
@@ -59,7 +67,7 @@ class LoginForm extends Component {
               onChange={this.onChange}
               type="text"
               placeholder="username"
-              width="20rem"
+              width="83%"
             />
             <Input
               label="Password"
@@ -68,7 +76,7 @@ class LoginForm extends Component {
               onChange={this.onChange}
               type="password"
               placeholder="Password"
-              width="20rem"
+              width="83%"
             />
           </div>
           <Button value="Login" color="#ff4800" onClick={this.onClick} />
