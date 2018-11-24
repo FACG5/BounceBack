@@ -111,7 +111,7 @@ export default class ViewWorkers extends Component {
     }
   };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.getData();
   };
 
