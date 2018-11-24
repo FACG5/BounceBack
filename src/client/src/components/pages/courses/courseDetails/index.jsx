@@ -8,9 +8,10 @@ import Footer from '../../../abstract/footer';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from 'sweetalert2';
+import Loading from '../../loading';
 
 class index extends Component {
-  state = initialState;
+  state = initialState
 
   onChange = event => {
     const { value, name } = event.target;
@@ -64,14 +65,14 @@ class index extends Component {
       const { data } = result;
       const startDate = data.course_start.split("T")[0];
       const endDate = data.course_end.split("T")[0];
-      this.setState({ ...data, course_start:startDate, course_end:endDate });
+      this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
     }).catch(error => {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
     })
 
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getDetails();
   }
 
@@ -87,6 +88,10 @@ class index extends Component {
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <div>
         <Form
