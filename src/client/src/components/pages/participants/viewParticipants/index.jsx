@@ -160,7 +160,7 @@ getAllParticipants = async () => {
     }
   };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
   this.getAllParticipants();
   };
 
