@@ -6,12 +6,14 @@ import Footer from "../../../abstract/footer";
 import Input from "../../../abstract/input";
 import axios from "axios";
 import swal from "sweetalert2";
+import Loading from '../../loading';
 
 export default class Courses extends Component {
   state = {
     search: "",
     message:"",
-    rows: []
+    rows: [],
+    loading: true
   };
 
   getSearch = async () => {
@@ -92,9 +94,9 @@ export default class Courses extends Component {
       let array = [["Course Name", "start", "end", "Action"]];
       if (finalData.length === 0){
         const msg = ' There is no courses yet !!';
-        array =[];          
-        this.setState({ message: msg,rows:array});
-      }else {
+        array =[];
+        this.setState({ message: msg, rows:array });
+      } else {
       finalData.map(row =>
         array.push([
           row.course_name,
@@ -111,7 +113,7 @@ export default class Courses extends Component {
           </>
         ])
       );
-      this.setState({ rows: array });
+      this.setState({ rows: array, loading: false });
       }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
@@ -122,6 +124,10 @@ export default class Courses extends Component {
     this.getData();
   };
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <>
         <section className="section-view">
