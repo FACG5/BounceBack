@@ -120,7 +120,7 @@ export default class Courses extends Component {
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getData();
   };
   render() {

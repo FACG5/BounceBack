@@ -30,7 +30,7 @@ export default class index extends Component {
     this.setState({ course_name: final[0].course_name });
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getCoursesNames();
   }
 

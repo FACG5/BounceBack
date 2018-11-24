@@ -69,7 +69,7 @@ export default class index extends Component {
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getWorkersNames();
   };
 
