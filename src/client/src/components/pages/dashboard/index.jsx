@@ -7,6 +7,7 @@ import PieChart from "../../abstract/pieChart";
 import axios from "axios";
 import "./style.css";
 import contextHoc from "./../../abstract/HOC/contextHoc";
+import Loading from "./../loading";
 
 class index extends Component {
   state = {
@@ -15,48 +16,61 @@ class index extends Component {
     worker: "",
     employment: [],
     offending: [],
+    loading: true
   };
 
-  componentWillMount() {
-    this.props.history.push("/");
+  componentWillMount = () => {
+    this.props.history.push('/');
   }
 
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
     try {
-
       // axios to get the data;
-      const { 
-        countParticipant: { count :countParticipant },
-        countCourse: { count: countCourse } ,
+      const {
+        countParticipant: { count: countParticipant },
+        countCourse: { count: countCourse },
         countWorker: { count: countWorker },
         countEmployedParticipant: { count: countEmployedParticipant },
-        countOffending: { count : countOffending},
-       } =  (await axios("/api/v2/overview")).data;
+        countOffending: { count: countOffending }
+      } = (await axios("/api/v2/overview")).data;
 
       // get average for emloyed participants
-      const employedAvg = (countEmployedParticipant*100/countParticipant).toFixed(2);
+      const employedAvg = (
+        (countEmployedParticipant * 100) /
+        countParticipant
+      ).toFixed(2);
       // get count and average for not emloyed participants
-      const countNotEmployedParticipant = (countParticipant-countEmployedParticipant)
-      const notEmployedAvg = (countNotEmployedParticipant*100/countParticipant).toFixed(2);     
+      const countNotEmployedParticipant =
+        countParticipant - countEmployedParticipant;
+      const notEmployedAvg = (
+        (countNotEmployedParticipant * 100) /
+        countParticipant
+      ).toFixed(2);
       // get average for re-offending participants
-      const offendingAvg = (countOffending*100/countParticipant).toFixed(2);
-       // get count and average for not re-offending participants
-       const countNotOffending = (countParticipant-countOffending)
-       const notOffendingAvg = (countNotOffending*100/countParticipant).toFixed(2);
+      const offendingAvg = ((countOffending * 100) / countParticipant).toFixed(
+        2
+      );
+      // get count and average for not re-offending participants
+      const countNotOffending = countParticipant - countOffending;
+      const notOffendingAvg = (
+        (countNotOffending * 100) /
+        countParticipant
+      ).toFixed(2);
 
       this.setState({
         participant: countParticipant,
         course: countCourse,
         worker: countWorker,
         employment: [
-          { title: 'Employed', percentage: employedAvg},
-          { title: 'Unemployed', percentage: notEmployedAvg}
-          ],
+          { title: "Employed", percentage: employedAvg },
+          { title: "Unemployed", percentage: notEmployedAvg }
+        ],
         offending: [
-          { title: 'Bounce Back', percentage: notOffendingAvg},
-          { title: 'Other', percentage: offendingAvg}
-          ]
+          { title: "Bounce Back", percentage: notOffendingAvg },
+          { title: "Other", percentage: offendingAvg }
+        ],
+        loading: false
       });
     } catch (err) {
       dispatch({
@@ -65,9 +79,17 @@ class index extends Component {
       });
     }
   };
-  
+
   render() {
-    const { participant, course, worker, employment, offending } = this.state;
+    const {
+      participant,
+      course,
+      worker,
+      employment,
+      offending,
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <>
         <Header value="Dashboard" />
@@ -82,15 +104,9 @@ class index extends Component {
             <Statistics number={worker} value="Worker" />
           </Link>
         </div>
-        {
-          employment[0] && 
-          <PieChart sections= {employment} /> 
-        }
+        {employment[0] && <PieChart sections={employment} />}
 
-        {
-          offending[0] && 
-          <PieChart sections= {offending} /> 
-        }
+        {offending[0] && <PieChart sections={offending} />}
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
         <Footer />

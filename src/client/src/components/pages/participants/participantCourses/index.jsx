@@ -7,12 +7,14 @@ import Button from "../../../abstract/button";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from "sweetalert2";
+import Loading from '../../loading';
 
 class Course extends Component {
   state = {
     search: '',
     rows: [ ],
     message: '',
+    loading: true
   };
 
   onChange = event => {
@@ -40,10 +42,9 @@ class Course extends Component {
       let array = [["course name","course start", "course end", "enrollment status", "Action"]];
       if (courses.length === 0){
         const msg = 'There is no courses yet !!';
-        array =[];          
-        this.setState({ message: msg, rows:array});
-      }
-      else{    
+        array =[];
+        this.setState({ message: msg, rows:array, loading: false});
+      } else {
       courses.map(row =>
         array.push([
           row.course_name,
@@ -58,7 +59,7 @@ class Course extends Component {
            </>
          ])
        );
-       this.setState({ rows: array });
+       this.setState({ rows: array, loading: false });
        }
     } catch (err) {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
@@ -102,6 +103,10 @@ class Course extends Component {
 };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <React.Fragment>
         <Header value="Participant Interventions" />

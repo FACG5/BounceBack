@@ -4,6 +4,7 @@ import Form from "./../../../abstract/Form";
 import Footer from "../../../abstract/footer";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
+import Loading from '../../loading';
 
 class ParticipantCourseDetails extends Component {
   state = initialState;
@@ -29,7 +30,7 @@ class ParticipantCourseDetails extends Component {
         const { data } = result;
         const start = data.course_start.split("T")[0];
         const end = data.course_end.split("T")[0];
-        this.setState({ ...data, course_end: end, course_start: start });
+        this.setState({ ...data, course_end: end, course_start: start, loading: false });
       })
       .catch(error => {
         dispatch({
@@ -44,6 +45,10 @@ class ParticipantCourseDetails extends Component {
   };
   
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <div>
         <Form

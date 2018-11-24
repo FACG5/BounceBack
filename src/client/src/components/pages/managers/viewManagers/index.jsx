@@ -6,12 +6,14 @@ import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
 import axios from "axios";
 import swal from "sweetalert2";
+import Loading from '../../loading';
 
 export default class ViewManagers extends Component {
   state = {
     search: "",
     message: "",
-    rows: []
+    rows: [],
+    loading: true
   };
 
   deleteManager = id => {
@@ -94,7 +96,7 @@ export default class ViewManagers extends Component {
     if (finalData.length === 0) {
       const msg = " There is no managers yet !!";
       array = [];
-      this.setState({ message: msg, rows: array });
+      this.setState({ message: msg, rows: array, loading: false });
     } else {
       finalData.map(row =>
         array.push([
@@ -111,7 +113,7 @@ export default class ViewManagers extends Component {
           </>
         ])
       );
-      this.setState({ rows: array });
+      this.setState({ rows: array, loading: false });
     }
   };
 
@@ -120,6 +122,10 @@ export default class ViewManagers extends Component {
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <React.Fragment>
         <section className="section-view">

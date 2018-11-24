@@ -8,6 +8,7 @@ import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
+import Loading from '../../loading';
 
 class index extends Component {
   state = initialState;
@@ -29,7 +30,7 @@ class index extends Component {
       .then(result => {
         const { data } = result;
         const currentDate = data.date.split("T")[0];
-        this.setState({ ...data, date: currentDate });
+        this.setState({ ...data, date: currentDate, loading: false });
       })
       .catch(error => {
         dispatch({
@@ -57,6 +58,10 @@ class index extends Component {
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <div>
         <Form

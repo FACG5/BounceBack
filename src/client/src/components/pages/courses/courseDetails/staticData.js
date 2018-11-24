@@ -4,6 +4,7 @@ export const state = {
     course_start: "",
     course_end: "",
     description: "",
+    loading: true
 };
 export const fields = [
     [{

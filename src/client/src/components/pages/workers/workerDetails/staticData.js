@@ -5,6 +5,7 @@ export const state = {
     date_of_birth: "",
     gender: "",
     martial_status: "",
+    loading: true
 };
 export const fields = [
     [
