@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Header from "../../../abstract/header";
 import Input from "../../../abstract/input";
 import Table from "../../../abstract/Table";
 import Footer from "../../../abstract/footer";
-import axios from 'axios';
+import axios from "axios";
 import swal from "sweetalert2";
 import "./style.css";
-import Loading from '../../loading';
+import Loading from "../../loading";
 
 export default class ViewParticpants extends Component {
   state = {
@@ -29,16 +29,19 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      let array = [["BB_No.", "Full Name", "Date Of Birth", "Email", "Action"]];
       finalData.map(row =>
         array.push([
           row.id,
           row.fullname,
-          row.date_of_birth.split('T')[0],
+          row.date_of_birth.split("T")[0],
           row.email,
           <>
-           <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-            <Link to= {`/participant/details/${row.id}`}>
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.onDelete(row.id)}
+            />
+            <Link to={`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
           </>
@@ -67,18 +70,21 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
+      let array = [["BB_No.", "Full Name", "Date Of Birth", "Email", "Action"]];
       finalData.map(row =>
         array.push([
           row.id,
           row.fullname,
-          row.date_of_birth.split('T')[0],
+          row.date_of_birth.split("T")[0],
           row.email,
           <>
-            <Link to= {`/participant/details/${row.id}`}>
+            <Link to={`/participant/details/${row.id}`}>
               <i className="fas fa-info-circle" />
             </Link>
-            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.onDelete(row.id)}
+            />
           </>
         ])
       );
@@ -95,16 +101,16 @@ export default class ViewParticpants extends Component {
     this.setState({ dateSearch }, () => this.dateSearcher());
   };
 
-  onDelete = id =>{
+  onDelete = id => {
     swal({
-      type: 'warning',
-      html:'Are you sure that you want to delete this participant ?',
+      type: "warning",
+      html: "Are you sure that you want to delete this participant ?",
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: 'Thumbs down',
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
     }).then(confirm => {
       if (confirm.value) {
         axios("/api/v2/participant", {
@@ -115,47 +121,51 @@ export default class ViewParticpants extends Component {
         }).then(result => {
           this.getAllParticipants().then(() => {
             swal({
-              title: 'Success',
-              type: 'success',
-              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              title: "Success",
+              type: "success",
+              html:
+                " <strong>Your work has been saved</strong> <br/>" +
+                result.data.message,
               showConfirmButton: false,
               timer: 3000
             }).then(() => {
               this.getAllParticipants();
-            })
+            });
           });
         });
       }
     });
-};
-  
-// axios to make requests from backend.. 
-getAllParticipants = async () => {
+  };
+
+  // axios to make requests from backend..
+  getAllParticipants = async () => {
     try {
       const data = await axios("/api/v2/participants");
       const finalData = data.data.getParticipants;
-      let array = [["BB_No.","Full Name", "Date Of Birth", "Email", "Action"]];
-      if (finalData.length === 0){
-        const msg = 'There is no participants yet !!';
-        array =[];          
-        this.setState({ message: msg, rows:array, loading: false});
-      }
-      else{    
-      finalData.map(row =>
-        array.push([
-          row.id,
-          row.fullname,
-          row.date_of_birth.split('T')[0],
-          row.email,
-          <Fragment>
-            <Link to= {`/participant/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
-            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-          </Fragment>
-        ])
-      );
-      this.setState({ rows: array, loading: false });
+      let array = [["BB_No.", "Full Name", "Date Of Birth", "Email", "Action"]];
+      if (finalData.length === 0) {
+        const msg = "There is no participants yet !!";
+        array = [];
+        this.setState({ message: msg, rows: array, loading: false });
+      } else {
+        finalData.map(row =>
+          array.push([
+            row.id,
+            row.fullname,
+            row.date_of_birth.split("T")[0],
+            row.email,
+            <Fragment>
+              <Link to={`/participant/details/${row.id}`}>
+                <i className="fas fa-info-circle" />
+              </Link>
+              <i
+                className="fas fa-trash-alt"
+                onClick={() => this.onDelete(row.id)}
+              />
+            </Fragment>
+          ])
+        );
+        this.setState({ rows: array, loading: false });
       }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
@@ -163,13 +173,11 @@ getAllParticipants = async () => {
   };
 
   componentDidMount = async () => {
-  this.getAllParticipants();
+    this.getAllParticipants();
   };
 
   render() {
-    const {
-      loading
-    } = this.state;
+    const { loading } = this.state;
     if (loading) return <Loading />;
     return (
       <Fragment>
@@ -195,10 +203,8 @@ getAllParticipants = async () => {
               onChange={this.onChangeDate}
             />
           </div>
-          <Header value="Participants" align='left' margin='0'/>
-          <Table
-            rows={this.state.rows}
-          />
+          <Header value="Participants" align="left" margin="0" />
+          <Table rows={this.state.rows} />
           {this.state.rows.length === 0 && (
             <p className="error-msg">
               <i className="far fa-surprise" />

@@ -42,7 +42,7 @@ class Course extends Component {
       let array = [["course name","course start", "course end", "enrollment status", "Action"]];
       if (courses.length === 0){
         const msg = 'There is no courses yet !!';
-        array =[];          
+        array =[];
         this.setState({ message: msg, rows:array, loading: false});
       } else {
       courses.map(row =>
