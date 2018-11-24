@@ -19,6 +19,10 @@ class index extends Component {
     loading: true
   };
 
+  componentWillMount = () => {
+    this.props.history.push('/');
+  }
+
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
     try {

@@ -8,6 +8,7 @@ import Footer from '../../../abstract/footer';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from 'sweetalert2';
+import Loading from '../../loading';
 
 class index extends Component {
   state = initialState;
@@ -28,7 +29,7 @@ class index extends Component {
       
       const { data } = result;
       const date = data.date_of_birth.split("T")[0];
-      this.setState({...data, date_of_birth:date});
+      this.setState({...data, date_of_birth:date, loading: false });
 
     }).catch(error => {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
@@ -75,7 +76,7 @@ updateManager = async obj => {
   }
 };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getData();
   }
 
@@ -87,6 +88,10 @@ updateManager = async obj => {
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <div>
         <Form

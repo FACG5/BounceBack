@@ -12,7 +12,8 @@ export const state = {
     mobile: "",
     landline: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    loading: true
 };
 export const fields = [
     [{

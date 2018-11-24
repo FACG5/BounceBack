@@ -61,7 +61,6 @@ class index extends Component {
     const { dispatch } = this.props.context;
     const id = this.props.match.params.id;
     axios(`/api/v2/course/${id}`).then(result => {
-
       const { data } = result;
       const startDate = data.course_start.split("T")[0];
       const endDate = data.course_end.split("T")[0];
