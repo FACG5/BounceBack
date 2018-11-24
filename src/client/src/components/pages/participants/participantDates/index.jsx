@@ -63,7 +63,7 @@ class Date extends Component {
     }
 };
 
-  componentDidMount = async () => {
+componentWillMount = async () => {
     this.getDates();
   };
 

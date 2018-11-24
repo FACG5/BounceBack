@@ -39,7 +39,7 @@ class index extends Component {
       });
   };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     this.getDetails();
   };
 

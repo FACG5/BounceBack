@@ -39,7 +39,7 @@ class ParticipantCourseDetails extends Component {
       });
   };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     this.getCourseDetails();
   };
   

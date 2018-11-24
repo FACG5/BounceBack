@@ -65,7 +65,7 @@ class Course extends Component {
     }
 };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     this.getCourses();
   };
 
