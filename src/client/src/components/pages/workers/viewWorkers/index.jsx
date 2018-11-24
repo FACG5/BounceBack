@@ -5,13 +5,15 @@ import Table from "../../../abstract/Table";
 import Input from "../../../abstract/input";
 import Footer from "../../../abstract/footer";
 import axios from "axios";
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
+import Loading from '../../loading';
 
 export default class ViewWorkers extends Component {
   state = {
     search: "",
     message: "",
-    rows: []
+    rows: [],
+    loading: true
   };
 
   deleteWorker = id => {
@@ -76,7 +78,7 @@ export default class ViewWorkers extends Component {
       const msg = data.data.message;
       this.setState({ message: msg, rows: arr });
     }
-  };      
+  };
    onChange = event => {
     const search = event.target.value;
     this.setState({ search }, () => this.getSearch());
@@ -89,7 +91,7 @@ export default class ViewWorkers extends Component {
       let array = [["username", "date of birth", "action"]];
       if (finalData.length === 0){
         const msg = ' There is no workers yet !!';
-        array =[];          
+        array =[];
         this.setState({ message: msg,rows:array});
       } else{
         finalData.map(row =>
@@ -104,18 +106,22 @@ export default class ViewWorkers extends Component {
             </>
           ])
         );
-        this.setState({ rows: array });
+        this.setState({ rows: array,loading: false });
       }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getData();
   };
 
   render() {
+    const {
+      loading
+    } = this.state;
+    if (loading) return <Loading />;
     return (
       <>
         <section className="section-view">

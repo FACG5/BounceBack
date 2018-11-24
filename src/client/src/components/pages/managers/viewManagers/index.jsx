@@ -117,7 +117,7 @@ export default class ViewManagers extends Component {
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getData();
   };
 
