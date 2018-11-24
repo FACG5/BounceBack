@@ -7,7 +7,25 @@ exports.get = async (req, res) => {
     const countParticipant = await participant.findAndCountAll();
     const countCourse = await course.findAndCountAll();
     const countWorker = await worker.findAndCountAll();
-    res.send({ countParticipant, countCourse, countWorker });
+    const employed = 'employed';
+    const countEmployedParticipant = await participant.findAndCountAll({
+      where: {
+        employment_outcomes: employed,
+      },
+    });
+    const offending = 'yes';
+    const countOffending = await participant.findAndCountAll({
+      where: {
+        reoffending: offending,
+      },
+    });
+    res.send({
+      countParticipant,
+      countCourse,
+      countWorker,
+      countEmployedParticipant,
+      countOffending,
+    });
   } catch (err) {
     res.status(500).send({ err });
   }
