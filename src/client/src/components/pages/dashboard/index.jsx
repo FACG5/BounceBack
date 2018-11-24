@@ -55,7 +55,7 @@ class index extends Component {
           ],
         offending: [
           { title: 'Bounce Back', percentage: notOffendingAvg},
-          { title: 'Othder', percentage: offendingAvg}
+          { title: 'Other', percentage: offendingAvg}
           ]
       });
     } catch (err) {
