@@ -51,7 +51,7 @@ class index extends Component {
         worker: countWorker,
         employment: [
           { title: 'Employed', percentage: employedAvg},
-          { title: 'Un_employed', percentage: notEmployedAvg}
+          { title: 'Unemployed', percentage: notEmployedAvg}
           ],
         offending: [
           { title: 'Bounce Back', percentage: notOffendingAvg},
