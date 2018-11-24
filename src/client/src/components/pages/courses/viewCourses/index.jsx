@@ -118,7 +118,7 @@ export default class Courses extends Component {
     }
   };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.getData();
   };
   render() {
