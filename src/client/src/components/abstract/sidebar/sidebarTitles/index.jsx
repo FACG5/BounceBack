@@ -49,12 +49,12 @@ class SideTitles extends Component {
             </li>
 
             <li className="item">
-              <Link className="btn" onClick={this.onClick} id="courses" to="#courses"> <i className="icon fa fa-caret-down"></i>courses</Link>
+              <Link className="btn" onClick={this.onClick} id="courses" to="#courses"> <i className="icon fa fa-caret-down"></i>interventions</Link>
               {
                 toggleCourse &&
                 (<div className="sub-menu">
-                  <Link className="link" to="/courses/view">view courses</Link>
-                  <Link className="link" to="/courses/add">add course</Link>
+                  <Link className="link" to="/courses/view">view intervention</Link>
+                  <Link className="link" to="/courses/add">add intervention</Link>
                 </div>)
               }
             </li>
