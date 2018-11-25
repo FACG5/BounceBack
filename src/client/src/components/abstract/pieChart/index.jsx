@@ -21,8 +21,8 @@ export default class index extends Component {
               <div
                 style={{
                   background: colors[i],
-                  width: "30px",
-                  height: "30px"
+                  width: "20px",
+                  height: "20px"
                 }}
               />
               <span>{section.title}</span>

@@ -1,17 +1,17 @@
 import * as d3 from "d3";
 export const colors = [
-  "#DC712D",
-  "#FF8A00",
-  "#96A5C5",
+  "#f7a25e",
+  "#c73400",
+  "#cccccc",
   "#8D81A5",
   "#743C6A",
   "#A95752"
 ];
 
 export const makePie = (sections, tag) => {
-  const svgWidth = 600,
-    svgHeight = 400,
-    radius = Math.min(svgWidth, svgHeight) / 2;
+  const svgWidth = 150,
+    svgHeight = 150,
+    radius = Math.min(svgWidth, svgHeight) /2;
 
   const svg = d3
     .select(tag)
@@ -43,7 +43,7 @@ export const makePie = (sections, tag) => {
   let label = d3
     .arc()
     .outerRadius(radius)
-    .innerRadius(radius - 50);
+    .innerRadius(radius - 60);
 
   arc
     .append("text")
