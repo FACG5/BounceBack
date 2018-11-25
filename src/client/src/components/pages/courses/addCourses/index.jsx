@@ -28,6 +28,7 @@ export default class index extends Component {
   };
 
   addCourse = async obj => {
+
     const confirm = await swal({
       type: "warning",
       html: "Are you sure that you want to add this course ?",
@@ -38,31 +39,32 @@ export default class index extends Component {
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: "Thumbs down"
     });
+
     if (confirm.value) {
-    const result = await axios("/api/v2/courses", {
-      method: "POST",
-      data: {
-        courseData: obj
+      const result = await axios("/api/v2/courses", {
+        method: "POST",
+        data: {
+          courseData: obj
+        }
+      });
+      if (result.data.error) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.error,
+          confirmButtonText: "Ok"
+        });
+        this.props.history.push("/courses/view");
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+        this.setState({ ...obj });
+        this.props.history.push("/courses/view");
       }
-    });
-    if (result.data.error) {
-      await swal({
-        title: "",
-        type: "warning",
-        html: result.data.error,
-        confirmButtonText: "Ok"
-      });
-      this.props.history.push("/courses/view");
-    } else {
-      await swal({
-        title: "Success",
-        type: "success",
-        html: result.data.message
-      });
-      this.setState({ ...obj });
-      this.props.history.push("/courses/view");
     }
-  }
   };
 
   // the implemention waiting  back end api
@@ -71,16 +73,19 @@ export default class index extends Component {
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
-
     this.addCourse(fields);
   };
 
   render() {
+    const { type } = this.state;
+    const fieldsSetClone = [...fieldSet]
+    if (type !== 'pastoral')
+      fieldsSetClone.splice(1, 1);
     return (
       <div>
         <Form
           title="Add Intervention"
-          fields={fieldSet}
+          fields={fieldsSetClone}
           values={this.state}
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.clearFields]}
