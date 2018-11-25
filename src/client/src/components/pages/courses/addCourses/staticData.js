@@ -11,7 +11,7 @@ export const fields = [
             label: "Intervention Name",
             name: "course_name",
             width: "20rem",
-            placeholder: "course name"
+            placeholder: "intervention name"
         },
         {
             tag: "DropDown",
@@ -49,7 +49,7 @@ export const fields = [
     [
         {
         tag: 'Button',
-        value: "Add Course",
+        value: "Add Intervention",
         staticField: true,
         color: "#272727",
     },
