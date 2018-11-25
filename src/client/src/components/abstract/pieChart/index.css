@@ -1,12 +1,12 @@
 .pie {
   position: relative;
   display: inline-block;
-  margin: 0px 31px;
+  margin: 0px 0px;
 }
 
 .platforms {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin: 0 auto;
   margin-top: 2rem;
 }
@@ -19,7 +19,8 @@ svg {
 .paltform-titles {
   animation: up 0.5s ease-in 0.5s;
   animation-fill-mode: both;
-  font-size: 13px;
+  font-size: 15px;
+  margin-right: 12px;
 }
 
 .paltform-titles>div {
@@ -28,7 +29,7 @@ svg {
 
 .bar-chart {
   display: block;
-  width: 400px;
+  width: 200px;
   margin: 0 auto;
 }
 

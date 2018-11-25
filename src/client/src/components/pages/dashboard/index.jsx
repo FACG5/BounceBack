@@ -93,6 +93,13 @@ class index extends Component {
     return (
       <>
         <Header value="Dashboard" />
+        <div className="charts">
+          {employment[0] && <PieChart sections={employment} />}
+          {offending[0] && <PieChart sections={offending} />}
+          {offending[0] && <PieChart sections={offending} />}  
+        </div>
+        <h3 className="welcome">welcome in the bounceback dashboard</h3>
+        <p className="welcome-p">you can manage any thing that you want</p>
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={participant} value="Participant" />
@@ -104,11 +111,6 @@ class index extends Component {
             <Statistics number={worker} value="Worker" />
           </Link>
         </div>
-        {employment[0] && <PieChart sections={employment} />}
-
-        {offending[0] && <PieChart sections={offending} />}
-        <h3 className="welcome">welcome in the bounceback dashboard</h3>
-        <p className="welcome-p">you can manage any thing that you want</p>
         <Footer />
       </>
     );
