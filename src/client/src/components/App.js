@@ -18,6 +18,7 @@ import prisonDetails from "./pages/participants/prisonDetails";
 import addWorker from "./pages/workers/addWorkers";
 import workerDetails from "../components/pages/workers/workerDetails";
 import courseDetails from "../components/pages/courses/courseDetails";
+import pastoral from "../components/pages/courses/pastoral";
 import managerDetails from "../components/pages/managers/managerDetails";
 import ParticipantCourseDetails from "../components/pages/participants/participantCourseDetails";
 import ParticipantCourseAdd from "../components/pages/participants/addParticipantCourse";
@@ -94,8 +95,13 @@ class App extends Component {
                     />
                     <Route
                       exact
-                      path="/courses/details/:id"
+                      path="/trainings/details/:id"
                       component={courseDetails}
+                    />
+                    <Route
+                      exact
+                      path="/pastoral/details/:id"
+                      component={pastoral}
                     />
                     <Route
                       exact
