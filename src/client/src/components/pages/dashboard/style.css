@@ -8,10 +8,19 @@ a{
 }
 .welcome, .welcome-p{
     text-transform: capitalize;
+    text-align: center;
 }
 .welcome{
     margin: 20px 0 20px 0;
 }
 .welcome-p{
     color:#575353;
+}
+.charts{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-column-gap: 5%;
+    border-bottom: #575353 1px double;
+    /* border-top: #6d6b6b 1px solid; */
+    padding: 15px 0;
 }
