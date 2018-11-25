@@ -6,8 +6,15 @@ const Login = require('./login');
 const workers = require('./workers');
 const managers = require('./managers');
 const prison = require('./prison');
+const auth = require('./../middleware/auth');
 
 const Router = express.Router();
+
+
+// LoginRoute
+Router.post('/login', Login.get);
+
+Router.use(auth);
 
 // Home page Routes
 Router.get('/overview', getCount.get);
@@ -60,7 +67,5 @@ Router.get('/manager/:id', managers.getDetails);
 Router.post('/managers', managers.post);
 Router.put('/manager/:id', managers.update);
 
-// LoginRoute
-Router.post('/login', Login.get);
 
 module.exports = Router;
