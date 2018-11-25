@@ -79,7 +79,6 @@ class index extends Component {
     this.props.history.push('/courses/view')
   };
 
-  // the implemention waiting  back end api
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
