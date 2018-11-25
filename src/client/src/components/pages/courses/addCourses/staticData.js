@@ -1,6 +1,6 @@
 export const state = {
     course_name: "",
-    course_category: "wawa",
+    type: "trainings",
     course_start: "",
     course_end: "",
     description: ""
@@ -8,30 +8,30 @@ export const state = {
 export const fields = [
     [{
             tag: "Input",
-            label: "Course Name",
+            label: "Intervention Name",
             name: "course_name",
             width: "20rem",
             placeholder: "course name"
         },
         {
             tag: "DropDown",
-            label: "Course Category",
-            name: "course_category",
+            label: "Intervention Type",
+            name: "type",
             width: "20rem",
-            options: ['N/A', 'wawa']
+            options: ['trainings', 'pastoral']
         }
     ],
     [
         {
             tag: "Input",
-            label: "Course Start",
+            label: "Intervention Start",
             name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
-            label: "Course End",
+            label: "Intervention End",
             name: "course_end",
             width: "20rem",
             type: "date",

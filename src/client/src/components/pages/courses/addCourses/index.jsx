@@ -79,7 +79,7 @@ export default class index extends Component {
     return (
       <div>
         <Form
-          title="Add Course"
+          title="Add Intervention"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}

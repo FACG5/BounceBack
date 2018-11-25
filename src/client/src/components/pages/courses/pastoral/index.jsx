@@ -93,7 +93,7 @@ class index extends Component {
     return (
       <div>
         <Form
-          title="Training Intervention"
+          title="Pastoral Intervention"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}

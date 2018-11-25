@@ -6,12 +6,12 @@ import Footer from "../../../abstract/footer";
 import Input from "../../../abstract/input";
 import axios from "axios";
 import swal from "sweetalert2";
-import Loading from '../../loading';
+import Loading from "../../loading";
 
 export default class Courses extends Component {
   state = {
     search: "",
-    message:"",
+    message: "",
     rows: [],
     loading: true
   };
@@ -26,7 +26,7 @@ export default class Courses extends Component {
     });
     const finalData = data.data.result;
     if (finalData) {
-      let array = [["Course Name", "start", "end", "Action"]];
+      let array = [["Intervention Name", "start", "end", "Action"]];
       finalData.map(row =>
         array.push([
           row.course_name,
@@ -37,7 +37,8 @@ export default class Courses extends Component {
               <i className="fas fa-info-circle" />
             </Link>
             <i
-              className="fas fa-trash-alt" onClick={() => this.deleteCourse(row.id)}
+              className="fas fa-trash-alt"
+              onClick={() => this.deleteCourse(row.id)}
             />
           </>
         ])
@@ -57,14 +58,14 @@ export default class Courses extends Component {
 
   deleteCourse = id => {
     swal({
-      type: 'warning',
-      html:'Are you sure that you want to delete this course ?',
+      type: "warning",
+      html: "Are you sure that you want to delete this course ?",
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i className="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i className="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: 'Thumbs down',
+      confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
     }).then(confirm => {
       if (confirm.value) {
         axios("/api/v2/courses", {
@@ -75,9 +76,11 @@ export default class Courses extends Component {
         }).then(result => {
           this.getData().then(() => {
             swal({
-              title: 'Success',
-              type: 'success',
-              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
+              title: "Success",
+              type: "success",
+              html:
+                " <strong>Your work has been saved</strong> <br/>" +
+                result.data.message,
               showConfirmButton: false,
               timer: 3000
             });
@@ -91,29 +94,36 @@ export default class Courses extends Component {
     try {
       const data = await axios("/api/v2/courses");
       const finalData = data.data.coursesData;
-      let array = [["Course Name", "start", "end", "Action"]];
-      if (finalData.length === 0){
-        const msg = ' There is no courses yet !!';
-        array =[];
-        this.setState({ message: msg, rows:array, loading: false });
+      let array = [["Course Name", "start", "end", "type", "Action"]];
+      if (finalData.length === 0) {
+        const msg = " There is no courses yet !!";
+        array = [];
+        this.setState({ message: msg, rows: array, loading: false });
       } else {
-      finalData.map(row =>
-        array.push([
-          row.course_name,
-          row.course_start.split("T")[0],
-          row.course_end.split("T")[0],
-          <>
-            <Link to ={`/courses/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
-            <i
-              className="fas fa-trash-alt"
-              onClick={() => this.deleteCourse(row.id)}
-            />
-          </>
-        ])
-      );
-      this.setState({ rows: array, loading: false });
+        finalData.map(row =>
+          array.push([
+            row.course_name,
+            row.course_start.split("T")[0],
+            row.course_end.split("T")[0],
+            row.type,
+            <>
+              {row.type === "trainings" ? (
+                <Link to={`/trainings/details/${row.id}`}>
+                  <i className="fas fa-info-circle" />
+                </Link>
+              ) : (
+                <Link to={`/pastoral/details/${row.id}`}>
+                  <i className="fas fa-info-circle" />
+                </Link>
+              )}
+              <i
+                className="fas fa-trash-alt"
+                onClick={() => this.deleteCourse(row.id)}
+              />
+            </>
+          ])
+        );
+        this.setState({ rows: array, loading: false });
       }
     } catch (err) {
       console.log(err); // waiting for boundery error handling
@@ -124,30 +134,32 @@ export default class Courses extends Component {
     this.getData();
   };
   render() {
-    const {
-      loading
-    } = this.state;
+    const { loading } = this.state;
     if (loading) return <Loading />;
     return (
       <>
         <section className="section-view">
-          <Header value="Courses" />
+          <Header value="Interventions" />
           <div className="search-bar">
             <Input
-              label="Search by course name"
+              label="Search by intervention name"
               name="search"
               type="text"
-              placeholder="course name"
+              placeholder="intervention name"
               width="300px"
               value={this.state.search}
               onChange={this.onChange}
             />
           </div>
-          <Header value="Courses" align="left" margin="0" />
+          <Header value="Intervention" align="left" margin="0" />
           <Table rows={this.state.rows} />
-          { this.state.rows.length === 0 &&
-            <p className="error-msg"> <i className="far fa-surprise"></i>{this.state.message}</p>
-          }
+          {this.state.rows.length === 0 && (
+            <p className="error-msg">
+              {" "}
+              <i className="far fa-surprise" />
+              {this.state.message}
+            </p>
+          )}
           <Footer />
         </section>
       </>
