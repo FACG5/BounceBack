@@ -37,7 +37,7 @@ export const fields = [
         label: "Enrollment Status",
         name: "enrollment_status",
         width: "40rem",
-        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'faild', 'reset' ]
+        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'failed', 'reset' ]
        },
     ],
 

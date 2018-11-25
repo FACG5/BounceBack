@@ -9,9 +9,10 @@ import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from 'sweetalert2';
 import Loading from '../../loading';
+import PieChart from "../../../abstract/pieChart";
 
 class index extends Component {
-  state = initialState
+  state = initialState;
 
   onChange = event => {
     const { value, name } = event.target;
@@ -66,13 +67,57 @@ class index extends Component {
       const endDate = data.course_end.split("T")[0];
       this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
     }).catch(error => {
+      console.log(error)
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
-    })
-
+    });
   };
 
-  componentDidMount = () => {
+  getChart = async () => {
+    const { dispatch } = this.props.context;
+    const id = this.props.match.params.id;
+    try{
+    const {
+      total: { count: total },
+      countDropped: { count: countDropped },
+      countStarted: { count: countStarted },
+      countReset: { count: countReset },
+      countNot: { count: countNot },
+      countPassed: { count: countPassed },
+      countFailed: { count: countFailed },
+    } = (await axios(`/api/v2/enrollment/${id}`)).data;
+
+    const avg = (count, countAll) =>{
+      return ((count * 100) / countAll).toFixed(2);
+    }
+    const passedAvg = avg(countPassed, total);
+    const failedAvg = avg(countFailed, total);
+    const droppedAvg = avg(countDropped, total);
+    const resetAvg = avg(countReset, total);
+    const startedAvg = avg(countStarted, total);
+    const notStartedAvg = avg(countNot, total);
+
+    this.setState({ enrollment_status: [{ title: 'Passed', percentage: passedAvg },
+    { title: 'Failed', percentage: failedAvg },
+    { title: 'Dropped', percentage: droppedAvg },
+    { title: 'Reset', percentage: resetAvg },
+    { title: 'Started', percentage: startedAvg },
+    { title: 'Not Started', percentage: notStartedAvg }
+  ]});
+  }
+  catch (error) {
+    dispatch({
+      type: "ERROR_PAGE",
+      payload: { ErrorPage: error.response.status }
+    });
+  }
+};
+
+  componentWillMount = () => {
     this.getDetails();
+  }
+
+  componentDidMount = () => {
+    this.getChart();
   }
 
   goBack = event => {
@@ -88,11 +133,12 @@ class index extends Component {
 
   render() {
     const {
-      loading
+      loading, enrollment_status
     } = this.state;
     if (loading) return <Loading />;
     return (
       <div>
+        {enrollment_status[0] && <PieChart sections={enrollment_status} />}
         <Form
           title="Course Details"
           fields={fieldSet}

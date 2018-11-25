@@ -43,6 +43,7 @@ Router.post('/courses/search', courses.search);
 Router.get('/course/:id', courses.details);
 Router.post('/courses', courses.post);
 Router.put('/course/:id', courses.update);
+Router.get('/enrollment/:id', getCount.getEnrollmentStatus);
 
 // Workers Routes
 Router.get('/workers', workers.get);
