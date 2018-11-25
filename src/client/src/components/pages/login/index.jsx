@@ -36,11 +36,6 @@ class LoginForm extends Component {
       data: { username, password },
       url: "/api/v2/login"
     });
-
-
-
-
-
     if (response.data) {
       localStorage.setItem("token", JSON.stringify(response.data));
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
