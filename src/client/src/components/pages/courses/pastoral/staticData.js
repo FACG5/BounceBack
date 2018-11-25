@@ -4,50 +4,71 @@ export const state = {
   course_start: "",
   course_end: "",
   description: "",
-  loading: true
+  loading: true,
+  category: ""
 };
 export const fields = [
   [
     {
-        tag: "Input",
-        label: "Name",
-        name: "course_name",
-        width: "20rem",
-        placeholder: "course name"
+      tag: "Input",
+      label: "Name",
+      name: "course_name",
+      width: "20rem",
+      placeholder: "course name"
     },
     {
-        tag: "DropDown",
-        label: "Type :",
-        name: "type",
-        width: "20rem",
-        options: ['trainings', 'pastoral']
+      tag: "DropDown",
+      label: "Type :",
+      name: "type",
+      width: "20rem",
+      options: ["trainings", "pastoral"]
     }
-],
-[
+  ],
+  [
     {
-        tag: "Input",
-        label: "Start",
-        name: "course_start",
-        width: "20rem",
-        type: "date",
+      tag: "DropDown",
+      label: "Category",
+      name: "category",
+      width: "42rem",
+      options: [
+        "Referral",
+        "Further Training",
+        "Employment Engagement",
+        "Phone Call",
+        "Mentoring",
+        "Interview Skills",
+        "CV writing",
+        "Probation Advocacy",
+        "Self Employment workshops",
+        "UTR Registration"
+      ]
+    }
+  ],
+  [
+    {
+      tag: "Input",
+      label: "Start",
+      name: "course_start",
+      width: "20rem",
+      type: "date"
     },
     {
-        tag: "Input",
-        label: "End",
-        name: "course_end",
-        width: "20rem",
-        type: "date",
+      tag: "Input",
+      label: "End",
+      name: "course_end",
+      width: "20rem",
+      type: "date"
     }
-],
-[
+  ],
+  [
     {
-        tag: "Textarea",
-        label: "Description",
-        name: "description",
-        width: "45rem",
-        height: "10rem"
+      tag: "Textarea",
+      label: "Description",
+      name: "description",
+      width: "45rem",
+      height: "10rem"
     }
-],
+  ],
   [
     {
       tag: "Button",
