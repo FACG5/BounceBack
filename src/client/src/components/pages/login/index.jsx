@@ -5,22 +5,29 @@ import contextHoc from "./../../abstract/HOC/contextHoc";
 import "./style.css";
 import axios from "axios";
 import swal from 'sweetalert2';
+import { decode } from 'jsonwebtoken';
+
 
 class LoginForm extends Component {
   state = {
     username: "",
     password: ""
   };
-  componentDidMount = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+  componentDidMount = async () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const user = await decode(token);
+    console.log('hi', (!user || !user.logging));
     if (!user || !user.logging) {
+      console.log(('from login', user))
       this.props.history.push("/login");
     }
   };
+
   onChange = event => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+
 
   onClick = async () => {
     const { dispatch } = this.props.context;
@@ -31,9 +38,13 @@ class LoginForm extends Component {
       data: { username, password },
       url: "/api/v2/login"
     });
-    if (response.data.username) {
-      const user = { logging: true };
-      localStorage.setItem("user", JSON.stringify(user));
+
+
+
+
+
+    if (response.data) {
+      localStorage.setItem("token", JSON.stringify(response.data));
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
       swal({
         title: "Success",
@@ -54,11 +65,11 @@ class LoginForm extends Component {
     return (
       <div className="login-page">
         <div className="login-form">
-        <img
-          className="login-logo"
-          src="https://files.gitter.im/MAK-asdadsada/Lobby/5kcm/Logo.png"
-          alt="logo"
-        />
+          <img
+            className="login-logo"
+            src="https://files.gitter.im/MAK-asdadsada/Lobby/5kcm/Logo.png"
+            alt="logo"
+          />
           <div className="inputs">
             <Input
               label="Username"
