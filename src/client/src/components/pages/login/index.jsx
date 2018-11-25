@@ -13,9 +13,9 @@ class LoginForm extends Component {
     username: "",
     password: ""
   };
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const user = await decode(token);
+    const user = decode(token);
     if (!user || !user.logging) {
       this.props.history.push("/login");
     }
