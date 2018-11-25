@@ -7,10 +7,6 @@ const course = sequelize.define('course', {
     allowNull: false,
     unique: true,
   },
-  course_category: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-  },
   course_start: {
     type: Sequelize.DATE,
   },
@@ -18,6 +14,10 @@ const course = sequelize.define('course', {
     type: Sequelize.DATE,
   },
   description: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  },
+  type: {
     type: Sequelize.TEXT,
     allowNull: false,
   },
