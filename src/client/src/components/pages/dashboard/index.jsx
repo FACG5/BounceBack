@@ -30,7 +30,6 @@ class index extends Component {
         countParticipant: { count: countParticipant },
         countCourse: { count: countCourse },
         countWorker: { count: countWorker },
-        countEmployedParticipant: { count: countEmployedParticipant },
         countOffending: { count: countOffending },
         countEmployedReOffenging: {count: countEmployedReOffenging},
       } = (await axios("/api/v2/overview")).data;
