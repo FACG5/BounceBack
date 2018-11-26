@@ -9,7 +9,7 @@ export const state = {
 export const fields = [
     [{
         tag: "Input",
-        label: "Course Name",
+        label: "Name",
         name: "course_name",
         width: "40rem",
         placeholder: "course name",
@@ -18,14 +18,14 @@ export const fields = [
     [
         {
             tag: "Input",
-            label: "Course start",
+            label: "Start",
             name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
-            label: "Course end",
+            label: "End",
             name: "course_end",
             width: "20rem",
             type: "date",
@@ -37,7 +37,7 @@ export const fields = [
         label: "Enrollment Status",
         name: "enrollment_status",
         width: "40rem",
-        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'failed', 'reset' ]
+        options: [ 'not completed yet', 'completed' ]
        },
     ],
 
