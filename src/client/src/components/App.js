@@ -41,7 +41,6 @@ class App extends Component {
   componentWillMount = () => {
     const { dispatch } = this.props.context;
     const decoded = checkUser();
-    console.log(decoded);
     if (decoded)
       dispatch({ type: "LOGIN_USER", payload: { logging: decoded.logging } });
   };
