@@ -1,9 +1,7 @@
-
 import { decode } from 'jsonwebtoken';
 
 export function checkUser() {
   const token = getCookie('jwt');
-  console.log(token)
   return decode(token);
 }
 
