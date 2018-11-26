@@ -14,6 +14,12 @@ exports.get = async (req, res) => {
         employment_outcomes: employed,
       },
     });
+    const countEmployedReOffenging = await participant.findAndCountAll({
+      where: {
+        employment_outcomes: employed,
+        reoffending: 'yes',
+      },
+    });
     const offending = 'yes';
     const countOffending = await participant.findAndCountAll({
       where: {
@@ -26,6 +32,7 @@ exports.get = async (req, res) => {
       countWorker,
       countEmployedParticipant,
       countOffending,
+      countEmployedReOffenging,
     });
   } catch (err) {
     res.status(500).send({ err });
@@ -47,57 +54,17 @@ exports.getEnrollmentStatus = async (req, res) => {
         course_name: name,
       },
     });
-    const pass = 'passed';
-    const countPassed = await intervention.findAndCountAll({
+    const complete = 'completed';
+    const countCompleted = await intervention.findAndCountAll({
       where: {
-        enrollment_status: pass,
-        course_name: name,
-      },
-    });
-    const fail = 'failed';
-    const countFailed = await intervention.findAndCountAll({
-      where: {
-        enrollment_status: fail,
-        course_name: name,
-      },
-    });
-    const drop = 'dropped';
-    const countDropped = await intervention.findAndCountAll({
-      where: {
-        enrollment_status: drop,
-        course_name: name,
-      },
-    });
-    const start = 'started';
-    const countStarted = await intervention.findAndCountAll({
-      where: {
-        enrollment_status: start,
-        course_name: name,
-      },
-    });
-    const reset = 'reset';
-    const countReset = await intervention.findAndCountAll({
-      where: {
-        enrollment_status: reset,
-        course_name: name,
-      },
-    });
-    const not = 'not started yet';
-    const countNot = await intervention.findAndCountAll({
-      where: {
-        enrollment_status: not,
+        enrollment_status: complete,
         course_name: name,
       },
     });
     res.send({
       name,
       total,
-      countPassed,
-      countFailed,
-      countDropped,
-      countStarted,
-      countReset,
-      countNot,
+      countCompleted,
     });
   } catch (err) {
     res.status(500).send({ err });
