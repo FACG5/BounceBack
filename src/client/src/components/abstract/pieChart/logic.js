@@ -5,7 +5,8 @@ export const colors = [
   "#cccccc",
   "#8D81A5",
   "#743C6A",
-  "#A95752"
+  "#A95752",
+  "#f7bf36"
 ];
 
 export const makePie = (sections, tag) => {
