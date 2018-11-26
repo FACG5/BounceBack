@@ -55,7 +55,7 @@ class index extends Component {
       
       const sections = counts[0].map(({ course_name, count }) => ({
         title: course_name,
-        percentage: ((count * 100) / EmployedCount).toFixed(2)
+        percentage: ((count * 100) / EmployedCount).toFixed(1)
       }));
 
       this.setState({
