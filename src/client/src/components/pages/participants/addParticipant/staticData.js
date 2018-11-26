@@ -24,8 +24,8 @@ export const state = {
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
-  employment_outcomes: "",
-  reoffending: "",
+  employment_outcomes: "employed",
+  reoffending: "no",
   checked: true
 };
 export const fields = [
