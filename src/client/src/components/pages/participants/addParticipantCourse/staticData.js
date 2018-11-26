@@ -1,14 +1,12 @@
 export const state = {
     course_start: "",
     course_end: "",
-    details: "",
-    enrollment_status: "not stated yet",
     course_name: "",  
 };
 export const fields = [
     [{
         tag: "DropDown",
-        label: "Course Name",
+        label: "Name",
         name: "course_name",
         width: "40rem",
         options: [],
@@ -17,36 +15,17 @@ export const fields = [
     [
         {
             tag: "Input",
-            label: "Course start",
+            label: "Start",
             name: "course_start",
             width: "20rem",
             type: "date",
         },
         {
             tag: "Input",
-            label: "Course end",
+            label: "End",
             name: "course_end",
             width: "20rem",
             type: "date",
-        }
-    ],
-    [
-       {
-        tag: "DropDown",
-        label: "Enrollment Status",
-        name: "enrollment_status",
-        width: "40rem",
-        options: [ 'not stated yet', 'started', 'dropped', 'passed', 'failed', 'reset' ]
-       },
-    ],
-
-    [
-        {
-            tag: "Textarea",
-            label: "Details/ Notes",
-            name: "details",
-            width: "45rem",
-            height: "10rem",
         }
     ],
     [
