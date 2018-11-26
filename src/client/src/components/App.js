@@ -29,6 +29,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import contextHoc from "./abstract/HOC/contextHoc";
 import Error from "./pages/errors/";
 import { decode } from 'jsonwebtoken';
+import { checkUser } from './../helpers';
 import "./App.css";
 
 
@@ -39,8 +40,8 @@ class App extends Component {
 
   componentWillMount = () => {
     const { dispatch } = this.props.context;
-    const token = JSON.parse(localStorage.getItem("token"));
-    const decoded = decode(token);
+    const decoded = checkUser();
+    console.log(decoded);
     if (decoded)
       dispatch({ type: "LOGIN_USER", payload: { logging: decoded.logging } });
   };
@@ -161,3 +162,5 @@ class App extends Component {
 }
 
 export default contextHoc(App);
+
+
