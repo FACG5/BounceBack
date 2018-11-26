@@ -5,13 +5,15 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import Header from '../../../abstract/header';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from 'sweetalert2';
 import Loading from '../../loading';
+import PieChart from "../../../abstract/pieChart";
 
 class index extends Component {
-  state = initialState
+  state = initialState;
 
   onChange = event => {
     const { value, name } = event.target;
@@ -67,12 +69,45 @@ class index extends Component {
       this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
     }).catch(error => {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
-    })
-
+    });
   };
 
-  componentDidMount = () => {
+  getChart = async () => {
+    const { dispatch } = this.props.context;
+    const id = this.props.match.params.id;
+    try{
+    const {
+      total: { count: total },
+      countCompleted: { count: countCompleted },
+    } = (await axios(`/api/v2/enrollment/${id}`)).data;
+
+    const countUnCompleted = (total - countCompleted);
+    const avg = (count, countAll) =>{
+      return ((count * 100) / countAll).toFixed(1);
+    }
+
+    const completeAvg = avg(countCompleted, total);
+    const unCompleteAvg = avg(countUnCompleted, total);
+
+    this.setState({ enrollment_status: [
+    { title: 'Completed', percentage: completeAvg },
+    { title: 'Uncompleted', percentage: unCompleteAvg }
+  ]});
+  }
+  catch (error) {
+    dispatch({
+      type: "ERROR_PAGE",
+      payload: { ErrorPage: error.response.status }
+    });
+  }
+};
+
+  componentWillMount = () => {
     this.getDetails();
+  }
+
+  componentDidMount = () => {
+    this.getChart();
   }
 
   goBack = event => {
@@ -87,18 +122,29 @@ class index extends Component {
 
   render() {
     const {
-      loading
+      loading, enrollment_status
     } = this.state;
     if (loading) return <Loading />;
     return (
       <div>
+        <Header value="Training Intervention" />
+        <div className="trainig-section">
         <Form
-          title="Training Intervention"
+          title= "Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.goBack]}
         />
+        <div className="training-chart">
+        <h2 className="title"> Outcomes</h2>
+        {enrollment_status[0] && <PieChart sections={enrollment_status} />}
+        <div className="description">
+          <p className="desc-one"><span></span> percentage of participants who have successfully completed this training </p>
+          <p className="desc-two"><span></span> percentage of participants who have this training </p>
+        </div>
+        </div>
+        </div>
         <Footer />
       </div>
     );

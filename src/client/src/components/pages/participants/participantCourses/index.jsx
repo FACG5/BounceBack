@@ -39,7 +39,7 @@ class Course extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/courses`);
       const courses = result.data.participantCourses;
-      let array = [["course name","course start", "course end", "enrollment status", "Action"]];
+      let array = [["Intervention name","Intervention start", "Intervention", "Action"]];
       if (courses.length === 0){
         const msg = 'There is no courses yet !!';
         array =[];
@@ -50,7 +50,6 @@ class Course extends Component {
           row.course_name,
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
-          row.enrollment_status,
           <>
             <Link to= {`/participant/${id}/course/details/${row.id}`}>
               <i className="fas fa-info-circle" />
@@ -117,7 +116,7 @@ class Course extends Component {
               {this.state.message}
             </p>
         )}
-        <Button value="Add Course" onClick={this.goAdd} color="#272727" />
+        <Button value="Add Intervention" onClick={this.goAdd} color="#272727" />
         <Button value="Back" color="#FF4800" onClick={this.goBack}/>
         <Footer />
       </React.Fragment>

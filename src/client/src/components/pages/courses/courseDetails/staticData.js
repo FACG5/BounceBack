@@ -3,6 +3,7 @@ export const state = {
   type: "",
   course_start: "",
   course_end: "",
+  enrollment_status: [],
   description: "",
   loading: true
 };
@@ -12,14 +13,14 @@ export const fields = [
       tag: "Input",
       label: "Name",
       name: "course_name",
-      width: "20rem",
+      width: "15rem",
       placeholder: "course name"
     },
     {
       tag: "DropDown",
       label: "Type :",
       name: "type",
-      width: "20rem",
+      width: "15rem",
       options: ["trainings", "pastoral"]
     }
   ],
@@ -28,14 +29,14 @@ export const fields = [
       tag: "Input",
       label: "Start",
       name: "course_start",
-      width: "20rem",
+      width: "15rem",
       type: "date"
     },
     {
       tag: "Input",
       label: "End",
       name: "course_end",
-      width: "20rem",
+      width: "15rem",
       type: "date"
     }
   ],

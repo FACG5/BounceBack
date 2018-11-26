@@ -5,7 +5,8 @@ export const colors = [
   "#cccccc",
   "#8D81A5",
   "#743C6A",
-  "#A95752"
+  "#A95752",
+  "#f7bf36"
 ];
 
 export const makePie = (sections, tag) => {
@@ -54,7 +55,8 @@ export const makePie = (sections, tag) => {
     .text(function(d) {
       return `${d.data.percentage} %`;
     })
-    .style("font-size", "15px")
+    .style("font-size", "11px")
+    .style("font-weight", "bold")
     .style("fill", "white")
     .style("cursor", "pointer")
     .append("svg:title")

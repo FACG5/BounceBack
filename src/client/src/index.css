@@ -70,3 +70,42 @@ text-align: center;
 .swal2-confirm:active, .swal2-cancel:active {
     transform: translateY(2px);
 }
+.trainig-section{
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: 60% 30%;
+    grid-column-gap: 10%;
+}
+
+.training-chart{
+    text-align: left;
+}
+.training-chart .title{
+    color: #555555;
+    border-bottom: 1.5px solid #D5D5D5;
+    display: inline-block;
+    padding: 3px 9px;
+    font-size: 30px !important;
+    font-weight: 100;
+    margin-bottom: 50px;
+}
+.description{
+    margin-top: 20px;
+}
+.description p{
+    font-size: 12px;
+    margin-bottom: 10px;
+    color:#555555;
+}
+.description p span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+.desc-one span{
+    background: #f7a25e;
+}
+.desc-two span{
+    background: #c73400;
+}
+
