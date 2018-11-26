@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
-const participantCourses = sequelize.define('participantCourses', {
+const participantCourses = sequelize.define('participant_courses', {
   course_start: {
     type: Sequelize.DATE,
   },
