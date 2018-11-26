@@ -28,7 +28,6 @@ import participantDetails from "./pages/participants/participantDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import contextHoc from "./abstract/HOC/contextHoc";
 import Error from "./pages/errors/";
-import { decode } from 'jsonwebtoken';
 import { checkUser } from './../helpers';
 import "./App.css";
 
