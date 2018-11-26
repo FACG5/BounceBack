@@ -27,7 +27,6 @@ export const state = {
   employment_outcomes: "",
   reoffending: "",
   checked: true
-
 };
 export const fields = [
   [
