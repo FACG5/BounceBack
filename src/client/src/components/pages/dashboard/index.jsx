@@ -31,7 +31,6 @@ class index extends Component {
         countParticipant: { count: countParticipant },
         countCourse: { count: countCourse },
         countWorker: { count: countWorker },
-        countEmployedParticipant: { count: countEmployedParticipant },
         countEmployedReOffenging: {count: countEmployedReOffenging},
         countOffending: { count: countOffending},
         counts
