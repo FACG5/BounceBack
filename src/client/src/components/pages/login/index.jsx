@@ -5,6 +5,7 @@ import contextHoc from "./../../abstract/HOC/contextHoc";
 import "./style.css";
 import axios from "axios";
 import swal from 'sweetalert2';
+import { checkUser } from './../../../helpers';
 import { decode } from 'jsonwebtoken';
 
 
@@ -14,8 +15,7 @@ class LoginForm extends Component {
     password: ""
   };
   componentDidMount = () => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    const user = decode(token);
+    const user = checkUser();
     if (!user || !user.logging) {
       this.props.history.push("/login");
     }
