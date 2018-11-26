@@ -5,6 +5,7 @@ import {
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
+import Header from '../../../abstract/header';
 import axios from "axios";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import swal from 'sweetalert2';
@@ -67,7 +68,6 @@ class index extends Component {
       const endDate = data.course_end.split("T")[0];
       this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
     }).catch(error => {
-      console.log(error)
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
     });
   };
@@ -78,30 +78,20 @@ class index extends Component {
     try{
     const {
       total: { count: total },
-      countDropped: { count: countDropped },
-      countStarted: { count: countStarted },
-      countReset: { count: countReset },
-      countNot: { count: countNot },
-      countPassed: { count: countPassed },
-      countFailed: { count: countFailed },
+      countCompleted: { count: countCompleted },
     } = (await axios(`/api/v2/enrollment/${id}`)).data;
 
+    const countUnCompleted = (total - countCompleted);
     const avg = (count, countAll) =>{
-      return ((count * 100) / countAll).toFixed(2);
+      return ((count * 100) / countAll).toFixed(1);
     }
-    const passedAvg = avg(countPassed, total);
-    const failedAvg = avg(countFailed, total);
-    const droppedAvg = avg(countDropped, total);
-    const resetAvg = avg(countReset, total);
-    const startedAvg = avg(countStarted, total);
-    const notStartedAvg = avg(countNot, total);
 
-    this.setState({ enrollment_status: [{ title: 'Passed', percentage: passedAvg },
-    { title: 'Failed', percentage: failedAvg },
-    { title: 'Dropped', percentage: droppedAvg },
-    { title: 'Reset', percentage: resetAvg },
-    { title: 'Started', percentage: startedAvg },
-    { title: 'Not Started', percentage: notStartedAvg }
+    const completeAvg = avg(countCompleted, total);
+    const unCompleteAvg = avg(countUnCompleted, total);
+
+    this.setState({ enrollment_status: [
+    { title: 'Completed', percentage: completeAvg },
+    { title: 'Uncompleted', percentage: unCompleteAvg }
   ]});
   }
   catch (error) {
@@ -137,14 +127,24 @@ class index extends Component {
     if (loading) return <Loading />;
     return (
       <div>
-        {enrollment_status[0] && <PieChart sections={enrollment_status} />}
+        <Header value="Training Intervention" />
+        <div className="trainig-section">
         <Form
-          title="Training Intervention"
+          title= "Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
           btnEvents={[this.onSubmit, this.goBack]}
         />
+        <div className="training-chart">
+        <h2 className="title"> Outcomes</h2>
+        {enrollment_status[0] && <PieChart sections={enrollment_status} />}
+        <div className="description">
+          <p className="desc-one"><span></span> percentage of participants who have successfully completed this training </p>
+          <p className="desc-two"><span></span> percentage of participants who have this training </p>
+        </div>
+        </div>
+        </div>
         <Footer />
       </div>
     );
