@@ -1,7 +1,7 @@
 .pie {
   position: relative;
   display: inline-block;
-  margin: 0px 0px;
+  margin: 0px;
 }
 
 .platforms {
@@ -19,7 +19,7 @@ svg {
 .paltform-titles {
   animation: up 0.5s ease-in 0.5s;
   animation-fill-mode: both;
-  font-size: 15px;
+  font-size: 12px;
   margin-right: 12px;
 }
 

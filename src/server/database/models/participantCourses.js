@@ -14,6 +14,7 @@ const participantCourses = sequelize.define('participant_courses', {
   },
   enrollment_status: {
     type: Sequelize.TEXT,
+    defaultValue: 'not completed',
   },
 });
 
