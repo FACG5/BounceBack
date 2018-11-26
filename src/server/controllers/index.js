@@ -45,11 +45,13 @@ Router.post('/participant/:id/course', participants.addCourse);
 
 // Courses Routes
 Router.get('/courses', courses.get);
+Router.get('/courses/name', courses.getName);
 Router.delete('/courses', courses.delete);
 Router.post('/courses/search', courses.search);
 Router.get('/course/:id', courses.details);
 Router.post('/courses', courses.post);
 Router.put('/course/:id', courses.update);
+Router.get('/enrollment/:id', getCount.getEnrollmentStatus);
 
 // Workers Routes
 Router.get('/workers', workers.get);

@@ -11,6 +11,20 @@ exports.get = async (req, res) => {
   }
 };
 
+// get trainings
+exports.getName = async (req, res) => {
+  try {
+    const coursesData = await courses.findAll({
+      where: {
+        type: 'trainings',
+      },
+    });
+    res.send({ coursesData });
+  } catch (err) {
+    res.status(500).send({ err });
+  }
+};
+
 // Delete course
 exports.delete = (req, res) => {
   try {
