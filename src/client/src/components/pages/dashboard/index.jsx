@@ -15,13 +15,13 @@ class index extends Component {
     course: "",
     worker: "",
     employment: [],
-    offending: [],
+    sections: [],
     loading: true
   };
 
   componentWillMount = () => {
-    this.props.history.push('/');
-  }
+    this.props.history.push("/");
+  };
 
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
@@ -32,10 +32,18 @@ class index extends Component {
         countCourse: { count: countCourse },
         countWorker: { count: countWorker },
         countEmployedParticipant: { count: countEmployedParticipant },
-        countOffending: { count: countOffending }
+        counts
       } = (await axios("/api/v2/overview")).data;
 
-      // get average for emloyed participants
+      const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count),0);
+      
+      const sections = counts[0].map(({ course_name, count }) => ({
+        title: course_name,
+        percentage: ((count * 100) / EmployedCount).toFixed(2)
+      }));
+      console.log(sections)
+
+      // get average for emloyed part  countParticipant
       const employedAvg = (
         (countEmployedParticipant * 100) /
         countParticipant
@@ -47,16 +55,6 @@ class index extends Component {
         (countNotEmployedParticipant * 100) /
         countParticipant
       ).toFixed(2);
-      // get average for re-offending participants
-      const offendingAvg = ((countOffending * 100) / countParticipant).toFixed(
-        2
-      );
-      // get count and average for not re-offending participants
-      const countNotOffending = countParticipant - countOffending;
-      const notOffendingAvg = (
-        (countNotOffending * 100) /
-        countParticipant
-      ).toFixed(2);
 
       this.setState({
         participant: countParticipant,
@@ -66,10 +64,7 @@ class index extends Component {
           { title: "Employed", percentage: employedAvg },
           { title: "Unemployed", percentage: notEmployedAvg }
         ],
-        offending: [
-          { title: "Bounce Back", percentage: notOffendingAvg },
-          { title: "Other", percentage: offendingAvg }
-        ],
+        sections: sections,
         loading: false
       });
     } catch (err) {
@@ -86,7 +81,7 @@ class index extends Component {
       course,
       worker,
       employment,
-      offending,
+      sections,
       loading
     } = this.state;
     if (loading) return <Loading />;
@@ -95,8 +90,7 @@ class index extends Component {
         <Header value="Dashboard" />
         <div className="charts">
           {employment[0] && <PieChart sections={employment} />}
-          {offending[0] && <PieChart sections={offending} />}
-          {offending[0] && <PieChart sections={offending} />}  
+          {sections && <PieChart sections={sections} />}
         </div>
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
@@ -105,7 +99,7 @@ class index extends Component {
             <Statistics number={participant} value="Participant" />
           </Link>
           <Link className="static-count" to="/courses/view">
-            <Statistics number={course} value="Courses" />
+            <Statistics number={course} value="Interventions" />
           </Link>
           <Link className="static-count" to="/workers/view">
             <Statistics number={worker} value="Worker" />
