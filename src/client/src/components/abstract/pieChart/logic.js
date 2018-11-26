@@ -54,7 +54,8 @@ export const makePie = (sections, tag) => {
     .text(function(d) {
       return `${d.data.percentage} %`;
     })
-    .style("font-size", "15px")
+    .style("font-size", "11px")
+    .style("font-weight", "bold")
     .style("fill", "white")
     .style("cursor", "pointer")
     .append("svg:title")

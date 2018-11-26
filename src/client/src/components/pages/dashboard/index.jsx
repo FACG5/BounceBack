@@ -15,12 +15,13 @@ class index extends Component {
     course: "",
     worker: "",
     employment: [],
+    sections: [],
     loading: true
   };
 
   componentWillMount = () => {
-    this.props.history.push('/');
-  }
+    this.props.history.push("/");
+  };
 
   componentDidMount = async () => {
     const { dispatch } = this.props.context;
@@ -30,34 +31,42 @@ class index extends Component {
         countParticipant: { count: countParticipant },
         countCourse: { count: countCourse },
         countWorker: { count: countWorker },
-        countOffending: { count: countOffending },
+        countEmployedParticipant: { count: countEmployedParticipant },
         countEmployedReOffenging: {count: countEmployedReOffenging},
+        counts
       } = (await axios("/api/v2/overview")).data;
 
+    const countUnemployedReoffenging = countParticipant-countEmployedReOffenging;
 
-      const countUnemployedReoffenging = countParticipant-countEmployedReOffenging;
 
+    // get average for emloyed reoffinfing participants
+    const ReoffengingEmployedAvg = (
+      (countUnemployedReoffenging * 100) /
+      countEmployedParticipant
+    ).toFixed(1);
 
-      // get average for emloyed reoffinfing participants
-      const ReoffengingEmployedAvg = (
-        (countUnemployedReoffenging * 100) /
-        countOffending
-      ).toFixed(1);
+     // get average for emloyed reoffinfing participants
+     const ReoffengingUnemployedAvg = (
+      (countEmployedReOffenging * 100) /
+      countEmployedParticipant
+    ).toFixed(1);
 
-       // get average for emloyed reoffinfing participants
-       const ReoffengingUnemployedAvg = (
-        (countEmployedReOffenging * 100) /
-        countOffending
-      ).toFixed(1);
+      const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count),0);
+      
+      const sections = counts[0].map(({ course_name, count }) => ({
+        title: course_name,
+        percentage: ((count * 100) / EmployedCount).toFixed(2)
+      }));
 
       this.setState({
         participant: countParticipant,
         course: countCourse,
         worker: countWorker,
         employment: [
-          { title: "Employed Reoffinding", percentage: ReoffengingEmployedAvg },
-          { title: "Unemployed Reoffinding", percentage: ReoffengingUnemployedAvg }
+          { title: " Reoffenging Employed", percentage: ReoffengingEmployedAvg },
+          { title: "Reoffenging Unemployed", percentage: ReoffengingUnemployedAvg }
         ],
+        sections: sections,
         loading: false
       });
     } catch (err) {
@@ -74,6 +83,7 @@ class index extends Component {
       course,
       worker,
       employment,
+      sections,
       loading
     } = this.state;
     if (loading) return <Loading />;
@@ -81,6 +91,7 @@ class index extends Component {
       <>
         <Header value="Dashboard" />
         <div className="charts">
+          {sections && <PieChart sections={sections} />}
           <div className="chart-one">
             {employment[0] && <PieChart sections={employment} />}
             <div className="description">
@@ -96,7 +107,7 @@ class index extends Component {
             <Statistics number={participant} value="Participant" />
           </Link>
           <Link className="static-count" to="/courses/view">
-            <Statistics number={course} value="Courses" />
+            <Statistics number={course} value="Interventions" />
           </Link>
           <Link className="static-count" to="/workers/view">
             <Statistics number={worker} value="Worker" />

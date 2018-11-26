@@ -18,9 +18,8 @@ a{
 }
 .charts{
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 65% 30%;
     grid-column-gap: 5%;
     border-bottom: #575353 1px double;
-    /* border-top: #6d6b6b 1px solid; */
     padding: 15px 0;
 }
