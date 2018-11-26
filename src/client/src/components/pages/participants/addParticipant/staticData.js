@@ -24,12 +24,19 @@ export const state = {
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
-  employment_outcomes: "",
-  reoffending: "",
+  employment_outcomes: "employed",
+  reoffending: "no",
   checked: true
 };
 export const fields = [
   [
+    {
+      tag: "Input",
+      label: "Forename",
+      name: "forename",
+      width: "20rem",
+      placeholder: "forename"
+    },
     {
       tag: "Input",
       label: "Surname",
@@ -37,13 +44,6 @@ export const fields = [
       width: "20rem",
       placeholder: "surname"
     },
-    {
-      tag: "Input",
-      label: "Forename",
-      name: "forename",
-      width: "20rem",
-      placeholder: "forename"
-    }
   ],
   [
     {
