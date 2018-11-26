@@ -33,22 +33,23 @@ class index extends Component {
         countWorker: { count: countWorker },
         countEmployedParticipant: { count: countEmployedParticipant },
         countEmployedReOffenging: {count: countEmployedReOffenging},
+        countOffending: { count: countOffending},
         counts
       } = (await axios("/api/v2/overview")).data;
 
-    const countUnemployedReoffenging = countParticipant-countEmployedReOffenging;
+    const countUnemployedReoffenging = countOffending-countEmployedReOffenging;
 
 
     // get average for emloyed reoffinfing participants
     const ReoffengingEmployedAvg = (
       (countUnemployedReoffenging * 100) /
-      countEmployedParticipant
+      countOffending
     ).toFixed(1);
 
      // get average for emloyed reoffinfing participants
      const ReoffengingUnemployedAvg = (
       (countEmployedReOffenging * 100) /
-      countEmployedParticipant
+      countOffending
     ).toFixed(1);
 
       const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count),0);
