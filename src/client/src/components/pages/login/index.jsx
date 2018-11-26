@@ -6,7 +6,6 @@ import "./style.css";
 import axios from "axios";
 import swal from 'sweetalert2';
 import { checkUser } from './../../../helpers';
-import { decode } from 'jsonwebtoken';
 
 
 class LoginForm extends Component {
