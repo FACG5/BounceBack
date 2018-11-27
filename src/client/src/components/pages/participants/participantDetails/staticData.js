@@ -32,6 +32,31 @@ export const state = {
 export const fields = [
   [
     {
+      tag: "",
+      value: "empty",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "",
+      value: "empty",
+      color: "#FF4800",
+      staticField: true
+    },  {
+      tag: "Button",
+      value: "Followup",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "Button",
+      value: "View Interventions",
+      color: "#272727",
+      staticField: true
+    }
+  ],
+  [
+    {
       tag: "Input",
       label: "Surname",
       name: "surename",
@@ -260,30 +285,6 @@ export const fields = [
       staticField: true
     },
   
-  ],[
-    {
-      tag: "",
-      value: "empty",
-      color: "#272727",
-      staticField: true
-    },
-    {
-      tag: "",
-      value: "empty",
-      color: "#FF4800",
-      staticField: true
-    },  {
-      tag: "Button",
-      value: "Dates",
-      color: "#272727",
-      staticField: true
-    },
-    {
-      tag: "Button",
-      value: "Interventions",
-      color: "#FF4800",
-      staticField: true
-    }
   ]
 ];
 
