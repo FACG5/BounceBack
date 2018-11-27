@@ -1,7 +1,6 @@
 export const state = {
   surename: "",
   forename: "",
-  fullname: "",
   date_of_birth: "",
   address:"",
   gender: "",
@@ -69,15 +68,6 @@ export const fields = [
       name: "forename",
       width: "20rem",
       placeholder: "forename",
-    }
-  ],
-  [
-    {
-      tag: "Input",
-      label: "fullname",
-      name: "fullname",
-      width: "35rem",
-      placeholder: "fullname",
     }
   ],
   [
