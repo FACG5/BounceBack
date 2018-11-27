@@ -23,14 +23,14 @@ class SideLinks extends Component {
     return (
       <Consumer>
         {value => (
-          <React.Fragment>
+          <>
             <Link className="links" to="/report">
               report
             </Link>
             <p className="links" onClick={() => this.logout(value.dispatch)}>
               logout
             </p>
-          </React.Fragment>
+          </>
         )}
       </Consumer>
     );

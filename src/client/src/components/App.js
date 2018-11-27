@@ -30,9 +30,9 @@ class App extends Component {
           {!logging ? (
             <Route component={Login} />
           ) : (
-              <React.Fragment>
+              <>
                 <Routes />
-              </React.Fragment>
+              </>
             )}
         </div>
       </Router>

@@ -12,7 +12,7 @@ import Loading from '../../loading';
 class Course extends Component {
   state = {
     search: '',
-    rows: [ ],
+    rows: [],
     message: '',
     loading: true
   };
@@ -39,46 +39,46 @@ class Course extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/courses`);
       const courses = result.data.participantCourses;
-      let array = [["Intervention name","Intervention start", "Intervention", "Action"]];
-      if (courses.length === 0){
+      let array = [["Intervention name", "Intervention start", "Intervention", "Action"]];
+      if (courses.length === 0) {
         const msg = 'There is no courses yet !!';
-        array =[];
-        this.setState({ message: msg, rows:array, loading: false});
+        array = [];
+        this.setState({ message: msg, rows: array, loading: false });
       } else {
-      courses.map(row =>
-        array.push([
-          row.course_name,
-          row.course_start.split("T")[0],
-          row.course_end.split("T")[0],
-          <>
-            <Link to= {`/participant/${id}/course/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
-            <i className="fas fa-trash-alt"  onClick={() => this.onDelete(row.id)}/>
-           </>
-         ])
-       );
-       this.setState({ rows: array, loading: false });
-       }
+        courses.map(row =>
+          array.push([
+            row.course_name,
+            row.course_start.split("T")[0],
+            row.course_end.split("T")[0],
+            <>
+              <Link to={`/participant/${id}/course/details/${row.id}`}>
+                <i className="fas fa-info-circle" />
+              </Link>
+              <i className="fas fa-trash-alt" onClick={() => this.onDelete(row.id)} />
+            </>
+          ])
+        );
+        this.setState({ rows: array, loading: false });
+      }
     } catch (err) {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: err.response.status } })
     }
-};
+  };
 
   componentDidMount = async () => {
     this.getCourses();
   };
 
   //Delete an exist course
-  onDelete = id =>{
+  onDelete = id => {
     swal({
       type: 'warning',
-      html:'Are you sure that you want to delete this course ?',
+      html: 'Are you sure that you want to delete this course ?',
       showCancelButton: true,
       focusConfirm: false,
-      confirmButtonText:'<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
       confirmButtonAriaLabel: 'Thumbs up',
-      cancelButtonText:'<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
       cancelButtonAriaLabel: 'Thumbs down',
     }).then(confirm => {
       if (confirm.value) {
@@ -89,17 +89,17 @@ class Course extends Component {
           }
         }).then(result => {
           this.getCourses();
-            swal({
-              title: 'Success',
-              type: 'success',
-              html: ' <strong>Your work has been saved</strong> <br/>' +result.data.message,
-              showConfirmButton: false,
-              timer: 3000
-            })
+          swal({
+            title: 'Success',
+            type: 'success',
+            html: ' <strong>Your work has been saved</strong> <br/>' + result.data.message,
+            showConfirmButton: false,
+            timer: 3000
+          })
         });
       }
     });
-};
+  };
 
   render() {
     const {
@@ -107,19 +107,19 @@ class Course extends Component {
     } = this.state;
     if (loading) return <Loading />;
     return (
-      <React.Fragment>
+      <>
         <Header value="Participant Interventions" />
         <Table rows={this.state.rows} />
         {this.state.rows.length === 0 && (
-            <p className="error-msg">
-              <i className="far fa-surprise" />
-              {this.state.message}
-            </p>
+          <p className="error-msg">
+            <i className="far fa-surprise" />
+            {this.state.message}
+          </p>
         )}
         <Button value="Add Intervention" onClick={this.goAdd} color="#272727" />
-        <Button value="Back" color="#FF4800" onClick={this.goBack}/>
+        <Button value="Back" color="#FF4800" onClick={this.goBack} />
         <Footer />
-      </React.Fragment>
+      </>
     );
   }
 }

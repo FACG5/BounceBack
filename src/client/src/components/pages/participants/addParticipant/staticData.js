@@ -23,7 +23,9 @@ export const state = {
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
-  checked: true
+  employment_outcomes: "employed",
+  reoffending: "no",
+  in_prison: false,
 };
 export const fields = [
   [
@@ -232,11 +234,26 @@ export const fields = [
   ],
   [
     {
-      tag: "Button",
-      value: "In prison",
-      color: "#FF4800",
-      staticField: true
+      tag: "DropDown",
+      label: "Employment Outcomes",
+      name: "employment_outcomes",
+      width: "15rem",
+      options: ["not employed yet", "employed"],
     },
+    {
+      tag: "DropDown",
+      label: "Reoffending",
+      name: "reoffending",
+      width: "15rem",
+      options: ["no", "yes"],
+    }
+  ],
+  [
+    {
+      tag: "checkBox",
+      name: "in_prison",
+      value: ' In Prison'
+    }], [
     {
       tag: "Button",
       value: "Add participant",

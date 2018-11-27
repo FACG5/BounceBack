@@ -12,28 +12,29 @@ class SideTitles extends Component {
   }
   onClick = (e) => {
     const itemId = e.target.id;
-    if (itemId === "participants"){
-      this.setState({toggleParticipant: !this.state.toggleParticipant})
-    } else if (itemId === "courses"){
-      this.setState({toggleCourse: !this.state.toggleCourse})
-    }else if (itemId === "managers"){
-      this.setState({toggleManager: !this.state.toggleManager})
+    if (itemId === "participants") {
+      this.setState({ toggleParticipant: !this.state.toggleParticipant })
+    } else if (itemId === "courses") {
+      this.setState({ toggleCourse: !this.state.toggleCourse })
+    } else if (itemId === "managers") {
+      this.setState({ toggleManager: !this.state.toggleManager })
     }
-    else if (itemId === "workers"){
-      this.setState({toggleWorker: !this.state.toggleWorker})
+    else if (itemId === "workers") {
+      this.setState({ toggleWorker: !this.state.toggleWorker })
     }
-    else{
-      this.setState({toggleWorker: false,
-                    toggleParticipant:false,
-                    toggleManager:false,
-                    toggleCourse:false,
-                  })
+    else {
+      this.setState({
+        toggleWorker: false,
+        toggleParticipant: false,
+        toggleManager: false,
+        toggleCourse: false,
+      })
     }
   }
   render() {
     const { toggleParticipant, toggleCourse, toggleManager, toggleWorker } = this.state;
     return (
-      <React.Fragment>
+      <>
         <div className="sidemenu">
           <div className="menu">
             <li className="item">
@@ -71,7 +72,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item">
-              <Link className="btn" onClick={this.onClick} id="workers" to="#">  <i id="workers" className="icon fa fa-caret-down"></i>workers</Link>                
+              <Link className="btn" onClick={this.onClick} id="workers" to="#">  <i id="workers" className="icon fa fa-caret-down"></i>workers</Link>
               {
                 toggleWorker &&
                 (<div className="sub-menu">
@@ -83,7 +84,7 @@ class SideTitles extends Component {
             </li>
           </div>
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }

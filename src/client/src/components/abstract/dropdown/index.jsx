@@ -6,7 +6,7 @@ export default class Dropdown extends Component {
   render() {
     const { name, label, options, width, value, onChange } = this.props;
     return (
-      <React.Fragment>
+      <>
         <label htmlFor={name} className='label-field'>{label}
           <select name={name} className='drop-field' style={{ width: width }} value={value} onChange={onChange}>
             {
@@ -16,7 +16,7 @@ export default class Dropdown extends Component {
             }
           </select>
         </label>
-      </React.Fragment>
+      </>
     )
   }
 }

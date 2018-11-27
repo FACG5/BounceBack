@@ -127,7 +127,7 @@ export default class ViewManagers extends Component {
     } = this.state;
     if (loading) return <Loading />;
     return (
-      <React.Fragment>
+      <>
         <section className="section-view">
           <Header value="View Managers" />
           <Input
@@ -151,7 +151,7 @@ export default class ViewManagers extends Component {
           )}
           <Footer />
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
