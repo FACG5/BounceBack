@@ -69,7 +69,7 @@ class ParticipantCourseDetails extends Component {
         await swal({
           title: "Success",
           type: "success",
-          html: result.data.msg
+          html: result.data.message
         });
         this.setState({ ...details });
         this.props.history.push(`/participant/${id}/courses`);
