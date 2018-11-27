@@ -3,22 +3,22 @@ import propType from 'prop-types';
 import './index.css';
 
 export default function index(props) {
-    const { name, height, width, value,label,onChange } = props; 
-  return (
-    <React.Fragment>
-        <label htmlFor={name} className="label-field">
-        {label} :
-            <textarea 
-            name={name}
-            value={value} 
-            className="textarea-input"
-            placeholder={`type  ${label}`}
-            style={ {height:height, width:width} }
-            onChange={onChange}
-            />
-        </label>
-    </React.Fragment>
-  )
+    const { name, height, width, value, label, onChange } = props;
+    return (
+        <>
+            <label htmlFor={name} className="label-field">
+                {label} :
+            <textarea
+                    name={name}
+                    value={value}
+                    className="textarea-input"
+                    placeholder={`type  ${label}`}
+                    style={{ height: height, width: width }}
+                    onChange={onChange}
+                />
+            </label>
+        </>
+    )
 }
 index.propType = {
     name: propType.string.isRequired,
