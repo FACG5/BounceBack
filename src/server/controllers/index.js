@@ -32,11 +32,11 @@ Router.delete('/participant', participants.delete);
 Router.post('/participants/:id/prison', prison.post);
 
 // Participants Dates Routes
+Router.put('/participant/:id/date/:dateId', participants.editDate);
 Router.get('/participant/:id/dates', participants.getDates);
 Router.get('/participant/:id/date/details/:dateId', participants.getDateDetails);
 Router.post('/participant/:id/date', participants.addDate);
 Router.delete('/date', participants.deleteDate);
-Router.put('/participant/:id/date/:dateId', participants.editDate);
 
 // Participants Courses Routes
 Router.get('/participant/:id/courses', participants.getCourses);
