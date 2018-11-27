@@ -91,8 +91,8 @@ class index extends Component {
       <>
         <Header value="Dashboard" />
         <div className="charts">
-          {sections && <PieChart sections={sections} width={250} />}
-          {employment[0] && <PieChart sections={employment} width={250} />}
+          {sections && <PieChart sections={sections} width={250} title="Interventions Employment Outcomes" />}
+          {employment[0] && <PieChart sections={employment} width={250} title="Reoffenders Employement Outcomes"/>}
         </div>
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
