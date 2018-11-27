@@ -26,6 +26,7 @@ export const state = {
   disability_and_medical: "",
   employment_outcomes: "employed",
   reoffending: "no",
+  in_prison: false,
   checked: true
 };
 export const fields = [
@@ -260,11 +261,10 @@ export const fields = [
   ],
   [
     {
-      tag: "Button",
-      value: "In prison",
-      color: "#FF4800",
-      staticField: true
-    },
+      tag: "checkBox",
+      name: "in_prison",
+      value: ' In Prison'
+    }], [
     {
       tag: "Button",
       value: "Add participant",
