@@ -111,7 +111,7 @@ class Date extends Component {
     const { loading } = this.state;
     if (loading) return <Loading />;
     return (
-      <React.Fragment>
+      <>
         <Header value="View Dates" />
         <Table rows={this.state.rows} />
         {this.state.rows.length === 0 && (
@@ -123,7 +123,7 @@ class Date extends Component {
         <Button value="Add Date" color="#272727" onClick={this.goAdd} />
         <Button value="Back" color="#FF4800" onClick={this.goBack} />
         <Footer />
-      </React.Fragment>
+      </>
     );
   }
 }
