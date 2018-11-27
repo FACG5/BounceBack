@@ -5,7 +5,6 @@ export function checkUser() {
   return decode(token);
 }
 
-
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");

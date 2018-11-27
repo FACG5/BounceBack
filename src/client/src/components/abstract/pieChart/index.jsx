@@ -23,13 +23,9 @@ export default class index extends Component {
         <div className="platforms">
           {sections.map((section, index) =>
             <div className="chart-title" key={uuid()}>
-              <span
+              <span className="decr-square"
                 style={{
-                  display: 'inline-block',
                   background: colors[index],
-                  width: "15px",
-                  height: "15px",
-                  marginRight: '30px',
                 }}
               />{section.decription}</div>)}
         </div>

@@ -21,53 +21,53 @@ Router.get('/overview', getCount.get);
 
 // Participants Routes
 Router.get('/participants', participants.get);
-Router.delete('/participant', participants.delete);
+Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants/search/name', participants.searchByName);
 Router.post('/participants/search/date', participants.searchBydate);
-Router.get('/participant/:id', participants.getDetails);
 Router.post('/participants', participants.post);
 Router.put('/participant/:id', participants.update);
+Router.delete('/participant', participants.delete);
 
 // Participants Prison Details Routes
 Router.post('/participants/:id/prison', prison.post);
 
 // Participants Dates Routes
 Router.get('/participant/:id/dates', participants.getDates);
-Router.delete('/date', participants.deleteDate);
 Router.get('/participant/:id/date/details/:dateId', participants.getDateDetails);
 Router.post('/participant/:id/date', participants.addDate);
+Router.delete('/date', participants.deleteDate);
 
 // Participants Courses Routes
 Router.get('/participant/:id/courses', participants.getCourses);
-Router.delete('/course', participants.deleteCourse);
 Router.get('/participant/:id/course/details/:courseId', participants.getCourseDetails);
 Router.post('/participant/:id/course', participants.addCourse);
+Router.delete('/course', participants.deleteCourse);
 
 // Courses Routes
 Router.get('/courses', courses.get);
 Router.get('/courses/name', courses.getName);
-Router.delete('/courses', courses.delete);
-Router.post('/courses/search', courses.search);
 Router.get('/course/:id', courses.details);
+Router.get('/enrollment/:id', getCount.getEnrollmentStatus);
+Router.post('/courses/search', courses.search);
 Router.post('/courses', courses.post);
 Router.put('/course/:id', courses.update);
-Router.get('/enrollment/:id', getCount.getEnrollmentStatus);
+Router.delete('/courses', courses.delete);
 
 // Workers Routes
 Router.get('/workers', workers.get);
-Router.delete('/workers', workers.delete);
-Router.post('/workers/search', workers.search);
 Router.get('/worker/:id', workers.getDetails);
+Router.post('/workers/search', workers.search);
 Router.post('/workers', workers.post);
 Router.put('/worker/:id', workers.update);
+Router.delete('/workers', workers.delete);
 
 // Managers Routes
 Router.get('/managers', managers.get);
-Router.delete('/managers', managers.delete);
-Router.post('/managers/search', managers.search);
 Router.get('/manager/:id', managers.getDetails);
+Router.post('/managers/search', managers.search);
 Router.post('/managers', managers.post);
 Router.put('/manager/:id', managers.update);
+Router.delete('/managers', managers.delete);
 
 
 module.exports = Router;
