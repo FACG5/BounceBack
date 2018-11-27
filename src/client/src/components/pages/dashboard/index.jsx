@@ -53,8 +53,8 @@ class index extends Component {
 
       const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count),0);
       
-      const sections = counts[0].map(({ course_name, count }) => ({
-        title: course_name,
+      const sections = counts[0].map(({course_name,count },index) => ({
+        title: `Course ${index+1}`,
         percentage: ((count * 100) / EmployedCount).toFixed(2)
       }));
 
@@ -91,7 +91,13 @@ class index extends Component {
       <>
         <Header value="Dashboard" />
         <div className="charts">
-          {sections && <PieChart sections={sections} />}
+        <div className="chart-one">
+        {sections && <PieChart sections={sections} />}
+            <div className="description">
+              <p className="desc-one"><span></span> percentage of participants who was employed in </p>
+              <p className="desc-two"><span></span> percentage of participants who who was employed in </p>
+            </div>
+        </div>
           <div className="chart-one">
             {employment[0] && <PieChart sections={employment} />}
             <div className="description">
