@@ -300,7 +300,7 @@ exports.editTraining = async (req, res) => {
         id: courseId,
       },
     });
-    res.send({ msg: 'Editing details was done !' });
+    res.send({ message: 'Editing details was done !' });
   } catch (err) {
     const { msg } = err;
     res.send({ err: msg });
