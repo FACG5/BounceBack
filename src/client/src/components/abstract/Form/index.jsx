@@ -43,10 +43,10 @@ export default function index(props) {
                 return (
                   <Button {...field} key={index} onClick={btnEvents[index]} />
                 );
-              } else if (tag === "Button"){
+              } else if (tag === "Button") {
                 return (
                   <Link to={path} key={index}>
-                  <Button {...field} />
+                    <Button {...field} />
                   </Link>
                 );
               } else if (tag === "Textarea") {

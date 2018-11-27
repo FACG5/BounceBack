@@ -95,6 +95,7 @@ class index extends Component {
         ]
       });
     }
+
     catch (error) {
       dispatch({
         type: "ERROR_PAGE",

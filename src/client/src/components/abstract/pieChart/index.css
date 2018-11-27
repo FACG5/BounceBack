@@ -32,7 +32,7 @@ svg {
 .bar-chart {
   display: block;
   width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 0 0;
 }
 .chart-title{
   font-size: 12px;
@@ -44,6 +44,13 @@ svg {
   width: "20px";
   height: "20px";
 }
+.decr-square{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 30px;
+}
+
 @keyframes down {
   0% {
     opacity: 0;
