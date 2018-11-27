@@ -12,22 +12,14 @@ import swal from "sweetalert2";
 
 export default class index extends Component {
   state = initialState
-  
+
 
   onChange = event => {
-    const { value, name } = event.target;
-      this.setState({ [name]: value });
+    const { name, type } = event.target;
+    const value = type === 'checkbox' ? event.target.checked : event.target.value;
+    console.log('value   ----> ', value, ' ----> name ', name)
+    this.setState({ [name]: value });
   };
-
-  // check the participant in prison or not
-  onChecked = event => {
-    if (this.state.checked) {
-      event.target.style.background = '#ccc'
-    } else {
-      event.target.style.background = '#FF4800'
-    }
-    this.setState({ checked: !this.state.checked });
-  }
 
   clearFields = event => {
     event.preventDefault();
@@ -69,13 +61,13 @@ export default class index extends Component {
           type: "success",
           html: result.data.message
         });
-          this.setState({ ...obj });
-          if (this.state.checked) {
-            this.props.history.push("/participants/view");
-          } else {
-            const id = result.data.id;
-            this.props.history.push(`/participants/${id}/prison`)
-          }
+        this.setState({ ...obj });
+        if (!this.state.in_prison) {
+          this.props.history.push("/participants/view");
+        } else {
+          const id = result.data.id;
+          this.props.history.push(`/participants/${id}/prison`)
+        }
       }
     }
   };
@@ -86,7 +78,6 @@ export default class index extends Component {
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
-
     this.addParticipant(fields);
   };
 
@@ -98,7 +89,7 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onChecked, this.onSubmit, this.clearFields]}
+          btnEvents={[this.onSubmit, this.clearFields]}
         />
         <Footer />
       </div>
