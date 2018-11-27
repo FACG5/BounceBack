@@ -94,7 +94,7 @@ export default class Courses extends Component {
     try {
       const data = await axios("/api/v2/courses");
       const finalData = data.data.coursesData;
-      let array = [["Course Name", "start", "end", "type", "Action"]];
+      let array = [["Intervention Name", "start", "end", "type", "Action"]];
       if (finalData.length === 0) {
         const msg = " There is no courses yet !!";
         array = [];
@@ -112,10 +112,10 @@ export default class Courses extends Component {
                   <i className="fas fa-info-circle" />
                 </Link>
               ) : (
-                <Link to={`/pastoral/details/${row.id}`}>
-                  <i className="fas fa-info-circle" />
-                </Link>
-              )}
+                  <Link to={`/pastoral/details/${row.id}`}>
+                    <i className="fas fa-info-circle" />
+                  </Link>
+                )}
               <i
                 className="fas fa-trash-alt"
                 onClick={() => this.deleteCourse(row.id)}
