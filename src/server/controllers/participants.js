@@ -273,6 +273,23 @@ exports.addCourse = async (req, res) => {
   }
 };
 
+// Editing for participant date data
+exports.editDate = async (req, res) => {
+  try {
+    const { dateData } = req.body;
+    const { dateId } = req.params;
+    await dates.update(dateData, {
+      where: {
+        id: dateId,
+      },
+    });
+    res.send({ message: 'Editing details was done !' });
+  } catch (err) {
+    const { msg } = err;
+    res.send({ err: msg });
+  }
+};
+
 // Editing for participant training data
 exports.editTraining = async (req, res) => {
   try {
@@ -290,19 +307,3 @@ exports.editTraining = async (req, res) => {
   }
 };
 
-// Editing for participant date data
-exports.editDate = async (req, res) => {
-  try {
-    const { dateData } = req.body;
-    const { dateId } = req.params;
-    await dates.update(dateData, {
-      where: {
-        id: dateId,
-      },
-    });
-    res.send({ message: 'Editing details was done !' });
-  } catch (err) {
-    const { msg } = err;
-    res.send({ err: msg });
-  }
-};
