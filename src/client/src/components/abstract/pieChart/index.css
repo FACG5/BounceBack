@@ -1,12 +1,10 @@
 .pie {
   position: relative;
   display: inline-block;
-  margin: 0px;
+  margin: 0px 31px;
 }
 
 .platforms {
-  display: flex;
-  justify-content: center;
   margin: 0 auto;
   margin-top: 2rem;
 }
@@ -19,8 +17,7 @@ svg {
 .paltform-titles {
   animation: up 0.5s ease-in 0.5s;
   animation-fill-mode: both;
-  font-size: 10px;
-  margin-right: 12px;
+  font-size: 13px;
 }
 
 .paltform-titles>div {
@@ -29,10 +26,19 @@ svg {
 
 .bar-chart {
   display: block;
-  width: 200px;
+  width: 400px;
   margin: 0 auto;
 }
-
+.chart-title{
+  font-size: 12px;
+  margin-bottom: 10px;
+  color:#555555;
+}
+.chart-square{
+  display: inline-block;
+  width: "20px";
+  height: "20px";
+}
 @keyframes down {
   0% {
     opacity: 0;

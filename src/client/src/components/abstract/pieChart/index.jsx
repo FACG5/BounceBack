@@ -1,33 +1,36 @@
 import React, { Component } from "react";
 import { makePie, colors } from "./logic";
 import "./index.css";
+
 export default class index extends Component {
+
   constructor(props) {
     super(props);
     this.chartTag = React.createRef();
   }
+
   componentDidMount = () => {
-    const { sections } = this.props;
-    makePie(sections, this.chartTag.current);
+    const { sections, width } = this.props;
+    makePie(sections, this.chartTag.current, width);
   };
   render() {
-    const { sections, id } = this.props;
+    const { sections, id, width } = this.props;
     return (
       <div className="pie">
-        <svg className={`bar-chart-${id} bar-chart`} ref={this.chartTag} />
+        <svg className={`bar-chart-${id} bar-chart`} ref={this.chartTag} style={{ width: width }} />
         <div className="platforms">
-          {sections.map((section, i) => (
-            <div className="paltform-titles" key={i}>
-              <div
+
+          {sections.map((section, index) =>
+            <div className="chart-title">
+              <span
                 style={{
-                  background: colors[i],
+                  display: 'inline-block',
+                  background: colors[index],
                   width: "15px",
-                  height: "15px"
+                  height: "15px",
+                  marginRight: '30px',
                 }}
-              />
-              <span>{section.title}</span>
-            </div>
-          ))}
+              />{section.decription}</div>)}
         </div>
       </div>
     );
