@@ -43,7 +43,7 @@ export const fields = [
       staticField: true
     },  {
       tag: "Button",
-      value: "Followup",
+      value: "Follow Up",
       color: "#272727",
       staticField: true
     },
