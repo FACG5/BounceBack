@@ -306,4 +306,3 @@ exports.editTraining = async (req, res) => {
     res.send({ err: msg });
   }
 };
-
