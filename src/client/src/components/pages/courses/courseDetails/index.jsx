@@ -66,7 +66,7 @@ class index extends Component {
       const { data } = result;
       const startDate = data.course_start.split("T")[0];
       const endDate = data.course_end.split("T")[0];
-      this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
+      this.setState({ ...data, course_start: startDate, course_end: endDate, loading: false });
     }).catch(error => {
       dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
     });
@@ -75,32 +75,33 @@ class index extends Component {
   getChart = async () => {
     const { dispatch } = this.props.context;
     const id = this.props.match.params.id;
-    try{
-    const {
-      total: { count: total },
-      countCompleted: { count: countCompleted },
-    } = (await axios(`/api/v2/enrollment/${id}`)).data;
+    try {
+      const {
+        total: { count: total },
+        countCompleted: { count: countCompleted },
+      } = (await axios(`/api/v2/enrollment/${id}`)).data;
+      const countUnCompleted = (total - countCompleted);
 
-    const countUnCompleted = (total - countCompleted);
-    const avg = (count, countAll) =>{
-      return ((count * 100) / countAll).toFixed(1);
+      const avg = (count, countAll) => {
+        return ((count * 100) / countAll).toFixed(1);
+      }
+      const completeAvg = avg(countCompleted, total);
+      const unCompleteAvg = avg(countUnCompleted, total);
+
+      this.setState({
+        enrollment_status: [
+          { decription: 'Completed', percentage: completeAvg },
+          { decription: 'Uncompleted', percentage: unCompleteAvg }
+        ]
+      });
     }
-
-    const completeAvg = avg(countCompleted, total);
-    const unCompleteAvg = avg(countUnCompleted, total);
-
-    this.setState({ enrollment_status: [
-    { title: 'Completed', percentage: completeAvg },
-    { title: 'Uncompleted', percentage: unCompleteAvg }
-  ]});
-  }
-  catch (error) {
-    dispatch({
-      type: "ERROR_PAGE",
-      payload: { ErrorPage: error.response.status }
-    });
-  }
-};
+    catch (error) {
+      dispatch({
+        type: "ERROR_PAGE",
+        payload: { ErrorPage: error.response.status }
+      });
+    }
+  };
 
   componentWillMount = () => {
     this.getDetails();
@@ -129,21 +130,21 @@ class index extends Component {
       <div>
         <Header value="Training Intervention" />
         <div className="trainig-section">
-        <Form
-          title= "Details"
-          fields={fieldSet}
-          values={this.state}
-          onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack]}
-        />
-        <div className="training-chart">
-        <h2 className="title"> Outcomes</h2>
-        {enrollment_status[0] && <PieChart sections={enrollment_status} />}
-        <div className="description">
-          <p className="desc-one"><span></span> percentage of participants who have successfully completed this training </p>
-          <p className="desc-two"><span></span> percentage of participants who have this training </p>
-        </div>
-        </div>
+          <Form
+            title="Details"
+            fields={fieldSet}
+            values={this.state}
+            onChange={this.onChange}
+            btnEvents={[this.onSubmit, this.goBack]}
+          />
+          <div className="training-chart">
+            <h2 className="title"> Outcomes</h2>
+            {enrollment_status[0] && <PieChart sections={enrollment_status} width={300} />}
+            <div className="description">
+              <p className="desc-one"><span></span> percentage of participants who have successfully completed this training </p>
+              <p className="desc-two"><span></span> percentage of participants who have this training </p>
+            </div>
+          </div>
         </div>
         <Footer />
       </div>

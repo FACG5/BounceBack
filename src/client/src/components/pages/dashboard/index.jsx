@@ -31,30 +31,30 @@ class index extends Component {
         countParticipant: { count: countParticipant },
         countCourse: { count: countCourse },
         countWorker: { count: countWorker },
-        countEmployedReOffenging: {count: countEmployedReOffenging},
-        countOffending: { count: countOffending},
+        countEmployedReOffenging: { count: countEmployedReOffenging },
+        countOffending: { count: countOffending },
         counts
       } = (await axios("/api/v2/overview")).data;
 
-    const countUnemployedReoffenging = countOffending-countEmployedReOffenging;
+      const countUnemployedReoffenging = countOffending - countEmployedReOffenging;
 
 
-    // get average for emloyed reoffinfing participants
-    const ReoffengingEmployedAvg = (
-      (countUnemployedReoffenging * 100) /
-      countOffending
-    ).toFixed(1);
+      // get average for emloyed reoffinfing participants
+      const ReoffengingEmployedAvg = (
+        (countUnemployedReoffenging * 100) /
+        countOffending
+      ).toFixed(1);
 
-     // get average for emloyed reoffinfing participants
-     const ReoffengingUnemployedAvg = (
-      (countEmployedReOffenging * 100) /
-      countOffending
-    ).toFixed(1);
+      // get average for emloyed reoffinfing participants
+      const ReoffengingUnemployedAvg = (
+        (countEmployedReOffenging * 100) /
+        countOffending
+      ).toFixed(1);
 
-      const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count),0);
-      
+      const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count), 0);
+
       const sections = counts[0].map(({ course_name, count }) => ({
-        title: course_name,
+        decription: course_name,
         percentage: ((count * 100) / EmployedCount).toFixed(1)
       }));
 
@@ -63,8 +63,8 @@ class index extends Component {
         course: countCourse,
         worker: countWorker,
         employment: [
-          { title: " Reoffenging Employed", percentage: ReoffengingEmployedAvg },
-          { title: "Reoffenging Unemployed", percentage: ReoffengingUnemployedAvg }
+          { decription: " Reoffenging Employed", percentage: ReoffengingEmployedAvg },
+          { decription: "Reoffenging Unemployed", percentage: ReoffengingUnemployedAvg }
         ],
         sections: sections,
         loading: false
@@ -91,14 +91,14 @@ class index extends Component {
       <>
         <Header value="Dashboard" />
         <div className="charts">
-          {sections && <PieChart sections={sections} />}
+          {sections && <PieChart sections={sections} width={400} />}
           <div className="chart-one">
-            {employment[0] && <PieChart sections={employment} />}
+            {employment[0] && <PieChart sections={employment} width={400} />}
             <div className="description">
               <p className="desc-one"><span></span> percentage of participants who have reoffinding state and employed </p>
               <p className="desc-two"><span></span> percentage of participants who have reoffinding state and unemployed </p>
             </div>
-        </div>
+          </div>
         </div>
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
