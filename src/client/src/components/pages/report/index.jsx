@@ -39,7 +39,7 @@ export default class index extends Component {
       inactive
     } = this.state;
     return (
-      <React.Fragment>
+      <>
         <section className="section-view">
           <Header value="Report" />
           <div className="period-section">
@@ -75,9 +75,9 @@ export default class index extends Component {
             />{" "}
             Bounceback <br />
             <input type="checkbox"
-            name="project"
-            checked={project}
-            onChange={this.changeCheckBox}
+              name="project"
+              checked={project}
+              onChange={this.changeCheckBox}
             />{" "}
             Project I.e. <br />
             <input
@@ -131,7 +131,7 @@ export default class index extends Component {
           </Link>
           <Footer />
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
