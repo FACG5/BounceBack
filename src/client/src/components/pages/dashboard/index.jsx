@@ -63,8 +63,8 @@ class index extends Component {
         course: countCourse,
         worker: countWorker,
         employment: [
-          { decription: " Reoffenging Employed", percentage: ReoffengingEmployedAvg },
-          { decription: "Reoffenging Unemployed", percentage: ReoffengingUnemployedAvg }
+          { decription: "Percentage of participants who have reoffinding state and employed", percentage: ReoffengingEmployedAvg },
+          { decription: "Percentage of participants who have reoffinding state and unemployed", percentage: ReoffengingUnemployedAvg }
         ],
         sections: sections,
         loading: false
@@ -91,14 +91,8 @@ class index extends Component {
       <>
         <Header value="Dashboard" />
         <div className="charts">
-          {sections && <PieChart sections={sections} width={400} />}
-          <div className="chart-one">
-            {employment[0] && <PieChart sections={employment} width={400} />}
-            <div className="description">
-              <p className="desc-one"><span></span> percentage of participants who have reoffinding state and employed </p>
-              <p className="desc-two"><span></span> percentage of participants who have reoffinding state and unemployed </p>
-            </div>
-          </div>
+          {sections && <PieChart sections={sections} width={250} title="Interventions Employment Outcomes" />}
+          {employment[0] && <PieChart sections={employment} width={250} title="Reoffenders Employement Outcomes"/>}
         </div>
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>

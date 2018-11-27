@@ -1,11 +1,12 @@
 import * as d3 from "d3";
 export const colors = [
-  "#DC712D",
-  "#FF8A00",
-  "#96A5C5",
-  "#8D81A5",
-  "#743C6A",
-  "#A95752"
+  "#6b486b",
+  "#a05d56",
+  "#d0743c",
+  "#ff8c00",
+  "#98abc5",
+  "#8a89a6",
+  "#7b6888"
 ];
 
 export const makePie = (sections, tag, width) => {

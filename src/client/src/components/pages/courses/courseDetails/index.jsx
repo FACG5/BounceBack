@@ -90,8 +90,8 @@ class index extends Component {
 
       this.setState({
         enrollment_status: [
-          { decription: 'Completed', percentage: completeAvg },
-          { decription: 'Uncompleted', percentage: unCompleteAvg }
+          { decription: 'Percentage of participants who have successfully completed this training', percentage: completeAvg },
+          { decription: 'Percentage of participants who have this training', percentage: unCompleteAvg }
         ]
       });
     }
@@ -140,11 +140,7 @@ class index extends Component {
           />
           <div className="training-chart">
             <h2 className="title"> Outcomes</h2>
-            {enrollment_status[0] && <PieChart sections={enrollment_status} width={300} />}
-            <div className="description">
-              <p className="desc-one"><span></span> percentage of participants who have successfully completed this training </p>
-              <p className="desc-two"><span></span> percentage of participants who have this training </p>
-            </div>
+            {enrollment_status[0] && <PieChart sections={enrollment_status} width={200} title="Training Enrollment Status"/>}
           </div>
         </div>
         <Footer />
