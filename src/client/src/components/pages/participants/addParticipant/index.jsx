@@ -17,7 +17,6 @@ export default class index extends Component {
   onChange = event => {
     const { name, type } = event.target;
     const value = type === 'checkbox' ? event.target.checked : event.target.value;
-    console.log('value   ----> ', value, ' ----> name ', name)
     this.setState({ [name]: value });
   };
 
