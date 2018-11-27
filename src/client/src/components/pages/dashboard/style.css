@@ -18,6 +18,8 @@ a{
 }
 .charts{
     display: grid;
+    width: 90%;
+    margin: 0 0 0 auto;
     grid-template-columns: 50% 50%;
     border-bottom: #575353 1px double;
     padding: 15px 0;
