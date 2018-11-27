@@ -1,31 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
-import Sidebar from "./../../components/abstract/sidebar";
-import Container from "../../components/abstract/layout/Container";
-import ViewParticipants from "../../components/pages/participants/viewParticipants";
-import viewCourses from "../../components/pages/courses/viewCourses";
-import viewManagers from "../../components/pages/managers/viewManagers";
-import addManager from "../../components/pages/managers/addManager";
-import participantDate from "../../components/pages/participants/participantDates";
-import participantCourse from "./../pages/participants/participantCourses";
-import Dashboard from "../../components/pages/dashboard";
-import AddParticipant from "../../components/pages/participants/addParticipant";
-import ViewWorker from "../../components/pages/workers/viewWorkers";
-import addCourse from "../../components/pages/courses/addCourses";
-import ReportResult from "./../pages/reportResult";
-import Report from "./../pages/report";
-import prisonDetails from "./../pages/participants/prisonDetails";
-import addWorker from "./../pages/workers/addWorkers";
-import workerDetails from "../../components/pages/workers/workerDetails";
-import courseDetails from "../../components/pages/courses/courseDetails";
-import pastoral from "../../components/pages/courses/pastoral";
-import managerDetails from "../../components/pages/managers/managerDetails";
-import ParticipantCourseDetails from "../../components/pages/participants/participantCourseDetails";
-import ParticipantCourseAdd from "../../components/pages/participants/addParticipantCourse";
-import AddParticipantDate from "../../components/pages/participants/addParticipantDate";
-import ParticipantDateDetails from "../../components/pages/participants/participantDateDetails";
-import participantDetails from "./../pages/participants/participantDetails";
-
+import allComponenets from './allComponents';
 export default function index() {
   return (
     <div className="view-app">
@@ -125,3 +100,31 @@ export default function index() {
     </div>
   )
 }
+const {
+  Sidebar,
+  Container,
+  ViewParticipants,
+  viewCourses,
+  viewManagers,
+  addManager,
+  participantDate,
+  participantCourse,
+  Dashboard,
+  AddParticipant,
+  ViewWorker,
+  addCourse,
+  ReportResult,
+  Report,
+  prisonDetails,
+  addWorker,
+  workerDetails,
+  courseDetails,
+  pastoral,
+  managerDetails,
+  ParticipantCourseDetails,
+  ParticipantCourseAdd,
+  AddParticipantDate,
+  ParticipantDateDetails,
+  participantDetails
+
+} = allComponenets
