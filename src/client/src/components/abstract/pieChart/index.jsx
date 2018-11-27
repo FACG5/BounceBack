@@ -14,10 +14,11 @@ export default class index extends Component {
     makePie(sections, this.chartTag.current, width);
   };
   render() {
-    const { sections, id, width } = this.props;
+    const { sections, id, width, title } = this.props;
     return (
       <div className="pie">
         <svg className={`bar-chart-${id} bar-chart`} ref={this.chartTag} style={{ width: width }} />
+        <h4>{title}</h4>
         <div className="platforms">
 
           {sections.map((section, index) =>
