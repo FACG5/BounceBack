@@ -40,7 +40,7 @@ exports.searchByName = async (req, res) => {
     const { participantName } = req.body;
     const searchResult = await participant.findAll({
       where: {
-        fullname: {
+        surename: {
           [Op.like]: `%${participantName}%`,
         },
       },

@@ -28,27 +28,39 @@ export const makePie = (sections, tag, width) => {
   const path = d3
     .arc()
     .outerRadius(radius)
-    .innerRadius(radius - 60);
+    .innerRadius(radius - 50);
 
-  const arc = group
+   const arc = group
     .selectAll("arc")
     .data(pie(sections))
     .enter()
     .append("g");
 
-  arc
+   arc
     .append("path")
     .attr("d", path)
-    .attr("fill", (d, i) => colors[i])
-    .style('cursor', 'pointer');
+    .attr("fill", (d, i) => colors[i]);
 
-  d3
+   let label = d3
     .arc()
     .outerRadius(radius)
     .innerRadius(radius - 50);
 
-
-  arc
+   arc
+    .append("text")
+    .attr("transform", function(d) {
+      return "translate(" + label.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return `${d.data.percentage} %`;
+    })
+    .style("font-size", "12px")
+    .style("font-weight", "bold")
+    .style("fill", "white")
+    .style("cursor", "pointer")
     .append("svg:title")
-    .text((d) => `${d.data.percentage} %`);
-}
+    .text(function(d) {
+      return d.data.decription;
+    });
+};
