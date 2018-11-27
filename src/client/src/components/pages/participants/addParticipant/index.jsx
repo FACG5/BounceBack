@@ -98,7 +98,7 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.clearFields]}
+          btnEvents={[this.onChecked, this.onSubmit, this.clearFields]}
         />
         <Footer />
       </div>
