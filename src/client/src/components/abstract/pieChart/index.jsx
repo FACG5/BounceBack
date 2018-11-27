@@ -16,16 +16,20 @@ export default class index extends Component {
   };
 
   render() {
-    const { sections, id, width } = this.props;
+    const { sections, id, width, title } = this.props;
     return (
       <div className="pie">
         <svg className={`bar-chart-${id} bar-chart`} ref={this.chartTag} style={{ width: width }} />
+        <h4>{title}</h4>
         <div className="platforms">
           {sections.map((section, index) =>
             <div className="chart-title" key={uuid()}>
               <span className="decr-square"
                 style={{
                   background: colors[index],
+                  width: "12px",
+                  height: "12px",
+                  marginRight: '15px',
                 }}
               />{section.decription}</div>)}
         </div>

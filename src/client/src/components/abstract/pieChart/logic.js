@@ -1,11 +1,12 @@
 import * as d3 from "d3";
 export const colors = [
-  "#DC712D",
-  "#FF8A00",
-  "#96A5C5",
-  "#8D81A5",
-  "#743C6A",
-  "#A95752"
+  "#6b486b",
+  "#a05d56",
+  "#d0743c",
+  "#ff8c00",
+  "#98abc5",
+  "#8a89a6",
+  "#7b6888"
 ];
 
 export const makePie = (sections, tag, width) => {
@@ -27,27 +28,39 @@ export const makePie = (sections, tag, width) => {
   const path = d3
     .arc()
     .outerRadius(radius)
-    .innerRadius(radius - 60);
+    .innerRadius(radius - 50);
 
-  const arc = group
+   const arc = group
     .selectAll("arc")
     .data(pie(sections))
     .enter()
     .append("g");
 
-  arc
+   arc
     .append("path")
     .attr("d", path)
-    .attr("fill", (d, i) => colors[i])
-    .style('cursor', 'pointer');
+    .attr("fill", (d, i) => colors[i]);
 
-  d3
+   let label = d3
     .arc()
     .outerRadius(radius)
     .innerRadius(radius - 50);
 
-
-  arc
+   arc
+    .append("text")
+    .attr("transform", function(d) {
+      return "translate(" + label.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return `${d.data.percentage} %`;
+    })
+    .style("font-size", "12px")
+    .style("font-weight", "bold")
+    .style("fill", "white")
+    .style("cursor", "pointer")
     .append("svg:title")
-    .text((d) => `${d.data.percentage} %`);
-}
+    .text(function(d) {
+      return d.data.decription;
+    });
+};

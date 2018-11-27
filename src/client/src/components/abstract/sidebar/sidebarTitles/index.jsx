@@ -37,8 +37,8 @@ class SideTitles extends Component {
       <>
         <div className="sidemenu">
           <div className="menu">
-            <li className="item" id="participants">
-              <Link className="btn" onClick={this.onClick} id="participants" to="#"><i className="icon fa fa-caret-down"></i>participants</Link>
+            <li className="item">
+              <Link className="btn" onClick={this.onClick} id="participants" to="#"><i id="participants" className="icon fa fa-caret-down"></i>participants</Link>
               {
                 toggleParticipant &&
                 (<div className="sub-menu">
@@ -50,7 +50,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item">
-              <Link className="btn" onClick={this.onClick} id="courses" to="#"> <i className="icon fa fa-caret-down"></i>interventions</Link>
+              <Link className="btn" onClick={this.onClick} id="courses" to="#"> <i id="courses" className="icon fa fa-caret-down"></i>interventions</Link>
               {
                 toggleCourse &&
                 (<div className="sub-menu">
@@ -61,7 +61,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item">
-              <Link className="btn" onClick={this.onClick} id="managers" to="#"> <i className="icon fa fa-caret-down"></i> managers</Link>
+              <Link className="btn" onClick={this.onClick} id="managers" to="#"> <i id="managers" className="icon fa fa-caret-down"></i> managers</Link>
               {
                 toggleManager &&
                 (<div className="sub-menu">
@@ -72,7 +72,7 @@ class SideTitles extends Component {
             </li>
 
             <li className="item">
-              <Link className="btn" onClick={this.onClick} id="workers" to="#">  <i className="icon fa fa-caret-down"></i>workers</Link>
+              <Link className="btn" onClick={this.onClick} id="workers" to="#">  <i id="workers" className="icon fa fa-caret-down"></i>workers</Link>
               {
                 toggleWorker &&
                 (<div className="sub-menu">
