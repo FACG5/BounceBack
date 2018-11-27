@@ -5,7 +5,7 @@ import './index.css';
 export default function index(props) {
     let { value, onChange, type, label, name, width, placeholder } = props;
     return (
-        <React.Fragment>
+        <>
             <label htmlFor={name} className="label-field">
                 {label} :
             <input
@@ -18,7 +18,7 @@ export default function index(props) {
                     onChange={onChange}
                 />
             </label>
-        </React.Fragment>
+        </>
     )
 }
 index.propTypes = {
