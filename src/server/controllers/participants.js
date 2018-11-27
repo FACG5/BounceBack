@@ -272,3 +272,37 @@ exports.addCourse = async (req, res) => {
     });
   }
 };
+
+// Editing for participant training data
+exports.editTraining = async (req, res) => {
+  try {
+    const { trainingData } = req.body;
+    const { courseId } = req.params;
+    await courses.update(trainingData, {
+      where: {
+        id: courseId,
+      },
+    });
+    res.send({ msg: 'Editing details was done !' });
+  } catch (err) {
+    const { msg } = err;
+    res.send({ err: msg });
+  }
+};
+
+// Editing for participant date data
+exports.editDate = async (req, res) => {
+  try {
+    const { dateData } = req.body;
+    const { dateId } = req.params;
+    await dates.update(dateData, {
+      where: {
+        id: dateId,
+      },
+    });
+    res.send({ message: 'Editing details was done !' });
+  } catch (err) {
+    const { msg } = err;
+    res.send({ err: msg });
+  }
+};
