@@ -26,9 +26,9 @@ export default class index extends Component {
                 style={{
                   display: 'inline-block',
                   background: colors[index],
-                  width: "15px",
-                  height: "15px",
-                  marginRight: '30px',
+                  width: "12px",
+                  height: "12px",
+                  marginRight: '15px',
                 }}
               />{section.decription}</div>)}
         </div>
