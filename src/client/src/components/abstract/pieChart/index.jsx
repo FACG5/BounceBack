@@ -11,7 +11,6 @@ export default class index extends Component {
 
   componentDidMount = () => {
     const { sections, width } = this.props;
-    console.log(sections)
     makePie(sections, this.chartTag.current, width);
   };
   render() {
