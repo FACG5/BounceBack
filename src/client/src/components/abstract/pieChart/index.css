@@ -3,6 +3,11 @@
   display: inline-block;
   margin: 0px 31px;
 }
+.pie h4{
+  font-size: 13px;
+  color:#444444;
+  margin-top: 12px;
+}
 
 .platforms {
   margin: 0 auto;
