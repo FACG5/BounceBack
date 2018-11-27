@@ -8,6 +8,7 @@ import Button from "./../button";
 import DropDown from "./../dropdown";
 import Textarea from "./../textarea";
 import Sidebar from "./../sidebar";
+import uuid from 'uuid';
 import "./index.css";
 
 export default function index(props) {
@@ -17,14 +18,14 @@ export default function index(props) {
       <Sidebar />
       <Header value={title} />
       <div className="add-participant-fields">
-        {fields.map((row, index) => (
-          <div className="add-participant-row" key={index}>
-            {row.map((field, index) => {
+        {fields.map(row => (
+          <div className="add-participant-row" key={uuid()}>
+            {row.map(field => {
               const { tag, staticField, path } = field;
               if (tag === "Input") {
                 return (
                   <Input
-                    key={index}
+                    key={uuid()}
                     {...field}
                     value={values[field.name].toString()}
                     onChange={onChange}
@@ -43,10 +44,10 @@ export default function index(props) {
                 return (
                   <Button {...field} key={index} onClick={btnEvents[index]} />
                 );
-              } else if (tag === "Button"){
+              } else if (tag === "Button") {
                 return (
                   <Link to={path} key={index}>
-                  <Button {...field} />
+                    <Button {...field} />
                   </Link>
                 );
               } else if (tag === "Textarea") {

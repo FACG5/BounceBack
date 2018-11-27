@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Container from "../layout/Container";
+import uuid from 'uuid';
 import "./style.css";
 
 export default class Table extends Component {
@@ -17,11 +18,11 @@ export default class Table extends Component {
       <div>
         <table className="view-table">
           <tbody>
-            {rows.map((row, index) => (
-              <tr key={index}>
-              {row.map((value, index) => (
-                <td key={index}>{value}</td>
-              ))}
+            {rows.map(row => (
+              <tr key={uuid()}>
+                {row.map(value => (
+                  <td key={uuid()}>{value}</td>
+                ))}
               </tr>
             ))}
           </tbody>
