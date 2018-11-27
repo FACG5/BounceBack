@@ -21,7 +21,7 @@ export default class index extends Component {
       <div className="pie">
         <svg className={`bar-chart-${id} bar-chart`} ref={this.chartTag} style={{ width: width }} />
         <div className="platforms">
-          {sections.map(section =>
+          {sections.map((section, index) =>
             <div className="chart-title" key={uuid()}>
               <span
                 style={{
