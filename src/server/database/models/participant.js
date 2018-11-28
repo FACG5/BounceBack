@@ -62,8 +62,8 @@ const participant = sequelize.define('participant', {
   ni_number: {
     type: Sequelize.INTEGER,
   },
-  als: {
-    type: Sequelize.INTEGER,
+  support_required: {
+    type: Sequelize.STRING,
   },
   cscs_number: {
     type: Sequelize.INTEGER,
