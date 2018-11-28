@@ -5,31 +5,15 @@ export const state = {
   course_end: "",
   description: "",
   loading: true,
-  category: ""
 };
 export const fields = [
   [
     {
-      tag: "Input",
+      tag: "DropDown",
       label: "Name",
       name: "course_name",
       width: "20rem",
-      placeholder: "course name"
-    },
-    {
-      tag: "DropDown",
-      label: "Type :",
-      name: "type",
-      width: "20rem",
-      options: ["trainings", "pastoral"]
-    }
-  ],
-  [
-    {
-      tag: "DropDown",
-      label: "Category",
-      name: "category",
-      width: "42rem",
+      placeholder: "course name",
       options: [
         "Referral",
         "Further Training",
@@ -42,6 +26,13 @@ export const fields = [
         "Self Employment workshops",
         "UTR Registration"
       ]
+    },
+    {
+      tag: "DropDown",
+      label: "Type :",
+      name: "type",
+      width: "20rem",
+      options: ["trainings", "pastoral"]
     }
   ],
   [
