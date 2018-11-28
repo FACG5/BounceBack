@@ -25,6 +25,20 @@ exports.getName = async (req, res) => {
   }
 };
 
+// get pastoral
+exports.getPastoral = async (req, res) => {
+  try {
+    const coursesData = await courses.findAll({
+      where: {
+        type: 'pastoral',
+      },
+    });
+    res.send({ coursesData });
+  } catch (err) {
+    res.status(500).send({ err });
+  }
+};
+
 // Delete course
 exports.delete = (req, res) => {
   try {
