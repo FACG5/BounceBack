@@ -19,7 +19,9 @@ import courseDetails from "../pages/courses/courseDetails";
 import pastoral from "../pages/courses/pastoral";
 import managerDetails from "../pages/managers/managerDetails";
 import ParticipantCourseDetails from "../pages/participants/participantCourseDetails";
+import ParticipantPastoralDetails from "../pages/participants/participantPasroralDetails"
 import ParticipantCourseAdd from "../pages/participants/addParticipantCourse";
+import ParticipantPastoralAdd from "../pages/participants/addParticipantPastoral";
 import AddParticipantDate from "../pages/participants/addParticipantDate";
 import ParticipantDateDetails from "../pages/participants/participantDateDetails";
 import participantDetails from "../pages/participants/participantDetails";
@@ -46,7 +48,9 @@ export default {
   pastoral,
   managerDetails,
   ParticipantCourseDetails,
+  ParticipantPastoralDetails,
   ParticipantCourseAdd,
+  ParticipantPastoralAdd,
   AddParticipantDate,
   ParticipantDateDetails,
   participantDetails
