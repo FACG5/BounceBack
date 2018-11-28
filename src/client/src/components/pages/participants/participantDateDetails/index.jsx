@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import {
-  state as initialState,
-  fields as fieldSet,
-  validationForm
-} from "./staticData";
+import { state as initialState, fields as fieldSet } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
+import swal from "sweetalert2";
 
 class index extends Component {
   state = initialState;
@@ -40,21 +37,54 @@ class index extends Component {
       });
   };
 
+  editDate= async details => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure for updating this date ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const { id, date_id } = this.props.match.params;
+      const result = await axios(`/api/v2/participant/${id}/date/${date_id}`, {
+        method: "PUT",
+        data: {
+          dateData: details
+        }
+      });
+      if (result.data.err) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.err,
+          confirmButtonText: "Ok"
+        });
+        this.props.history.push(`/participant/${id}/dates`);
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+        this.setState({ ...details });
+        this.props.history.push(`/participant/${id}/dates`);
+      }
+    }
+  };
+
   componentDidMount = async () => {
     this.getDetails();
   };
 
-  // the implemention waiting  back end api
-  onSubmit = event => {
-    event.preventDefault();
+  // call edit function
+  onSubmit = e => {
+    e.preventDefault();
     const fields = { ...this.state };
-    const error = validationForm(fields);
-    if (error) return this.setState({ error });
-
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+    this.editDate(fields);
   };
 
   render() {

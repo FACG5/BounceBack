@@ -32,6 +32,7 @@ Router.delete('/participant', participants.delete);
 Router.post('/participants/:id/prison', prison.post);
 
 // Participants Dates Routes
+Router.put('/participant/:id/date/:dateId', participants.editDate);
 Router.get('/participant/:id/dates', participants.getDates);
 Router.get('/participant/:id/date/details/:dateId', participants.getDateDetails);
 Router.post('/participant/:id/date', participants.addDate);
@@ -42,6 +43,7 @@ Router.get('/participant/:id/courses', participants.getCourses);
 Router.get('/participant/:id/course/details/:courseId', participants.getCourseDetails);
 Router.post('/participant/:id/course', participants.addCourse);
 Router.delete('/course', participants.deleteCourse);
+Router.put('/participant/:id/course/:courseId', participants.editTraining);
 
 // Courses Routes
 Router.get('/courses', courses.get);

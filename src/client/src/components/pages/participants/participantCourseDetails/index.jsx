@@ -5,22 +5,20 @@ import Footer from "../../../abstract/footer";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
+import swal from "sweetalert2";
 
 class ParticipantCourseDetails extends Component {
   state = initialState;
 
   goBack = event => {
     const { id } = this.props.match.params;
-    this.props.history.push(`/participants/${id}/courses`);
+    this.props.history.push(`/participant/${id}/courses`);
   };
 
-  // Fake Function because onChange is required in Form
-  onChange = () => {
-    return null;
-  }
-  onSubmit = () => {
-    return null;
-  }
+  onChange = e => {
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  };
 
   getCourseDetails = async () => {
     const { id, course_id } = this.props.match.params;
@@ -40,10 +38,56 @@ class ParticipantCourseDetails extends Component {
       });
   };
 
+  editIntervention= async details => {
+    const confirm = await swal({
+      type: "warning",
+      html: "Are you sure for updating this details ?",
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
+      confirmButtonAriaLabel: "Thumbs up",
+      cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
+      cancelButtonAriaLabel: "Thumbs down"
+    });
+    if (confirm.value) {
+      const { id, course_id } = this.props.match.params;
+      const result = await axios(`/api/v2/participant/${id}/course/${course_id}`, {
+        method: "PUT",
+        data: {
+          trainingData: details
+        }
+      });
+      if (result.data.err) {
+        await swal({
+          title: "",
+          type: "warning",
+          html: result.data.err,
+          confirmButtonText: "Ok"
+        });
+        this.props.history.push(`/participant/${id}/courses`);
+      } else {
+        await swal({
+          title: "Success",
+          type: "success",
+          html: result.data.message
+        });
+        this.setState({ ...details });
+        this.props.history.push(`/participant/${id}/courses`);
+      }
+    }
+  };
+
   componentDidMount = async () => {
     this.getCourseDetails();
   };
   
+  // call edit function
+  onSubmit = e => {
+    e.preventDefault();
+    const fields = { ...this.state };
+    this.editIntervention(fields);
+  };
+
   render() {
     const {
       loading
