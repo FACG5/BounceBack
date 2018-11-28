@@ -48,6 +48,7 @@ Router.put('/participant/:id/course/:courseId', participants.editTraining);
 // Courses Routes
 Router.get('/courses', courses.get);
 Router.get('/courses/name', courses.getName);
+Router.get('/courses/pastoral', courses.getPastoral);
 Router.get('/course/:id', courses.details);
 Router.get('/enrollment/:id', getCount.getEnrollmentStatus);
 Router.post('/courses/search', courses.search);
