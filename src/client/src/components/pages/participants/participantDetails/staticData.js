@@ -57,17 +57,17 @@ export const fields = [
   [
     {
       tag: "Input",
-      label: "Surname",
-      name: "surename",
-      width: "20rem",
-      placeholder: "surname",
-    },
-    {
-      tag: "Input",
       label: "Forename",
       name: "forename",
       width: "20rem",
       placeholder: "forename",
+    },
+    {
+      tag: "Input",
+      label: "Surname",
+      name: "surename",
+      width: "20rem",
+      placeholder: "surname",
     }
   ],
   [
