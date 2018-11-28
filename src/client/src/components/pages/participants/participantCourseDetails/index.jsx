@@ -17,6 +17,7 @@ class ParticipantCourseDetails extends Component {
 
   onChange = e => {
     const { value, name } = e.target;
+    if(name === 'course_name') return ;
     this.setState({ [name]: value });
   };
 
@@ -96,7 +97,7 @@ class ParticipantCourseDetails extends Component {
     return (
       <div>
         <Form
-          title="Intervention Details"
+          title="Training Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
