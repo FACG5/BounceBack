@@ -16,7 +16,7 @@ export const state = {
   kin_contact:"",
   email: "",
   ni_number: "",
-  als: "",
+  support_required: "",
   cscs_number: "",
   cscs_support: "",
   leteracy_level: "",
@@ -100,7 +100,7 @@ export const fields = [
       label: "Sexual Orientation ",
       name: "sexual_orientatuin",
       width: "12rem",
-      options: ["normal", "hetero", "lesbian / bisexual", "lesbian","other", "cff"],
+      options: ["hetero", "lesbian / bisexual", "lesbian","other", "prefer not to say"],
     }
   ],
   [
@@ -187,28 +187,21 @@ export const fields = [
       tag: "Input",
       label: "NI No",
       name: "ni_number",
-      width: "12rem",
+      width: "15rem",
       placeholder: "ni no",
-    },
-    {
-      tag: "Input",
-      label: "ALS",
-      name: "als",
-      width: "10rem",
-      placeholder: "als",
     },
     {
       tag: "Input",
       label: "CSCS No",
       name: "cscs_number",
-      width: "10rem",
+      width: "15rem",
       placeholder: "cscs no",
     },
     {
       tag: "Input",
       label: "CSCS Support ",
       name: "cscs_support",
-      width: "10rem",
+      width: "15rem",
       placeholder: "cscs support",
     }
   ],
@@ -219,13 +212,6 @@ export const fields = [
       name: "leteracy_level",
       width: "15rem",
       placeholder: "literacy level",
-    },
-    {
-      tag: "DropDown",
-      label: "Case Worker",
-      name: "case_wroker",
-      width: "15rem",
-      options: ["jp", "sr", "tim", "cff"],
     },
     {
       tag: "Input",
@@ -248,16 +234,33 @@ export const fields = [
   [
     {
       tag: "DropDown",
+      label: "Case Worker",
+      name: "case_wroker",
+      width: "20rem",
+      options: ["jp", "sr", "tim", "cff"],
+    },
+    {
+      tag: "DropDown",
+      label: "Support Required",
+      name: "support_required",
+      width: "20rem",
+      placeholder: "support required",
+      options: ['training', 'pastoral intervention', 'both']
+    }
+  ],
+  [
+    {
+      tag: "DropDown",
       label: "Employment Outcomes",
       name: "employment_outcomes",
-      width: "15rem",
+      width: "20rem",
       options: ["not employed yet", "employed"],
     },
     {
       tag: "DropDown",
       label: "Reoffending",
       name: "reoffending",
-      width: "15rem",
+      width: "20rem",
       options: ["no", "yes"],
     }
   ],
