@@ -71,8 +71,18 @@ export default function index() {
           />
           <Route
             exact
+            path="/participant/:id/pastoral/details/:course_id"
+            component={ParticipantPastoralDetails}
+          />
+          <Route
+            exact
             path="/participants/:id/course/add"
             component={ParticipantCourseAdd}
+          />
+          <Route
+            exact
+            path="/participants/:id/pastoral/add"
+            component={ParticipantPastoralAdd}
           />
           <Route
             exact
@@ -122,7 +132,9 @@ const {
   pastoral,
   managerDetails,
   ParticipantCourseDetails,
+  ParticipantPastoralDetails,
   ParticipantCourseAdd,
+  ParticipantPastoralAdd,
   AddParticipantDate,
   ParticipantDateDetails,
   participantDetails
