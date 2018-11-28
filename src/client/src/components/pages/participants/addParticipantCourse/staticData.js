@@ -1,7 +1,8 @@
 export const state = {
     course_start: "",
     course_end: "",
-    course_name: "",  
+    course_name: "",
+    type: "trainings" 
 };
 export const fields = [
     [{
