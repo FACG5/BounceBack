@@ -72,7 +72,7 @@ export default class index extends Component {
     }
   }
 
-  // the implemention waiting  back end api
+  // add new pastoral 
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
