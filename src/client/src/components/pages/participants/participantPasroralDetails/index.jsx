@@ -1,34 +1,35 @@
 import React, { Component } from "react";
 import { state as initialState, fields as fieldSet } from "./staticData";
 import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+import Footer from "../../../abstract/footer";
 import axios from 'axios';
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
 import swal from "sweetalert2";
 
-class index extends Component {
+class ParticipantCourseDetails extends Component {
   state = initialState;
 
-  onChange = event => {
-    const { value, name } = event.target;
-    if(name === 'worker_name') return ;
+  goBack = event => {
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/${id}/courses`);
+  };
+
+  onChange = e => {
+    const { value, name } = e.target;
+    if(name === 'course_name') return ;
     this.setState({ [name]: value });
   };
 
-  goBack = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participant/${id}/dates`);
-  };
-
-  getDetails = async () => {
-    const { id, date_id } = this.props.match.params;
+  getCourseDetails = async () => {
+    const { id, course_id } = this.props.match.params;
     const { dispatch } = this.props.context;
-    axios(`/api/v2/participant/${id}/date/details/${date_id}`)
+    axios(`/api/v2/participant/${id}/course/details/${course_id}`)
       .then(result => {
         const { data } = result;
-        const currentDate = data.date.split("T")[0];
-        this.setState({ ...data, date: currentDate, loading: false });
+        const start = data.course_start.split("T")[0];
+        const end = data.course_end.split("T")[0];
+        this.setState({ ...data, course_end: end, course_start: start, loading: false });
       })
       .catch(error => {
         dispatch({
@@ -38,10 +39,10 @@ class index extends Component {
       });
   };
 
-  editDate= async details => {
+  editIntervention= async details => {
     const confirm = await swal({
       type: "warning",
-      html: "Are you sure for updating this date ?",
+      html: "Are you sure for updating this details ?",
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
@@ -50,11 +51,11 @@ class index extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
-      const { id, date_id } = this.props.match.params;
-      const result = await axios(`/api/v2/participant/${id}/date/${date_id}`, {
+      const { id, course_id } = this.props.match.params;
+      const result = await axios(`/api/v2/participant/${id}/course/${course_id}`, {
         method: "PUT",
         data: {
-          dateData: details
+          trainingData: details
         }
       });
       if (result.data.err) {
@@ -64,7 +65,7 @@ class index extends Component {
           html: result.data.err,
           confirmButtonText: "Ok"
         });
-        this.props.history.push(`/participant/${id}/dates`);
+        this.props.history.push(`/participant/${id}/courses`);
       } else {
         await swal({
           title: "Success",
@@ -72,20 +73,20 @@ class index extends Component {
           html: result.data.message
         });
         this.setState({ ...details });
-        this.props.history.push(`/participant/${id}/dates`);
+        this.props.history.push(`/participant/${id}/courses`);
       }
     }
   };
 
   componentDidMount = async () => {
-    this.getDetails();
+    this.getCourseDetails();
   };
-
+  
   // call edit function
   onSubmit = e => {
     e.preventDefault();
     const fields = { ...this.state };
-    this.editDate(fields);
+    this.editIntervention(fields);
   };
 
   render() {
@@ -96,7 +97,7 @@ class index extends Component {
     return (
       <div>
         <Form
-          title="Date Details and Notes"
+          title="Pastoral Intervention Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
@@ -108,5 +109,4 @@ class index extends Component {
   }
 }
 
-
-export default contextHoc(index);
+export default contextHoc(ParticipantCourseDetails);

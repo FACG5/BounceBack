@@ -2,7 +2,7 @@ export const state = {
     course_start: "",
     course_end: "",
     course_name: "",
-    type: "trainings" 
+    type: "pastoral",  
 };
 export const fields = [
     [{
@@ -32,7 +32,7 @@ export const fields = [
     [
     {
         tag: 'Button',
-        value: "Add Intervention",
+        value: "Add Pastoral Intervention",
         color: "#272727",
         staticField: true
     },

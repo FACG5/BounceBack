@@ -22,9 +22,14 @@ class Course extends Component {
     this.setState({ [name]: value });
   };
 
-  goAdd = event => {
+  goAddTraining = event => {
     const id = this.props.match.params.id;
     this.props.history.push(`/participants/${id}/course/add`);
+  };
+
+  goAddPastoral = event => {
+    const id = this.props.match.params.id;
+    this.props.history.push(`/participants/${id}/pastoral/add`);
   };
 
   goBack = event => {
@@ -39,7 +44,7 @@ class Course extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/courses`);
       const courses = result.data.participantCourses;
-      let array = [["Intervention name", "Intervention start", "Intervention", "Action"]];
+      let array = [["Intervention name", "Start", "End", "tupe", "Action"]];
       if (courses.length === 0) {
         const msg = 'There is no courses yet !!';
         array = [];
@@ -50,10 +55,17 @@ class Course extends Component {
             row.course_name,
             row.course_start.split("T")[0],
             row.course_end.split("T")[0],
+            row.type,
             <>
+            {row.type === 'trainings' ? (
               <Link to={`/participant/${id}/course/details/${row.id}`}>
                 <i className="fas fa-info-circle" />
               </Link>
+            ) : (
+              <Link to={`/participant/${id}/pastoral/details/${row.id}`}>
+                <i className="fas fa-info-circle" />
+              </Link>
+            )}
               <i className="fas fa-trash-alt" onClick={() => this.onDelete(row.id)} />
             </>
           ])
@@ -116,7 +128,8 @@ class Course extends Component {
             {this.state.message}
           </p>
         )}
-        <Button value="Add Intervention" onClick={this.goAdd} color="#272727" />
+        <Button value="Add Training" onClick={this.goAddTraining} color="#272727" />
+        <Button value="Add Pastoral Intervention" onClick={this.goAddPastoral} color="#272727" />
         <Button value="Back" color="#FF4800" onClick={this.goBack} />
         <Footer />
       </>

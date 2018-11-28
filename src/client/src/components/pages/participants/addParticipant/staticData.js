@@ -23,7 +23,7 @@ export const state = {
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
-  employment_outcomes: "employed",
+  employment_outcomes: "not employed yet",
   reoffending: "no",
   in_prison: false,
 };
@@ -60,7 +60,7 @@ export const fields = [
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["male", "female"],
+      options: ["male", "female", "prefer not to say"],
     },
     {
       tag: "DropDown",
@@ -220,22 +220,6 @@ export const fields = [
       width: "20rem",
       placeholder: "support required",
       options: ['training', 'pastoral intervention', 'both']
-    }
-  ],
-  [
-    {
-      tag: "DropDown",
-      label: "Employment Outcomes",
-      name: "employment_outcomes",
-      width: "20rem",
-      options: ["not employed yet", "employed"],
-    },
-    {
-      tag: "DropDown",
-      label: "Reoffending",
-      name: "reoffending",
-      width: "20rem",
-      options: ["no", "yes"],
     }
   ],
   [

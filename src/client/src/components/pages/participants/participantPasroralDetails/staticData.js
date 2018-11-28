@@ -1,16 +1,17 @@
 export const state = {
     course_start: "",
     course_end: "",
+    details: "",
     course_name: "",
-    type: "trainings" 
+    loading: true
 };
 export const fields = [
     [{
-        tag: "DropDown",
+        tag: "Input",
         label: "Name",
         name: "course_name",
         width: "40rem",
-        options: [],
+        placeholder: "course name",
     }
     ],
     [
@@ -30,9 +31,18 @@ export const fields = [
         }
     ],
     [
+        {
+            tag: "Textarea",
+            label: "Details/ Notes (optional)",
+            name: "details",
+            width: "45rem",
+            height: "10rem",
+        }
+    ],
+    [
     {
         tag: 'Button',
-        value: "Add Intervention",
+        value: "Edit & Save",
         color: "#272727",
         staticField: true
     },
@@ -44,10 +54,3 @@ export const fields = [
     }
     ]
 ];
-
-export const validationForm = (fields) => {
-    for (const key in fields) {
-        if (fields[key] === "")
-            return `Please Check ${key}`;
-    }
-}

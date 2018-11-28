@@ -12,6 +12,9 @@ const participantCourses = sequelize.define('participant_courses', {
     type: Sequelize.TEXT,
     allowNull: true,
   },
+  type: {
+    type: Sequelize.TEXT,
+  },
   enrollment_status: {
     type: Sequelize.TEXT,
     defaultValue: 'not completed',

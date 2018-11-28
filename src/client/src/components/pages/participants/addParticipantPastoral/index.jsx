@@ -22,8 +22,8 @@ export default class index extends Component {
     this.props.history.push(`/participant/${id}/courses`);
   };
 
-  getCoursesNames = async () => {
-    const data = await axios("/api/v2/courses/name");
+  getPastoralNames = async () => {
+    const data = await axios("/api/v2/courses/pastoral");
     const final = data.data.coursesData;
     fieldSet[0][0].options = final.map(value => value.course_name)
 
@@ -31,13 +31,13 @@ export default class index extends Component {
   };
 
   componentDidMount = () => {
-    this.getCoursesNames();
+    this.getPastoralNames();
   }
 
-  addCourse = async obj => {
+  addPastoral = async obj => {
     const confirm = await swal({
       type: "warning",
-      html: "Are you sure that you want to add this intervintions ?",
+      html: "Are you sure for adding this pastoral intervintions ?",
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
@@ -72,21 +72,21 @@ export default class index extends Component {
     }
   }
 
-  // add training course
+  // add new pastoral 
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
-    this.addCourse(fields);
+    this.addPastoral(fields);
   };
 
   render() {
     return (
       <div>
         <Form
-          title="Add New Training For Participant"
+          title="Add New Pastoral Intervention"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
