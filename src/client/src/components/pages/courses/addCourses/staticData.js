@@ -23,27 +23,28 @@ export const fields = [
       name: "course_name",
       width: "42rem",
       placeholder: "intervention name"
-    },],
-    [
-      {
-        tag: "DropDown",
-        label: "name",
-        name: "course_name",
-        width: "42rem",
-        options: [
-          "Referral",
-          "Further Training",
-          "Employment Engagement",
-          "Phone Call",
-          "Mentoring",
-          "Interview Skills",
-          "CV writing",
-          "Probation Advocacy",
-          "Self Employment workshops",
-          "UTR Registration"
-        ]
-      }
-    ],
+    }
+  ],
+  [
+    {
+      tag: "DropDown",
+      label: "name",
+      name: "course_name",
+      width: "42rem",
+      options: [
+        "Referral",
+        "Further Training",
+        "Employment Engagement",
+        "Phone Call",
+        "Mentoring",
+        "Interview Skills",
+        "CV writing",
+        "Probation Advocacy",
+        "Self Employment workshops",
+        "UTR Registration"
+      ]
+    }
+  ],
   [
     {
       tag: "Input",
