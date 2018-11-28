@@ -4,7 +4,6 @@ export const state = {
   course_start: "",
   course_end: "",
   description: "",
-  category: "Referral"
 };
 export const fields = [
   [
