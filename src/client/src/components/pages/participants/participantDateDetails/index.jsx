@@ -12,6 +12,7 @@ class index extends Component {
 
   onChange = event => {
     const { value, name } = event.target;
+    if(name === 'worker_name') return ;
     this.setState({ [name]: value });
   };
 
