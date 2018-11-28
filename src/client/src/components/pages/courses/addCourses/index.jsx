@@ -80,7 +80,6 @@ export default class index extends Component {
     const { type } = this.state;
     const fieldsSetClone = [...fieldSet]
     if (type === 'pastoral') {
-
       fieldsSetClone.splice(1, 1);
     } else if (type === 'trainings') {
       fieldsSetClone.splice(2,1);
