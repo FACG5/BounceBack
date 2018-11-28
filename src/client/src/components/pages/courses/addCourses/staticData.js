@@ -9,40 +9,41 @@ export const state = {
 export const fields = [
   [
     {
-      tag: "Input",
-      label: "Intervention Name",
-      name: "course_name",
-      width: "20rem",
-      placeholder: "intervention name"
-    },
-    {
       tag: "DropDown",
       label: "Intervention Type",
       name: "type",
-      width: "20rem",
+      width: "42rem",
       options: ["trainings", "pastoral"]
     }
   ],
   [
     {
-      tag: "DropDown",
-      label: "Category",
-      name: "category",
+      tag: "Input",
+      label: "Intervention Name",
+      name: "course_name",
       width: "42rem",
-      options: [
-        "Referral",
-        "Further Training",
-        "Employment Engagement",
-        "Phone Call",
-        "Mentoring",
-        "Interview Skills",
-        "CV writing",
-        "Probation Advocacy",
-        "Self Employment workshops",
-        "UTR Registration"
-      ]
-    }
-  ],
+      placeholder: "intervention name"
+    },],
+    [
+      {
+        tag: "DropDown",
+        label: "name",
+        name: "course_name",
+        width: "42rem",
+        options: [
+          "Referral",
+          "Further Training",
+          "Employment Engagement",
+          "Phone Call",
+          "Mentoring",
+          "Interview Skills",
+          "CV writing",
+          "Probation Advocacy",
+          "Self Employment workshops",
+          "UTR Registration"
+        ]
+      }
+    ],
   [
     {
       tag: "Input",
