@@ -63,7 +63,7 @@ exports.search = async (req, res) => {
     if (result[0]) {
       res.send({ result });
     } else {
-      res.send({ message: 'Cant find course with this name' });
+      res.send({ message: 'Cant find intervention with this name' });
     }
   } catch (error) {
     res.send({ error });
@@ -100,7 +100,7 @@ exports.post = async (req, res) => {
     });
     if (count !== 0) throw new TypeError('The name is used before');
     await courses.create(courseData);
-    res.send({ message: 'Adding course done' });
+    res.send({ message: 'Adding intervention done' });
   } catch (error) {
     const { message } = error;
     res.send({ error: message });

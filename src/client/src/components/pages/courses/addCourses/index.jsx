@@ -31,7 +31,7 @@ export default class index extends Component {
 
     const confirm = await swal({
       type: "warning",
-      html: "Are you sure that you want to add this course ?",
+      html: "Are you sure that you want to add this intervention ?",
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
