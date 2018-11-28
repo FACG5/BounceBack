@@ -86,7 +86,7 @@ export const fields = [
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["male", "female"],
+      options: ["male", "female", "prefer not to say"],
     },
     {
       tag: "DropDown",
