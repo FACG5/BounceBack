@@ -74,7 +74,7 @@ export const fields = [
       label: "Sexual Orientation ",
       name: "sexual_orientatuin",
       width: "12rem",
-      options: ["hetero", "lesbian / bisexual", "lesbian","other", "prefer not to say"],
+      options: ["lesbian", "gay", "bisexual", "queer", "straight", "something else", "decline to answer"],
     }
   ],
   [
