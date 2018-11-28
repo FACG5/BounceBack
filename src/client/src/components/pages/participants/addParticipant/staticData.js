@@ -16,7 +16,7 @@ export const state = {
   kin_contact: "",
   email: "",
   ni_number: "",
-  als: "",
+  support_required: "both",
   cscs_number: "",
   cscs_support: "",
   leteracy_level: "",
@@ -34,15 +34,15 @@ export const fields = [
       label: "Forename",
       name: "forename",
       width: "20rem",
-      placeholder: "forename"
+      placeholder: "forename",
     },
     {
       tag: "Input",
       label: "Surname",
       name: "surename",
       width: "20rem",
-      placeholder: "surname"
-    },
+      placeholder: "surname",
+    }
   ],
   [
     {
@@ -51,7 +51,7 @@ export const fields = [
       name: "date_of_birth",
       width: "20rem",
       type: "date",
-      placeholder: "date of birth"
+      placeholder: "date of birth",
     },
   ],
   [
@@ -60,28 +60,21 @@ export const fields = [
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["Male", "Female"]
+      options: ["male", "female"],
     },
     {
       tag: "DropDown",
       label: "Marital Status",
       name: "martial_status",
       width: "12rem",
-      options: ["Single", "Married", "Widowed", "Separated", "Divorced", "CFF"]
+      options: ["single", "married", "widowed", "separated", "divorced", "cff"],
     },
     {
       tag: "DropDown",
       label: "Sexual Orientation ",
       name: "sexual_orientatuin",
       width: "12rem",
-      options: [
-        "Normal",
-        "Hetero",
-        "Lesbian / Bisexual",
-        "Lesbian",
-        "Other",
-        "CFF"
-      ]
+      options: ["hetero", "lesbian / bisexual", "lesbian","other", "prefer not to say"],
     }
   ],
   [
@@ -90,14 +83,14 @@ export const fields = [
       label: "Ethnicity ",
       name: "ethincity",
       width: "20rem",
-      placeholder: "ethnicity"
+      placeholder: "ethnicity",
     },
     {
       tag: "Input",
       label: "Dependents ",
       name: "dependents",
       width: "20rem",
-      placeholder: "dependents"
+      placeholder: "dependents",
     }
   ],
   [
@@ -106,7 +99,7 @@ export const fields = [
       label: "Full Address ",
       name: "address",
       width: "35rem",
-      placeholder: "full address"
+      placeholder: "full address",
     }
   ],
   [
@@ -115,21 +108,21 @@ export const fields = [
       label: "Nationality ",
       name: "nationality",
       width: "15rem",
-      placeholder: "nationality"
+      placeholder: "nationality",
     },
     {
       tag: "Input",
       label: "Borough ",
       name: "borough",
       width: "15rem",
-      placeholder: "borough"
+      placeholder: "borough",
     },
     {
       tag: "Input",
       label: "Postcode ",
       name: "postcode",
       width: "15rem",
-      placeholder: "postcode"
+      placeholder: "postcode",
     }
   ],
   [
@@ -138,21 +131,21 @@ export const fields = [
       label: "Mobile No ",
       name: "mobile",
       width: "15rem",
-      placeholder: "mobile no"
+      placeholder: "mobile no",
     },
     {
       tag: "Input",
       label: "Landline ",
       name: "landline",
       width: "15rem",
-      placeholder: "landline"
+      placeholder: "landline",
     },
     {
       tag: "Input",
       label: "Next Of Kin Contact",
       name: "kin_contact",
       width: "15rem",
-      placeholder: "next of kin contact"
+      placeholder: "next of kin contact",
     }
   ],
   [
@@ -161,7 +154,6 @@ export const fields = [
       label: "Email Address",
       name: "email",
       width: "35rem",
-      placeholder: "email"
     }
   ],
   [
@@ -169,33 +161,22 @@ export const fields = [
       tag: "Input",
       label: "NI No",
       name: "ni_number",
-      width: "12rem",
+      width: "15rem",
       placeholder: "ni no",
-      type: "number"
-    },
-    {
-      tag: "Input",
-      label: "ALS",
-      name: "als",
-      width: "10rem",
-      placeholder: "als",
-      type: "number"
     },
     {
       tag: "Input",
       label: "CSCS No",
       name: "cscs_number",
-      width: "10rem",
+      width: "15rem",
       placeholder: "cscs no",
-      type: "number"
     },
     {
       tag: "Input",
       label: "CSCS Support ",
       name: "cscs_support",
-      width: "10rem",
+      width: "15rem",
       placeholder: "cscs support",
-      type: "number"
     }
   ],
   [
@@ -205,22 +186,14 @@ export const fields = [
       name: "leteracy_level",
       width: "15rem",
       placeholder: "literacy level",
-      type: "number"
-    },
-    {
-      tag: "DropDown",
-      label: "Case Worker",
-      name: "case_wroker",
-      width: "15rem",
-      options: ["JP", "SR", "TIM", "CFF"]
     },
     {
       tag: "Input",
       label: "Numeracy Level",
       name: "numeracy_level",
       width: "15rem",
+      type: "number",
       placeholder: "numeracy level",
-      type: "number"
     }
   ],
   [
@@ -229,22 +202,39 @@ export const fields = [
       label: "Disability & Medical",
       name: "disability_and_medical",
       width: "35rem",
-      placeholder: "disability"
+      placeholder: "disability",
+    }
+  ],
+  [
+    {
+      tag: "DropDown",
+      label: "Case Worker",
+      name: "case_wroker",
+      width: "20rem",
+      options: ["jp", "sr", "tim", "cff"],
     },
+    {
+      tag: "DropDown",
+      label: "Support Required",
+      name: "support_required",
+      width: "20rem",
+      placeholder: "support required",
+      options: ['training', 'pastoral intervention', 'both']
+    }
   ],
   [
     {
       tag: "DropDown",
       label: "Employment Outcomes",
       name: "employment_outcomes",
-      width: "15rem",
+      width: "20rem",
       options: ["not employed yet", "employed"],
     },
     {
       tag: "DropDown",
       label: "Reoffending",
       name: "reoffending",
-      width: "15rem",
+      width: "20rem",
       options: ["no", "yes"],
     }
   ],
