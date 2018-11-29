@@ -4,30 +4,31 @@ export const state = {
   course_start: "",
   course_end: "",
   description: "",
-  category: "Referral"
 };
 export const fields = [
   [
     {
-      tag: "Input",
-      label: "Intervention Name",
-      name: "course_name",
-      width: "20rem",
-      placeholder: "intervention name"
-    },
-    {
       tag: "DropDown",
       label: "Intervention Type",
       name: "type",
-      width: "20rem",
+      width: "42rem",
       options: ["trainings", "pastoral"]
     }
   ],
   [
     {
+      tag: "Input",
+      label: "Intervention Name",
+      name: "course_name",
+      width: "42rem",
+      placeholder: "intervention name"
+    }
+  ],
+  [
+    {
       tag: "DropDown",
-      label: "Category",
-      name: "category",
+      label: "name",
+      name: "course_name",
       width: "42rem",
       options: [
         "Referral",

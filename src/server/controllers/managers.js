@@ -28,6 +28,7 @@ exports.search = async (req, res) => {
         username: {
           [Op.like]: `%${managerName}%`,
         },
+        [Op.and]: { role: 'manager' },
       },
     });
     if (managersData[0]) {

@@ -26,16 +26,23 @@ export default class Courses extends Component {
     });
     const finalData = data.data.result;
     if (finalData) {
-      let array = [["Intervention Name", "start", "end", "Action"]];
+      let array = [["Intervention Name", "start", "end", "type", "Action"]];
       finalData.map(row =>
         array.push([
           row.course_name,
           row.course_start.split("T")[0],
           row.course_end.split("T")[0],
+          row.type,
           <>
-            <Link to={`/courses/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
+            {row.type === "trainings" ? (
+              <Link to={`/trainings/details/${row.id}`}>
+                <i className="fas fa-info-circle" />
+              </Link>
+            ) : (
+                <Link to={`/pastoral/details/${row.id}`}>
+                  <i className="fas fa-info-circle" />
+                </Link>
+              )}
             <i
               className="fas fa-trash-alt"
               onClick={() => this.deleteCourse(row.id)}
