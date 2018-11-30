@@ -60,11 +60,12 @@ export default class ViewManagers extends Component {
     });
     const finalData = data.data.managersData;
     if (finalData) {
-      let array = [["username", "email", "action"]];
+      let array = [["username", "email", "Phone Number", "action"]];
       finalData.map(row =>
         array.push([
           row.username,
           row.email,
+          row.mobile,
           <>
             <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
@@ -92,7 +93,8 @@ export default class ViewManagers extends Component {
   getData = async () => {
     const data = await axios("/api/v2/managers");
     const finalData = data.data.managersData;
-    let array = [["username", "email", "action"]];
+    let array = [["username", "email", "phone number", "action"]];
+    console.log(finalData);
     if (finalData.length === 0) {
       const msg = " There is no managers yet !!";
       array = [];
@@ -102,6 +104,7 @@ export default class ViewManagers extends Component {
         array.push([
           row.username,
           row.email,
+          row.mobile,
           <>
             <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
