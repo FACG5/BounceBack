@@ -7,7 +7,7 @@ export const state = {
   martial_status: "single",
   sexual_orientatuin: "Normal",
   dependents: "",
-  ethincity: "",
+  ethincity: "Asian or Asian British – Bangladeshi",
   nationality: "",
   borough: "",
   postcode: "",
@@ -16,10 +16,10 @@ export const state = {
   kin_contact: "",
   email: "",
   ni_number: "",
-  support_required: "both",
-  cscs_number: "",
-  cscs_support: "",
-  leteracy_level: "",
+  support_required: "",
+  cscs_number: "yes",
+  cscs_support: "yes",
+  leteracy_level: "Entry Level 1",
   case_worker: "JP",
   numeracy_level: "",
   disability_and_medical: "",
@@ -79,11 +79,30 @@ export const fields = [
   ],
   [
     {
-      tag: "Input",
+      tag: "DropDown",
       label: "Ethnicity ",
       name: "ethincity",
       width: "20rem",
       placeholder: "ethnicity",
+      options: [
+        'Asian or Asian British – Bangladeshi',
+        'Mixed – White and Asian',
+        'Asian or Asian British – Indian',
+        'Mixed - White and Black African',
+        'Asian or Asian British – Pakistani',
+        'Mixed – White and Black Caribbean',
+        'Asian or Asian British – Any other	',
+        'Mixed - any other mixed background',
+        'Black or Black British – African',
+        'White – British',
+        'Black or Black British – Caribbean',
+        'White – Irish',
+        'Black or Black British – Any Other	',
+        'White – Any Other Background',
+        'Chinese',
+        'Any Other',
+        'Not Known or Provided'
+      ]
     },
     {
       tag: "Input",
@@ -154,6 +173,7 @@ export const fields = [
       label: "Email Address",
       name: "email",
       width: "35rem",
+      placeholder: 'email'
     }
   ],
   [
@@ -165,27 +185,38 @@ export const fields = [
       placeholder: "ni no",
     },
     {
-      tag: "Input",
+      tag: "DropDown",
       label: "CSCS No",
       name: "cscs_number",
       width: "15rem",
       placeholder: "cscs no",
+      options: ['yes', 'no']
     },
     {
-      tag: "Input",
+      tag: "DropDown",
       label: "CSCS Support ",
       name: "cscs_support",
       width: "15rem",
       placeholder: "cscs support",
+      options: ['yes', 'no']
     }
   ],
   [
     {
-      tag: "Input",
+      tag: "DropDown",
       label: "Literacy Level ",
       name: "leteracy_level",
       width: "15rem",
       placeholder: "literacy level",
+      options: [
+        'Entry Level 1',
+        'Entry Level 2',
+        'Entry Level 3',
+        'Level 1',
+        'Level 2',
+        'GCSE',
+        'A-Level'
+      ]
     },
     {
       tag: "Input",
@@ -214,12 +245,11 @@ export const fields = [
       options: ["jp", "sr", "tim", "cff"],
     },
     {
-      tag: "DropDown",
+      tag: "Input",
       label: "Support Required",
       name: "support_required",
       width: "20rem",
       placeholder: "support required",
-      options: ['training', 'pastoral intervention', 'both']
     }
   ],
   [
