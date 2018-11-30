@@ -94,7 +94,6 @@ export default class ViewManagers extends Component {
     const data = await axios("/api/v2/managers");
     const finalData = data.data.managersData;
     let array = [["username", "email", "phone number", "action"]];
-    console.log(finalData);
     if (finalData.length === 0) {
       const msg = " There is no managers yet !!";
       array = [];
