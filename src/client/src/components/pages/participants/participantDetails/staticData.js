@@ -270,12 +270,11 @@ export const fields = [
       options: ["jp", "sr", "tim", "cff"],
     },
     {
-      tag: "DropDown",
+      tag: "Input",
       label: "Support Required",
       name: "support_required",
       width: "20rem",
       placeholder: "support required",
-      options: ['training', 'pastoral intervention', 'both']
     }
   ],
   [
