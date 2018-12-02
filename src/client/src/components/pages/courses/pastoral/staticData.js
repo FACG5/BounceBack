@@ -9,32 +9,20 @@ export const state = {
 export const fields = [
   [
     {
-      tag: "DropDown",
+      tag: "Input",
       label: "Name",
       name: "course_name",
       width: "20rem",
       placeholder: "course name",
-      options: [
-        "Referral",
-        "Further Training",
-        "Employment Engagement",
-        "Phone Call",
-        "Mentoring",
-        "Interview Skills",
-        "CV writing",
-        "Probation Advocacy",
-        "Self Employment workshops",
-        "UTR Registration"
-      ]
     },
     {
-      tag: "DropDown",
-      label: "Type :",
+      tag: "Input",
+      label: "Type",
       name: "type",
       width: "20rem",
-      options: ["trainings", "pastoral"]
     }
   ],
+
   [
     {
       tag: "Input",

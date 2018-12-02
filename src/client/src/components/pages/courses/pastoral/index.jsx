@@ -15,6 +15,7 @@ class index extends Component {
 
   onChange = event => {
     const { value, name } = event.target;
+    if(name === 'type' || name === 'course_name') return ;
     this.setState({ [name]: value });
   };
 

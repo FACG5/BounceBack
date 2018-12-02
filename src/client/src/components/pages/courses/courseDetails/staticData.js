@@ -17,11 +17,10 @@ export const fields = [
       placeholder: "course name"
     },
     {
-      tag: "DropDown",
+      tag: "Input",
       label: "Type :",
       name: "type",
-      width: "15rem",
-      options: ["trainings", "pastoral"]
+      width: "15rem"
     }
   ],
   [
