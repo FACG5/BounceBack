@@ -45,7 +45,7 @@ export const state = {
       
       [{
               tag: "Input",
-              label: "Prison In",
+              label: "Length of Sentence",
               name: "prison_in",
               width: "15rem",
               type: "date",

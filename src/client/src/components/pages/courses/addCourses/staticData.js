@@ -27,7 +27,7 @@ export const fields = [
   [
     {
       tag: "DropDown",
-      label: "name",
+      label: "Intervention Name",
       name: "course_name",
       width: "42rem",
       options: [

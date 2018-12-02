@@ -66,16 +66,16 @@ const participant = sequelize.define('participant', {
     type: Sequelize.STRING,
   },
   cscs_number: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.TEXT,
   },
   cscs_support: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.TEXT,
   },
   case_worker: {
     type: Sequelize.STRING,
   },
   leteracy_level: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.TEXT,
   },
   numeracy_level: {
     type: Sequelize.INTEGER,

@@ -3,12 +3,7 @@ export const state = {
     forename: "",
     fullname: "",
     username: "",
-    date_of_birth: "",
-    gender: "",
-    martial_status: "",
     email: "",
-    full_address: "",
-    postcode: "",
     mobile: "",
     landline: "",
     password: "",
@@ -41,49 +36,10 @@ export const fields = [
     [
         {
             tag: "Input",
-            label: "Day Of Birth",
-            name: "date_of_birth",
-            width: "15rem",
-            type: "date",
-        },
-        {
-            tag: "DropDown",
-            label: "Gender",
-            name: "gender",
-            width: "15rem",
-            options: ["male", "female"],
-        },
-        {
-            tag: "DropDown",
-            label: "Martial Status",
-            name: "martial_status",
-            width: "15rem",
-            options: ["single", "married"],
-        }
-    ],
-    [
-        {
-            tag: "Input",
             label: "Email Adress",
             name: "email",
             width: "35rem",
             placeholder: "type email adress",
-        }
-    ],
-    [
-        {
-            tag: "Input",
-            label: "Full Address",
-            name: "full_address",
-            width: "35rem",
-            placeholder: "type full adress",
-        },
-        {
-            tag: "Input",
-            label: "postcode",
-            name: "postcode",
-            width: "15rem",
-            placeholder: "postcode",
         }
     ],
     [

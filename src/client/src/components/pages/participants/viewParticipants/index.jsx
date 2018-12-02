@@ -29,12 +29,13 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      let array = [["BB_No.", "Name", "Date Of Birth", "Email", "Action"]];
+      let array = [["BB_No.", "Name", "Date Of Birth", "borough", "Email", "Action"]];
       finalData.map(row =>
         array.push([
           row.id,
           row.surename,
           row.date_of_birth.split("T")[0],
+          row.borough,
           row.email,
           <>
             <i
@@ -70,12 +71,13 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      let array = [["BB_No.", "Name", "Date Of Birth", "Email", "Action"]];
+      let array = [["BB_No.", "Name", "Date Of Birth", "borough", "Email", "Action"]];
       finalData.map(row =>
         array.push([
           row.id,
           row.surename,
           row.date_of_birth.split("T")[0],
+          row.borough,
           row.email,
           <>
             <Link to={`/participant/details/${row.id}`}>
@@ -142,7 +144,7 @@ export default class ViewParticpants extends Component {
     try {
       const data = await axios("/api/v2/participants");
       const finalData = data.data.getParticipants;
-      let array = [["BB_No.", "Name", "Date Of Birth", "Email", "Action"]];
+      let array = [["BB_No.", "Name", "Date Of Birth", "borough", "Email", "Action"]];
       if (finalData.length === 0) {
         const msg = "There is no participants yet !!";
         array = [];
@@ -153,6 +155,7 @@ export default class ViewParticpants extends Component {
             row.id,
             row.surename,
             row.date_of_birth.split("T")[0],
+            row.borough,
             row.email,
             <Fragment>
               <Link to={`/participant/details/${row.id}`}>
