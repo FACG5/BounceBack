@@ -144,7 +144,6 @@ export default class ViewParticpants extends Component {
     try {
       const data = await axios("/api/v2/participants");
       const finalData = data.data.getParticipants;
-      console.log(finalData);
       let array = [["BB_No.", "Name", "Date Of Birth", "borough", "Email", "Action"]];
       if (finalData.length === 0) {
         const msg = "There is no participants yet !!";
