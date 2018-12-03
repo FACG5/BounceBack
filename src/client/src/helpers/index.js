@@ -21,10 +21,6 @@ export function getDate() {
   return `${year}-${month}-${day}`;
 }
 
-
 export function checkNI(str) {
-  const secondPhase = str.substr(2, 6);
-  if (isNaN(Number(secondPhase)) || str.length !== 9)
-    return false;
-  return true;
+  return (/^([a-zA-Z]){2}([1-9]){6}([a-z])$/.test(str));
 }
