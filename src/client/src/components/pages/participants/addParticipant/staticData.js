@@ -294,5 +294,3 @@ export const validationForm = fields => {
     return `An NI Number should be two letters, six numbers, and a letter`
 
 };
-
-
