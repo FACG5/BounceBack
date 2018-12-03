@@ -21,6 +21,9 @@ const course = sequelize.define('course', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  project_type: {
+    type: Sequelize.TEXT,
+  },
 });
 
 module.exports = course;
