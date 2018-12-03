@@ -22,5 +22,5 @@ export function getDate() {
 }
 
 export function checkNI(str) {
-  return (/^([a-zA-Z]){2}([1-9]){6}([a-z])$/.test(str));
+  return (/^([a-zA-Z]){2}([0-9]){6}([a-z])$/.test(str));
 }
