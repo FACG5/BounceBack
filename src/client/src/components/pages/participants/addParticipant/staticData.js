@@ -1,3 +1,7 @@
+import { getDate, checkNI } from './../../../../helpers';
+import validator from 'validator';
+
+
 export const state = {
   surename: "",
   forename: "",
@@ -5,7 +9,7 @@ export const state = {
   address: "",
   gender: "male",
   martial_status: "single",
-  sexual_orientatuin: "Normal",
+  sexual_orientatuin: "straight",
   dependents: "",
   ethincity: "Asian or Asian British – Bangladeshi",
   nationality: "",
@@ -52,6 +56,8 @@ export const fields = [
       width: "20rem",
       type: "date",
       placeholder: "date of birth",
+      max: getDate(),
+      min: '1920-01-01'
     },
   ],
   [
@@ -151,6 +157,7 @@ export const fields = [
       name: "mobile",
       width: "15rem",
       placeholder: "mobile no",
+      type: 'number'
     },
     {
       tag: "Input",
@@ -158,6 +165,7 @@ export const fields = [
       name: "landline",
       width: "15rem",
       placeholder: "landline",
+      type: 'number'
     },
     {
       tag: "Input",
@@ -165,6 +173,7 @@ export const fields = [
       name: "kin_contact",
       width: "15rem",
       placeholder: "next of kin contact",
+      type: 'number'
     }
   ],
   [
@@ -173,7 +182,7 @@ export const fields = [
       label: "Email Address",
       name: "email",
       width: "35rem",
-      placeholder: 'email'
+      placeholder: 'email',
     }
   ],
   [
@@ -275,6 +284,13 @@ export const fields = [
 
 export const validationForm = fields => {
   for (const key in fields) {
-    if (fields[key] === "") return `Please Check ${key}`;
+    if (fields[key] === "") return `Please check ${key}`;
   }
+
+  if (!validator.isEmail(fields['email'])) {
+    return `${fields['email']} is not a valid email.`
+  }
+  if (!checkNI(fields['ni_number']))
+    return `An NI Number should be two letters, six numbers, and a letter`
+
 };
