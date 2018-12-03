@@ -291,7 +291,7 @@ export const validationForm = fields => {
     return `${fields['email']} is not a valid email.`
   }
   if (!checkNI(fields['ni_number']))
-    return `NI Number should be [letter, letter, 6 numbers, letter]`
+    return `An NI Number should be two letters, six numbers, and a letter`
 
 };
 
