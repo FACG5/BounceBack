@@ -1,6 +1,7 @@
 export const state = {
   course_name: "",
   type: "",
+  project_type: "",
   course_start: "",
   course_end: "",
   description: "",
@@ -22,7 +23,14 @@ export const fields = [
       width: "20rem",
     }
   ],
-
+  [
+    {
+      tag: "Input",
+      label: "Project Type",
+      name: "project_type",
+      width: "30rem",
+    }
+  ],
   [
     {
       tag: "Input",
