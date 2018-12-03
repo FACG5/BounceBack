@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import './index.css';
 
 export default function index(props) {
-    let { value, onChange, type, label, name, width, placeholder } = props;
+    let { value, onChange, type, label, name, width, placeholder, ...rest } = props;
     return (
         <>
             <label htmlFor={name} className="label-field">
@@ -16,6 +16,7 @@ export default function index(props) {
                     className="input-field"
                     value={value}
                     onChange={onChange}
+                    {...rest}
                 />
             </label>
         </>
