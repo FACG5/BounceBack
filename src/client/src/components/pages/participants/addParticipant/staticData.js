@@ -1,4 +1,6 @@
-import { getDate, validateEmail } from './../../../../helpers';
+import { getDate } from './../../../../helpers';
+import validator from 'validator';
+
 
 export const state = {
   surename: "",
@@ -286,7 +288,10 @@ export const validationForm = fields => {
   for (const key in fields) {
     if (fields[key] === "") return `Please Check ${key}`;
   }
-  // if(fields)
-  if (!validateEmail(fields['email'])) return `Please Check Email Address`;
+
+  if (!validator.isEmail(fields['email'])) {
+    return `${fields['email']} Is Not A Valid Email.`
+  }
 };
+
 
