@@ -1,3 +1,5 @@
+import { getDate, validateEmail } from './../../../../helpers';
+
 export const state = {
   surename: "",
   forename: "",
@@ -5,7 +7,7 @@ export const state = {
   address: "",
   gender: "male",
   martial_status: "single",
-  sexual_orientatuin: "Normal",
+  sexual_orientatuin: "straight",
   dependents: "",
   ethincity: "Asian or Asian British – Bangladeshi",
   nationality: "",
@@ -52,7 +54,8 @@ export const fields = [
       width: "20rem",
       type: "date",
       placeholder: "date of birth",
-      max: getDate()
+      max: getDate(),
+      min: '1920-01-01'
     },
   ],
   [
@@ -152,6 +155,7 @@ export const fields = [
       name: "mobile",
       width: "15rem",
       placeholder: "mobile no",
+      type: 'number'
     },
     {
       tag: "Input",
@@ -159,6 +163,7 @@ export const fields = [
       name: "landline",
       width: "15rem",
       placeholder: "landline",
+      type: 'number'
     },
     {
       tag: "Input",
@@ -166,6 +171,7 @@ export const fields = [
       name: "kin_contact",
       width: "15rem",
       placeholder: "next of kin contact",
+      type: 'number'
     }
   ],
   [
@@ -174,7 +180,7 @@ export const fields = [
       label: "Email Address",
       name: "email",
       width: "35rem",
-      placeholder: 'email'
+      placeholder: 'email',
     }
   ],
   [
@@ -184,6 +190,7 @@ export const fields = [
       name: "ni_number",
       width: "15rem",
       placeholder: "ni no",
+      type: 'number'
     },
     {
       tag: "DropDown",
@@ -275,17 +282,11 @@ export const fields = [
 ];
 
 export const validationForm = fields => {
+  console.log(fields);
   for (const key in fields) {
     if (fields[key] === "") return `Please Check ${key}`;
   }
+  // if(fields)
+  if (!validateEmail(fields['email'])) return `Please Check Email Address`;
 };
-function getDate() {
-  const date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  if (day < 10) day = '0' + day;
-  if (month < 10) month = '0' + month;
-  return `${year}-${month}-${day}`;
-}
 
