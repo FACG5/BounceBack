@@ -1,3 +1,6 @@
+import { getDate } from './../../../../helpers';
+import { isEmail } from 'validator';
+
 export const state = {
     surname: "",
     forename: "",
@@ -13,28 +16,29 @@ export const state = {
     password: "",
     confirmPassword: "",
 };
+
 export const fields = [
     [{
-            tag: "Input",
-            label: "Surname",
-            name: "surname",
-            width: "15rem",
-            placeholder: "surname"
-        },
-        {
-            tag: "Input",
-            label: "Forename",
-            name: "forename",
-            width: "15rem",
-            placeholder: "forename"
-        },
-        {
-            tag: "Input",
-            label: "Username",
-            name: "username",
-            width: "15rem",
-            placeholder: "username"
-        }
+        tag: "Input",
+        label: "Surname",
+        name: "surname",
+        width: "15rem",
+        placeholder: "surname"
+    },
+    {
+        tag: "Input",
+        label: "Forename",
+        name: "forename",
+        width: "15rem",
+        placeholder: "forename"
+    },
+    {
+        tag: "Input",
+        label: "Username",
+        name: "username",
+        width: "15rem",
+        placeholder: "username"
+    }
     ],
     [
         {
@@ -43,6 +47,8 @@ export const fields = [
             name: "date_of_birth",
             width: "15rem",
             type: "date",
+            min: '1920-01-01',
+            max: getDate()
         },
         {
             tag: "DropDown",
@@ -81,7 +87,8 @@ export const fields = [
             label: "postcode",
             name: "postcode",
             width: "15rem",
-            placeholder: "postcode"
+            placeholder: "postcode",
+
         }
     ],
     [
@@ -90,21 +97,23 @@ export const fields = [
             label: "Mobile Number",
             name: "mobile",
             width: "20rem",
-            placeholder: "Mobile Number"
+            placeholder: "Mobile Number",
+            type: 'number'
         },
         {
             tag: "Input",
             label: "Land line",
             name: "landline",
             width: "20rem",
-            placeholder: "Land Line"
+            placeholder: "Land Line",
+            type: 'number'
         }
     ],
     [
         {
             tag: "Input",
             label: "Password",
-            placeholder:'password',
+            placeholder: 'password',
             name: "password",
             width: "20rem",
             type: "password",
@@ -139,4 +148,7 @@ export const validationForm = (fields) => {
         if (fields[key] === "")
             return `Please Check ${key}`;
     }
+    if (!isEmail(fields['email'])) return ` ${fields['email']} Is Not Valid `;
+
 }
+
