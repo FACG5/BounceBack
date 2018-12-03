@@ -20,3 +20,11 @@ export function getDate() {
   if (month < 10) month = '0' + month;
   return `${year}-${month}-${day}`;
 }
+
+
+export function checkNI(str) {
+  const secondPhase = str.substr(2, 6);
+  if (isNaN(Number(secondPhase)) || str.length !== 9)
+    return false;
+  return true;
+}
