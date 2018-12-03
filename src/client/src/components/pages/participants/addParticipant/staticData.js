@@ -1,4 +1,4 @@
-import { getDate } from './../../../../helpers';
+import { getDate, checkNI } from './../../../../helpers';
 import validator from 'validator';
 
 
@@ -192,7 +192,6 @@ export const fields = [
       name: "ni_number",
       width: "15rem",
       placeholder: "ni no",
-      type: 'number'
     },
     {
       tag: "DropDown",
@@ -284,14 +283,16 @@ export const fields = [
 ];
 
 export const validationForm = fields => {
-  console.log(fields);
   for (const key in fields) {
-    if (fields[key] === "") return `Please Check ${key}`;
+    if (fields[key] === "") return `Please check ${key}`;
   }
 
   if (!validator.isEmail(fields['email'])) {
-    return `${fields['email']} Is Not A Valid Email.`
+    return `${fields['email']} is not a valid email.`
   }
+  if (!checkNI(fields['ni_number']))
+    return `NI Number is not a valid .`
+
 };
 
 
