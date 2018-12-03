@@ -146,9 +146,9 @@ export const fields = [
 export const validationForm = (fields) => {
     for (const key in fields) {
         if (fields[key] === "")
-            return `Please Check ${key}`;
+            return `please check ${key}`;
     }
-    if (!isEmail(fields['email'])) return ` ${fields['email']} Is Not Valid `;
+    if (!isEmail(fields['email'])) return ` ${fields['email']} is not valid `;
 
 }
 
