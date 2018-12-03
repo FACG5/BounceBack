@@ -18,7 +18,7 @@ export const fields = [
     },
     {
       tag: "Input",
-      label: "Type :",
+      label: "Type",
       name: "type",
       width: "15rem"
     }
