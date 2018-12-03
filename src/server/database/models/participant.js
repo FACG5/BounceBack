@@ -10,10 +10,6 @@ const participant = sequelize.define('participant', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  utr_number: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   fullname: {
     type: Sequelize.TEXT,
   },
