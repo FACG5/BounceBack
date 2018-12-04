@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from '../../../abstract/footer';
@@ -27,7 +26,8 @@ class PresionDetails extends Component {
     axios(`/api/v2/participants/${id}/prison`)
       .then( async result => {
         const data = result.data.getPrisoner.rows[0];
-        this.setState({ ...data, loading: false })
+        const date = data.prison_release.split("T")[0];
+        this.setState({ ...data, prison_release: date, loading: false })
       })
       .catch(error => {
         dispatch({
