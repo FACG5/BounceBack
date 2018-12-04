@@ -21,7 +21,7 @@ const prison = sequelize.define('prison', {
     type: Sequelize.TEXT,
   },
   prison_in: {
-    type: Sequelize.DATE,
+    type: Sequelize.INTEGER,
   },
   prison_release: {
     type: Sequelize.DATE,
