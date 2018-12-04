@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import {
   state as initialState,
   fields as fieldSet,
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+} from './staticData';
+import Form from './../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import axios from "axios";
 import swal from "sweetalert2";
