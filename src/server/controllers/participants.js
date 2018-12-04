@@ -6,7 +6,11 @@ const courses = require('../database/models/participantCourses');
 // Get all participants
 exports.get = async (req, res) => {
   try {
-    const getParticipants = await participant.findAll();
+    const getParticipants = await participant.findAll({
+      order: [
+        ['nationality', 'ASC'],
+      ],
+    });
     res.send({ getParticipants });
   } catch (err) {
     res.status(500).send({ err });
