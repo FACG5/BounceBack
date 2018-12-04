@@ -79,6 +79,7 @@ const participant = sequelize.define('participant', {
   },
   numeracy_level: {
     type: Sequelize.INTEGER,
+    defaultValue: 0,
   },
   disability_and_medical: {
     type: Sequelize.TEXT,
