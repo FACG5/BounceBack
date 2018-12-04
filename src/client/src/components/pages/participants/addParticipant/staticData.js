@@ -1,7 +1,6 @@
 import { getDate, checkNI } from './../../../../helpers';
 import validator from 'validator';
 
-
 export const state = {
   surename: "",
   forename: "",
@@ -25,7 +24,7 @@ export const state = {
   cscs_support: "yes",
   leteracy_level: "Entry Level 1",
   case_worker: "JP",
-  numeracy_level: "",
+  numeracy_level: 0,
   disability_and_medical: "",
   employment_outcomes: "not employed yet",
   reoffending: "no",
@@ -283,14 +282,18 @@ export const fields = [
 ];
 
 export const validationForm = fields => {
-  for (const key in fields) {
-    if (fields[key] === "") return `Please check ${key}`;
-  }
+  if (fields['forename'] === "") return 'forename field is empty';
+  else if (fields['surename'] === "") return 'surname field is empty';
+  else if (fields['date_of_birth'] === "") return 'date_of_birth field is empty';
+  else if (fields['gender'] === "") return 'gender field is empty';
+  else if (fields['mobile'] === 0) return 'mobile field is empty';
+  else if (fields['email'] === "") return 'email field is empty';
+  else if (fields['borough'] === "") return 'borough field is empty';
 
   if (!validator.isEmail(fields['email'])) {
     return `${fields['email']} is not a valid email.`
   }
+  
   if (!checkNI(fields['ni_number']))
     return `An NI Number should be two letters, six numbers, and a letter`
-
 };
