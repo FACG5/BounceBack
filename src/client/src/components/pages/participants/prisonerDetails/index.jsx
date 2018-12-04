@@ -9,7 +9,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 
-class PresionDetails extends Component {
+class PresionerDetails extends Component {
   state = initialState;
 
   onChange = event => {
@@ -102,4 +102,4 @@ class PresionDetails extends Component {
   }
 }
 
-export default contextHoc(PresionDetails);
+export default contextHoc(PresionerDetails);
