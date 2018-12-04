@@ -2,6 +2,7 @@ export const state = {
     utr_number: "",
     prison_name: "",
     prison_number: "",
+    contact_details: "",
     officer_name: "",
     prison_in: "",
     prison_release: "",
@@ -35,13 +36,19 @@ export const state = {
         }
       ],
       [{
+        tag: "Input",
+        label: "Probation officer name",
+        name: "officer_name",
+        width: "15rem",
+        placeholder: "probation officer name"
+      },
+      {
           tag: "Input",
-          label: "Probation officer name",
-          name: "officer_name",
-          width: "35rem",
+          label: "Contact Details",
+          name: "contact_details",
+          width: "15rem",
           placeholder: "probation officer name"
-  
-      }],
+        }],
       
       [{
               tag: "Input",

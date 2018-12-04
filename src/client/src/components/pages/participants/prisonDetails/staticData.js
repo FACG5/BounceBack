@@ -3,6 +3,7 @@ export const state = {
   prison_name: "",
   prison_number: "",
   officer_name: "",
+  contact_details: "",
   prison_in: "",
   prison_release: "",
   rotl_hdc: "",
@@ -40,9 +41,16 @@ export const fields = [
       tag: "Input",
       label: "Probation officer name",
       name: "officer_name",
-      width: "35rem",
+      width: "15rem",
       placeholder: "probation officer name"
-    }
+    },
+    {
+        tag: "Input",
+        label: "Contact Details",
+        name: "contact_details",
+        width: "15rem",
+        placeholder: "Contact Details"
+      }
   ],
 
   [
