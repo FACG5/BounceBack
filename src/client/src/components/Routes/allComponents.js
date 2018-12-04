@@ -13,6 +13,7 @@ import addCourse from "../pages/courses/addCourses";
 import ReportResult from "../pages/reportResult";
 import Report from "../pages/report";
 import prisonDetails from "../pages/participants/prisonDetails";
+import prisonerDetails from "../pages/participants/prisonerDetails";
 import addWorker from "../pages/workers/addWorkers";
 import workerDetails from "../pages/workers/workerDetails";
 import courseDetails from "../pages/courses/courseDetails";
@@ -53,6 +54,6 @@ export default {
   ParticipantPastoralAdd,
   AddParticipantDate,
   ParticipantDateDetails,
-  participantDetails
-
+  participantDetails,
+  prisonerDetails
 }
