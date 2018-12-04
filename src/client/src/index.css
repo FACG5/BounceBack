@@ -46,9 +46,8 @@ text-align: center;
 }
 
 /* swwet allert confirm and cancel btn*/
-.swal2-confirm{
+.swal2-cancel, .swal2-confirm{
     position: relative;
-    background: #ff4800 !important;
     border: 0;
     border-radius: 3px;
     text-align: center;
@@ -62,6 +61,12 @@ text-align: center;
     padding: 0.7rem;
     transition: all .1s;
     outline: none;
+}
+.swal2-cancel{
+    background: red !important;
+}
+.swal2-confirm{
+    background: #555555 !important;
 }
 .swal2-confirm:hover ,.swal2-cancel:hover {
     transform: translateY(-2px);

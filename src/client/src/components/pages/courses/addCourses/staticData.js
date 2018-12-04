@@ -1,6 +1,7 @@
 export const state = {
   course_name: "",
   type: "trainings",
+  project_type: "out for good",
   course_start: "",
   course_end: "",
   description: "",
@@ -42,6 +43,22 @@ export const fields = [
         "Self Employment workshops",
         "UTR Registration"
       ]
+    }
+  ],
+  [
+    {
+      tag: "DropDown",
+      label: "Project Type",
+      name: "project_type",
+      width: "42rem",
+      options: [
+      "out for good",
+      "mind the gap",
+      "olass",
+      "cf03",
+      "divert",
+      "standard offer"
+    ]
     }
   ],
   [

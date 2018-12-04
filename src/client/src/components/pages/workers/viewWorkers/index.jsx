@@ -125,7 +125,7 @@ export default class ViewWorkers extends Component {
     return (
       <>
         <section className="section-view">
-          <Header value="View Worker" />
+          <Header value="View Staff" />
           <Input
             label="Search"
             name="search"
@@ -135,7 +135,7 @@ export default class ViewWorkers extends Component {
             value={this.state.search}
             onChange={this.onChange}
           />
-          <Header value="Workers" align="left" margin="0" />
+          <Header value="Staff" align="left" margin="0" />
           <Table rows={this.state.rows} />
           { this.state.rows.length === 0 &&
             <p className="error-msg"> <i className="far fa-surprise"></i>{this.state.message}</p>
