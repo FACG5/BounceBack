@@ -57,7 +57,6 @@ class PresionDetails extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-        this.props.history.push("/participants/view");
       } else {
         await swal({
           title: "Success",
