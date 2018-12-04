@@ -1,5 +1,5 @@
-import { getDate, checkNI } from './../../../../helpers';
-import validator from 'validator';
+import { getDate, checkNI } from "./../../../../helpers";
+import validator from "validator";
 
 export const state = {
   surename: "",
@@ -28,7 +28,7 @@ export const state = {
   disability_and_medical: "",
   employment_outcomes: "not employed yet",
   reoffending: "no",
-  in_prison: false,
+  in_prison: false
 };
 export const fields = [
   [
@@ -37,14 +37,14 @@ export const fields = [
       label: "Forename",
       name: "forename",
       width: "20rem",
-      placeholder: "forename",
+      placeholder: "forename"
     },
     {
       tag: "Input",
       label: "Surname",
       name: "surename",
       width: "20rem",
-      placeholder: "surname",
+      placeholder: "surname"
     }
   ],
   [
@@ -56,8 +56,8 @@ export const fields = [
       type: "date",
       placeholder: "date of birth",
       max: getDate(),
-      min: '1920-01-01'
-    },
+      min: "1920-01-01"
+    }
   ],
   [
     {
@@ -65,21 +65,29 @@ export const fields = [
       label: "Gender",
       name: "gender",
       width: "12rem",
-      options: ["male", "female", "prefer not to say"],
+      options: ["male", "female", "prefer not to say"]
     },
     {
       tag: "DropDown",
       label: "Marital Status",
       name: "martial_status",
       width: "12rem",
-      options: ["single", "married", "widowed", "separated", "divorced", "cff"],
+      options: ["single", "married", "widowed", "separated", "divorced", "cff"]
     },
     {
       tag: "DropDown",
       label: "Sexual Orientation ",
       name: "sexual_orientatuin",
       width: "12rem",
-      options: ["lesbian", "gay", "bisexual", "queer", "straight", "something else", "decline to answer"],
+      options: [
+        "lesbian",
+        "gay",
+        "bisexual",
+        "queer",
+        "straight",
+        "something else",
+        "decline to answer"
+      ]
     }
   ],
   [
@@ -90,23 +98,23 @@ export const fields = [
       width: "20rem",
       placeholder: "ethnicity",
       options: [
-        'Asian or Asian British – Bangladeshi',
-        'Mixed – White and Asian',
-        'Asian or Asian British – Indian',
-        'Mixed - White and Black African',
-        'Asian or Asian British – Pakistani',
-        'Mixed – White and Black Caribbean',
-        'Asian or Asian British – Any other	',
-        'Mixed - any other mixed background',
-        'Black or Black British – African',
-        'White – British',
-        'Black or Black British – Caribbean',
-        'White – Irish',
-        'Black or Black British – Any Other	',
-        'White – Any Other Background',
-        'Chinese',
-        'Any Other',
-        'Not Known or Provided'
+        "Asian or Asian British – Bangladeshi",
+        "Mixed – White and Asian",
+        "Asian or Asian British – Indian",
+        "Mixed - White and Black African",
+        "Asian or Asian British – Pakistani",
+        "Mixed – White and Black Caribbean",
+        "Asian or Asian British – Any other	",
+        "Mixed - any other mixed background",
+        "Black or Black British – African",
+        "White – British",
+        "Black or Black British – Caribbean",
+        "White – Irish",
+        "Black or Black British – Any Other	",
+        "White – Any Other Background",
+        "Chinese",
+        "Any Other",
+        "Not Known or Provided"
       ]
     },
     {
@@ -114,7 +122,7 @@ export const fields = [
       label: "Dependents ",
       name: "dependents",
       width: "20rem",
-      placeholder: "dependents",
+      placeholder: "dependents"
     }
   ],
   [
@@ -123,7 +131,7 @@ export const fields = [
       label: "Full Address ",
       name: "address",
       width: "35rem",
-      placeholder: "full address",
+      placeholder: "full address"
     }
   ],
   [
@@ -132,21 +140,21 @@ export const fields = [
       label: "Nationality ",
       name: "nationality",
       width: "15rem",
-      placeholder: "nationality",
+      placeholder: "nationality"
     },
     {
       tag: "Input",
       label: "Borough ",
       name: "borough",
       width: "15rem",
-      placeholder: "borough",
+      placeholder: "borough"
     },
     {
       tag: "Input",
       label: "Postcode ",
       name: "postcode",
       width: "15rem",
-      placeholder: "postcode",
+      placeholder: "postcode"
     }
   ],
   [
@@ -156,7 +164,7 @@ export const fields = [
       name: "mobile",
       width: "15rem",
       placeholder: "mobile no",
-      type: 'number'
+      type: "number"
     },
     {
       tag: "Input",
@@ -164,7 +172,7 @@ export const fields = [
       name: "landline",
       width: "15rem",
       placeholder: "landline",
-      type: 'number'
+      type: "number"
     },
     {
       tag: "Input",
@@ -172,7 +180,7 @@ export const fields = [
       name: "kin_contact",
       width: "15rem",
       placeholder: "next of kin contact",
-      type: 'number'
+      type: "number"
     }
   ],
   [
@@ -181,7 +189,7 @@ export const fields = [
       label: "Email Address",
       name: "email",
       width: "35rem",
-      placeholder: 'email',
+      placeholder: "email"
     }
   ],
   [
@@ -190,7 +198,7 @@ export const fields = [
       label: "NI No",
       name: "ni_number",
       width: "15rem",
-      placeholder: "ni no",
+      placeholder: "ni no"
     },
     {
       tag: "DropDown",
@@ -198,7 +206,7 @@ export const fields = [
       name: "cscs_number",
       width: "15rem",
       placeholder: "cscs no",
-      options: ['yes', 'no']
+      options: ["yes", "no"]
     },
     {
       tag: "DropDown",
@@ -206,7 +214,7 @@ export const fields = [
       name: "cscs_support",
       width: "15rem",
       placeholder: "cscs support",
-      options: ['yes', 'no']
+      options: ["yes", "no"]
     }
   ],
   [
@@ -217,13 +225,13 @@ export const fields = [
       width: "15rem",
       placeholder: "literacy level",
       options: [
-        'Entry Level 1',
-        'Entry Level 2',
-        'Entry Level 3',
-        'Level 1',
-        'Level 2',
-        'GCSE',
-        'A-Level'
+        "Entry Level 1",
+        "Entry Level 2",
+        "Entry Level 3",
+        "Level 1",
+        "Level 2",
+        "GCSE",
+        "A-Level"
       ]
     },
     {
@@ -232,7 +240,7 @@ export const fields = [
       name: "numeracy_level",
       width: "15rem",
       type: "number",
-      placeholder: "numeracy level",
+      placeholder: "numeracy level"
     }
   ],
   [
@@ -241,7 +249,7 @@ export const fields = [
       label: "Disability & Medical",
       name: "disability_and_medical",
       width: "35rem",
-      placeholder: "disability",
+      placeholder: "disability"
     }
   ],
   [
@@ -250,22 +258,24 @@ export const fields = [
       label: "Case Worker",
       name: "case_wroker",
       width: "20rem",
-      options: ["jp", "sr", "tim", "cff"],
+      options: ["jp", "sr", "tim", "cff"]
     },
     {
       tag: "Input",
       label: "Support Required",
       name: "support_required",
       width: "20rem",
-      placeholder: "support required",
+      placeholder: "support required"
     }
   ],
   [
     {
       tag: "checkBox",
       name: "in_prison",
-      value: ' In Prison'
-    }], [
+      value: " In Prison"
+    }
+  ],
+  [
     {
       tag: "Button",
       value: "Add participant",
@@ -277,23 +287,29 @@ export const fields = [
       value: "Clear",
       color: "#FF4800",
       staticField: true
-    },
+    }
   ]
 ];
 
 export const validationForm = fields => {
-  if (fields['forename'] === "") return 'forename field is empty';
-  else if (fields['surename'] === "") return 'surname field is empty';
-  else if (fields['date_of_birth'] === "") return 'date_of_birth field is empty';
-  else if (fields['gender'] === "") return 'gender field is empty';
-  else if (fields['mobile'] === 0) return 'mobile field is empty';
-  else if (fields['email'] === "") return 'email field is empty';
-  else if (fields['borough'] === "") return 'borough field is empty';
-
-  if (!validator.isEmail(fields['email'])) {
-    return `${fields['email']} is not a valid email.`
+  const requiredFields = [
+    "forename",
+    "surename",
+    "date_of_birth",
+    "gender",
+    "mobile",
+    "email",
+    "borough"
+  ];
+  for (const key in fields) {
+    if (requiredFields.indexOf(key + "") >= 0 && fields[key] === "")
+      return `${key} field is empty`;
   }
-  
-  if (!checkNI(fields['ni_number']))
-    return `An NI Number should be two letters, six numbers, and a letter`
+
+  if (!validator.isEmail(fields["email"])) {
+    return `${fields["email"]} is not a valid email.`;
+  }
+
+  if (!checkNI(fields["ni_number"]))
+    return `An NI Number should be two letters, six numbers, and a letter`;
 };
