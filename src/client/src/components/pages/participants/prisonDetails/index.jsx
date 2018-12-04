@@ -18,7 +18,8 @@ class PresionDetails extends Component {
     this.setState({ [name]: value });
   };
   goBack = event => {
-    this.props.history.push('/participants/add')
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/details/${id}`)
   };
   clearFields = event => {
     event.preventDefault();

@@ -17,7 +17,8 @@ class PresionerDetails extends Component {
     this.setState({ [name]: value });
   };
   goBack = event => {
-    this.props.history.push('/participants/add')
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/details/${id}`)
   };
 
   getPrisonerDetails = async () => {
@@ -52,6 +53,7 @@ class PresionerDetails extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
+        const { id } = this.props.match.params;
       const prisonId = this.props.match.params.prisonerId;
       const result = await axios(`/api/v2/prison/${prisonId}`, {
         method: "PUT",
@@ -66,7 +68,7 @@ class PresionerDetails extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-        this.props.history.push(`/`);
+        this.props.history.push(`/participant/details/${id}`);
       } else {
         await swal({
           title: "Success",
@@ -74,7 +76,7 @@ class PresionerDetails extends Component {
           html: result.data.message
         });
         this.setState({ ...data });
-        this.props.history.push("/participants/view");
+        this.props.history.push(`/participant/details/${id}`);
       }
     }
   };
