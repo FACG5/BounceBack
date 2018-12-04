@@ -49,7 +49,8 @@ export const fields = [
       display: "none",
       color: "#FF4800",
       staticField: true
-    },{
+    },
+    {
       tag: "Button",
       value: "Follow Up",
       color: "#272727",
