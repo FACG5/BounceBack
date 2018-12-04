@@ -64,6 +64,11 @@ export default function index() {
             path="/participants/:id/prison"
             component={prisonDetails}
           />
+           <Route
+            exact
+            path="/participants/:id/prisoner/:prisonerId"
+            component={prisonerDetails}
+          />
           <Route
             exact
             path="/participant/:id/course/details/:course_id"
@@ -137,6 +142,7 @@ const {
   ParticipantPastoralAdd,
   AddParticipantDate,
   ParticipantDateDetails,
-  participantDetails
+  participantDetails,
+  prisonerDetails
 
 } = allComponenets

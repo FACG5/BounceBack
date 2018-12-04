@@ -63,8 +63,8 @@ class index extends Component {
         course: countCourse,
         worker: countWorker,
         employment: [
-          { decription: "Percentage of participants who have reoffinding state and employed", percentage: ReoffengingEmployedAvg },
-          { decription: "Percentage of participants who have reoffinding state and unemployed", percentage: ReoffengingUnemployedAvg }
+          { decription: "Percentage of participants who have reoffending state and employed", percentage: ReoffengingEmployedAvg },
+          { decription: "Percentage of participants who have reoffending state and unemployed", percentage: ReoffengingUnemployedAvg }
         ],
         sections: sections,
         loading: false

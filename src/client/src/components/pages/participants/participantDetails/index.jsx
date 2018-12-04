@@ -26,22 +26,55 @@ class index extends Component {
     const id = this.props.match.params.id;
     this.props.history.push(`/participant/${id}/courses`);
   };
+  goPrison = event => {
+    const { id } = this.props.match.params;
+    const prisonId = this.state.prisonerId
+    this.props.history.push(`/participants/${id}/prisoner/${prisonId}`);
+  }
 
-  getDetails = async () => {
+  getPrison = async () => {
     const id = this.props.match.params.id;
     const { dispatch } = this.props.context;
-    axios(`/api/v2/participant/${id}`)
+    axios(`/api/v2/participants/${id}/prison`)
       .then(result => {
-        const { data } = result;
-        const date = data.date_of_birth.split("T")[0];
-        this.setState({ ...data, date_of_birth: date, loading: false });
+        const { count } = result.data.getPrisoner;
+        const prisonId = result.data.getPrisoner.rows[0].id;
+        console.log(prisonId)
+        if (count === 1) {
+          fieldSet[0][2].display = 'block';
+          this.setState({fieldSet, prisonerId: prisonId})
+        }
+        else{
+          fieldSet[0][2].display = 'none';
+          this.setState({fieldSet, prisonerId:''})
+        }
       })
       .catch(error => {
         dispatch({
           type: "ERROR_PAGE",
           payload: { ErrorPage: error.response.status }
         });
+        console.log(error)
       });
+  };
+
+  getDetails = async () => {
+    const id = this.props.match.params.id;
+    const { dispatch } = this.props.context;
+    
+    axios(`/api/v2/participant/${id}`)
+      .then( async result => {
+        this.getPrison();
+        const { data } = result;
+        const date = data.date_of_birth.split("T")[0];
+        this.setState({ ...data, date_of_birth: date, loading: false })
+      })
+      .catch(error => {
+        dispatch({
+          type: "ERROR_PAGE",
+          payload: { ErrorPage: error.response.status }
+        });
+      })
   };
 
   updateParticipant = async obj => {
@@ -87,7 +120,7 @@ class index extends Component {
     this.getDetails();
   };
 
-  // the implemention waiting  back end api
+  // Edit Data
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
@@ -103,15 +136,17 @@ class index extends Component {
     const {
       loading
     } = this.state;
-    if (loading) return <Loading />;
-    return (
+    if (loading) 
+      return <Loading />;
+  
+      return (
       <>
         <Form
           title="Participant Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack, this.goDates, this.goTrainings]}
+          btnEvents={[this.onSubmit, this.goBack, this.goPrison, this.goDates, this.goTrainings]}
         />
         <Footer />
       </>

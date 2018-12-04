@@ -26,6 +26,7 @@ export const state = {
   employment_outcomes: "",
   reoffending: "",
   error: "",
+  prisonerId: "",
   loading: true
 };
 export const fields = [
@@ -41,7 +42,15 @@ export const fields = [
       value: "empty",
       color: "#FF4800",
       staticField: true
-    },  {
+    },  
+    {
+      tag: "Button",
+      value: "Prison Details",
+      display: "none",
+      color: "#FF4800",
+      staticField: true
+    },
+    {
       tag: "Button",
       value: "Follow Up",
       color: "#272727",

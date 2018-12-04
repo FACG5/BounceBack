@@ -30,6 +30,8 @@ Router.delete('/participant', participants.delete);
 
 // Participants Prison Details Routes
 Router.post('/participants/:id/prison', prison.post);
+Router.get('/participants/:id/prison', prison.getIfPrison);
+Router.put('/prison/:id', prison.editPrisonerDetails);
 
 // Participants Dates Routes
 Router.put('/participant/:id/date/:dateId', participants.editDate);

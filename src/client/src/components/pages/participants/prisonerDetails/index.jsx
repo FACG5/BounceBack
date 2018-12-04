@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
 } from './staticData';
 import Form from './../../../abstract/Form';
 import Footer from '../../../abstract/footer';
@@ -10,7 +9,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 
-class PresionDetails extends Component {
+class PresionerDetails extends Component {
   state = initialState;
 
   onChange = event => {
@@ -21,22 +20,31 @@ class PresionDetails extends Component {
     const { id } = this.props.match.params;
     this.props.history.push(`/participant/details/${id}`)
   };
-  clearFields = event => {
-    event.preventDefault();
-    const fields = this.state;
-    for (const key in fields) {
-      fields[key] = "";
-    }
-    this.setState(fields);
+
+  getPrisonerDetails = async () => {
+    const id = this.props.match.params.id;
+    const { dispatch } = this.props.context;  
+    axios(`/api/v2/participants/${id}/prison`)
+      .then( async result => {
+        const data = result.data.getPrisoner.rows[0];
+        const date = data.prison_release.split("T")[0];
+        this.setState({ ...data, prison_release: date, loading: false })
+      })
+      .catch(error => {
+        dispatch({
+          type: "ERROR_PAGE",
+          payload: { ErrorPage: error.response.status }
+        });
+      })
+  };
+  componentDidMount = () => {
+    this.getPrisonerDetails();
   };
 
-
-
-  addPrisonDetails = async newPrisonDetails => {
-    const { id } = this.props.match.params;
+  updatePrisoner = async data => {
     const confirm = await swal({
       type: "warning",
-      html: "Are you sure for adding this prison details ?",
+      html: "Are you sure that you want to update this data ?",
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
@@ -45,10 +53,12 @@ class PresionDetails extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
-      const result = await axios(`/api/v2/participants/${id}/prison`, {
-        method: "POST",
+        const { id } = this.props.match.params;
+      const prisonId = this.props.match.params.prisonerId;
+      const result = await axios(`/api/v2/prison/${prisonId}`, {
+        method: "PUT",
         data: {
-          prisonDetails: newPrisonDetails,
+           prisonerData: data
         }
       });
       if (result.data.error) {
@@ -58,32 +68,31 @@ class PresionDetails extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
+        this.props.history.push(`/participant/details/${id}`);
       } else {
         await swal({
           title: "Success",
           type: "success",
           html: result.data.message
         });
-        this.props.history.push("/participants/view");
+        this.setState({ ...data });
+        this.props.history.push(`/participant/details/${id}`);
       }
     }
   };
 
-  // the implemention waiting  back end api
+  // Edit Data
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
-    const error = validationForm(fields);
-    if (error) return this.setState({ error });
-
-    this.addPrisonDetails(fields);
+    this.updatePrisoner(fields);
   };
 
   render() {
     return (
       <div>
         <Form
-          title="Add Prison Details"
+          title="Prisoner Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
@@ -95,4 +104,4 @@ class PresionDetails extends Component {
   }
 }
 
-export default contextHoc(PresionDetails);
+export default contextHoc(PresionerDetails);
