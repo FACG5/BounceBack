@@ -145,9 +145,9 @@ export const fields = [
 
 export const validationForm = (fields) => {
     if (fields['surname'] === "") return 'surname field is empty';
-    if (fields['forename'] === "") return 'forename field is empty';
-    if (fields['username'] === "") return 'username field is empty';
-    if (fields['date_of_birth'] === "") return 'date_of_birth field is empty';
+    else if (fields['forename'] === "") return 'forename field is empty';
+    else if (fields['username'] === "") return 'username field is empty';
+    else if (fields['date_of_birth'] === "") return 'date_of_birth field is empty';
     if (fields['email'] === "") return 'email field is empty';
     if (fields['mobile'] === "") return 'mobile field is empty';
     if (fields['password'] === "") return 'password field is empty';
