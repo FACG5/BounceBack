@@ -83,7 +83,7 @@ class PresionDetails extends Component {
     return (
       <div>
         <Form
-          title="Prison Details"
+          title="Add Prison Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}

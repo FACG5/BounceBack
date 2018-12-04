@@ -48,7 +48,7 @@ export const state = {
               label: "Length of Sentence",
               name: "prison_in",
               width: "15rem",
-              type: "date",
+              type: "number",
   
           },
           {
