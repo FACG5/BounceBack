@@ -10,6 +10,9 @@ const prison = sequelize.define('prison', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  contact_details: {
+    type: Sequelize.STRING,
+  },
   prison_number: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -18,7 +21,7 @@ const prison = sequelize.define('prison', {
     type: Sequelize.TEXT,
   },
   prison_in: {
-    type: Sequelize.DATE,
+    type: Sequelize.INTEGER,
   },
   prison_release: {
     type: Sequelize.DATE,

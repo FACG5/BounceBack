@@ -3,8 +3,8 @@ import {
   state as initialState,
   fields as fieldSet,
   validationForm
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+} from './staticData';
+import Form from './../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import axios from "axios";
 import swal from "sweetalert2";
@@ -18,7 +18,8 @@ class PresionDetails extends Component {
     this.setState({ [name]: value });
   };
   goBack = event => {
-    this.props.history.push('/participants/add')
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/details/${id}`)
   };
   clearFields = event => {
     event.preventDefault();
@@ -57,7 +58,6 @@ class PresionDetails extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-        this.props.history.push("/participants/view");
       } else {
         await swal({
           title: "Success",
@@ -83,7 +83,7 @@ class PresionDetails extends Component {
     return (
       <div>
         <Form
-          title="Prison Details"
+          title="Add Prison Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}

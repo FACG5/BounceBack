@@ -1,6 +1,7 @@
 export const state = {
   course_name: "",
   type: "",
+  project_type: "",
   course_start: "",
   course_end: "",
   enrollment_status: [],
@@ -17,11 +18,18 @@ export const fields = [
       placeholder: "course name"
     },
     {
-      tag: "DropDown",
-      label: "Type :",
+      tag: "Input",
+      label: "Type",
       name: "type",
-      width: "15rem",
-      options: ["trainings", "pastoral"]
+      width: "15rem"
+    }
+  ],
+  [
+    {
+      tag: "Input",
+      label: "Project Type",
+      name: "project_type",
+      width: "30rem",
     }
   ],
   [

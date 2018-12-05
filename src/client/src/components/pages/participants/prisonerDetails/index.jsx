@@ -1,25 +1,47 @@
 import React, { Component } from "react";
 import {
   state as initialState,
-  fields as fieldSet
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+  fields as fieldSet,
+} from './staticData';
+import Form from './../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import axios from "axios";
+import swal from "sweetalert2";
 import contextHoc from './../../../abstract/HOC/contextHoc';
-import swal from 'sweetalert2';
-import Loading from '../../loading';
 
-class index extends Component {
-  state = initialState
+class PresionerDetails extends Component {
+  state = initialState;
 
   onChange = event => {
     const { value, name } = event.target;
-    if(name === 'type' || name === 'course_name' || name === 'project_type') return ;
     this.setState({ [name]: value });
   };
+  goBack = event => {
+    const { id } = this.props.match.params;
+    this.props.history.push(`/participant/details/${id}`)
+  };
 
-  updateCourse = async obj => {
+  getPrisonerDetails = async () => {
+    const id = this.props.match.params.id;
+    const { dispatch } = this.props.context;  
+    axios(`/api/v2/participants/${id}/prison`)
+      .then( async result => {
+        const data = result.data.getPrisoner.rows[0];
+        const date = data.prison_release.split("T")[0];
+        this.setState({ ...data, prison_release: date, loading: false })
+      })
+      .catch(error => {
+        dispatch({
+          type: "ERROR_PAGE",
+          payload: { ErrorPage: error.response.status }
+        });
+      })
+  };
+  componentDidMount = () => {
+    this.getPrisonerDetails();
+  };
+
+  updatePrisoner = async data => {
     const confirm = await swal({
       type: "warning",
       html: "Are you sure that you want to update this data ?",
@@ -31,11 +53,12 @@ class index extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
-      const { id } = this.props.match.params;
-      const result = await axios(`/api/v2/course/${id}`, {
+        const { id } = this.props.match.params;
+      const prisonId = this.props.match.params.prisonerId;
+      const result = await axios(`/api/v2/prison/${prisonId}`, {
         method: "PUT",
         data: {
-          courseData: obj
+           prisonerData: data
         }
       });
       if (result.data.error) {
@@ -45,56 +68,31 @@ class index extends Component {
           html: result.data.error,
           confirmButtonText: "Ok"
         });
-        this.props.history.push("/courses/view");
+        this.props.history.push(`/participant/details/${id}`);
       } else {
         await swal({
           title: "Success",
           type: "success",
           html: result.data.message
         });
-        this.setState({ ...obj });
-        this.props.history.push("/courses/view");
+        this.setState({ ...data });
+        this.props.history.push(`/participant/details/${id}`);
       }
     }
   };
 
-  getDetails = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
-    axios(`/api/v2/course/${id}`).then(result => {
-      const { data } = result;
-      const startDate = data.course_start.split("T")[0];
-      const endDate = data.course_end.split("T")[0];
-      this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
-    }).catch(error => {
-      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
-    })
-
-  };
-
-  componentDidMount = () => {
-    this.getDetails();
-  }
-
-  goBack = event => {
-    this.props.history.push('/courses/view')
-  };
-
+  // Edit Data
   onSubmit = event => {
     event.preventDefault();
     const fields = { ...this.state };
-    this.updateCourse(fields);
+    this.updatePrisoner(fields);
   };
 
   render() {
-    const {
-      loading
-    } = this.state;
-    if (loading) return <Loading />;
     return (
       <div>
         <Form
-          title="Pastoral Intervention"
+          title="Prisoner Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
@@ -105,4 +103,5 @@ class index extends Component {
     );
   }
 }
-export default contextHoc(index);
+
+export default contextHoc(PresionerDetails);
