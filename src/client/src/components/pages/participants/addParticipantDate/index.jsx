@@ -37,9 +37,7 @@ export default class index extends Component {
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok',
         confirmButtonAriaLabel: "Thumbs up"
       });
-      if (confirm.value) {
-        this.props.history.push("/workers/add");
-      }
+      this.props.history.push("/workers/add");
     }
   };
 
