@@ -320,6 +320,3 @@ export const validationForm = fields => {
   if (!checkNI(fields["ni_number"]))
     return `An NI Number should be two letters, six numbers, and a letter`;
 };
-export const uploadFile = () => {
-  document.getElementById('fileid').click();
-}

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm,
-  uploadFile
+  validationForm
 } from "./staticData";
 import Form from "./../../../abstract/Form";
 import Footer from "../../../abstract/footer";
@@ -99,4 +98,8 @@ export default class index extends Component {
       </div>
     );
   }
+}
+
+const uploadFile = () => {
+  document.getElementById('fileid').click();
 }
