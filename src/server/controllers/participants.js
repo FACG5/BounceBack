@@ -106,7 +106,7 @@ exports.post = async (req, res) => {
   try {
     // check if user enter just one file
     if (req.files.length >= 2) {
-      return res.status(302).send('The uploaded files should be just one file');
+      return res.status(400).send('The uploaded files should be just one file');
     }
     // the file
     const { file } = req.files;
@@ -125,7 +125,7 @@ exports.post = async (req, res) => {
     //  file.mime.split the get file type;
     if (file) {
       file.mv(join(__dirname, '..', 'CVs', `${id}.${file.mimetype.split('/')[1]}`), (err) => {
-        if (err) res.status(302).send('Error');
+        if (err) res.status(400).send('Error');
       });
     }
   } catch (error) {
