@@ -11,10 +11,8 @@ exports.get = async (req, res) => {
     if (isAuth) {
       res.cookie('jwt', token, { maxAge: 6048000000 });
       res.send(token);
-    } else {
-      res.send({ Error: 'Check Username Or Password' });
-    }
+    } else throw new Error();
   } catch (error) {
-    res.send({ Error: 'There Is Error In Our Network' });
+    res.status(400).send({ Error: 'Check username or password' });
   }
 };
