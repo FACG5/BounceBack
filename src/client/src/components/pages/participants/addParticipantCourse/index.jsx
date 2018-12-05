@@ -31,7 +31,7 @@ export default class index extends Component {
     } else {
       const confirm = await swal({
         type: "warning",
-        html: "There is no pastoral interventions, please add one",
+        html: "There is no trainings interventions, please add one",
         focusConfirm: false,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok',
         confirmButtonAriaLabel: "Thumbs up"
