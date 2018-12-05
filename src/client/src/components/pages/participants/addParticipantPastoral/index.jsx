@@ -26,8 +26,21 @@ export default class index extends Component {
     const data = await axios("/api/v2/courses/pastoral");
     const final = data.data.coursesData;
     fieldSet[0][0].options = final.map(value => value.course_name)
+    if (final[0]) {
+      this.setState({ course_name: final[0].course_name });
+    } else {
+      const confirm = await swal({
+        type: "warning",
+        html: "There is no pastoral interventions, please add one",
+        focusConfirm: false,
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok',
+        confirmButtonAriaLabel: "Thumbs up",
+      });
+      if (confirm.value) {
+        this.props.history.push('/courses/add');
+      }
+    }
 
-    this.setState({ course_name: final[0].course_name });
   };
 
   componentDidMount = () => {
