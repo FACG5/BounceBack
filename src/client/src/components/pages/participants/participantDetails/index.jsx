@@ -38,13 +38,11 @@ class index extends Component {
     axios(`/api/v2/participants/${id}/prison`)
       .then(result => {
         const { count } = result.data.getPrisoner;
-        const prisonId = result.data.getPrisoner.rows[0].id;
-        console.log(prisonId)
         if (count === 1) {
+          const prisonId = result.data.getPrisoner.rows[0].id;
           fieldSet[0][2].display = 'block';
           this.setState({fieldSet, prisonerId: prisonId})
-        }
-        else{
+        } else {
           fieldSet[0][2].display = 'none';
           this.setState({fieldSet, prisonerId:''})
         }
@@ -54,7 +52,6 @@ class index extends Component {
           type: "ERROR_PAGE",
           payload: { ErrorPage: error.response.status }
         });
-        console.log(error)
       });
   };
 
