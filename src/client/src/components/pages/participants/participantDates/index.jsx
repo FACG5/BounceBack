@@ -1,54 +1,56 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../../abstract/header";
-import Table from "../../../abstract/Table";
-import Footer from "../../../abstract/footer";
-import Button from "../../../abstract/button";
-import axios from "axios";
-import contextHoc from "./../../../abstract/HOC/contextHoc";
-import swal from "sweetalert2";
-import Loading from "../../loading";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
+import Header from '../../../abstract/header';
+import Table from '../../../abstract/Table';
+import Footer from '../../../abstract/footer';
+import Button from '../../../abstract/button';
+import contextHoc from '../../../abstract/HOC/contextHoc';
+import Loading from '../../loading';
 
 class Date extends Component {
   state = {
-    search: "",
+    search: '',
     rows: [],
-    message: "",
-    loading: true
+    message: '',
+    loading: true,
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
-  goAdd = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participants/${id}/date/add`);
+  goAdd = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participants/${id}/date/add`);
   };
 
-  goBack = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participant/details/${id}`);
+  goBack = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/details/${id}`);
   };
 
   // axios to make requests from backend..
   getDates = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
+    const { match: { params: { id } }, context: { dispatch } } = this.props;
     try {
       const result = await axios(`/api/v2/participant/${id}/dates`);
       const dates = result.data.participantDates;
-      let array = [["Worker Name", "date", "Action"]];
+      let array = [['Worker Name', 'date', 'Action']];
       if (dates.length === 0) {
-        const msg = "There is no dates yet !!";
+        const msg = 'There is no dates yet !!';
         array = [];
         this.setState({ message: msg, rows: array, loading: false });
       } else {
-        dates.map(row =>
-          array.push([
-            row.worker_name,
-            row.date.split("T")[0],
+        dates.map(row => array.push([
+          row.worker_name,
+          row.date.split('T')[0],
             <>
               <Link to={`/participant/${id}/date/details/${row.id}`}>
                 <i className="fas fa-info-circle" />
@@ -57,15 +59,14 @@ class Date extends Component {
                 className="fas fa-trash-alt"
                 onClick={() => this.onDelete(row.id)}
               />
-            </>
-          ])
-        );
+            </>,
+        ]));
         this.setState({ rows: array, loading: false });
       }
     } catch (err) {
       dispatch({
-        type: "ERROR_PAGE",
-        payload: { ErrorPage: err.response.status }
+        type: 'ERROR_PAGE',
+        payload: { ErrorPage: err.response.status },
       });
     }
   };
@@ -74,50 +75,51 @@ class Date extends Component {
     this.getDates();
   };
 
-  //Delete an exist date
-  onDelete = id => {
+  // Delete an exist date
+  onDelete = (id) => {
     swal({
-      type: "warning",
-      html: "Are you sure that you want to delete this date ?",
+      type: 'warning',
+      html: 'Are you sure that you want to delete this date ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
-    }).then(confirm => {
+      cancelButtonAriaLabel: 'Thumbs down',
+    }).then((confirm) => {
       if (confirm.value) {
-        axios("/api/v2/date", {
-          method: "DELETE",
+        axios('/api/v2/date', {
+          method: 'DELETE',
           data: {
-            dateId: id
-          }
-        }).then(result => {
+            dateId: id,
+          },
+        }).then((result) => {
           this.getDates();
           swal({
-            title: "Success",
-            type: "success",
+            title: 'Success',
+            type: 'success',
             html:
-              " <strong>Your work has been saved</strong> <br/>" +
-              result.data.message,
+              ` <strong>Your work has been saved</strong> <br/>${
+                result.data.message}`,
             showConfirmButton: false,
-            timer: 3000
+            timer: 3000,
           });
         });
       }
     });
   };
+
   render() {
-    const { loading } = this.state;
+    const { loading, rows, message } = this.state;
     if (loading) return <Loading />;
     return (
       <>
         <Header value="View Dates" />
-        <Table rows={this.state.rows} />
-        {this.state.rows.length === 0 && (
+        <Table rows={rows} />
+        {rows.length === 0 && (
           <p className="error-msg">
             <i className="far fa-surprise" />
-            {this.state.message}
+            {message}
           </p>
         )}
         <Button value="Add Date" color="#272727" onClick={this.goAdd} />
@@ -129,3 +131,8 @@ class Date extends Component {
 }
 
 export default contextHoc(Date);
+
+Date.propTypes = {
+  match: propTypes.isRequired,
+  history: propTypes.isRequired,
+};

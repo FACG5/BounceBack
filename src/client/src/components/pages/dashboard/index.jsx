@@ -1,30 +1,32 @@
-import React, { Component } from "react";
-import Statistics from "../../abstract/statistics";
-import { Link } from "react-router-dom";
-import Header from "../../abstract/header";
-import Footer from "../../abstract/footer";
-import PieChart from "../../abstract/pieChart";
-import axios from "axios";
-import "./style.css";
-import contextHoc from "./../../abstract/HOC/contextHoc";
-import Loading from "./../loading";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import propTypes from 'prop-types';
+import Statistics from '../../abstract/statistics';
+import Header from '../../abstract/header';
+import Footer from '../../abstract/footer';
+import PieChart from '../../abstract/pieChart';
+import './style.css';
+import contextHoc from '../../abstract/HOC/contextHoc';
+import Loading from '../loading';
 
 class index extends Component {
   state = {
-    participant: "",
-    course: "",
-    worker: "",
+    participant: '',
+    course: '',
+    worker: '',
     employment: [],
     sections: [],
-    loading: true
+    loading: true,
   };
 
   componentWillMount = () => {
-    this.props.history.push("/");
+    const { history } = this.props;
+    history.push('/');
   };
 
   componentDidMount = async () => {
-    const { dispatch } = this.props.context;
+    const { context: { dispatch } } = this.props;
     try {
       // axios to get the data;
       const {
@@ -33,29 +35,29 @@ class index extends Component {
         countWorker: { count: countWorker },
         countEmployedReOffenging: { count: countEmployedReOffenging },
         countOffending: { count: countOffending },
-        counts
-      } = (await axios("/api/v2/overview")).data;
+        counts,
+      } = (await axios('/api/v2/overview')).data;
 
       const countUnemployedReoffenging = countOffending - countEmployedReOffenging;
 
 
       // get average for emloyed reoffinfing participants
       const ReoffengingEmployedAvg = (
-        (countUnemployedReoffenging * 100) /
-        countOffending
+        (countUnemployedReoffenging * 100)
+        / countOffending
       ).toFixed(1);
 
       // get average for emloyed reoffinfing participants
       const ReoffengingUnemployedAvg = (
-        (countEmployedReOffenging * 100) /
-        countOffending
+        (countEmployedReOffenging * 100)
+        / countOffending
       ).toFixed(1);
 
       const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count), 0);
 
-      const sections = counts[0].map(({ course_name, count }) => ({
-        decription: course_name,
-        percentage: ((count * 100) / EmployedCount).toFixed(1)
+      const sections = counts[0].map(({ courseName, count }) => ({
+        decription: courseName,
+        percentage: ((count * 100) / EmployedCount).toFixed(1),
       }));
 
       this.setState({
@@ -63,16 +65,16 @@ class index extends Component {
         course: countCourse,
         worker: countWorker,
         employment: [
-          { decription: "Percentage of participants who have reoffending state and employed", percentage: ReoffengingEmployedAvg },
-          { decription: "Percentage of participants who have reoffending state and unemployed", percentage: ReoffengingUnemployedAvg }
+          { decription: 'Percentage of participants who have reoffending state and employed', percentage: ReoffengingEmployedAvg },
+          { decription: 'Percentage of participants who have reoffending state and unemployed', percentage: ReoffengingUnemployedAvg },
         ],
-        sections: sections,
-        loading: false
+        sections,
+        loading: false,
       });
     } catch (err) {
       dispatch({
-        type: "ERROR_PAGE",
-        payload: { ErrorPage: err.response.status }
+        type: 'ERROR_PAGE',
+        payload: { ErrorPage: err.response.status },
       });
     }
   };
@@ -84,7 +86,7 @@ class index extends Component {
       worker,
       employment,
       sections,
-      loading
+      loading,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -92,7 +94,7 @@ class index extends Component {
         <Header value="Dashboard" />
         <div className="charts">
           {sections && <PieChart sections={sections} width={250} title="Interventions Employment Outcomes" />}
-          {employment[0] && <PieChart sections={employment} width={250} title="Reoffenders Employement Outcomes"/>}
+          {employment[0] && <PieChart sections={employment} width={250} title="Reoffenders Employement Outcomes" />}
         </div>
         <h3 className="welcome">welcome in the bounceback dashboard</h3>
         <p className="welcome-p">you can manage any thing that you want</p>
@@ -114,3 +116,7 @@ class index extends Component {
 }
 
 export default contextHoc(index);
+
+index.propTypes = {
+  history: propTypes.isRequired,
+};

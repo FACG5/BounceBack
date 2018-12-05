@@ -1,83 +1,88 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
-} from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from "../../../abstract/footer";
-import "./index.css";
-import axios from "axios";
-import swal from "sweetalert2";
+  validationForm,
+} from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
+import './index.css';
+
 
 export default class index extends Component {
   state = initialState
 
 
-  onChange = event => {
+  onChange = (event) => {
     const { name, type } = event.target;
     const value = type === 'checkbox' ? event.target.checked : event.target.value;
     this.setState({ [name]: value });
   };
 
-  clearFields = event => {
+  clearFields = (event) => {
     event.preventDefault();
     const fields = this.state;
-    for (const key in fields) {
-      fields[key] = "";
-    }
+    Object.keys().forEach((key) => {
+      fields[key] = '';
+      return null;
+    });
     this.setState(fields);
   };
 
-  addParticipant = async obj => {
+  addParticipant = async (obj) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to add this participant ?",
+      type: 'warning',
+      html: 'Are you sure that you want to add this participant ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const result = await axios("/api/v2/participants", {
-        method: "POST",
+      const result = await axios('/api/v2/participants', {
+        method: 'POST',
         data: {
-          participantdata: obj
-        }
+          participantdata: obj,
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...obj });
-        if (!this.state.in_prison) {
-          this.props.history.push("/participants/view");
+        const { inPrison } = this.state;
+        const { history } = this.props;
+        if (!inPrison) {
+          history.push('/participants/view');
         } else {
-          const id = result.data.id;
-          this.props.history.push(`/participants/${id}/prison`)
+          const { id } = result.data;
+          history.push(`/participants/${id}/prison`);
         }
       }
     }
   };
 
   // the implemention waiting  back end api
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
     this.addParticipant(fields);
+    return null;
   };
 
   render() {

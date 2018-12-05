@@ -1,81 +1,82 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
 import {
   state as initialState,
-  fields as fieldSet
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+  fields as fieldSet,
+} from './staticData';
+import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import Header from '../../../abstract/header';
-import axios from "axios";
-import contextHoc from './../../../abstract/HOC/contextHoc';
-import swal from 'sweetalert2';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
-import PieChart from "../../../abstract/pieChart";
+import PieChart from '../../../abstract/pieChart';
 
 class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
-    if(name === 'type' || name === 'project_type') return ;
+    if (name === 'type' || name === 'project_type') return;
     this.setState({ [name]: value });
   };
 
-  updateCourse = async obj => {
+  updateCourse = async (obj) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to update this data ?",
+      type: 'warning',
+      html: 'Are you sure that you want to update this data ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { id } = this.props.match.params;
+      const { history, match: { params: { id } } } = this.props;
       const result = await axios(`/api/v2/course/${id}`, {
-        method: "PUT",
+        method: 'PUT',
         data: {
-          courseData: obj
-        }
+          courseData: obj,
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push("/courses/view");
+        history.push('/courses/view');
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...obj });
-        this.props.history.push("/courses/view");
+        history.push('/courses/view');
       }
     }
   };
 
   getDetails = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
-    axios(`/api/v2/course/${id}`).then(result => {
+    const { context: { dispatch }, match: { params: { id } } } = this.props;
+    axios(`/api/v2/course/${id}`).then((result) => {
       const { data } = result;
-      const startDate = data.course_start.split("T")[0];
-      const endDate = data.course_end.split("T")[0];
-      this.setState({ ...data, course_start: startDate, course_end: endDate, loading: false });
-    }).catch(error => {
-      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
+      const startDate = data.course_start.split('T')[0];
+      const endDate = data.course_end.split('T')[0];
+      this.setState({
+        ...data, course_start: startDate, course_end: endDate, loading: false,
+      });
+    }).catch((error) => {
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } });
     });
   };
 
   getChart = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
+    const { context: { dispatch }, match: { params: { id } } } = this.props;
     try {
       const {
         total: { count: total },
@@ -83,24 +84,20 @@ class index extends Component {
       } = (await axios(`/api/v2/enrollment/${id}`)).data;
       const countUnCompleted = (total - countCompleted);
 
-      const avg = (count, countAll) => {
-        return ((count * 100) / countAll).toFixed(1);
-      }
+      const avg = (count, countAll) => ((count * 100) / countAll).toFixed(1);
       const completeAvg = avg(countCompleted, total);
       const unCompleteAvg = avg(countUnCompleted, total);
 
       this.setState({
         enrollment_status: [
           { decription: 'Percentage of participants who have successfully completed this training', percentage: completeAvg },
-          { decription: 'Percentage of participants who have this training', percentage: unCompleteAvg }
-        ]
+          { decription: 'Percentage of participants who have this training', percentage: unCompleteAvg },
+        ],
       });
-    }
-
-    catch (error) {
+    } catch (error) {
       dispatch({
-        type: "ERROR_PAGE",
-        payload: { ErrorPage: error.response.status }
+        type: 'ERROR_PAGE',
+        payload: { ErrorPage: error.response.status },
       });
     }
   };
@@ -113,11 +110,12 @@ class index extends Component {
     this.getChart();
   }
 
-  goBack = event => {
-    this.props.history.push('/courses/view')
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/courses/view');
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     this.updateCourse(fields);
@@ -125,7 +123,7 @@ class index extends Component {
 
   render() {
     const {
-      loading, enrollment_status
+      loading, enrollmentStatus,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -141,7 +139,7 @@ class index extends Component {
           />
           <div className="training-chart">
             <h2 className="title"> Outcomes</h2>
-            {enrollment_status[0] && <PieChart sections={enrollment_status} width={200} title="Training Enrollment Status"/>}
+            {enrollmentStatus[0] && <PieChart sections={enrollmentStatus} width={200} title="Training Enrollment Status" />}
           </div>
         </div>
         <Footer />
@@ -150,3 +148,7 @@ class index extends Component {
   }
 }
 export default contextHoc(index);
+
+index.propTypes = {
+  history: propTypes.isRequired,
+};

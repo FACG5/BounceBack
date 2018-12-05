@@ -1,86 +1,88 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
 import {
   state as initialState,
-  fields as fieldSet
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+  fields as fieldSet,
+} from './staticData';
+import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
-import axios from "axios";
-import contextHoc from './../../../abstract/HOC/contextHoc';
-import swal from 'sweetalert2';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
 
 class index extends Component {
   state = initialState
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
-    if(name === 'type' || name === 'course_name' || name === 'project_type') return ;
+    if (name === 'type' || name === 'course_name' || name === 'project_type') return;
     this.setState({ [name]: value });
   };
 
-  updateCourse = async obj => {
+  updateCourse = async (obj) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to update this data ?",
+      type: 'warning',
+      html: 'Are you sure that you want to update this data ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { id } = this.props.match.params;
+      const { match: { params: { id } }, history } = this.props;
       const result = await axios(`/api/v2/course/${id}`, {
-        method: "PUT",
+        method: 'PUT',
         data: {
-          courseData: obj
-        }
+          courseData: obj,
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push("/courses/view");
+        history.push('/courses/view');
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...obj });
-        this.props.history.push("/courses/view");
+        history.push('/courses/view');
       }
     }
   };
 
   getDetails = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
-    axios(`/api/v2/course/${id}`).then(result => {
+    const { match: { params: { id } }, context: { dispatch } } = this.props;
+    axios(`/api/v2/course/${id}`).then((result) => {
       const { data } = result;
-      const startDate = data.course_start.split("T")[0];
-      const endDate = data.course_end.split("T")[0];
-      this.setState({ ...data, course_start:startDate, course_end:endDate, loading: false });
-    }).catch(error => {
-      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
-    })
-
+      const startDate = data.course_start.split('T')[0];
+      const endDate = data.course_end.split('T')[0];
+      this.setState({
+        ...data, course_start: startDate, course_end: endDate, loading: false,
+      });
+    }).catch((error) => {
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } });
+    });
   };
 
   componentDidMount = () => {
     this.getDetails();
   }
 
-  goBack = event => {
-    this.props.history.push('/courses/view')
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/courses/view');
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     this.updateCourse(fields);
@@ -88,7 +90,7 @@ class index extends Component {
 
   render() {
     const {
-      loading
+      loading,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -106,3 +108,8 @@ class index extends Component {
   }
 }
 export default contextHoc(index);
+
+index.propTypes = {
+  history: propTypes.isRequired,
+  match: propTypes.isRequired,
+};

@@ -1,77 +1,80 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import swal from 'sweetalert2';
+import axios from 'axios';
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
-} from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from "../../../abstract/footer";
-import swal from "sweetalert2";
-import axios from "axios";
+  validationForm,
+} from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
 
 export default class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
-  clearFields = event => {
+  clearFields = (event) => {
     event.preventDefault();
     const fields = this.state;
-    for (const key in fields) {
-      fields[key] = "";
-    }
+    Object.keys().forEach((key) => {
+      fields[key] = '';
+      return null;
+    });
     this.setState(fields);
   };
 
-  addWorker = async obj => {
+  addWorker = async (obj) => {
+    const { history } = this.props;
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to add this worker ?",
+      type: 'warning',
+      html: 'Are you sure that you want to add this worker ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const result = await axios("/api/v2/workers", {
-        method: "POST",
+      const result = await axios('/api/v2/workers', {
+        method: 'POST',
         data: {
-          managerData: obj
-        }
+          managerData: obj,
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push("/workers/view");
+        history.push('/workers/view');
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...obj });
-        this.props.history.push("/workers/view");
+        history.push('/workers/view');
       }
     }
   };
 
   // the implemention waiting  back end api
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
     this.addWorker(fields);
+    return null;
   };
 
   render() {

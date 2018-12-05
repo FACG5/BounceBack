@@ -1,82 +1,87 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import axios from 'axios';
+
+import swal from 'sweetalert2';
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
+  validationForm,
 } from './staticData';
-import Form from './../../../abstract/Form';
+import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
-import axios from "axios";
-import swal from "sweetalert2";
-import contextHoc from './../../../abstract/HOC/contextHoc';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 
 class PresionDetails extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
-  goBack = event => {
-    const { id } = this.props.match.params;
-    this.props.history.push(`/participant/details/${id}`)
+
+  goBack = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/details/${id}`);
   };
-  clearFields = event => {
+
+  clearFields = (event) => {
     event.preventDefault();
     const fields = this.state;
-    for (const key in fields) {
-      fields[key] = "";
-    }
+    Object.keys().forEach((key) => {
+      fields[key] = '';
+      return null;
+    });
     this.setState(fields);
   };
 
 
-
-  addPrisonDetails = async newPrisonDetails => {
-    const { id } = this.props.match.params;
+  addPrisonDetails = async (newPrisonDetails) => {
+    const { match: { params: { id } }, history } = this.props;
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure for adding this prison details ?",
+      type: 'warning',
+      html: 'Are you sure for adding this prison details ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
       const result = await axios(`/api/v2/participants/${id}/prison`, {
-        method: "POST",
+        method: 'POST',
         data: {
           prisonDetails: newPrisonDetails,
-        }
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
-        this.props.history.push("/participants/view");
+        history.push('/participants/view');
       }
     }
   };
 
-  // the implemention waiting  back end api
-  onSubmit = event => {
+  // add new participant
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
     this.addPrisonDetails(fields);
+    return null;
   };
 
   render() {
@@ -96,3 +101,8 @@ class PresionDetails extends Component {
 }
 
 export default contextHoc(PresionDetails);
+
+PresionDetails.propTypes = {
+  match: propTypes.isRequired,
+  history: propTypes.isRequired,
+};

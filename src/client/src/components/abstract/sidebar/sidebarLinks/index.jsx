@@ -1,24 +1,28 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Consumer } from "./../../../context";
-import removeCookies from "./removeCookies";
-import "./style.css";
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
+import { Consumer } from '../../../context';
+import removeCookies from './removeCookies';
+import './style.css';
+
 
 class SideLinks extends Component {
-  logout = dispatch => {
+  logout = (dispatch) => {
     removeCookies();
     localStorage.clear();
-    dispatch({ type: "LOGIN_USER", payload: { logging: false } });
+    dispatch({ type: 'LOGIN_USER', payload: { logging: false } });
     swal({
-      title: "Success",
-      type: "success",
+      title: 'Success',
+      type: 'success',
       html:
-        " <strong>Logged out</strong> <br/>",
+        ' <strong>Logged out</strong> <br/>',
       showConfirmButton: false,
-      timer: 2000
+      timer: 2000,
     });
   };
+
   render() {
     return (
       <Consumer>
