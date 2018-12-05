@@ -2,7 +2,7 @@ export const state = {
   surename: "",
   forename: "",
   date_of_birth: "",
-  address:"",
+  address: "",
   gender: "",
   martial_status: "",
   sexual_orientatuin: "",
@@ -13,7 +13,7 @@ export const state = {
   postcode: "",
   mobile: "",
   landline: "",
-  kin_contact:"",
+  kin_contact: "",
   email: "",
   ni_number: "",
   support_required: "",
@@ -42,7 +42,7 @@ export const fields = [
       value: "empty",
       color: "#FF4800",
       staticField: true
-    },  
+    },
     {
       tag: "Button",
       value: "Prison Details",
@@ -61,7 +61,13 @@ export const fields = [
       value: "View Interventions",
       color: "#272727",
       staticField: true
-    }
+    },
+    {
+      tag: "Button",
+      value: "Download CV",
+      color: "#272727",
+      staticField: true
+    },
   ],
   [
     {
@@ -315,7 +321,7 @@ export const fields = [
       color: "#FF4800",
       staticField: true
     },
-  
+
   ]
 ];
 
