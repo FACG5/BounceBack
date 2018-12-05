@@ -1,3 +1,5 @@
+import { getDate } from "./../../../../helpers";
+
 export const state = {
     surename: "",
     forename: "",
@@ -37,6 +39,8 @@ export const fields = [
             name: "date_of_birth",
             width: "20rem",
             type: "date",
+            max: getDate(),
+            min: "1920-01-01"
         }
     ],
     [

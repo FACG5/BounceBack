@@ -26,9 +26,19 @@ export default class index extends Component {
     const data = await axios("/api/v2/workers");
     const final = data.data.workersData;
 
-    fieldSet[0][0].options = final.map(value => value.username )
-
-    this.setState({ worker_name: final[0].username });
+    fieldSet[0][0].options = final.map(value => value.username);
+    if (final[0]) {
+      this.setState({ worker_name: final[0].username });
+    } else {
+      await swal({
+        type: "warning",
+        html: "There is no workers, please add one",
+        focusConfirm: false,
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok',
+        confirmButtonAriaLabel: "Thumbs up"
+      });
+      this.props.history.push("/workers/add");
+    }
   };
 
   addDate = async obj => {
@@ -47,7 +57,7 @@ export default class index extends Component {
       const result = await axios(`/api/v2/participant/${id}/date`, {
         method: "POST",
         data: {
-          dateData: obj,
+          dateData: obj
         }
       });
       if (result.data.error) {
