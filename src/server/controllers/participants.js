@@ -2,6 +2,7 @@ const { Op } = require('sequelize');
 const participant = require('../database/models/participant');
 const dates = require('../database/models/dates');
 const courses = require('../database/models/participantCourses');
+const { join } = require('path');
 
 // Get all participants
 exports.get = async (req, res) => {
@@ -103,15 +104,30 @@ exports.getDetails = async (req, res) => {
 // Add new participant
 exports.post = async (req, res) => {
   try {
-    const { participantdata } = req.body;
+    // check if user enter just one file
+    if (req.files.length >= 2) {
+      return res.status(400).send('The uploaded files should be just one file');
+    }
+    // the file
+    const { file } = req.files;
+
+    // the participant Info ;
+    const participantdata = JSON.parse(req.body.data);
     const { count } = await participant.findAndCountAll({
       where: {
         email: participantdata.email,
       },
     });
     if (count !== 0) throw new TypeError('The email is used');
-    const participantData = await participant.create(participantdata);
-    res.send({ message: 'Adding participant done', id: participantData.dataValues.id });
+    const { dataValues: { id } } = await participant.create(participantdata);
+    res.send({ message: 'Adding participant done', id });
+
+    //  file.mime.split the get file type;
+    if (file) {
+      file.mv(join(__dirname, '..', 'CVs', `${id}.${file.mimetype.split('/')[1]}`), (err) => {
+        if (err) res.status(400).send('Error');
+      });
+    }
   } catch (error) {
     const { message } = error;
     res.send({ error: message });

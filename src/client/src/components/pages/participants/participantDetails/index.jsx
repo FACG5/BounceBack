@@ -53,7 +53,6 @@ class index extends Component {
           type: 'ERROR_PAGE',
           payload: { ErrorPage: error.response.status },
         });
-        console.log(error);
       });
   };
 

@@ -56,6 +56,69 @@ export const fields = [
     name: 'prison_in',
     width: '15rem',
     type: 'number',
+    placeholder: 'Length of Sentence',
+  },
+  {
+    tag: 'Input',
+    label: 'Prison Release',
+    name: 'prison_release',
+    width: '15rem',
+    type: 'date',
+  },
+  {
+    tag: 'Input',
+    label: 'ROTL/HDC',
+    name: 'rotl_hdc',
+    width: '15rem',
+    placeholder: 'ROTL / HDC',
+  },
+  ],
+  [{
+    tag: 'Input',
+    label: 'Offence',
+    name: 'offence',
+    width: '20rem',
+    placeholder: 'offence',
+
+  },
+  {
+    tag: 'Input',
+    label: 'Prison Point Of Contact',
+    name: 'point_of_contact',
+    width: '20rem',
+    placeholder: 'prison point of contact',
+
+  },
+  {
+    tag: 'Input',
+    label: 'Prison No',
+    name: 'prison_number',
+    width: '15rem',
+    placeholder: 'prison number',
+
+  },
+  ],
+  [{
+    tag: 'Input',
+    label: 'Probation officer name',
+    name: 'officer_name',
+    width: '15rem',
+    placeholder: 'probation officer name',
+  },
+  {
+    tag: 'Input',
+    label: 'Contact Details',
+    name: 'contact_details',
+    width: '15rem',
+    placeholder: 'probation officer name',
+  }],
+
+  [{
+    tag: 'Input',
+    label: 'Length of Sentence',
+    name: 'prison_in',
+    width: '15rem',
+    type: 'number',
 
   },
   {

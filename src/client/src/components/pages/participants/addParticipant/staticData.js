@@ -284,10 +284,17 @@ export const fields = [
     },
     {
       tag: 'Button',
+      value: 'Upload',
+      color: '#272727',
+      staticField: true,
+    },
+    {
+      tag: 'Button',
       value: 'Clear',
       color: '#FF4800',
       staticField: true,
     },
+
   ],
 ];
 

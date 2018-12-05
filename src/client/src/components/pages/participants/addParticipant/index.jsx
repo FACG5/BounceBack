@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2';
@@ -10,6 +11,10 @@ import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import './index.css';
 
+
+const uploadFile = () => {
+  document.getElementById('fileid').click();
+};
 
 export default class index extends Component {
   state = initialState
@@ -43,10 +48,9 @@ export default class index extends Component {
       cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const result = await axios('/api/v2/participants', {
-        method: 'POST',
-        data: {
-          participantdata: obj,
+      const result = await axios.post('/api/v2/participants', obj, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
       });
       if (result.data.error) {
@@ -78,10 +82,14 @@ export default class index extends Component {
   // the implemention waiting  back end api
   onSubmit = (event) => {
     event.preventDefault();
+    const upload = document.getElementById('fileid');
+    const FileData = new FormData();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
-    this.addParticipant(fields);
+    FileData.append('data', JSON.stringify(fields));
+    FileData.append('file', upload.files[0]);
+    this.addParticipant(FileData);
     return null;
   };
 
@@ -93,8 +101,9 @@ export default class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.clearFields]}
+          btnEvents={[this.onSubmit, uploadFile, this.clearFields]}
         />
+        <input id="fileid" type="file" hidden multiple={false} />
         <Footer />
       </div>
     );
