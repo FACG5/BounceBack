@@ -266,10 +266,18 @@ export const fields = [
       tag: "checkBox",
       name: "in_prison",
       value: ' In Prison'
-    }], [
+    }
+  ],
+  [
     {
       tag: "Button",
       value: "Add participant",
+      color: "#272727",
+      staticField: true
+    },
+    {
+      tag: "Button",
+      value: "Upload",
       color: "#272727",
       staticField: true
     },
@@ -279,6 +287,7 @@ export const fields = [
       color: "#FF4800",
       staticField: true
     },
+
   ]
 ];
 
@@ -292,5 +301,7 @@ export const validationForm = fields => {
   }
   if (!checkNI(fields['ni_number']))
     return `An NI Number should be two letters, six numbers, and a letter`
-
 };
+export const uploadFile = () => {
+  document.getElementById('fileid').click();
+}
