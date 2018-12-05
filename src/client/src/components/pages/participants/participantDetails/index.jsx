@@ -9,6 +9,8 @@ import axios from "axios";
 import swal from "sweetalert2";
 import contextHoc from './../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
+import { makeDownloadLink } from './logic'
+
 
 class index extends Component {
   state = initialState;
@@ -41,10 +43,10 @@ class index extends Component {
         if (count === 1) {
           const prisonId = result.data.getPrisoner.rows[0].id;
           fieldSet[0][2].display = 'block';
-          this.setState({fieldSet, prisonerId: prisonId})
+          this.setState({ fieldSet, prisonerId: prisonId })
         } else {
           fieldSet[0][2].display = 'none';
-          this.setState({fieldSet, prisonerId:''})
+          this.setState({ fieldSet, prisonerId: '' })
         }
       })
       .catch(error => {
@@ -58,9 +60,9 @@ class index extends Component {
   getDetails = async () => {
     const id = this.props.match.params.id;
     const { dispatch } = this.props.context;
-    
+
     axios(`/api/v2/participant/${id}`)
-      .then( async result => {
+      .then(async result => {
         this.getPrison();
         const { data } = result;
         const date = data.date_of_birth.split("T")[0];
@@ -128,27 +130,46 @@ class index extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+  downloadCV = async () => {
+    const { id } = this.props.match.params;
+    try {
+      const response = await fetch(`/api/v2/download/${id}`)
+      if (response.status !== 200) throw new TypeError(`Can't Download The File`);
+      const filename = response.headers.get('filename');
+      const blob = await response.blob();
+      makeDownloadLink(blob, filename);
+    } catch ({ message }) {
+      swal("Oops", message, "error")
+    }
+  }
 
   render() {
     const {
       loading
     } = this.state;
-    if (loading) 
+    if (loading)
       return <Loading />;
-  
-      return (
+
+    return (
       <>
         <Form
           title="Participant Details"
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack, this.goPrison, this.goDates, this.goTrainings]}
+          btnEvents={[
+            this.onSubmit,
+            this.goBack,
+            this.goPrison,
+            this.goDates,
+            this.goTrainings,
+            this.downloadCV]}
         />
         <Footer />
       </>
     );
   }
 }
+
 
 export default contextHoc(index);
