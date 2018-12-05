@@ -13,6 +13,7 @@ class LoginForm extends Component {
     username: "",
     password: ""
   };
+
   componentDidMount = () => {
     const user = checkUser();
     if (!user || !user.logging) {
@@ -29,14 +30,13 @@ class LoginForm extends Component {
   onClick = async () => {
     const { dispatch } = this.props.context;
     const { username, password } = this.state;
-    const response = await axios({
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      data: { username, password },
-      url: "/api/v2/login"
-    });
-    if (response.data) {
-      localStorage.setItem("token", JSON.stringify(response.data));
+    try {
+      await axios({
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        data: { username, password },
+        url: "/api/v2/login"
+      });
       dispatch({ type: "LOGIN_USER", payload: { logging: true } });
       swal({
         title: "Success",
@@ -47,8 +47,8 @@ class LoginForm extends Component {
         timer: 2000
       });
       this.props.history.push("/");
-    } else {
-      this.setState({ error: response.data.Error });
+    } catch (err) {
+      this.setState({ error: 'Please check usernane or password' });
     }
   };
 
