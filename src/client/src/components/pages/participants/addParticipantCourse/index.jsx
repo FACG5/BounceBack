@@ -29,7 +29,7 @@ export default class index extends Component {
     if (final[0]) {
       this.setState({ course_name: final[0].course_name });
     } else {
-      const confirm = await swal({
+      await swal({
         type: "warning",
         html: "There is no trainings interventions, please add one",
         focusConfirm: false,

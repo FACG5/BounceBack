@@ -30,7 +30,7 @@ export default class index extends Component {
     if (final[0]) {
       this.setState({ worker_name: final[0].username });
     } else {
-      const confirm = await swal({
+      await swal({
         type: "warning",
         html: "There is no workers, please add one",
         focusConfirm: false,
