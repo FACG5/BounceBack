@@ -1,79 +1,82 @@
-import React, { Component } from "react";
-import { state as initialState, fields as fieldSet } from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from "../../../abstract/footer";
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
 import axios from 'axios';
-import contextHoc from './../../../abstract/HOC/contextHoc';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
+import { state as initialState, fields as fieldSet } from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
-import swal from "sweetalert2";
 
 class ParticipantCourseDetails extends Component {
   state = initialState;
 
-  goBack = event => {
-    const { id } = this.props.match.params;
-    this.props.history.push(`/participant/${id}/courses`);
+  goBack = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/${id}/courses`);
   };
 
-  onChange = e => {
+  onChange = (e) => {
     const { value, name } = e.target;
-    if(name === 'course_name') return ;
+    if (name === 'course_name') return;
     this.setState({ [name]: value });
   };
 
   getCourseDetails = async () => {
-    const { id, course_id } = this.props.match.params;
-    const { dispatch } = this.props.context;
-    axios(`/api/v2/participant/${id}/course/details/${course_id}`)
-      .then(result => {
+    const { match: { params: { id, courseId } }, context: { dispatch } } = this.props;
+    axios(`/api/v2/participant/${id}/course/details/${courseId}`)
+      .then((result) => {
         const { data } = result;
-        const start = data.course_start.split("T")[0];
-        const end = data.course_end.split("T")[0];
-        this.setState({ ...data, course_end: end, course_start: start, loading: false });
+        const start = data.course_start.split('T')[0];
+        const end = data.course_end.split('T')[0];
+        this.setState({
+          ...data, course_end: end, course_start: start, loading: false,
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
-          type: "ERROR_PAGE",
-          payload: { ErrorPage: error.response.status }
+          type: 'ERROR_PAGE',
+          payload: { ErrorPage: error.response.status },
         });
       });
   };
 
-  editIntervention= async details => {
+  editIntervention= async (details) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure for updating this details ?",
+      type: 'warning',
+      html: 'Are you sure for updating this details ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { id, course_id } = this.props.match.params;
-      const result = await axios(`/api/v2/participant/${id}/course/${course_id}`, {
-        method: "PUT",
+      const { match: { params: { id, courseId } }, history } = this.props;
+      const result = await axios(`/api/v2/participant/${id}/course/${courseId}`, {
+        method: 'PUT',
         data: {
-          trainingData: details
-        }
+          trainingData: details,
+        },
       });
       if (result.data.err) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.err,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push(`/participant/${id}/courses`);
+        history.push(`/participant/${id}/courses`);
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...details });
-        this.props.history.push(`/participant/${id}/courses`);
+        history.push(`/participant/${id}/courses`);
       }
     }
   };
@@ -81,9 +84,9 @@ class ParticipantCourseDetails extends Component {
   componentDidMount = async () => {
     this.getCourseDetails();
   };
-  
+
   // call edit function
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const fields = { ...this.state };
     this.editIntervention(fields);
@@ -91,7 +94,7 @@ class ParticipantCourseDetails extends Component {
 
   render() {
     const {
-      loading
+      loading,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -110,3 +113,8 @@ class ParticipantCourseDetails extends Component {
 }
 
 export default contextHoc(ParticipantCourseDetails);
+
+ParticipantCourseDetails.propTypes = {
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
+};

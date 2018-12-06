@@ -1,6 +1,40 @@
-import React from 'react'
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import allComponenets from './allComponents';
+
+const {
+  Sidebar,
+  Container,
+  ViewParticipants,
+  viewCourses,
+  viewManagers,
+  addManager,
+  participantDate,
+  participantCourse,
+  Dashboard,
+  AddParticipant,
+  ViewWorker,
+  addCourse,
+  ReportResult,
+  Report,
+  prisonDetails,
+  addWorker,
+  workerDetails,
+  courseDetails,
+  pastoral,
+  managerDetails,
+  ParticipantCourseDetails,
+  ParticipantPastoralDetails,
+  ParticipantCourseAdd,
+  ParticipantPastoralAdd,
+  AddParticipantDate,
+  ParticipantDateDetails,
+  participantDetails,
+  prisonerDetails,
+
+} = allComponenets;
+
 export default function index() {
   return (
     <div className="view-app">
@@ -64,19 +98,19 @@ export default function index() {
             path="/participants/:id/prison"
             component={prisonDetails}
           />
-           <Route
+          <Route
             exact
             path="/participants/:id/prisoner/:prisonerId"
             component={prisonerDetails}
           />
           <Route
             exact
-            path="/participant/:id/course/details/:course_id"
+            path="/participant/:id/course/details/:courseId"
             component={ParticipantCourseDetails}
           />
           <Route
             exact
-            path="/participant/:id/pastoral/details/:course_id"
+            path="/participant/:id/pastoral/details/:courseId"
             component={ParticipantPastoralDetails}
           />
           <Route
@@ -96,7 +130,7 @@ export default function index() {
           />
           <Route
             exact
-            path="/participant/:id/date/details/:date_id"
+            path="/participant/:id/date/details/:dateId"
             component={ParticipantDateDetails}
           />
           <Route
@@ -113,36 +147,5 @@ export default function index() {
         </Switch>
       </Container>
     </div>
-  )
+  );
 }
-const {
-  Sidebar,
-  Container,
-  ViewParticipants,
-  viewCourses,
-  viewManagers,
-  addManager,
-  participantDate,
-  participantCourse,
-  Dashboard,
-  AddParticipant,
-  ViewWorker,
-  addCourse,
-  ReportResult,
-  Report,
-  prisonDetails,
-  addWorker,
-  workerDetails,
-  courseDetails,
-  pastoral,
-  managerDetails,
-  ParticipantCourseDetails,
-  ParticipantPastoralDetails,
-  ParticipantCourseAdd,
-  ParticipantPastoralAdd,
-  AddParticipantDate,
-  ParticipantDateDetails,
-  participantDetails,
-  prisonerDetails
-
-} = allComponenets

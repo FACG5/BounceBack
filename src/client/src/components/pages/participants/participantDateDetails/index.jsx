@@ -1,78 +1,79 @@
-import React, { Component } from "react";
-import { state as initialState, fields as fieldSet } from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from '../../../abstract/footer';
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
 import axios from 'axios';
-import contextHoc from './../../../abstract/HOC/contextHoc';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
+import { state as initialState, fields as fieldSet } from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
-import swal from "sweetalert2";
 
 class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
-    if(name === 'worker_name') return ;
+    if (name === 'worker_name') return;
     this.setState({ [name]: value });
   };
 
-  goBack = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participant/${id}/dates`);
+  goBack = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/${id}/dates`);
   };
 
   getDetails = async () => {
-    const { id, date_id } = this.props.match.params;
-    const { dispatch } = this.props.context;
-    axios(`/api/v2/participant/${id}/date/details/${date_id}`)
-      .then(result => {
+    const { match: { params: { id, dateId } }, context: { dispatch } } = this.props;
+    axios(`/api/v2/participant/${id}/date/details/${dateId}`)
+      .then((result) => {
         const { data } = result;
-        const currentDate = data.date.split("T")[0];
+        const currentDate = data.date.split('T')[0];
         this.setState({ ...data, date: currentDate, loading: false });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
-          type: "ERROR_PAGE",
-          payload: { ErrorPage: error.response.status }
+          type: 'ERROR_PAGE',
+          payload: { ErrorPage: error.response.status },
         });
       });
   };
 
-  editDate= async details => {
+  editDate= async (details) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure for updating this date ?",
+      type: 'warning',
+      html: 'Are you sure for updating this date ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { id, date_id } = this.props.match.params;
-      const result = await axios(`/api/v2/participant/${id}/date/${date_id}`, {
-        method: "PUT",
+      const { match: { params: { id, dateId } }, history } = this.props;
+      const result = await axios(`/api/v2/participant/${id}/date/${dateId}`, {
+        method: 'PUT',
         data: {
-          dateData: details
-        }
+          dateData: details,
+        },
       });
       if (result.data.err) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.err,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push(`/participant/${id}/dates`);
+        history.push(`/participant/${id}/dates`);
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...details });
-        this.props.history.push(`/participant/${id}/dates`);
+        history.push(`/participant/${id}/dates`);
       }
     }
   };
@@ -82,7 +83,7 @@ class index extends Component {
   };
 
   // call edit function
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const fields = { ...this.state };
     this.editDate(fields);
@@ -90,7 +91,7 @@ class index extends Component {
 
   render() {
     const {
-      loading
+      loading,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -110,3 +111,8 @@ class index extends Component {
 
 
 export default contextHoc(index);
+
+index.propTypes = {
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
+};

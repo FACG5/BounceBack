@@ -1,55 +1,55 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../../abstract/header";
-import Table from "../../../abstract/Table";
-import Footer from "../../../abstract/footer";
-import Input from "../../../abstract/input";
-import axios from "axios";
-import swal from "sweetalert2";
-import Loading from "../../loading";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import Header from '../../../abstract/header';
+import Table from '../../../abstract/Table';
+import Footer from '../../../abstract/footer';
+import Input from '../../../abstract/input';
+import Loading from '../../loading';
 
 export default class Courses extends Component {
   state = {
-    search: "",
-    message: "",
+    search: '',
+    message: '',
     rows: [],
-    loading: true
+    loading: true,
   };
 
   getSearch = async () => {
     const { search } = this.state;
-    const data = await axios("/api/v2/courses/search", {
-      method: "POST",
+    const data = await axios('/api/v2/courses/search', {
+      method: 'POST',
       data: {
-        courseName: search
-      }
+        courseName: search,
+      },
     });
     const finalData = data.data.result;
     if (finalData) {
-      let array = [["Intervention Name", "start", "end", "type", "Action"]];
-      finalData.map(row =>
-        array.push([
-          row.course_name,
-          row.course_start.split("T")[0],
-          row.course_end.split("T")[0],
-          row.type,
+      const array = [['Intervention Name', 'start', 'end', 'type', 'Action']];
+      finalData.map(row => array.push([
+        row.course_name,
+        row.course_start.split('T')[0],
+        row.course_end.split('T')[0],
+        row.type,
           <>
-            {row.type === "trainings" ? (
+            {row.type === 'trainings' ? (
               <Link to={`/trainings/details/${row.id}`}>
                 <i className="fas fa-info-circle" />
               </Link>
             ) : (
-                <Link to={`/pastoral/details/${row.id}`}>
-                  <i className="fas fa-info-circle" />
-                </Link>
-              )}
+              <Link to={`/pastoral/details/${row.id}`}>
+                <i className="fas fa-info-circle" />
+              </Link>
+            )}
             <i
               className="fas fa-trash-alt"
               onClick={() => this.deleteCourse(row.id)}
             />
-          </>
-        ])
-      );
+          </>,
+      ]));
       this.setState({ rows: array });
     } else {
       const arr = [];
@@ -58,38 +58,38 @@ export default class Courses extends Component {
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const search = event.target.value;
     this.setState({ search }, () => this.getSearch());
   };
 
-  deleteCourse = id => {
+  deleteCourse = (id) => {
     swal({
-      type: "warning",
-      html: "Are you sure that you want to delete this course ?",
+      type: 'warning',
+      html: 'Are you sure that you want to delete this course ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
-    }).then(confirm => {
+      cancelButtonAriaLabel: 'Thumbs down',
+    }).then((confirm) => {
       if (confirm.value) {
-        axios("/api/v2/courses", {
-          method: "DELETE",
+        axios('/api/v2/courses', {
+          method: 'DELETE',
           data: {
-            courseId: id
-          }
-        }).then(result => {
+            courseId: id,
+          },
+        }).then((result) => {
           this.getData().then(() => {
             swal({
-              title: "Success",
-              type: "success",
+              title: 'Success',
+              type: 'success',
               html:
-                " <strong>Your work has been saved</strong> <br/>" +
-                result.data.message,
+                ` <strong>Your work has been saved</strong> <br/>${
+                  result.data.message}`,
               showConfirmButton: false,
-              timer: 3000
+              timer: 3000,
             });
           });
         });
@@ -99,37 +99,35 @@ export default class Courses extends Component {
 
   getData = async () => {
     try {
-      const data = await axios("/api/v2/courses");
+      const data = await axios('/api/v2/courses');
       const finalData = data.data.coursesData;
-      let array = [["Intervention Name", "start", "end", "type", "Action"]];
+      let array = [['Intervention Name', 'start', 'end', 'type', 'Action']];
       if (finalData.length === 0) {
-        const msg = " There is no courses yet !!";
+        const msg = ' There is no courses yet !!';
         array = [];
         this.setState({ message: msg, rows: array, loading: false });
       } else {
-        finalData.map(row =>
-          array.push([
-            row.course_name,
-            row.course_start.split("T")[0],
-            row.course_end.split("T")[0],
-            row.type,
+        finalData.map(row => array.push([
+          row.course_name,
+          row.course_start.split('T')[0],
+          row.course_end.split('T')[0],
+          row.type,
             <>
-              {row.type === "trainings" ? (
+              {row.type === 'trainings' ? (
                 <Link to={`/trainings/details/${row.id}`}>
                   <i className="fas fa-info-circle" />
                 </Link>
               ) : (
-                  <Link to={`/pastoral/details/${row.id}`}>
-                    <i className="fas fa-info-circle" />
-                  </Link>
-                )}
+                <Link to={`/pastoral/details/${row.id}`}>
+                  <i className="fas fa-info-circle" />
+                </Link>
+              )}
               <i
                 className="fas fa-trash-alt"
                 onClick={() => this.deleteCourse(row.id)}
               />
-            </>
-          ])
-        );
+            </>,
+        ]));
         this.setState({ rows: array, loading: false });
       }
     } catch (err) {
@@ -140,8 +138,11 @@ export default class Courses extends Component {
   componentDidMount = () => {
     this.getData();
   };
+
   render() {
-    const { loading } = this.state;
+    const {
+      loading, search, rows, message,
+    } = this.state;
     if (loading) return <Loading />;
     return (
       <>
@@ -154,17 +155,17 @@ export default class Courses extends Component {
               type="text"
               placeholder="intervention name"
               width="300px"
-              value={this.state.search}
+              value={search}
               onChange={this.onChange}
             />
           </div>
           <Header value="Intervention" align="left" margin="0" />
-          <Table rows={this.state.rows} />
-          {this.state.rows.length === 0 && (
+          <Table rows={rows} />
+          {rows.length === 0 && (
             <p className="error-msg">
-              {" "}
+              {' '}
               <i className="far fa-surprise" />
-              {this.state.message}
+              {message}
             </p>
           )}
           <Footer />

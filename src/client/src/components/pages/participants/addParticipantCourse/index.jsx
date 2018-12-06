@@ -1,42 +1,45 @@
-import React, { Component } from "react";
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
 import {
   state as initialState,
   fields as fieldSet,
-  validationForm
-} from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from "../../../abstract/footer";
-import axios from "axios";
-import swal from "sweetalert2";
+  validationForm,
+} from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
 
 export default class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
   cancleAction = () => {
-    const { id } = this.props.match.params;
-    this.props.history.push(`/participant/${id}/courses`);
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/${id}/courses`);
   };
 
   getCoursesNames = async () => {
-    const data = await axios("/api/v2/courses/name");
+    const { history } = this.props;
+    const data = await axios('/api/v2/courses/name');
     const final = data.data.coursesData;
     fieldSet[0][0].options = final.map(value => value.course_name);
     if (final[0]) {
       this.setState({ course_name: final[0].course_name });
     } else {
       await swal({
-        type: "warning",
-        html: "There is no trainings interventions, please add one",
+        type: 'warning',
+        html: 'There is no trainings interventions, please add one',
         focusConfirm: false,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok',
-        confirmButtonAriaLabel: "Thumbs up"
+        confirmButtonAriaLabel: 'Thumbs up',
       });
-        this.props.history.push("/courses/add");
+      history.push('/courses/add');
     }
   };
 
@@ -44,52 +47,53 @@ export default class index extends Component {
     this.getCoursesNames();
   };
 
-  addCourse = async obj => {
+  addCourse = async (obj) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to add this intervintions ?",
+      type: 'warning',
+      html: 'Are you sure that you want to add this intervintions ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { id } = this.props.match.params;
+      const { match: { params: { id } }, history } = this.props;
       const result = await axios(`/api/v2/participant/${id}/course`, {
-        method: "POST",
+        method: 'POST',
         data: {
-          courseData: obj
-        }
+          courseData: obj,
+        },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
       }
       this.setState({ ...obj });
-      this.props.history.push(`/participant/${id}/courses`);
+      history.push(`/participant/${id}/courses`);
     }
   };
 
   // add training course
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     const error = validationForm(fields);
     if (error) return this.setState({ error });
 
     this.addCourse(fields);
+    return null;
   };
 
   render() {
@@ -107,3 +111,8 @@ export default class index extends Component {
     );
   }
 }
+
+index.propTypes = {
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
+};

@@ -1,77 +1,76 @@
-import React, { Component } from "react";
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import propTypes from 'prop-types';
 import {
   state as initialState,
-  fields as fieldSet
-} from "./staticData";
-import Form from "./../../../abstract/Form";
+  fields as fieldSet,
+} from './staticData';
+import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
-import axios from "axios";
-import contextHoc from './../../../abstract/HOC/contextHoc';
-import swal from 'sweetalert2';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
 
 class index extends Component {
   state = initialState;
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
-  goBack = event => {
-    this.props.history.push('/managers/view')
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/managers/view');
   };
 
   getData = async () => {
-    const { dispatch } = this.props.context;
-    const id = this.props.match.params.id;
-    axios(`/api/v2/manager/${id}`).then(result => {
-      
+    const { match: { params: { id } }, context: { dispatch } } = this.props;
+    axios(`/api/v2/manager/${id}`).then((result) => {
       const { data } = result;
-      const date = data.date_of_birth.split("T")[0];
-      this.setState({...data, date_of_birth:date, loading: false });
+      const date = data.date_of_birth.split('T')[0];
+      this.setState({ ...data, date_of_birth: date, loading: false });
+    }).catch((error) => {
+      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } });
+    });
+  };
 
-    }).catch(error => {
-      dispatch({ type: 'ERROR_PAGE', payload: { ErrorPage: error.response.status } })
-    }) 
-  
-};
-
-updateManager = async obj => {
+updateManager = async (obj) => {
   const confirm = await swal({
-    type: "warning",
-    html: "Are you sure that you want to update this data ?",
+    type: 'warning',
+    html: 'Are you sure that you want to update this data ?',
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-    confirmButtonAriaLabel: "Thumbs up",
+    confirmButtonAriaLabel: 'Thumbs up',
     cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-    cancelButtonAriaLabel: "Thumbs down"
+    cancelButtonAriaLabel: 'Thumbs down',
   });
   if (confirm.value) {
-    const { id } = this.props.match.params;
+    const { match: { params: { id } }, history } = this.props;
     const result = await axios(`/api/v2/manager/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       data: {
-        managerData: obj
-      }
+        managerData: obj,
+      },
     });
     if (result.data.error) {
       await swal({
-        title: "",
-        type: "warning",
+        title: '',
+        type: 'warning',
         html: result.data.error,
-        confirmButtonText: "Ok"
+        confirmButtonText: 'Ok',
       });
-      this.props.history.push("/managers/view");
+      history.push('/managers/view');
     } else {
       await swal({
-        title: "Success",
-        type: "success",
-        html: result.data.message
+        title: 'Success',
+        type: 'success',
+        html: result.data.message,
       });
       this.setState({ ...obj });
-      this.props.history.push("/managers/view");
+      history.push('/managers/view');
     }
   }
 };
@@ -81,7 +80,7 @@ updateManager = async obj => {
   }
 
   // the implemention waiting  back end api
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     this.updateManager(fields);
@@ -89,7 +88,7 @@ updateManager = async obj => {
 
   render() {
     const {
-      loading
+      loading,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -108,3 +107,7 @@ updateManager = async obj => {
 }
 
 export default contextHoc(index);
+
+index.propTypes = {
+  history: propTypes.object.isRequired,
+};

@@ -1,17 +1,22 @@
-import React from "react";
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-shadow */
+import React from 'react';
 import { Link } from 'react-router-dom';
-import propTypes from "prop-types";
-import Container from "./../layout/Container/";
-import Header from "./../header";
-import Input from "./../input";
-import Button from "./../button";
-import DropDown from "./../dropdown";
-import Textarea from "./../textarea";
-import Sidebar from "./../sidebar";
-import "./index.css";
+import propTypes from 'prop-types';
+import Container from '../layout/Container';
+import Header from '../header';
+import Input from '../input';
+import Button from '../button';
+import DropDown from '../dropdown';
+import Textarea from '../textarea';
+import Sidebar from '../sidebar';
+import './index.css';
 
 export default function index(props) {
-  const { fields, values, onChange, btnEvents, title } = props;
+  const {
+    fields, values, onChange, btnEvents, title,
+  } = props;
 
   return (
     <Container>
@@ -22,7 +27,7 @@ export default function index(props) {
           <div className="add-participant-row" key={index}>
             {row.map((field, index) => {
               const { tag, staticField, path } = field;
-              if (tag === "Input") {
+              if (tag === 'Input') {
                 return (
                   <Input
                     key={index}
@@ -31,7 +36,7 @@ export default function index(props) {
                     onChange={onChange}
                   />
                 );
-              } else if (tag === "DropDown") {
+              } if (tag === 'DropDown') {
                 return (
                   <DropDown
                     key={index}
@@ -40,25 +45,35 @@ export default function index(props) {
                     onChange={onChange}
                   />
                 );
-              } else if (tag === "Button" && staticField === true) {
+              } if (tag === 'Button' && staticField === true) {
                 return (
                   <Button {...field} key={index} onClick={btnEvents[index]} />
                 );
-              } else if (tag === "Button") {
+              } if (tag === 'Button') {
                 return (
                   <Link to={path} key={index}>
                     <Button {...field} />
                   </Link>
                 );
-              } else if (tag === "Textarea") {
-                return <Textarea {...field} value={values[field.name]} key={index} onChange={onChange} />;
-              } else if (tag === "checkBox")
-                return <React.Fragment key={index}>
-                  <input type="checkbox" onChange={onChange} {...field} checked={values[field.name]} />
-                  <span className="check-box-style">
-                    {field.value}
-                  </span>
-                </React.Fragment>
+              } if (tag === 'Textarea') {
+                return (
+                  <Textarea
+                    {...field}
+                    value={values[field.name]}
+                    key={index}
+                    onChange={onChange}
+                  />
+                );
+              } if (tag === 'checkBox') {
+                return (
+                  <React.Fragment key={index}>
+                    <input type="checkbox" onChange={onChange} {...field} checked={values[field.name]} />
+                    <span className="check-box-style">
+                      {field.value}
+                    </span>
+                  </React.Fragment>
+                );
+              }
 
 
               return null;
@@ -76,5 +91,5 @@ index.propTypes = {
   title: propTypes.string.isRequired,
   values: propTypes.object.isRequired,
   onChange: propTypes.func.isRequired,
-  btnEvents: propTypes.array
+  btnEvents: propTypes.array,
 };

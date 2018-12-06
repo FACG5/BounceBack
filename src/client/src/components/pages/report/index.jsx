@@ -1,28 +1,30 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../abstract/header";
-import Button from "../../abstract/button";
-import Footer from "../../abstract/footer";
-import Input from "../../abstract/input";
-import DropDown from "../../abstract/dropdown";
-import "./style.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../../abstract/header';
+import Button from '../../abstract/button';
+import Footer from '../../abstract/footer';
+import Input from '../../abstract/input';
+import DropDown from '../../abstract/dropdown';
+import './style.css';
 
 export default class index extends Component {
   state = {
-    from: "",
-    to: "",
+    from: '',
+    to: '',
     bounceback: false,
     project: false,
     ofg: false,
     mtg: false,
     active: false,
-    inactive: false
+    inactive: false,
   };
-  onChange = event => {
+
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
-  changeCheckBox = event => {
+
+  changeCheckBox = (event) => {
     const { name, checked } = event.target;
     this.setState({ [name]: checked });
   };
@@ -36,7 +38,8 @@ export default class index extends Component {
       ofg,
       mtg,
       active,
-      inactive
+      inactive,
+      filter,
     } = this.state;
     return (
       <>
@@ -72,42 +75,59 @@ export default class index extends Component {
               name="bounceback"
               checked={bounceback}
               onChange={this.changeCheckBox}
-            />{" "}
-            Bounceback <br />
-            <input type="checkbox"
+            />
+            {' '}
+            Bounceback
+            {' '}
+            <br />
+            <input
+              type="checkbox"
               name="project"
               checked={project}
               onChange={this.changeCheckBox}
-            />{" "}
-            Project I.e. <br />
+            />
+            {' '}
+            Project I.e.
+            {' '}
+            <br />
             <input
               type="checkbox"
               name="ofg"
               checked={ofg}
               onChange={this.changeCheckBox}
-            />{" "}
-            OFG <br />
+            />
+            {' '}
+            OFG
+            {' '}
+            <br />
             <input
               type="checkbox"
               name="mtg"
               checked={mtg}
               onChange={this.changeCheckBox}
-            />{" "}
-            MTG <br />
+            />
+            {' '}
+            MTG
+            {' '}
+            <br />
             <input
               type="checkbox"
               name="active"
               checked={active}
               onChange={this.changeCheckBox}
             />
-            Active <br />
+            Active
+            {' '}
+            <br />
             <input
               type="checkbox"
               name="inactive"
               checked={inactive}
               onChange={this.changeCheckBox}
             />
-            In Active <br />
+            In Active
+            {' '}
+            <br />
           </div>
           <div className="worker-section">
             <div className="selected-worker">
@@ -115,9 +135,9 @@ export default class index extends Component {
               <DropDown
                 label=""
                 name="filter"
-                options={["all", "worker1", "worker2", "worker3", "worker4"]}
+                options={['all', 'worker1', 'worker2', 'worker3', 'worker4']}
                 width="250px"
-                value={this.state.filter}
+                value={filter}
                 onChange={this.onChange}
               />
             </div>
@@ -127,7 +147,8 @@ export default class index extends Component {
               value="View Report"
               color="#ff4800"
               onClick={this.onClick}
-            />{" "}
+            />
+            {' '}
           </Link>
           <Footer />
         </section>

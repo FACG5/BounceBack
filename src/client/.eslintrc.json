@@ -1,0 +1,21 @@
+{
+    "env": {
+      "browser": true
+    },
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "impliedStrict": true
+      }
+    },
+    "rules": {
+      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/label-has-associated-control": 0,
+      "react/no-string-refs": 0,
+      "react/require-default-props": 0,
+      "react/no-unused-state": 0,
+      "jsx-a11y/media-has-caption": 0
+   }
+  }
