@@ -118,11 +118,12 @@ export const fields = [
       ],
     },
     {
-      tag: 'Input',
+      tag: 'DropDown',
       label: 'Dependents ',
       name: 'dependents',
       width: '20rem',
       placeholder: 'dependents',
+      options: ['no dependent', 'from 1 to 5', 'from 5 to 10', 'more than 10'],
     },
   ],
   [
