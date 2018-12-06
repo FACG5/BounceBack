@@ -1,17 +1,14 @@
-const fs = require('fs');
 const { join } = require('path');
-const { promisify } = require('util');
+const { checkFiles } = require('./../helpers/checkFiles');
 
 exports.download = async ({ params: { id } }, res) => {
-  const readDir = promisify(fs.readdir);
   const CVsPath = join(__dirname, '..', 'CVs');
   try {
-    const files = await readDir(CVsPath);
-    const filename = files.filter(file => file.split('.')[0] === id)[0];
-    if (!filename) throw new Error('File Not Found');
+    const filename = await checkFiles(CVsPath, id);
+    if (!filename) throw new TypeError('there is no files');
     res.set('filename', filename);
     res.download(join(CVsPath, filename), filename, err => (err && res.status(400).send('Can\'t Download The File Sorry')));
-  } catch (err) {
-    res.status(400).send('There Is Not Files');
+  } catch ({ message }) {
+    res.status(400).send(message);
   }
 };
