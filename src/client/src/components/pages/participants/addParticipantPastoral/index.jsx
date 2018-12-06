@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2';
@@ -112,6 +113,6 @@ export default class index extends Component {
 }
 
 index.propTypes = {
-  match: propTypes.isRequired,
-  history: propTypes.isRequired,
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
 };

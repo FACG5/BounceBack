@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -118,5 +119,5 @@ class index extends Component {
 export default contextHoc(index);
 
 index.propTypes = {
-  history: propTypes.isRequired,
+  history: propTypes.object.isRequired,
 };

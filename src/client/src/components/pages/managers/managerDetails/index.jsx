@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2';
@@ -108,5 +109,5 @@ updateManager = async (obj) => {
 export default contextHoc(index);
 
 index.propTypes = {
-  history: propTypes.isRequired,
+  history: propTypes.object.isRequired,
 };

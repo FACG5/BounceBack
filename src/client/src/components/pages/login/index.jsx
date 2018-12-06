@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2';
@@ -95,5 +96,5 @@ class LoginForm extends Component {
 export default contextHoc(LoginForm);
 
 LoginForm.propTypes = {
-  history: propTypes.isRequired,
+  history: propTypes.object.isRequired,
 };

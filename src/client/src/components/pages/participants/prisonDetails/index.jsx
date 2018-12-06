@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
@@ -103,6 +104,6 @@ class PresionDetails extends Component {
 export default contextHoc(PresionDetails);
 
 PresionDetails.propTypes = {
-  match: propTypes.isRequired,
-  history: propTypes.isRequired,
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
 };

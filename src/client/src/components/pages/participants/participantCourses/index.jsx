@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
@@ -143,6 +144,6 @@ class Course extends Component {
 export default contextHoc(Course);
 
 Course.propTypes = {
-  match: propTypes.isRequired,
-  history: propTypes.isRequired,
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
 };
