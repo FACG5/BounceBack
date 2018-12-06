@@ -7,6 +7,7 @@ const workers = require('./workers');
 const managers = require('./managers');
 const prison = require('./prison');
 const auth = require('./../middleware/auth');
+const { download } = require('./download');
 
 const Router = express.Router();
 
@@ -74,5 +75,6 @@ Router.post('/managers', managers.post);
 Router.put('/manager/:id', managers.update);
 Router.delete('/managers', managers.delete);
 
+Router.get('/download/:id', download);
 
 module.exports = Router;
