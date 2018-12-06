@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
@@ -37,5 +38,5 @@ export class Provider extends Component {
 export const { Consumer } = Context;
 
 Provider.propTypes = {
-  children: propTypes.isRequired,
+  children: propTypes.any.isRequired,
 };

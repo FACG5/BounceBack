@@ -2,6 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import propsTypes from 'prop-types';
 import { Consumer } from '../../context/index';
 
 export default function contextHoc(WrappedComponent) {
@@ -15,3 +16,7 @@ export default function contextHoc(WrappedComponent) {
     }
   };
 }
+
+contextHoc.propsTypes = {
+  WrappedComponent: propsTypes.element.isRequired,
+};
