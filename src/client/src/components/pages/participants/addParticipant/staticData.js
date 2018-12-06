@@ -272,7 +272,7 @@ export const fields = [
   [
     {
       tag: 'checkBox',
-      name: 'in_prison',
+      name: 'inPrison',
       value: ' In Prison',
     },
   ],

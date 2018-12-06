@@ -57,6 +57,7 @@ export const fields = [
     name: 'prison_in',
     width: '15rem',
     type: 'number',
+    placeholder: 'Length of Sentence',
   }, {
     tag: 'Input',
     label: 'Prison Release',

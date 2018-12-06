@@ -11,6 +11,8 @@ import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
 import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
+import { makeDownloadLink } from './logic';
+
 
 class index extends Component {
   state = initialState;
@@ -41,12 +43,12 @@ class index extends Component {
       .then((result) => {
         const { count } = result.data.getPrisoner;
         if (count === 1) {
-          fieldSet[0][2].display = 'block';
           const prisonId = result.data.getPrisoner.rows[0].id;
-          this.setState({ fieldSet, prisonerId: prisonId });
+          fieldSet[0][3].display = 'block';
+          this.setState({ prisonerId: prisonId });
         } else {
-          fieldSet[0][2].display = 'none';
-          this.setState({ fieldSet, prisonerId: '' });
+          fieldSet[0][3].display = 'none';
+          this.setState({ prisonerId: '' });
         }
       })
       .catch((error) => {
@@ -87,10 +89,14 @@ class index extends Component {
     });
     if (confirm.value) {
       const { match: { params: { id } }, history } = this.props;
-      const result = await axios(`/api/v2/participant/${id}`, {
-        method: 'PUT',
-        data: {
-          participantData: obj,
+      const upload = document.getElementById('fileid');
+      const FileData = new FormData();
+      const fields = { ...obj };
+      FileData.append('data', JSON.stringify(fields));
+      FileData.append('file', upload.files[0]);
+      const result = await axios.put(`/api/v2/participant/${id}`, FileData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
       });
       if (result.data.error) {
@@ -129,8 +135,41 @@ class index extends Component {
     this.setState({ [name]: value });
   };
 
+  downloadCV = async () => {
+    const { match: { params: { id } } } = this.props;
+    try {
+      const response = await fetch(`/api/v2/download/${id}`);
+      if (response.status !== 200) throw new TypeError('Can\'t Download The File');
+      const filename = response.headers.get('filename');
+      const blob = await response.blob();
+      makeDownloadLink(blob, filename);
+    } catch ({ message }) {
+      swal('Oops', message, 'error');
+    }
+  }
+
+  uploadCV = () => {
+    document.getElementById('fileid').click();
+  }
+
   render() {
-    const {
+    const { fileExists } = this.state;
+    const btnFunc = [
+      this.onSubmit,
+      this.goBack,
+      null,
+      this.goPrison,
+      this.goDates,
+      this.goTrainings,
+    ];
+
+    if (fileExists) {
+      btnFunc[2] = (this.downloadCV);
+      fieldSet[fieldSet.length - 1][2].value = 'Download CV';
+    } else {
+      btnFunc[2] = (this.uploadCV);
+      fieldSet[fieldSet.length - 1][2].value = 'Upload CV';
+    } const {
       loading,
     } = this.state;
     if (loading) { return <Loading />; }
@@ -142,13 +181,16 @@ class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[this.onSubmit, this.goBack, this.goPrison, this.goDates, this.goTrainings]}
+          btnEvents={btnFunc}
         />
+        <input id="fileid" type="file" hidden multiple={false} />
+
         <Footer />
       </>
     );
   }
 }
+
 
 export default contextHoc(index);
 
