@@ -1,8 +1,9 @@
 const { Op } = require('sequelize');
+const { join } = require('path');
 const participant = require('../database/models/participant');
 const dates = require('../database/models/dates');
 const courses = require('../database/models/participantCourses');
-const { join } = require('path');
+const { checkFiles } = require('./../helpers/checkFiles');
 
 // Get all participants
 exports.get = async (req, res) => {
@@ -83,6 +84,8 @@ exports.searchBydate = async (req, res) => {
 
 // Get the details for an individual participant
 exports.getDetails = async (req, res) => {
+  const CVsPath = join(__dirname, '..', 'CVs');
+
   try {
     const participantId = req.params.id;
     const result = await participant.findAll({
@@ -90,8 +93,11 @@ exports.getDetails = async (req, res) => {
         id: participantId,
       },
     });
+    const filename = await checkFiles(CVsPath, participantId);
     if (result[0]) {
       const details = result[0].dataValues;
+      if (filename) details.fileExists = true;
+      else details.fileExists = false;
       res.status(200).send(details);
     } else {
       res.status(404).send('Error in finding result');
@@ -104,14 +110,6 @@ exports.getDetails = async (req, res) => {
 // Add new participant
 exports.post = async (req, res) => {
   try {
-    // check if user enter just one file
-    if (req.files.length >= 2) {
-      return res.status(400).send('The uploaded files should be just one file');
-    }
-    // the file
-    const { file } = req.files;
-
-    // the participant Info ;
     const participantdata = JSON.parse(req.body.data);
     const { count } = await participant.findAndCountAll({
       where: {
@@ -120,13 +118,19 @@ exports.post = async (req, res) => {
     });
     if (count !== 0) throw new TypeError('The email is used');
     const { dataValues: { id } } = await participant.create(participantdata);
-    res.send({ message: 'Adding participant done', id });
-
-    //  file.mime.split the get file type;
+    if (!req.files) {
+      return res.send({ message: 'Adding participant done', id });
+    }
+    const { file } = req.files;
     if (file) {
       file.mv(join(__dirname, '..', 'CVs', `${id}.${file.mimetype.split('/')[1]}`), (err) => {
         if (err) res.status(400).send('Error');
+        else {
+          return res.send({ message: 'Adding participant done', id });
+        }
       });
+    } else {
+      res.send({ message: 'Adding participant done', id });
     }
   } catch (error) {
     const { message } = error;
@@ -173,14 +177,25 @@ exports.deleteDate = (req, res) => {
 // Update information of participant
 exports.update = async (req, res) => {
   try {
-    const { participantData } = req.body;
+    const data = JSON.parse(req.body.data);
     const participantId = req.params.id;
-    await participant.update(participantData, {
+    await participant.update(data, {
       where: {
         id: participantId,
       },
     });
-    res.send({ message: 'updating data is done' });
+    if (!req.files) {
+      return res.send({ message: 'updating data is done' });
+    }
+    const { file } = req.files;
+    if (file) {
+      file.mv(join(__dirname, '..', 'CVs', `${participantId}.${file.mimetype.split('/')[1]}`), (err) => {
+        if (err) res.status(400).send('Error');
+        else {
+          return res.send({ message: 'updating data is done' });
+        }
+      });
+    }
   } catch (error) {
     const { message } = error;
     res.send({ error: message });
@@ -326,3 +341,4 @@ exports.editTraining = async (req, res) => {
     res.send({ err: msg });
   }
 };
+
