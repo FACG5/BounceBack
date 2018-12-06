@@ -1,48 +1,50 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../../abstract/header";
-import Input from "../../../abstract/input";
-import Table from "../../../abstract/Table";
-import Footer from "../../../abstract/footer";
-import axios from "axios";
-import swal from "sweetalert2";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import swal from 'sweetalert2';
+import Header from '../../../abstract/header';
+import Input from '../../../abstract/input';
+import Table from '../../../abstract/Table';
+import Footer from '../../../abstract/footer';
 import Loading from '../../loading';
 
 export default class ViewManagers extends Component {
   state = {
-    search: "",
-    message: "",
+    search: '',
+    message: '',
     rows: [],
-    loading: true
+    loading: true,
   };
 
-  deleteManager = id => {
+  deleteManager = (id) => {
     swal({
-      type: "warning",
-      html: "Are you sure that you want to delete this manager ?",
+      type: 'warning',
+      html: 'Are you sure that you want to delete this manager ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i className="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i className="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
-    }).then(confirm => {
+      cancelButtonAriaLabel: 'Thumbs down',
+    }).then((confirm) => {
       if (confirm.value) {
-        axios("/api/v2/managers", {
-          method: "DELETE",
+        axios('/api/v2/managers', {
+          method: 'DELETE',
           data: {
-            managerId: id
-          }
-        }).then(result => {
+            managerId: id,
+          },
+        }).then((result) => {
           this.getData().then(() => {
             swal({
-              title: "Success",
-              type: "success",
+              title: 'Success',
+              type: 'success',
               html:
-                " <strong>Your work has been saved</strong> <br/>" +
-                result.data.message,
+                ` <strong>Your work has been saved</strong> <br/>${
+                  result.data.message}`,
               showConfirmButton: false,
-              timer: 3000
+              timer: 3000,
             });
           });
         });
@@ -52,20 +54,19 @@ export default class ViewManagers extends Component {
 
   search = async () => {
     const { search } = this.state;
-    const data = await axios("/api/v2/managers/search", {
-      method: "POST",
+    const data = await axios('/api/v2/managers/search', {
+      method: 'POST',
       data: {
-        managerName: search
-      }
+        managerName: search,
+      },
     });
     const finalData = data.data.managersData;
     if (finalData) {
-      let array = [["username", "email", "Phone Number", "action"]];
-      finalData.map(row =>
-        array.push([
-          row.username,
-          row.email,
-          row.mobile,
+      const array = [['username', 'email', 'Phone Number', 'action']];
+      finalData.map(row => array.push([
+        row.username,
+        row.email,
+        row.mobile,
           <>
             <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
@@ -74,9 +75,8 @@ export default class ViewManagers extends Component {
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-          </>
-        ])
-      );
+          </>,
+      ]));
       this.setState({ rows: array });
     } else {
       const array = [];
@@ -85,25 +85,24 @@ export default class ViewManagers extends Component {
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const search = event.target.value;
     this.setState({ search }, () => this.search());
   };
 
   getData = async () => {
-    const data = await axios("/api/v2/managers");
+    const data = await axios('/api/v2/managers');
     const finalData = data.data.managersData;
-    let array = [["username", "email", "phone number", "action"]];
+    let array = [['username', 'email', 'phone number', 'action']];
     if (finalData.length === 0) {
-      const msg = " There is no managers yet !!";
+      const msg = ' There is no managers yet !!';
       array = [];
       this.setState({ message: msg, rows: array, loading: false });
     } else {
-      finalData.map(row =>
-        array.push([
-          row.username,
-          row.email,
-          row.mobile,
+      finalData.map(row => array.push([
+        row.username,
+        row.email,
+        row.mobile,
           <>
             <Link to={`/manager/details/${row.id}`}>
               <i className="fas fa-info-circle" />
@@ -112,9 +111,8 @@ export default class ViewManagers extends Component {
               className="fas fa-trash-alt"
               onClick={() => this.deleteManager(row.id)}
             />
-          </>
-        ])
-      );
+          </>,
+      ]));
       this.setState({ rows: array, loading: false });
     }
   };
@@ -125,7 +123,7 @@ export default class ViewManagers extends Component {
 
   render() {
     const {
-      loading
+      loading, search, rows, message,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -138,17 +136,17 @@ export default class ViewManagers extends Component {
             type="text"
             placeholder="manager username"
             width="300px"
-            value={this.state.search}
+            value={search}
             onChange={this.onChange}
           />
           {/* <Button value="Search" onClick={this.search} /> */}
           <Header value="Managers" align="left" margin="0" />
-          <Table rows={this.state.rows} />
-          {this.state.rows.length === 0 && (
+          <Table rows={rows} />
+          {rows.length === 0 && (
             <p className="error-msg">
-              {" "}
+              {' '}
               <i className="far fa-surprise" />
-              {this.state.message}
+              {message}
             </p>
           )}
           <Footer />

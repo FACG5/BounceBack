@@ -1,121 +1,120 @@
-import React, { Component } from "react";
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
+import axios from 'axios';
+import propTypes from 'prop-types';
+import swal from 'sweetalert2';
 import {
   state as initialState,
-  fields as fieldSet
-} from "./staticData";
-import Form from "./../../../abstract/Form";
-import Footer from "../../../abstract/footer";
-import axios from "axios";
-import swal from "sweetalert2";
-import contextHoc from './../../../abstract/HOC/contextHoc';
+  fields as fieldSet,
+} from './staticData';
+import Form from '../../../abstract/Form';
+import Footer from '../../../abstract/footer';
+import contextHoc from '../../../abstract/HOC/contextHoc';
 import Loading from '../../loading';
-import { makeDownloadLink } from './logic'
+import { makeDownloadLink } from './logic';
 
 
 class index extends Component {
   state = initialState;
 
-  goBack = event => {
-    this.props.history.push("/participants/view");
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/participants/view');
   };
 
-  goDates = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participant/${id}/dates`);
+  goDates = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/${id}/dates`);
   };
 
-  goTrainings = event => {
-    const id = this.props.match.params.id;
-    this.props.history.push(`/participant/${id}/courses`);
+  goTrainings = () => {
+    const { match: { params: { id } }, history } = this.props;
+    history.push(`/participant/${id}/courses`);
   };
-  goPrison = event => {
-    const { id } = this.props.match.params;
-    const prisonId = this.state.prisonerId
-    this.props.history.push(`/participants/${id}/prisoner/${prisonId}`);
+
+  goPrison = () => {
+    const { match: { params: { id, prisonId } }, history } = this.props;
+    history.push(`/participants/${id}/prisoner/${prisonId}`);
   }
 
   getPrison = async () => {
-    const id = this.props.match.params.id;
-    const { dispatch } = this.props.context;
+    const { match: { params: { id } }, context: { dispatch } } = this.props;
     axios(`/api/v2/participants/${id}/prison`)
-      .then(result => {
+      .then((result) => {
         const { count } = result.data.getPrisoner;
         if (count === 1) {
           const prisonId = result.data.getPrisoner.rows[0].id;
           fieldSet[0][3].display = 'block';
-          this.setState({ prisonerId: prisonId })
+          this.setState({ prisonerId: prisonId });
         } else {
           fieldSet[0][3].display = 'none';
-          this.setState({ prisonerId: '' })
+          this.setState({ prisonerId: '' });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
-          type: "ERROR_PAGE",
-          payload: { ErrorPage: error.response.status }
+          type: 'ERROR_PAGE',
+          payload: { ErrorPage: error.response.status },
         });
       });
   };
 
   getDetails = async () => {
-    const id = this.props.match.params.id;
-    const { dispatch } = this.props.context;
-
+    const { match: { params: { id } }, context: { dispatch } } = this.props;
     axios(`/api/v2/participant/${id}`)
-      .then(async result => {
+      .then(async (result) => {
         this.getPrison();
         const { data } = result;
-        const date = data.date_of_birth.split("T")[0];
-        console.log(data);
-        this.setState({ ...data, date_of_birth: date, loading: false })
+        const date = data.date_of_birth.split('T')[0];
+        this.setState({ ...data, date_of_birth: date, loading: false });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
-          type: "ERROR_PAGE",
-          payload: { ErrorPage: error.response.status }
+          type: 'ERROR_PAGE',
+          payload: { ErrorPage: error.response.status },
         });
-      })
+      });
   };
 
-  updateParticipant = async obj => {
+  updateParticipant = async (obj) => {
     const confirm = await swal({
-      type: "warning",
-      html: "Are you sure that you want to update this data ?",
+      type: 'warning',
+      html: 'Are you sure that you want to update this data ?',
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Yes',
-      confirmButtonAriaLabel: "Thumbs up",
+      confirmButtonAriaLabel: 'Thumbs up',
       cancelButtonText: '<i class="fa fa-thumbs-down"></i> No ',
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
+      const { match: { params: { id } }, history } = this.props;
       const upload = document.getElementById('fileid');
       const FileData = new FormData();
       const fields = { ...obj };
       FileData.append('data', JSON.stringify(fields));
-      FileData.append("file", upload.files[0]);
-      const { id } = this.props.match.params;
+      FileData.append('file', upload.files[0]);
       const result = await axios.put(`/api/v2/participant/${id}`, FileData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
       });
       if (result.data.error) {
         await swal({
-          title: "",
-          type: "warning",
+          title: '',
+          type: 'warning',
           html: result.data.error,
-          confirmButtonText: "Ok"
+          confirmButtonText: 'Ok',
         });
-        this.props.history.push("/participants/view");
+        history.push('/participants/view');
       } else {
         await swal({
-          title: "Success",
-          type: "success",
-          html: result.data.message
+          title: 'Success',
+          type: 'success',
+          html: result.data.message,
         });
         this.setState({ ...obj });
-        this.props.history.push("/participants/view");
+        history.push('/participants/view');
       }
     }
   };
@@ -125,28 +124,30 @@ class index extends Component {
   };
 
   // Edit Data
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
     this.updateParticipant(fields);
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
+
   downloadCV = async () => {
-    const { id } = this.props.match.params;
+    const { match: { params: { id } } } = this.props;
     try {
-      const response = await fetch(`/api/v2/download/${id}`)
-      if (response.status !== 200) throw new TypeError(`Can't Download The File`);
+      const response = await fetch(`/api/v2/download/${id}`);
+      if (response.status !== 200) throw new TypeError('Can\'t Download The File');
       const filename = response.headers.get('filename');
       const blob = await response.blob();
       makeDownloadLink(blob, filename);
     } catch ({ message }) {
-      swal("Oops", message, "error")
+      swal('Oops', message, 'error');
     }
   }
+
   uploadCV = () => {
     document.getElementById('fileid').click();
   }
@@ -163,17 +164,15 @@ class index extends Component {
     ];
 
     if (fileExists) {
-      btnFunc[2] = (this.downloadCV)
-      fieldSet[fieldSet.length - 1][2].value = "Download CV";
-    }
-    else {
-      btnFunc[2] = (this.uploadCV)
-      fieldSet[fieldSet.length - 1][2].value = "Upload CV";
+      btnFunc[2] = (this.downloadCV);
+      fieldSet[fieldSet.length - 1][2].value = 'Download CV';
+    } else {
+      btnFunc[2] = (this.uploadCV);
+      fieldSet[fieldSet.length - 1][2].value = 'Upload CV';
     } const {
-      loading
+      loading,
     } = this.state;
-    if (loading)
-      return <Loading />;
+    if (loading) { return <Loading />; }
 
     return (
       <>
@@ -184,7 +183,7 @@ class index extends Component {
           onChange={this.onChange}
           btnEvents={btnFunc}
         />
-        <input id='fileid' type='file' hidden multiple={false} />
+        <input id="fileid" type="file" hidden multiple={false} />
 
         <Footer />
       </>
@@ -194,3 +193,8 @@ class index extends Component {
 
 
 export default contextHoc(index);
+
+index.propTypes = {
+  match: propTypes.object,
+  history: propTypes.object.isRequired,
+};

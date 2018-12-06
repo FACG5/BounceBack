@@ -1,52 +1,56 @@
-import React, { Component } from "react";
-import Input from "../../abstract/input";
-import Button from "../../abstract/button";
-import contextHoc from "./../../abstract/HOC/contextHoc";
-import "./style.css";
-import axios from "axios";
+/* eslint-disable react/forbid-prop-types */
+import React, { Component } from 'react';
+import axios from 'axios';
 import swal from 'sweetalert2';
-import { checkUser } from './../../../helpers';
+import propTypes from 'prop-types';
+import Input from '../../abstract/input';
+import Button from '../../abstract/button';
+import contextHoc from '../../abstract/HOC/contextHoc';
+import './style.css';
+import { checkUser } from '../../../helpers';
 
 
 class LoginForm extends Component {
   state = {
-    username: "",
-    password: ""
+    username: '',
+    password: '',
   };
+
   componentDidMount = () => {
     const user = checkUser();
     if (!user || !user.logging) {
-      this.props.history.push("/login");
+      const { history } = this.props;
+      history.push('/login');
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
 
   onClick = async () => {
-    const { dispatch } = this.props.context;
+    const { context: { dispatch }, history } = this.props;
     const { username, password } = this.state;
     const response = await axios({
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       data: { username, password },
-      url: "/api/v2/login"
+      url: '/api/v2/login',
     });
     if (response.data) {
-      localStorage.setItem("token", JSON.stringify(response.data));
-      dispatch({ type: "LOGIN_USER", payload: { logging: true } });
+      localStorage.setItem('token', JSON.stringify(response.data));
+      dispatch({ type: 'LOGIN_USER', payload: { logging: true } });
       swal({
-        title: "Success",
-        type: "success",
+        title: 'Success',
+        type: 'success',
         html:
-          " <strong>Logged in</strong> <br/>",
+          ' <strong>Logged in</strong> <br/>',
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
-      this.props.history.push("/");
+      history.push('/');
     } else {
       this.setState({ error: response.data.Error });
     }
@@ -90,3 +94,7 @@ class LoginForm extends Component {
   }
 }
 export default contextHoc(LoginForm);
+
+LoginForm.propTypes = {
+  history: propTypes.object.isRequired,
+};

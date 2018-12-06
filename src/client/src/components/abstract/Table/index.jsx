@@ -1,10 +1,14 @@
-import React, { Component } from "react";
-import Container from "../layout/Container";
+/* eslint-disable react/prefer-stateless-function */
+import React, { Component } from 'react';
 import uuid from 'uuid';
-import "./style.css";
+import propType from 'prop-types';
+
+import Container from '../layout/Container';
+import './style.css';
 
 export default class Table extends Component {
   render() {
+    // eslint-disable-next-line react/prop-types
     const { rows } = this.props;
     if (!rows) {
       return (
@@ -31,3 +35,7 @@ export default class Table extends Component {
     );
   }
 }
+
+Table.propType = {
+  rows: propType.isRequired,
+};
