@@ -65,12 +65,12 @@ export default class ViewWorkers extends Component {
       finalData.map(row => array.push([
         row.username,
         row.date_of_birth.split('T')[0],
-          <>
-            <Link to={`/worker/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
-            <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
-          </>,
+        <>
+          <Link to={`/worker/details/${row.id}`}>
+            <i className="fas fa-info-circle" />
+          </Link>
+          <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
+        </>,
       ]));
       this.setState({ rows: array });
     } else {
@@ -80,10 +80,10 @@ export default class ViewWorkers extends Component {
     }
   };
 
-   onChange = (event) => {
-     const search = event.target.value;
-     this.setState({ search }, () => this.getSearch());
-   };
+  onChange = (event) => {
+    const search = event.target.value;
+    this.setState({ search }, () => this.getSearch());
+  };
 
   getData = async () => {
     try {
@@ -98,12 +98,12 @@ export default class ViewWorkers extends Component {
         finalData.map(row => array.push([
           row.username,
           row.date_of_birth.split('T')[0],
-            <>
-              <Link to={`/worker/details/${row.id}`}>
-                <i className="fas fa-info-circle" />
-              </Link>
-              <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
-            </>,
+          <>
+            <Link to={`/worker/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt" onClick={() => this.deleteWorker(row.id)} />
+          </>,
         ]));
         this.setState({ rows: array, loading: false });
       }
@@ -136,13 +136,13 @@ export default class ViewWorkers extends Component {
           />
           <Header value="Staff" align="left" margin="0" />
           <Table rows={rows} />
-          { rows.length === 0
+          {rows.length === 0
             && (
-            <p className="error-msg">
-              {' '}
-              <i className="far fa-surprise" />
-              {message}
-            </p>
+              <p className="error-msg">
+                {' '}
+                <i className="far fa-surprise" />
+                {message}
+              </p>
             )
           }
           <Footer />
