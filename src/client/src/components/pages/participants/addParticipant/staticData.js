@@ -9,7 +9,7 @@ export const state = {
   gender: 'male',
   martial_status: 'single',
   sexual_orientatuin: 'straight',
-  dependents: '',
+  dependents: 'no dependent',
   ethincity: 'Asian or Asian British – Bangladeshi',
   nationality: '',
   borough: '',
