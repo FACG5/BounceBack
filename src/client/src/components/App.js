@@ -1,4 +1,6 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-filename-extension */
+
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -44,5 +46,5 @@ class App extends Component {
 export default contextHoc(App);
 
 App.propTypes = {
-  context: propTypes.isRequired,
+  context: propTypes.object.isRequired,
 };
