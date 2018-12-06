@@ -42,11 +42,11 @@ class index extends Component {
         const { count } = result.data.getPrisoner;
         if (count === 1) {
           const prisonId = result.data.getPrisoner.rows[0].id;
-          fieldSet[0][2].display = 'block';
-          this.setState({ fieldSet, prisonerId: prisonId })
+          fieldSet[0][3].display = 'block';
+          this.setState({ prisonerId: prisonId })
         } else {
-          fieldSet[0][2].display = 'none';
-          this.setState({ fieldSet, prisonerId: '' })
+          fieldSet[0][3].display = 'none';
+          this.setState({ prisonerId: '' })
         }
       })
       .catch(error => {
@@ -66,6 +66,7 @@ class index extends Component {
         this.getPrison();
         const { data } = result;
         const date = data.date_of_birth.split("T")[0];
+        console.log(data);
         this.setState({ ...data, date_of_birth: date, loading: false })
       })
       .catch(error => {
@@ -88,12 +89,16 @@ class index extends Component {
       cancelButtonAriaLabel: "Thumbs down"
     });
     if (confirm.value) {
+      const upload = document.getElementById('fileid');
+      const FileData = new FormData();
+      const fields = { ...obj };
+      FileData.append('data', JSON.stringify(fields));
+      FileData.append("file", upload.files[0]);
       const { id } = this.props.match.params;
-      const result = await axios(`/api/v2/participant/${id}`, {
-        method: "PUT",
-        data: {
-          participantData: obj
-        }
+      const result = await axios.put(`/api/v2/participant/${id}`, FileData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
       });
       if (result.data.error) {
         await swal({
@@ -142,9 +147,29 @@ class index extends Component {
       swal("Oops", message, "error")
     }
   }
+  uploadCV = () => {
+    document.getElementById('fileid').click();
+  }
 
   render() {
-    const {
+    const { fileExists } = this.state;
+    const btnFunc = [
+      this.onSubmit,
+      this.goBack,
+      null,
+      this.goPrison,
+      this.goDates,
+      this.goTrainings,
+    ];
+
+    if (fileExists) {
+      btnFunc[2] = (this.downloadCV)
+      fieldSet[fieldSet.length - 1][2].value = "Download CV";
+    }
+    else {
+      btnFunc[2] = (this.uploadCV)
+      fieldSet[fieldSet.length - 1][2].value = "Upload CV";
+    } const {
       loading
     } = this.state;
     if (loading)
@@ -157,14 +182,10 @@ class index extends Component {
           fields={fieldSet}
           values={this.state}
           onChange={this.onChange}
-          btnEvents={[
-            this.onSubmit,
-            this.goBack,
-            this.goPrison,
-            this.goDates,
-            this.goTrainings,
-            this.downloadCV]}
+          btnEvents={btnFunc}
         />
+        <input id='fileid' type='file' hidden multiple={false} />
+
         <Footer />
       </>
     );
