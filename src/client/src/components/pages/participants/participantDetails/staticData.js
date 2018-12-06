@@ -44,6 +44,12 @@ export const fields = [
       staticField: true
     },
     {
+      tag: "",
+      value: "empty",
+      color: "#FF4800",
+      staticField: true
+    },
+    {
       tag: "Button",
       value: "Prison Details",
       display: "none",
@@ -62,12 +68,7 @@ export const fields = [
       color: "#272727",
       staticField: true
     },
-    {
-      tag: "Button",
-      value: "Download CV",
-      color: "#272727",
-      staticField: true
-    },
+
   ],
   [
     {
@@ -319,6 +320,11 @@ export const fields = [
       tag: "Button",
       value: "Back",
       color: "#FF4800",
+      staticField: true
+    }, {
+      tag: "Button",
+      value: "Download CV",
+      color: "#272727",
       staticField: true
     },
 
