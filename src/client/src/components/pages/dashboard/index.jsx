@@ -56,8 +56,8 @@ class index extends Component {
 
       const EmployedCount = counts[0].reduce((sum, { count }) => sum + Number(count), 0);
 
-      const sections = counts[0].map(({ courseName, count }) => ({
-        decription: courseName,
+      const sections = counts[0].map(({ name, count }) => ({
+        decription: name,
         percentage: ((count * 100) / EmployedCount).toFixed(1),
       }));
 
