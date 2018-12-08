@@ -93,7 +93,7 @@ export default class ViewWorkers extends Component {
       if (finalData.length === 0) {
         const msg = ' There is no workers yet !!';
         array = [];
-        this.setState({ message: msg, rows: array });
+        this.setState({ message: msg, rows: array, loading: false });
       } else {
         finalData.map(row => array.push([
           row.username,
