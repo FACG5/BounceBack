@@ -97,7 +97,6 @@ class index extends Component {
           {sections && <PieChart sections={sections} width={250} title="Interventions Employment Outcomes" />}
           {employment[0] && <PieChart sections={employment} width={250} title="Reoffenders Employement Outcomes" />}
         </div>
-        <h3 className="welcome">welcome in the bounceback dashboard</h3>\
         <div className="cards">
           <Link className="static-count" to="/participants/view">
             <Statistics number={participant} value="Participant" />
