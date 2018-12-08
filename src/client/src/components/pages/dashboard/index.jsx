@@ -107,7 +107,7 @@ class index extends Component {
             <Statistics number={course} value="Interventions" />
           </Link>
           <Link className="static-count" to="/workers/view">
-            <Statistics number={worker} value="Worker" />
+            <Statistics number={worker} value="Staff" />
           </Link>
         </div>
         <Footer />
