@@ -13,7 +13,8 @@ import Loading from '../../loading';
 
 export default class ViewParticpants extends Component {
   state = {
-    nameSearch: '',
+    forenameSearch: '',
+    surenameSearch: '',
     dateSearch: '',
     rows: [],
     message: '',
@@ -21,20 +22,20 @@ export default class ViewParticpants extends Component {
     loading: true,
   };
 
-  nameSearcher = async () => {
-    const { nameSearch } = this.state;
-    const data = await axios('/api/v2/participants/search/name', {
+  forenameSearcher = async () => {
+    const { forenameSearch } = this.state;
+    const data = await axios('/api/v2/participants/search/forename', {
       method: 'POST',
       data: {
-        participantName: nameSearch,
+        participantName: forenameSearch,
       },
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      const array = [['BB_No.', 'Name', 'Date Of Birth', 'borough', 'Email', 'Action']];
+      const array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
       finalData.map(row => array.push([
         row.id,
-        row.surename,
+        `${row.forename} ${row.surename}`,
         row.date_of_birth.split('T')[0],
         row.borough,
         row.email,
@@ -53,9 +54,46 @@ export default class ViewParticpants extends Component {
     }
   };
 
-  onChangeName = (event) => {
-    const nameSearch = event.target.value;
-    this.setState({ nameSearch }, () => this.nameSearcher());
+  surnameSearcher = async () => {
+    const { surenameSearch } = this.state;
+    const data = await axios('/api/v2/participants/search/surname', {
+      method: 'POST',
+      data: {
+        participantName: surenameSearch,
+      },
+    });
+    const finalData = data.data.searchResult;
+    if (finalData) {
+      const array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
+      finalData.map(row => array.push([
+        row.id,
+        `${row.forename} ${row.surename}`,
+        row.date_of_birth.split('T')[0],
+        row.borough,
+        row.email,
+          <>
+            <Link to={`/participant/details/${row.id}`}>
+              <i className="fas fa-info-circle" />
+            </Link>
+            <i className="fas fa-trash-alt" onClick={() => this.onDelete(row.id)} />
+          </>,
+      ]));
+      this.setState({ rows: array });
+    } else {
+      const array = [];
+      const msg = data.data.message;
+      this.setState({ message: msg, rows: array });
+    }
+  };
+
+  onChangeForeName = (event) => {
+    const forenameSearch = event.target.value;
+    this.setState({ forenameSearch }, () => this.forenameSearcher());
+  };
+
+  onChangeSurName = (event) => {
+    const surenameSearch = event.target.value;
+    this.setState({ surenameSearch }, () => this.surnameSearcher());
   };
 
   dateSearcher = async () => {
@@ -68,10 +106,10 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      const array = [['BB_No.', 'Name', 'Date Of Birth', 'borough', 'Email', 'Action']];
+      const array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
       finalData.map(row => array.push([
         row.id,
-        row.surename,
+        `${row.forename} ${row.surename}`,
         row.date_of_birth.split('T')[0],
         row.borough,
         row.email,
@@ -136,7 +174,7 @@ export default class ViewParticpants extends Component {
     try {
       const data = await axios('/api/v2/participants');
       const finalData = data.data.getParticipants;
-      let array = [['BB_No.', 'Name', 'Date Of Birth', 'borough', 'Email', 'Action']];
+      let array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
       if (finalData.length === 0) {
         const msg = 'There is no participants yet !!';
         array = [];
@@ -144,7 +182,7 @@ export default class ViewParticpants extends Component {
       } else {
         finalData.map(row => array.push([
           row.id,
-          row.surename,
+          `${row.forename} ${row.surename}`,
           row.date_of_birth.split('T')[0],
           row.borough,
           row.email,
@@ -168,7 +206,7 @@ export default class ViewParticpants extends Component {
 
   render() {
     const {
-      loading, nameSearch, dateSearch, rows, message,
+      loading, forenameSearch, dateSearch, rows, message, surenameSearch,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -177,13 +215,22 @@ export default class ViewParticpants extends Component {
           <Header value="View Participants" />
           <div className="search-bar">
             <Input
-              label="Search by name"
-              name="searchByName"
+              label="Search by forename"
+              name="forenameSearch"
               type="text"
-              placeholder="fullname"
+              placeholder="forename"
               width="350px"
-              value={nameSearch}
-              onChange={this.onChangeName}
+              value={forenameSearch}
+              onChange={this.onChangeForeName}
+            />
+            <Input
+              label="Search by surname"
+              name="surenameSearch"
+              type="text"
+              placeholder="surname"
+              width="350px"
+              value={surenameSearch}
+              onChange={this.onChangeSurName}
             />
             <Input
               label="Search By Birth of date"
