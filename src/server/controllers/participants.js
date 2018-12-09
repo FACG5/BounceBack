@@ -40,8 +40,29 @@ exports.delete = (req, res) => {
   }
 };
 
-// Search for an individual participant by name
-exports.searchByName = async (req, res) => {
+// Search for an individual participant by forename
+exports.searchByForeName = async (req, res) => {
+  try {
+    const { participantName } = req.body;
+    const searchResult = await participant.findAll({
+      where: {
+        forename: {
+          [Op.like]: `%${participantName}%`,
+        },
+      },
+    });
+    if (searchResult[0]) {
+      res.send({ searchResult });
+    } else {
+      res.send({ message: 'Cant find participant with this name' });
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+};
+
+// Search for an individual participant by surname
+exports.searchBySurName = async (req, res) => {
   try {
     const { participantName } = req.body;
     const searchResult = await participant.findAll({
@@ -341,4 +362,3 @@ exports.editTraining = async (req, res) => {
     res.send({ err: msg });
   }
 };
-
