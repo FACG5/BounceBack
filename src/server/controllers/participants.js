@@ -47,7 +47,7 @@ exports.searchByForeName = async (req, res) => {
     const searchResult = await participant.findAll({
       where: {
         forename: {
-          [Op.like]: `%${participantName}%`,
+          [Op.iLike]: `%${participantName}%`,
         },
       },
     });
@@ -68,7 +68,7 @@ exports.searchBySurName = async (req, res) => {
     const searchResult = await participant.findAll({
       where: {
         surename: {
-          [Op.like]: `%${participantName}%`,
+          [Op.iLike]: `%${participantName}%`,
         },
       },
     });
