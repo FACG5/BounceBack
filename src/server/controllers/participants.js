@@ -78,7 +78,6 @@ exports.searchBySurName = async (req, res) => {
       res.send({ message: 'Cant find participant with this name' });
     }
   } catch (error) {
-    console.log(error);
     res.send({ error });
   }
 };
