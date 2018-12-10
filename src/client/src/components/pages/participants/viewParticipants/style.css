@@ -1,7 +1,6 @@
 .search-bar {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 .buttons button {
     display: block;

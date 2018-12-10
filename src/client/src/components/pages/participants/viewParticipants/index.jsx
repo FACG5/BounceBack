@@ -219,7 +219,7 @@ export default class ViewParticpants extends Component {
               name="forenameSearch"
               type="text"
               placeholder="forename"
-              width="350px"
+              width="250px"
               value={forenameSearch}
               onChange={this.onChangeForeName}
             />
@@ -228,16 +228,16 @@ export default class ViewParticpants extends Component {
               name="surenameSearch"
               type="text"
               placeholder="surname"
-              width="350px"
+              width="250px"
               value={surenameSearch}
               onChange={this.onChangeSurName}
             />
             <Input
-              label="Search By Birth of date"
+              label="Search by date of birth"
               name="searchByDate"
               type="date"
-              placeholder="birth of date"
-              width="350px"
+              placeholder="date of birth"
+              width="250px"
               value={dateSearch}
               onChange={this.onChangeDate}
             />
