@@ -26,7 +26,7 @@ exports.search = async (req, res) => {
     const managersData = await managers.findAll({
       where: {
         username: {
-          [Op.like]: `%${managerName}%`,
+          [Op.iLike]: `%${managerName}%`,
         },
         [Op.and]: { role: 'manager' },
       },
