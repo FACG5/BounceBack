@@ -90,7 +90,7 @@ class index extends Component {
       const unCompleteAvg = avg(countUnCompleted, total);
 
       this.setState({
-        enrollment_status: [
+        enrollmentStatus: [
           { decription: 'Percentage of participants who have successfully completed this training', percentage: completeAvg },
           { decription: 'Percentage of participants who have this training', percentage: unCompleteAvg },
         ],
