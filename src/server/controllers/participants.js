@@ -40,7 +40,7 @@ exports.delete = (req, res) => {
   }
 };
 
-// Search for an individual participant by surname
+// Search for an individual participant by surname & forename
 exports.searchBySurName = async (req, res) => {
   try {
     const { participantName } = req.body;
