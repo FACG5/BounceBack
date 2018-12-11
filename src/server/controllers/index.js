@@ -23,7 +23,6 @@ Router.get('/overview', getCount.get);
 // Participants Routes
 Router.get('/participants', participants.get);
 Router.get('/participant/:id', participants.getDetails);
-Router.post('/participants/search/forename', participants.searchByForeName);
 Router.post('/participants/search/surname', participants.searchBySurName);
 Router.post('/participants/search/date', participants.searchBydate);
 Router.post('/participants', participants.post);

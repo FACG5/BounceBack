@@ -40,36 +40,21 @@ exports.delete = (req, res) => {
   }
 };
 
-// Search for an individual participant by forename
-exports.searchByForeName = async (req, res) => {
-  try {
-    const { participantName } = req.body;
-    const searchResult = await participant.findAll({
-      where: {
-        forename: {
-          [Op.iLike]: `%${participantName}%`,
-        },
-      },
-    });
-    if (searchResult[0]) {
-      res.send({ searchResult });
-    } else {
-      res.send({ message: 'Cant find participant with this name' });
-    }
-  } catch (error) {
-    res.send({ error });
-  }
-};
-
-// Search for an individual participant by surname
+// Search for an individual participant by surname & forename
 exports.searchBySurName = async (req, res) => {
   try {
     const { participantName } = req.body;
     const searchResult = await participant.findAll({
       where: {
-        surename: {
-          [Op.iLike]: `%${participantName}%`,
-        },
+        [Op.or]: [{
+          surename: {
+            [Op.iLike]: `%${participantName}%`,
+          },
+        }, {
+          forename: {
+            [Op.iLike]: `%${participantName}%`,
+          },
+        }],
       },
     });
     if (searchResult[0]) {
