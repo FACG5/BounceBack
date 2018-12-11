@@ -13,45 +13,12 @@ import Loading from '../../loading';
 
 export default class ViewParticpants extends Component {
   state = {
-    forenameSearch: '',
     surenameSearch: '',
     dateSearch: '',
     rows: [],
     message: '',
     filter: '',
     loading: true,
-  };
-
-  forenameSearcher = async () => {
-    const { forenameSearch } = this.state;
-    const data = await axios('/api/v2/participants/search/forename', {
-      method: 'POST',
-      data: {
-        participantName: forenameSearch,
-      },
-    });
-    const finalData = data.data.searchResult;
-    if (finalData) {
-      const array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
-      finalData.map(row => array.push([
-        row.id,
-        `${row.forename} ${row.surename}`,
-        row.date_of_birth.split('T')[0],
-        row.borough,
-        row.email,
-          <>
-            <Link to={`/participant/details/${row.id}`}>
-              <i className="fas fa-info-circle" />
-            </Link>
-            <i className="fas fa-trash-alt" onClick={() => this.onDelete(row.id)} />
-          </>,
-      ]));
-      this.setState({ rows: array });
-    } else {
-      const array = [];
-      const msg = data.data.message;
-      this.setState({ message: msg, rows: array });
-    }
   };
 
   surnameSearcher = async () => {
@@ -106,7 +73,7 @@ export default class ViewParticpants extends Component {
     });
     const finalData = data.data.searchResult;
     if (finalData) {
-      const array = [['BB_No.', 'fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
+      const array = [['BB_No.', 'Fullname', 'Date Of Birth', 'borough', 'Email', 'Action']];
       finalData.map(row => array.push([
         row.id,
         `${row.forename} ${row.surename}`,
@@ -206,7 +173,7 @@ export default class ViewParticpants extends Component {
 
   render() {
     const {
-      loading, forenameSearch, dateSearch, rows, message, surenameSearch,
+      loading, dateSearch, rows, message, surenameSearch,
     } = this.state;
     if (loading) return <Loading />;
     return (
@@ -215,20 +182,11 @@ export default class ViewParticpants extends Component {
           <Header value="View Participants" />
           <div className="search-bar">
             <Input
-              label="Search by forename"
-              name="forenameSearch"
-              type="text"
-              placeholder="forename"
-              width="250px"
-              value={forenameSearch}
-              onChange={this.onChangeForeName}
-            />
-            <Input
-              label="Search by surname"
+              label="Search by full name"
               name="surenameSearch"
               type="text"
               placeholder="surname"
-              width="250px"
+              width="350px"
               value={surenameSearch}
               onChange={this.onChangeSurName}
             />
@@ -237,7 +195,7 @@ export default class ViewParticpants extends Component {
               name="searchByDate"
               type="date"
               placeholder="date of birth"
-              width="250px"
+              width="350px"
               value={dateSearch}
               onChange={this.onChangeDate}
             />
