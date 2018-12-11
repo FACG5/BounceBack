@@ -50,5 +50,8 @@ export const validationForm = (Fields) => {
   for (let index = 0; index < keys.length; index += 1) {
     if (Fields[keys[index]] === '') { return `Please check ${keys[index]}`; }
   }
+  const startDate = new Date(Fields.course_start).getTime();
+  const endDate = new Date(Fields.course_end).getTime();
+  if (startDate > endDate) return 'Please check the start date and the end date';
   return null;
 };
