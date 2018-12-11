@@ -10,8 +10,6 @@ import Dashboard from '../pages/dashboard';
 import AddParticipant from '../pages/participants/addParticipant';
 import ViewWorker from '../pages/workers/viewWorkers';
 import addCourse from '../pages/courses/addCourses';
-import ReportResult from '../pages/reportResult';
-import Report from '../pages/report';
 import prisonDetails from '../pages/participants/prisonDetails';
 import prisonerDetails from '../pages/participants/prisonerDetails';
 import addWorker from '../pages/workers/addWorkers';
@@ -40,8 +38,6 @@ export default {
   AddParticipant,
   ViewWorker,
   addCourse,
-  ReportResult,
-  Report,
   prisonDetails,
   addWorker,
   workerDetails,
