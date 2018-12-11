@@ -48,11 +48,11 @@ exports.searchBySurName = async (req, res) => {
       where: {
         [Op.or]: [{
           surename: {
-            [Op.like]: `%${participantName}%`,
+            [Op.iLike]: `%${participantName}%`,
           },
         }, {
           forename: {
-            [Op.like]: `%${participantName}%`,
+            [Op.iLike]: `%${participantName}%`,
           },
         }],
       },
