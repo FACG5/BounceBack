@@ -16,8 +16,6 @@ const {
   AddParticipant,
   ViewWorker,
   addCourse,
-  ReportResult,
-  Report,
   prisonDetails,
   addWorker,
   workerDetails,
@@ -63,12 +61,6 @@ export default function index() {
             path="/participants/add"
             component={AddParticipant}
           />
-          <Route
-            exact
-            path="/report/result"
-            component={ReportResult}
-          />
-          <Route exact path="/report" component={Report} />
           <Route exact path="/workers/view" component={ViewWorker} />
           <Route exact path="/workers/add" component={addWorker} />
           <Route exact path="/managers/add" component={addManager} />
