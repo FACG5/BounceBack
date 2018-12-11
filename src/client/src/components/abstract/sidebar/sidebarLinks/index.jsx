@@ -28,9 +28,6 @@ class SideLinks extends Component {
       <Consumer>
         {value => (
           <>
-            <Link className="links" to="/report">
-              report
-            </Link>
             <p className="links" onClick={() => this.logout(value.dispatch)}>
               logout
             </p>
