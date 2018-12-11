@@ -56,7 +56,7 @@ exports.search = async (req, res) => {
     const result = await courses.findAll({
       where: {
         course_name: {
-          [Op.like]: `%${courseName}%`,
+          [Op.iLike]: `%${courseName}%`,
         },
       },
     });

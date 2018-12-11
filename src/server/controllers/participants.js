@@ -58,7 +58,6 @@ exports.searchBySurName = async (req, res) => {
       },
     });
     if (searchResult[0]) {
-      console.log(searchResult);
       res.send({ searchResult });
     } else {
       res.send({ message: 'Cant find participant with this name' });

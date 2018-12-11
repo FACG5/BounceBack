@@ -139,7 +139,6 @@ export default class ViewManagers extends Component {
             value={search}
             onChange={this.onChange}
           />
-          {/* <Button value="Search" onClick={this.search} /> */}
           <Header value="Managers" align="left" margin="0" />
           <Table rows={rows} />
           {rows.length === 0 && (

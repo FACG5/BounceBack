@@ -26,7 +26,7 @@ exports.search = async (req, res) => {
     const resultSearch = await workers.findAll({
       where: {
         username: {
-          [Op.like]: `%${workerName}%`,
+          [Op.iLike]: `%${workerName}%`,
         },
       },
     });
