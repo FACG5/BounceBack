@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 import {
   state as initialState,
   fields as fieldSet,
+  validationForm,
 } from './staticData';
 import Form from '../../../abstract/Form';
 import Footer from '../../../abstract/footer';
@@ -83,7 +84,12 @@ updateManager = async (obj) => {
   onSubmit = (event) => {
     event.preventDefault();
     const fields = { ...this.state };
-    this.updateManager(fields);
+    const { password, confirmPassword } = fields;
+    if (password !== confirmPassword) { this.setState({ error: 'The two passwords do not match' }); } else {
+      const error = validationForm(fields);
+      if (error) return this.setState({ error });
+      this.updateManager(fields);
+    }
   };
 
   render() {
