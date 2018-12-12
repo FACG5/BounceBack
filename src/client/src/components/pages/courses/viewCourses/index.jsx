@@ -23,7 +23,7 @@ export default class Courses extends Component {
     const data = await axios('/api/v2/courses/search', {
       method: 'POST',
       data: {
-        courseName: search,
+        searchInput: search,
       },
     });
     const finalData = data.data.result;
@@ -150,10 +150,10 @@ export default class Courses extends Component {
           <Header value="Interventions" />
           <div className="search-bar">
             <Input
-              label="Search by intervention name"
+              label="Search by intervention name/type"
               name="search"
               type="text"
-              placeholder="intervention name"
+              placeholder="intervention name/type"
               width="300px"
               value={search}
               onChange={this.onChange}
