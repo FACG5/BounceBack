@@ -4,6 +4,7 @@ const participant = require('../database/models/participant');
 const dates = require('../database/models/dates');
 const courses = require('../database/models/participantCourses');
 const { checkFiles } = require('./../helpers/checkFiles');
+const { participantValid } = require('./../helpers/validation');
 
 // Get all participants
 exports.get = async (req, res) => {
@@ -117,6 +118,7 @@ exports.getDetails = async (req, res) => {
 exports.post = async (req, res) => {
   try {
     const participantdata = JSON.parse(req.body.data);
+    participantValid(participantdata);
     const { count } = await participant.findAndCountAll({
       where: {
         email: participantdata.email,
