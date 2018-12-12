@@ -5,7 +5,6 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-eslint": "^10.0.1",
     "d3": "^5.7.0",
     "jsonwebtoken": "^8.4.0",
     "prop-types": "^15.6.2",
