@@ -52,11 +52,11 @@ exports.delete = (req, res) => {
 
 exports.search = async (req, res) => {
   try {
-    const { courseName } = req.body;
+    const { searchInput } = req.body;
     const result = await courses.findAll({
       where: {
         course_name: {
-          [Op.iLike]: `%${courseName}%`,
+          [Op.iLike]: `%${searchInput}%`,
         },
       },
     });
