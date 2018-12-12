@@ -90,7 +90,7 @@ class index extends Component {
       cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { match: { params: { id } } } = this.props;
+      const { history, match: { params: { id } } } = this.props;
       const upload = document.getElementById('fileid');
       const FileData = new FormData();
       const fields = { ...obj };
@@ -115,6 +115,7 @@ class index extends Component {
           html: result.data.message,
         });
         this.setState({ ...obj });
+        history.push('/participants/view');
       }
     }
   };

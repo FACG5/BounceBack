@@ -33,7 +33,7 @@ class index extends Component {
       cancelButtonAriaLabel: 'Thumbs down',
     });
     if (confirm.value) {
-      const { match: { params: { id } } } = this.props;
+      const { history, match: { params: { id } } } = this.props;
       const result = await axios(`/api/v2/course/${id}`, {
         method: 'PUT',
         data: {
@@ -54,6 +54,7 @@ class index extends Component {
           html: result.data.message,
         });
         this.setState({ ...obj });
+        history.push('/courses/view');
       }
     }
   };
