@@ -150,10 +150,10 @@ export default class Courses extends Component {
           <Header value="Interventions" />
           <div className="search-bar">
             <Input
-              label="Search by intervention name/type"
+              label="Search by intervention name"
               name="search"
               type="text"
-              placeholder="intervention name/type"
+              placeholder="intervention name"
               width="300px"
               value={search}
               onChange={this.onChange}
