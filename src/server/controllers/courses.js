@@ -55,21 +55,15 @@ exports.search = async (req, res) => {
     const { searchInput } = req.body;
     const result = await courses.findAll({
       where: {
-        [Op.or]: [{
-          course_name: {
-            [Op.iLike]: `%${searchInput}%`,
-          },
-        }, {
-          type: {
-            [Op.iLike]: `%${searchInput}%`,
-          },
-        }],
+        course_name: {
+          [Op.iLike]: `%${searchInput}%`,
+        },
       },
     });
     if (result[0]) {
       res.send({ result });
     } else {
-      res.send({ message: 'Cant find intervention that relates to your search input' });
+      res.send({ message: 'Cant find intervention with this name' });
     }
   } catch (error) {
     res.send({ error });
