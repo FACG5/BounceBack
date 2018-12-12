@@ -154,9 +154,9 @@ export const validationForm = (Fields) => {
     'password',
   ];
 
-  const keys = Object.keys(Fields);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (requiredFields[keys[index]] === '') { return `Please check ${keys[index]}`; }
+  for (let index = 0; index < requiredFields.length; index += 1) {
+    const key = requiredFields[index];
+    if (Fields[key] === '') { return `Please check ${key}`; }
   }
 
 
