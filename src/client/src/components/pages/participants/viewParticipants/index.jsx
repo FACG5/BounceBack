@@ -23,7 +23,7 @@ export default class ViewParticpants extends Component {
 
   surnameSearcher = async () => {
     const { surenameSearch } = this.state;
-    const data = await axios('/api/v2/participants/search/surname', {
+    const data = await axios('/api/v2/participants/search/name', {
       method: 'POST',
       data: {
         participantName: surenameSearch,
