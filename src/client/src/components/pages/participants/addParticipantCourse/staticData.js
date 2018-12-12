@@ -52,6 +52,7 @@ export const validationForm = (Fields) => {
   }
   const startDate = new Date(Fields.course_start).getTime();
   const endDate = new Date(Fields.course_end).getTime();
+  // console.log(startDate > endDate);
   if (startDate > endDate) return 'Please check the start date and the end date';
   return null;
 };
