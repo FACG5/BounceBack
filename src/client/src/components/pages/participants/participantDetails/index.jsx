@@ -33,8 +33,9 @@ class index extends Component {
   };
 
   goPrison = () => {
-    const { match: { params: { id, prisonId } }, history } = this.props;
-    history.push(`/participants/${id}/prisoner/${prisonId}`);
+    const { match: { params: { id } }, history } = this.props;
+    const { prisonerId } = this.state;
+    history.push(`/participants/${id}/prisoner/${prisonerId}`);
   }
 
   getPrison = async () => {
@@ -48,7 +49,7 @@ class index extends Component {
           this.setState({ prisonerId: prisonId });
         } else {
           fieldSet[0][3].display = 'none';
-          this.setState({ prisonerId: '' });
+          this.setState({ prisonId: '' });
         }
       })
       .catch((error) => {
