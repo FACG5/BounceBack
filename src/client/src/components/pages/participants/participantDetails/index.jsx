@@ -33,8 +33,9 @@ class index extends Component {
   };
 
   goPrison = () => {
-    const { match: { params: { id, prisonId } }, history } = this.props;
-    history.push(`/participants/${id}/prisoner/${prisonId}`);
+    const { match: { params: { id } }, history } = this.props;
+    const { prisonerId } = this.state;
+    history.push(`/participants/${id}/prisoner/${prisonerId}`);
   }
 
   getPrison = async () => {
