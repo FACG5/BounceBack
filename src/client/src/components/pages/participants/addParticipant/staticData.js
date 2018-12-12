@@ -309,9 +309,9 @@ export const validationForm = (Fields) => {
     'email',
     'borough',
   ];
-  const keys = Object.keys(Fields);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (requiredFields[keys[index]] === '') { return `Please check ${keys[index]}`; }
+  for (let index = 0; index < requiredFields.length; index += 1) {
+    const key = requiredFields[index];
+    if (Fields[key] === '') { return `Please check ${key}`; }
   }
 
   if (!validator.isEmail(Fields.email)) {
@@ -319,5 +319,4 @@ export const validationForm = (Fields) => {
   }
 
   if (!checkNI(Fields.ni_number)) { return 'An NI Number should be two letters, six numbers, and a letter'; }
-  return null;
 };
