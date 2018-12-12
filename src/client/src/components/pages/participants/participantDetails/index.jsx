@@ -49,7 +49,7 @@ class index extends Component {
           this.setState({ prisonerId: prisonId });
         } else {
           fieldSet[0][3].display = 'none';
-          this.setState({ prisonId: '' });
+          this.setState({ prisonerId: '' });
         }
       })
       .catch((error) => {
