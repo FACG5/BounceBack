@@ -41,7 +41,7 @@ exports.delete = (req, res) => {
 };
 
 // Search for an individual participant by surname & forename
-exports.searchBySurName = async (req, res) => {
+exports.searchByName = async (req, res) => {
   try {
     const { participantName } = req.body;
     const searchResult = await participant.findAll({
