@@ -17,6 +17,7 @@ export const fields = [
     name: 'utr_number',
     width: '15rem',
     placeholder: 'UTR. No',
+    type: 'number',
   },
   {
     tag: 'Input',
@@ -24,7 +25,6 @@ export const fields = [
     name: 'prison_name',
     width: '15rem',
     placeholder: 'prison',
-
   },
   {
     tag: 'Input',
@@ -32,7 +32,7 @@ export const fields = [
     name: 'prison_number',
     width: '15rem',
     placeholder: 'prison number',
-
+    type: 'number',
   },
   ],
   [{
@@ -47,8 +47,9 @@ export const fields = [
     label: 'Contact Details',
     name: 'contact_details',
     width: '15rem',
-    placeholder: 'probation officer name',
-  }],
+    placeholder: 'Contact Details',
+  },
+  ],
 
   [{
     tag: 'Input',
@@ -57,29 +58,25 @@ export const fields = [
     width: '15rem',
     type: 'number',
     placeholder: 'Length of Sentence',
-  },
-  {
+  }, {
     tag: 'Input',
     label: 'Prison Release',
     name: 'prison_release',
     width: '15rem',
     type: 'date',
-  },
-  {
+  }, {
     tag: 'Input',
     label: 'ROTL/HDC',
     name: 'rotl_hdc',
     width: '15rem',
     placeholder: 'ROTL / HDC',
-  },
-  ],
+  }],
   [{
     tag: 'Input',
     label: 'Offence',
     name: 'offence',
     width: '20rem',
     placeholder: 'offence',
-
   },
   {
     tag: 'Input',
@@ -87,7 +84,6 @@ export const fields = [
     name: 'point_of_contact',
     width: '20rem',
     placeholder: 'prison point of contact',
-
   },
   ],
   [{

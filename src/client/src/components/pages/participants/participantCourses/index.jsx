@@ -49,7 +49,7 @@ class Course extends Component {
     try {
       const result = await axios(`/api/v2/participant/${id}/courses`);
       const courses = result.data.participantCourses;
-      let array = [['Intervention name', 'Start', 'End', 'type', 'Note', 'Action']];
+      let array = [['Intervention name', 'Start', 'End', 'type', 'Action']];
       if (courses.length === 0) {
         const msg = 'There is no courses yet !!';
         array = [];
@@ -60,7 +60,6 @@ class Course extends Component {
           row.course_start.split('T')[0],
           row.course_end.split('T')[0],
           row.type,
-          row.details,
             <>
               {row.type === 'trainings' ? (
                 <Link to={`/participant/${id}/course/details/${row.id}`}>
