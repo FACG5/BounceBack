@@ -185,7 +185,7 @@ export default class ViewParticpants extends Component {
               label="Search by full name"
               name="surenameSearch"
               type="text"
-              placeholder="surname"
+              placeholder="name"
               width="350px"
               value={surenameSearch}
               onChange={this.onChangeSurName}
