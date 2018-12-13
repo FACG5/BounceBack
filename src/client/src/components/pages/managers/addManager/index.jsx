@@ -71,7 +71,7 @@ export default class index extends Component {
     event.preventDefault();
     const fields = { ...this.state };
     const { password, confirmPassword } = fields;
-    if (password !== confirmPassword) { this.setState({ error: 'The two passwords do not pass' }); } else {
+    if (password !== confirmPassword) { this.setState({ error: 'The two passwords do not match' }); } else {
       const error = validationForm(fields);
       if (error) return this.setState({ error });
 

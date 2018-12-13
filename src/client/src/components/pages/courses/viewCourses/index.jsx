@@ -23,7 +23,7 @@ export default class Courses extends Component {
     const data = await axios('/api/v2/courses/search', {
       method: 'POST',
       data: {
-        courseName: search,
+        searchInput: search,
       },
     });
     const finalData = data.data.result;

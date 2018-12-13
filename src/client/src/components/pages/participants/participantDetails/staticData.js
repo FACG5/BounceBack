@@ -1,3 +1,6 @@
+import validator from 'validator';
+import { getDate, checkNI } from '../../../../helpers';
+
 export const state = {
   surename: '',
   forename: '',
@@ -94,6 +97,8 @@ export const fields = [
       width: '20rem',
       type: 'date',
       placeholder: 'date of birth',
+      max: getDate(),
+      min: '1920-01-01',
     },
   ],
   [
@@ -334,9 +339,23 @@ export const fields = [
 
 
 export const validationForm = (Fields) => {
-  const keys = Object.keys(Fields);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (Fields[keys[index]] === '') { return `Please check ${keys[index]}`; }
+  const requiredFields = [
+    'forename',
+    'surename',
+    'date_of_birth',
+    'gender',
+    'mobile',
+    'email',
+    'borough',
+  ];
+  for (let index = 0; index < requiredFields.length; index += 1) {
+    const key = requiredFields[index];
+    if (Fields[key] === '') { return `Please check ${key}`; }
   }
-  return null;
+
+  if (!validator.isEmail(Fields.email)) {
+    return `${Fields.email} is not a valid email.`;
+  }
+
+  if (!checkNI(Fields.ni_number)) { return 'An NI Number should be two letters, six numbers, and a letter'; }
 };

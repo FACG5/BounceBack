@@ -28,7 +28,7 @@ exports.get = async (req, res) => {
       },
     });
     const counts = await sequelize
-      .query("SELECT participant_courses.course_name As name,count(*) FROM participants JOIN participant_courses ON participant_courses.participant_id = participants.id where participants.employment_outcomes = 'employed' group by (participant_courses.course_name)");
+      .query("SELECT participant_courses.course_name As name,count(*) FROM participants JOIN participant_courses ON participant_courses.participant_id = participants.id where participant_courses.type = 'trainings' And participants.employment_outcomes = 'employed' group by (participant_courses.course_name)");
     res.send({
       countParticipant,
       countCourse,
