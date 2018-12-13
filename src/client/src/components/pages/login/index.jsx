@@ -31,16 +31,15 @@ class LoginForm extends Component {
 
 
   onClick = async () => {
-    const { context: { dispatch }, history } = this.props;
-    const { username, password } = this.state;
-    const response = await axios({
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      data: { username, password },
-      url: '/api/v2/login',
-    });
-    if (response.data) {
-      localStorage.setItem('token', JSON.stringify(response.data));
+    try {
+      const { context: { dispatch }, history } = this.props;
+      const { username, password } = this.state;
+      await axios({
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        data: { username, password },
+        url: '/api/v2/login',
+      });
       dispatch({ type: 'LOGIN_USER', payload: { logging: true } });
       swal({
         title: 'Success',
@@ -51,8 +50,8 @@ class LoginForm extends Component {
         timer: 2000,
       });
       history.push('/');
-    } else {
-      this.setState({ error: response.data.Error });
+    } catch (error) {
+      this.setState({ error: 'Check username or password' });
     }
   };
 
