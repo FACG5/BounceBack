@@ -12,9 +12,9 @@ exports.get = async (req, res) => {
       res.cookie('jwt', token, { maxAge: 6048000000 });
       res.send(token);
     } else {
-      res.send({ Error: 'Check Username Or Password' });
+      res.status(401).send('Check Username Or Password');
     }
   } catch (error) {
-    res.send({ Error: 'There Is Error In Our Network' });
+    res.status(401).send('There Is Error In Our Network');
   }
 };
